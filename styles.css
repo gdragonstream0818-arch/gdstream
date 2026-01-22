@@ -37,26 +37,7 @@ a{color:inherit;text-decoration:none}
 }
 
 /* 로고(가운데 고정) */
-.logo{
-  position:static;      /* absolute 제거 */
-  left:auto;
-  transform:none;
-
-  display:flex;
-  align-items:center;
-  gap:10px;
-  font-weight:900;
-  white-space:nowrap;
-}
-
-/* ✅ 로고 이미지 크기 고정 */
-.logoImg{
-  width:26px;
-  height:26px;
-  display:block;
-  object-fit:contain;
-}
-
+.logo{ position:absolute; left:50%; transform:translateX(-50%); display:flex; align-items:center; gap:10px; font-weight:900; white-space:nowrap; } .logoImg{ height:22px; width:auto; max-height:22px; display:block; object-fit:contain; }
 /* 메뉴(오른쪽) */
 .nav{
   position:absolute;
