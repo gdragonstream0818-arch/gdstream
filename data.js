@@ -35,8 +35,8 @@ const GUIDE_TABS = [
     title: "스트리밍 가이드",
     cards: [
       { title: "멜론 스밍가이드", desc: "멜론", icon: "🍈", url: "/guide/streaming/melon/" },
-      { title: "애플뮤직 스밍가이드", desc: "Apple Music", icon: "🍎", url: "/guide/streaming/applemusic/" },
-      { title: "스포티파이 스밍가이드", desc: "Spotify", icon: "🟢", url: "/guide/streaming/spotify/" }
+      { title: "스포티파이 스밍가이드", desc: "Spotify", icon: "🟢", url: "/guide/streaming/spotify/" },
+      { title: "애플뮤직 스밍가이드", desc: "Apple Music", icon: "🍎", url: "/guide/streaming/applemusic/" }
     ]
   },
   {
