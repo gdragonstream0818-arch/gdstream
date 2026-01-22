@@ -127,4 +127,3 @@ document.addEventListener("DOMContentLoaded", () => {
   if (document.getElementById("guideTabs") && document.getElementById("guideCards")) {
     renderGuideTabs("guideTabs", "guideCards");
   }
-
