@@ -1,23 +1,35 @@
-const MELON = {
-  name: "멜론",
+// ✅ 멜론 원클릭 (기기별 자동 선택) + 1/2/3 버튼
 
-  // 아이콘: 외부 링크 싫으면 나중에 /assets/melon.png 로 바꿔도 됨
-  iconUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Melon_logo.svg/512px-Melon_logo.svg.png",
+const QUICK_LINKS = [
+  {
+    title: "멜론 원클릭 1",
+    desc: "멜론 바로가기",
+    urls: {
+      android: "https://tinyurl.com/3ny3yz6f",
+      ios: "https://tinyurl.com/4f3a9sfc",
+      pc: "https://tinyurl.com/mt6jn9cs"
+    }
+  },
+  {
+    title: "멜론 원클릭 2",
+    desc: "멜론 바로가기",
+    urls: {
+      android: "https://tinyurl.com/nb86e9xe",
+      ios: "https://tinyurl.com/4f3a9sfc",
+      pc: "https://tinyurl.com/muydwrzw"
+    }
+  },
+  {
+    title: "멜론 원클릭 3",
+    desc: "멜론 바로가기",
+    urls: {
+      android: "https://tinyurl.com/3jvw3983",
+      ios: "https://tinyurl.com/4f3a9sfc",
+      pc: "https://tinyurl.com/yypnz498"
+    }
+  }
+];
 
-  ios: "https://tinyurl.com/4f3a9sfc",
-
-  android: [
-    { label: "링크 1", url: "https://tinyurl.com/3ny3yz6f" },
-    { label: "링크 2", url: "https://tinyurl.com/nb86e9xe" },
-    { label: "링크 3", url: "https://tinyurl.com/3jvw3983" }
-  ],
-
-  pc: [
-    { label: "링크 1", url: "https://tinyurl.com/mt6jn9cs" },
-    { label: "링크 2", url: "https://tinyurl.com/muydwrzw" },
-    { label: "링크 3", url: "https://tinyurl.com/yypnz498" }
-  ]
-};
 
 const GUIDE_TABS = [
   {
