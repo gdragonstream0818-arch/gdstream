@@ -108,3 +108,43 @@ function renderGuideTabs(tabsContainerId, cardsContainerId) {
   drawTabs();
   drawCards();
 }
+
+// ✅ 메인 화면 '멜론 원클릭' 버튼: 기기별 자동 이동
+function bindMainMelonButton() {
+  const btn = document.getElementById("melonMainBtn");
+  if (!btn) return;
+
+  btn.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    const device = detectDevice();
+
+    // iOS는 링크 1개니까 바로 이동
+    if (device === "ios") {
+      const url = (QUICK_LINKS && QUICK_LINKS[0]) ? pickUrl(QUICK_LINKS[0]) : "#";
+      if (url && url !== "#") window.location.href = url;
+      return;
+    }
+
+    // PC/Android는 1/2/3 선택이 필요하니까 streaming 페이지로 보내기
+    window.location.href = "/streaming/";
+  });
+}
+
+// ✅ 페이지 로드되면 자동 실행 (ID는 네 HTML에 맞게)
+document.addEventListener("DOMContentLoaded", () => {
+  // 메인 버튼 바인딩
+  bindMainMelonButton();
+
+  // streaming 페이지 버튼 렌더 (컨테이너 id가 다르면 여기만 바꾸면 됨)
+  // 예: <div id="quickLinks"></div>
+  if (document.getElementById("quickLinks")) {
+    renderLinks("quickLinks");
+  }
+
+  // guide 페이지 탭 렌더 (id가 다르면 수정)
+  if (document.getElementById("guideTabs") && document.getElementById("guideCards")) {
+    renderGuideTabs("guideTabs", "guideCards");
+  }
+});
+
