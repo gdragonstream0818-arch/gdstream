@@ -9,34 +9,28 @@
 <body>
   <header class="header">
     <div class="container headerInner">
-      <a class="logo" href="/">GDSTREAM</a>
+      <a class="logo" href="/">지드래곤 음원총공팀</a>
       <nav class="nav">
-        <a href="/guide/">가이드</a>
         <a href="/streaming/">원클릭</a>
+        <a href="/guide/">가이드</a>
       </nav>
     </div>
   </header>
 
   <main class="container">
     <h1 class="h1">가이드</h1>
-    <div id="guideWrap"></div>
-  </main>
 
-  <!-- 큰 이미지 보기(모달) -->
-  <div class="modalBackdrop" id="modalBackdrop">
-    <div class="modal" onclick="event.stopPropagation()">
-      <div class="modalHeader">
-        <span id="modalLabel"></span>
-        <button class="modalClose" id="modalClose">닫기</button>
-      </div>
-      <img id="modalImg" alt="guide" />
-    </div>
-  </div>
+    <!-- ✅ 탭 -->
+    <div id="guideTabs" class="tabRow"></div>
+
+    <!-- ✅ 카드들 -->
+    <div id="guideCards" class="cardGrid"></div>
+  </main>
 
   <script src="/data.js"></script>
   <script src="/script.js"></script>
   <script>
-    renderGuides("guideWrap");
+    renderGuideTabs("guideTabs", "guideCards");
   </script>
 </body>
 </html>
