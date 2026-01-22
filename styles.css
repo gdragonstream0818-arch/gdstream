@@ -280,7 +280,7 @@ a{color:inherit;text-decoration:none}
 /* 모바일에서만 조정 */
 @media (max-width: 768px){
   .brandImg{
-    height: 44px;          /* 모바일 추천(원하면 100도 가능) */
+    height: 44px;          /* 모바일 추천(원하면 1 00도 가능) */
   }
 }
 
