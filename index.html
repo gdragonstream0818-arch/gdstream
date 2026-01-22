@@ -21,19 +21,22 @@
     </div>
   </header>
 
+  <!-- ✅ HERO: 모바일/PC 다른 배너 이미지 + 클릭하면 뮤비로 이동 -->
   <section class="hero">
     <div class="heroInner">
-      <div class="ytWrap">
-        <iframe
-          id="mv"
-          class="yt"
-          src="https://www.youtube.com/embed/o9DhvbqYzns?rel=0&modestbranding=1"
-          title="G-DRAGON - TOO BAD (MV)"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen
-        ></iframe>
-      </div>
+      <a class="heroLink"
+         href="https://youtu.be/o9DhvbqYzns?si=7uozTe90cIU0ZY27"
+         target="_blank" rel="noreferrer">
+
+        <picture>
+          <!-- ✅ 모바일 -->
+          <source media="(max-width: 768px)" srcset="/assets/header/assetshero-m.jpg">
+          <!-- ✅ PC 기본 -->
+          <img class="heroImg" src="/assets/header/assetshero-pc.jpg" alt="G-DRAGON - TOO BAD (MV)">
+        </picture>
+
+        <span class="playBadge" aria-hidden="true">▶</span>
+      </a>
     </div>
   </section>
 
@@ -81,5 +84,3 @@
   <script src="/script.js"></script>
 </body>
 </html>
-
-
