@@ -52,7 +52,7 @@ const GUIDE_TABS = [
     key: "vote",
     title: "투표 가이드",
     cards: [
-      { title: "시상식 투표 가이드", desc: "MMA/MAMA 등", icon: "🗳️", url: "/guide/vote/" }
-    ]
+      { title: "시상식 투표 가이드", desc: "MMA/MAMA 등", icon: "🗳️", url: "/guide/vote/",
+      color: "linear-gradient(135deg,#ff2bd6,#7c3aed)" }
   }
 ];
