@@ -4,13 +4,40 @@ function el(tag, className) {
   return e;
 }
 
+// ✅ 접속 기기 감지: iPhone / Android / PC(기타)
+function detectDevice() {
+  const ua = navigator.userAgent || "";
+  const isAndroid = /Android/i.test(ua);
+  const isIOS = /iPhone|iPad|iPod/i.test(ua);
+  if (isIOS) return "ios";
+  if (isAndroid) return "android";
+  return "pc";
+}
+
+function pickUrl(link) {
+  // data.js 구조: { urls: { pc, ios, android } }
+  const device = detectDevice();
+  const urls = link.urls || {};
+  // 우선순위: 해당 기기 → pc → 아무거나
+  return urls[device] || urls.pc || urls.ios || urls.android || "#";
+}
+
 function renderLinks(containerId) {
   const wrap = document.getElementById(containerId);
   if (!wrap) return;
 
+  const device = detectDevice();
+  const deviceLabel = device === "ios" ? "iPhone" : device === "android" ? "Android" : "PC";
+
+  // 상단 안내(선택된 기기 표시)
+  const info = el("div", "p");
+  info.style.marginBottom = "12px";
+  info.textContent = `현재 접속 기기: ${deviceLabel} (자동으로 해당 링크가 열립니다)`;
+  wrap.parentElement?.insertBefore(info, wrap);
+
   QUICK_LINKS.forEach((l) => {
     const a = el("a", "btn");
-    a.href = l.url;
+    a.href = pickUrl(l);
     a.target = "_blank";
     a.rel = "noreferrer";
 
@@ -21,14 +48,23 @@ function renderLinks(containerId) {
 
     const right = el("span"); right.textContent = "↗";
 
-    a.appendChild(left); a.appendChild(right);
+    a.appendChild(left);
+    a.appendChild(right);
     wrap.appendChild(a);
   });
 }
 
+/* 가이드용(지금은 비워둬도 문제 없음) */
 function renderGuides(containerId) {
   const wrap = document.getElementById(containerId);
   if (!wrap) return;
+
+  if (!Array.isArray(GUIDE_CATEGORIES) || GUIDE_CATEGORIES.length === 0) {
+    const empty = el("p", "p");
+    empty.textContent = "가이드 이미지는 준비 중!";
+    wrap.appendChild(empty);
+    return;
+  }
 
   const backdrop = document.getElementById("modalBackdrop");
   const modalImg = document.getElementById("modalImg");
@@ -54,13 +90,9 @@ function renderGuides(containerId) {
   GUIDE_CATEGORIES.forEach((cat) => {
     const titleRow = el("div", "sectionTitle");
     titleRow.textContent = cat.title + " ";
-    if (cat.badge) {
-      const b = el("span", "badge"); b.textContent = cat.badge;
-      titleRow.appendChild(b);
-    }
 
     const grid = el("div", "gallery");
-    cat.images.forEach((img) => {
+    (cat.images || []).forEach((img) => {
       const box = el("div", "thumb");
       const im = el("img");
       im.src = img.src;
