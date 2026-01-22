@@ -1,13 +1,10 @@
-console.log("✅ script.js loaded v2");
-
-/* ---------- helper ---------- */
 function el(tag, className) {
   const e = document.createElement(tag);
   if (className) e.className = className;
   return e;
 }
 
-/* ---------- device detect ---------- */
+// ✅ 접속 기기 감지: iPhone / Android / PC(기타)
 function detectDevice() {
   const ua = navigator.userAgent || "";
   const isAndroid = /Android/i.test(ua);
@@ -20,50 +17,11 @@ function detectDevice() {
 function pickUrl(link) {
   // data.js 구조: { urls: { pc, ios, android } }
   const device = detectDevice();
-  const urls = (link && link.urls) || {};
+  const urls = link.urls || {};
+  // 우선순위: 해당 기기 → pc → 아무거나
   return urls[device] || urls.pc || urls.ios || urls.android || "#";
 }
 
-/* =========================================================
-   1) 메인 "멜론 원클릭" 버튼 바인딩
-   - HTML에 id="mainMelonButton" 붙이면 가장 확실
-   - 없으면 .btn--melon / [data-action="main-melon"] 도 찾아봄
-   ========================================================= */
-function bindMainMelonButton() {
-  const btn =
-    document.getElementById("mainMelonButton") ||
-    document.querySelector('[data-action="main-melon"]') ||
-    document.querySelector(".btn--melon");
-
-  if (!btn) return; // 메인 버튼 없는 페이지면 그냥 끝
-
-  const link =
-    typeof QUICK_LINKS !== "undefined" &&
-    Array.isArray(QUICK_LINKS) &&
-    QUICK_LINKS.length > 0
-      ? QUICK_LINKS[0]
-      : null;
-
-  const url = link ? pickUrl(link) : "https://www.melon.com";
-
-  // a 태그면 href 세팅, button이면 클릭 시 새창
-  if (btn.tagName === "A") {
-    btn.href = url;
-    btn.target = "_blank";
-    btn.rel = "noreferrer";
-  } else {
-    btn.addEventListener("click", (e) => {
-      e.preventDefault();
-      window.open(url, "_blank", "noopener,noreferrer");
-    });
-  }
-}
-
-/* =========================================================
-   2) /streaming/ 영역: 링크 버튼들 렌더
-   - containerId에 해당하는 div 안에 버튼 목록 생성
-   - iOS는 1개만, PC/Android는 3개(QUICK_LINKS 전체)
-   ========================================================= */
 function renderLinks(containerId) {
   const wrap = document.getElementById(containerId);
   if (!wrap) return;
@@ -71,41 +29,24 @@ function renderLinks(containerId) {
   const device = detectDevice();
   const deviceLabel = device === "ios" ? "iPhone" : device === "android" ? "Android" : "PC";
 
-  wrap.innerHTML = "";
-
-  // 상단 안내(중복 생성 방지)
-  let info = wrap.parentElement?.querySelector(".deviceInfo");
-  if (!info) {
-    info = el("div", "p deviceInfo");
-    info.style.marginBottom = "12px";
-    wrap.parentElement?.insertBefore(info, wrap);
-  }
+  // 상단 안내(선택된 기기 표시)
+  const info = el("div", "p");
+  info.style.marginBottom = "12px";
   info.textContent = `현재 접속 기기: ${deviceLabel} (자동으로 해당 링크가 열립니다)`;
+  wrap.parentElement?.insertBefore(info, wrap);
 
-  const all =
-    typeof QUICK_LINKS !== "undefined" && Array.isArray(QUICK_LINKS) ? QUICK_LINKS : [];
-
-  const linksToShow = device === "ios" ? (all.length ? [all[0]] : []) : all;
-
-  linksToShow.forEach((l, idx) => {
+  QUICK_LINKS.forEach((l) => {
     const a = el("a", "btn");
     a.href = pickUrl(l);
     a.target = "_blank";
     a.rel = "noreferrer";
 
     const left = el("span");
+    const t = el("div", "btnTitle"); t.textContent = l.title;
+    const d = el("div", "btnDesc"); d.textContent = l.desc || "";
+    left.appendChild(t); left.appendChild(d);
 
-    const t = el("div", "btnTitle");
-    t.textContent = "멜론 원클릭";
-
-    const d = el("div", "btnDesc");
-    d.textContent = device === "ios" ? "아이폰 자동 링크" : `링크 ${idx + 1}`;
-
-    left.appendChild(t);
-    left.appendChild(d);
-
-    const right = el("span");
-    right.textContent = "↗";
+    const right = el("span"); right.textContent = "↗";
 
     a.appendChild(left);
     a.appendChild(right);
@@ -113,9 +54,9 @@ function renderLinks(containerId) {
   });
 }
 
-/* =========================================================
-   3) /guide/ 영역: 가이드 탭 렌더 (GUIDE_TABS 사용)
-   ========================================================= */
+/* =========================
+   ✅ 가이드 탭 렌더 (너 data.js에 GUIDE_TABS 있으니 유지)
+   ========================= */
 function renderGuideTabs(tabsContainerId, cardsContainerId) {
   const tabsWrap = document.getElementById(tabsContainerId);
   const cardsWrap = document.getElementById(cardsContainerId);
@@ -127,17 +68,14 @@ function renderGuideTabs(tabsContainerId, cardsContainerId) {
 
   const drawCards = () => {
     cardsWrap.innerHTML = "";
-    const tab = GUIDE_TABS.find((t) => t.key === activeKey);
+    const tab = GUIDE_TABS.find(t => t.key === activeKey);
     const cards = tab?.cards || [];
 
     cards.forEach((c) => {
       const a = el("a", "cardTile");
       a.href = c.url || "#";
-      a.target = "_blank";
-      a.rel = "noreferrer";
 
       const top = el("div", "cardTop");
-
       const small = el("div", "cardSmall");
       small.textContent = tab.title;
 
@@ -177,21 +115,16 @@ function renderGuideTabs(tabsContainerId, cardsContainerId) {
   drawCards();
 }
 
-/* =========================================================
-   4) 초기 실행
-   - 요소가 있을 때만 동작
-   ========================================================= */
 document.addEventListener("DOMContentLoaded", () => {
-  // 1) 메인 버튼 바인딩(없으면 그냥 종료)
   bindMainMelonButton();
 
-  // 2) streaming 페이지: melonCard 컨테이너 있으면 링크 렌더
+  // /streaming/ 페이지면 melonCard 렌더
   if (document.getElementById("melonCard")) {
-    renderLinks("melonCard");
+    renderMelonCard("melonCard");
   }
 
-  // 3) guide 페이지: 탭/카드 컨테이너 있으면 렌더
+  // /guide/ 페이지면 탭 렌더
   if (document.getElementById("guideTabs") && document.getElementById("guideCards")) {
     renderGuideTabs("guideTabs", "guideCards");
   }
-});
+
