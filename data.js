@@ -1,42 +1,20 @@
-// ✅ 멜론 원클릭 (기기별 자동 선택)
-const QUICK_LINKS = [
-  {
-    title: "멜론 원클릭",
-    desc: "기기별 자동 링크",
-    urls: {
-      android: "https://tinyurl.com/3ny3yz6f",
-      ios: "https://tinyurl.com/4f3a9sfc",
-      pc: "https://tinyurl.com/mt6jn9cs"
-    }
-  }
-];
+// ✅ 멜론 원클릭: iOS는 1개, PC/Android는 1/2/3 선택
 
-/*
-  ✅ 가이드 탭/카드 데이터
-  - 각 카드에 링크가 있으면 누르면 이동
-  - image(이모지/아이콘)만 넣고 싶으면 icon 사용
-*/
-const GUIDE_TABS = [
-  {
-    key: "streaming",
-    title: "스트리밍 가이드",
-    cards: [
-      { title: "멜론 스트리밍 가이드", desc: "필수 체크", icon: "🎧", url: "/guide/streaming/" },
-      { title: "음방 가이드", desc: "방송/투표 연동", icon: "📺", url: "/guide/streaming/" }
-    ]
-  },
-  {
-    key: "download",
-    title: "다운로드 가이드",
-    cards: [
-      { title: "다운로드 가이드", desc: "파일/앱 안내", icon: "📲", url: "/guide/download/" }
-    ]
-  },
-  {
-    key: "vote",
-    title: "투표 가이드",
-    cards: [
-      { title: "시상식 투표 가이드", desc: "MMA/MAMA 등", icon: "🗳️", url: "/guide/vote/" }
-    ]
-  }
-];
+const MELON = {
+  name: "멜론",
+  iconUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Melon_logo.svg/512px-Melon_logo.svg.png",
+  ios: "https://tinyurl.com/4f3a9sfc",
+  android: [
+    { label: "링크 1", url: "https://tinyurl.com/3ny3yz6f" },
+    { label: "링크 2", url: "https://tinyurl.com/nb86e9xe" },
+    { label: "링크 3", url: "https://tinyurl.com/3jvw3983" }
+  ],
+  pc: [
+    { label: "링크 1", url: "https://tinyurl.com/mt6jn9cs" },
+    { label: "링크 2", url: "https://tinyurl.com/muydwrzw" },
+    { label: "링크 3", url: "https://tinyurl.com/yypnz498" }
+  ]
+};
+
+// (가이드는 지금 단계에서는 비워둠. 탭 가이드 원하면 다음 단계에서 다시 붙여줄게.)
+const GUIDE_TABS = [];
