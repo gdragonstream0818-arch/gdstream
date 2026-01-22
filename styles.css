@@ -122,6 +122,71 @@ a{color:inherit;text-decoration:none}
   height:26px;
   max-width:26px;
   max-height:26px;
+
+  /* =========================
+   ✅ HERO(뮤비) 전체폭/센터 크게
+   ========================= */
+.hero{
+  width:100%;
+  margin:0;
+  padding:16px 0 8px;
+}
+
+.heroInner{
+  max-width:1200px;   /* 큰 화면에서도 보기 좋게 */
+  margin:0 auto;
+  padding:0 16px;
+}
+
+.ytWrap{
+  width:100%;
+  border-radius:22px;
+  overflow:hidden;
+  box-shadow:var(--shadow);
+  background:#000;
+}
+
+.yt{
+  width:100%;
+  aspect-ratio:16/9;
+  display:block;
+}
+
+/* =========================
+   ✅ 헤더 로고 가운데 정렬
+   ========================= */
+.headerInner{
+  position:relative;
+  justify-content:center; /* 가운데로 */
+}
+
+/* 로고를 중앙에 고정 */
+.logo{
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-weight:900;
+  white-space:nowrap;
+}
+
+/* 메뉴(원클릭/가이드)는 오른쪽으로 */
+.nav{
+  position:absolute;
+  right:16px;
+}
+
+/* 로고 이미지 크기(지금 쓰던 값 유지/조정) */
+.logoImg{
+  height:22px;
+  width:auto;
+  max-height:22px;
+  display:block;
+  object-fit:contain;
+}
+
   display:block;
   object-fit:contain;
 }
