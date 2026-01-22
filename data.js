@@ -36,15 +36,16 @@ const GUIDE_TABS = [
     key: "streaming",
     title: "스트리밍 가이드",
     cards: [
-      { title: "멜론 스트리밍 가이드", desc: "필수 체크", icon: "🎧", url: "/guide/streaming/" },
-      { title: "음방 가이드", desc: "방송/투표 연동", icon: "📺", url: "/guide/streaming/" }
+      { title: "멜론", desc: "필수 체크", icon: "🎧", url: "/guide/streaming/" },
+      { title: "스포티파이", desc: "필수 체크", icon: "🎧", url: "/guide/streaming/" },
+      { title: "애플뮤직", desc: "필수 체크", icon: "🎧", url: "/guide/streaming/" }
     ]
   },
   {
     key: "download",
     title: "다운로드 가이드",
     cards: [
-      { title: "다운로드 가이드", desc: "파일/앱 안내", icon: "📲", url: "/guide/download/" }
+      { title: "멜론", desc: "파일/앱 안내", icon: "📲", url: "/guide/download/" }
     ]
   },
   {
