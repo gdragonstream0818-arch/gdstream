@@ -44,7 +44,7 @@
       </div>
 
       <div class="btnList">
-        <!-- ✅ 여기: id 추가 + href는 # -->
+        <!-- ✅ 메인 버튼: script.js가 잡아서 기기별로 이동시킴 -->
         <a class="btn btn--melon" id="melonMainBtn" href="#">
           <span>
             <div class="btnTitle">멜론 원클릭</div>
@@ -76,8 +76,10 @@
     <div class="container footerInner">© 지드래곤 음원총공팀</div>
   </footer>
 
-  <!-- ✅ 중요: script.js를 불러와야 버튼 분기 동작함 -->
+  <!-- ✅ 중요: data.js 먼저, script.js 나중 -->
+  <script src="/data.js"></script>
   <script src="/script.js"></script>
 </body>
 </html>
+
 
