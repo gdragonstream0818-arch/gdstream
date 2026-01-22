@@ -1,30 +1,23 @@
 const QUICK_LINKS = [
   {
+    title: "멜론 원클릭 (iOS)",
+    desc: "아이폰 자동 링크",
+    urls: { ios: "https://tinyurl.com/4f3a9sfc" }
+  },
+  {
     title: "멜론 원클릭 1",
     desc: "멜론 바로가기",
-    urls: {
-      android: "https://tinyurl.com/3ny3yz6f",
-      ios: "https://tinyurl.com/4f3a9sfc",
-      pc: "https://tinyurl.com/mt6jn9cs"
-    }
+    urls: { android: "https://tinyurl.com/3ny3yz6f", pc: "https://tinyurl.com/mt6jn9cs" }
   },
   {
     title: "멜론 원클릭 2",
     desc: "멜론 바로가기",
-    urls: {
-      android: "https://tinyurl.com/nb86e9xe",
-      ios: "https://tinyurl.com/4f3a9sfc",
-      pc: "https://tinyurl.com/muydwrzw"
-    }
+    urls: { android: "https://tinyurl.com/nb86e9xe", pc: "https://tinyurl.com/muydwrzw" }
   },
   {
     title: "멜론 원클릭 3",
     desc: "멜론 바로가기",
-    urls: {
-      android: "https://tinyurl.com/3jvw3983",
-      ios: "https://tinyurl.com/4f3a9sfc",
-      pc: "https://tinyurl.com/yypnz498"
-    }
+    urls: { android: "https://tinyurl.com/3jvw3983", pc: "https://tinyurl.com/yypnz498" }
   }
 ];
 
