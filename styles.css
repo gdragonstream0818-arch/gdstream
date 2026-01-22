@@ -108,15 +108,21 @@ a{color:inherit;text-decoration:none}
 .footer{border-top:1px solid var(--line);margin-top:28px}
 .footerInner{padding:18px 0;color:var(--muted);font-size:12px}
 
+/* ✅ 헤더 로고(아이콘+텍스트) 크기/정렬 고정 (SVG가 커도 작게 보이게) */
 .logo{
   display:flex;
   align-items:center;
-  gap:8px;
+  gap:10px;
   font-weight:900;
+  white-space:nowrap;
 }
+
 .logoImg{
-  width:22px;
-  height:22px;
+  width:26px;
+  height:26px;
+  max-width:26px;
+  max-height:26px;
   display:block;
+  object-fit:contain;
 }
 
