@@ -6,6 +6,8 @@
   --muted:rgba(0,0,0,.60);
   --btn:#f6f6f6;
   --btnHover:#eeeeee;
+  --red:#e11d48;
+  --redHover:#be123c;
 }
 *{box-sizing:border-box}
 body{
@@ -15,7 +17,7 @@ body{
   font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial
 }
 a{color:inherit;text-decoration:none}
-.container{max-width:1100px;margin:0 auto;padding:0 16px}
+.container{max-width:900px;margin:0 auto;padding:0 16px}
 
 .header{
   position:sticky;top:0;z-index:10;
@@ -24,81 +26,64 @@ a{color:inherit;text-decoration:none}
   border-bottom:1px solid var(--line)
 }
 .headerInner{height:56px;display:flex;align-items:center;justify-content:space-between}
-.logo{font-weight:800}
-.nav{display:flex;gap:10px;font-size:14px;color:var(--muted)}
-.nav a{padding:6px 10px;border-radius:10px}
+.logo{font-weight:900; letter-spacing:.2px;}
+.nav{display:flex;gap:8px;font-size:14px;color:var(--muted)}
+.nav a{padding:7px 10px;border-radius:10px}
 .nav a:hover{background:rgba(0,0,0,.06);color:var(--text)}
 
-.h1{font-size:24px;margin:18px 0 6px}
-.p{margin:0 0 18px;color:var(--muted);font-size:14px;line-height:1.6}
+.h1{font-size:26px;margin:18px 0 10px}
 
-.card{
-  background:var(--card);
-  border:1px solid var(--line);
-  border-radius:16px;
-  padding:18px;
-  box-shadow:0 6px 18px rgba(0,0,0,.06);
-}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
-.btnGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
+.section{margin:14px 0 18px}
+.sectionTitleRow{display:flex;align-items:center;justify-content:space-between;margin:6px 0 10px}
+.sectionTitle{font-size:15px;font-weight:900}
+
+.p{margin:0 0 14px;color:var(--muted);font-size:14px;line-height:1.6}
+
+.btnList{display:grid;grid-template-columns:1fr;gap:10px} /* ✅ 가로 1개씩 */
 
 .btn{
   display:flex;align-items:center;justify-content:space-between;gap:10px;
-  padding:12px 14px;border-radius:14px;
+  padding:13px 14px;border-radius:16px;
   background:var(--btn);
-  border:1px solid var(--line)
+  border:1px solid var(--line);
+  transition:transform .06s ease, background .12s ease, border-color .12s ease;
 }
-.btn:hover{background:var(--btnHover)}
-.btnTitle{font-weight:700}
+.btn:hover{background:var(--btnHover); transform:translateY(-1px)}
+.btnTitle{font-weight:900}
 .btnDesc{font-size:12px;color:var(--muted)}
 
-.sectionTitle{margin:18px 0 10px;font-size:15px;font-weight:700}
-.badge{
-  display:inline-block;font-size:12px;padding:3px 8px;border-radius:999px;
-  background:rgba(0,0,0,.06);
-  border:1px solid var(--line);
-  color:var(--muted)
+/* ✅ 빨강 포인트 버튼 */
+.btn--red{
+  background:var(--red);
+  color:#fff;
+  border-color:rgba(0,0,0,.08);
+}
+.btn--red:hover{background:var(--redHover)}
+.btn--red .btnDesc{color:rgba(255,255,255,.85)}
+
+.btn--redOutline{
+  background:#fff;
+  border:1.5px solid rgba(225,29,72,.35);
+}
+.btn--redOutline:hover{
+  background:rgba(225,29,72,.06);
+  border-color:rgba(225,29,72,.50);
 }
 
-.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
-.thumb{
-  background:#fff;
+/* ✅ 유튜브 반응형 */
+.ytWrap{
   border:1px solid var(--line);
-  border-radius:12px;
+  border-radius:18px;
   overflow:hidden;
-  cursor:pointer;
-  box-shadow:0 6px 16px rgba(0,0,0,.06);
+  box-shadow:0 10px 30px rgba(0,0,0,.08);
+  background:#000;
 }
-.thumb img{width:100%;height:160px;object-fit:cover;display:block}
+.yt{
+  width:100%;
+  aspect-ratio:16/9;
+  display:block;
+}
 
-.modalBackdrop{
-  position:fixed;inset:0;
-  background:rgba(0,0,0,.55);
-  display:none;align-items:center;justify-content:center;padding:18px
-}
-.modalBackdrop.open{display:flex}
-.modal{
-  width:min(1100px,96vw);
-  background:#fff;
-  border:1px solid var(--line);
-  border-radius:14px;
-  overflow:hidden
-}
-.modalHeader{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:10px 12px;
-  border-bottom:1px solid var(--line);
-  color:var(--muted);font-size:12px
-}
-.modalClose{
-  background:#fff;
-  border:1px solid var(--line);
-  color:var(--text);
-  border-radius:10px;
-  padding:6px 10px;
-  cursor:pointer
-}
-.modal img{width:100%;height:auto;display:block}
-
+/* footer */
 .footer{border-top:1px solid var(--line);margin-top:28px}
 .footerInner{padding:18px 0;color:var(--muted);font-size:12px}
