@@ -3,40 +3,126 @@
   --text:#111111;
   --muted:rgba(0,0,0,.55);
   --line:rgba(0,0,0,.10);
-  --card:#ffffff;
   --shadow:0 10px 30px rgba(0,0,0,.08);
 
-  /* ✅ 멜론 연두 포인트 */
+  /* 멜론 연두 */
   --melon:#23d160;
   --melonHover:#16a34a;
 }
+
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial}
 a{color:inherit;text-decoration:none}
 .container{max-width:980px;margin:0 auto;padding:0 16px}
 
-/* header */
-.header{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-.headerInner{height:56px;display:flex;align-items:center;justify-content:space-between}
-.logo{font-weight:900}
-.nav{display:flex;gap:8px;font-size:14px;color:var(--muted)}
+/* =========================
+   header
+   ========================= */
+.header{
+  position:sticky;
+  top:0;
+  z-index:10;
+  background:rgba(255,255,255,.92);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+
+.headerInner{
+  height:56px;
+  display:flex;
+  align-items:center;
+  justify-content:center; /* 로고 가운데 */
+  position:relative;
+  padding:0 16px;
+}
+
+/* 로고(가운데 고정) */
+.logo{
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-weight:900;
+  white-space:nowrap;
+}
+
+.logoImg{
+  height:22px;
+  width:auto;
+  max-height:22px;
+  display:block;
+  object-fit:contain;
+}
+
+/* 메뉴(오른쪽) */
+.nav{
+  position:absolute;
+  right:16px;
+  display:flex;
+  gap:8px;
+  font-size:14px;
+  color:var(--muted);
+}
 .nav a{padding:7px 10px;border-radius:10px}
 .nav a:hover{background:rgba(0,0,0,.06);color:var(--text)}
 
+/* =========================
+   HERO(뮤비) 전체폭/센터 크게
+   - container 폭 제한을 뚫고 화면 기준으로 꽉
+   ========================= */
+.hero{
+  width:100vw;
+  margin-left:calc(50% - 50vw);
+  padding:16px 0 12px;
+}
+
+.heroInner{
+  max-width:1200px;
+  margin:0 auto;
+  padding:0 16px;
+}
+
+.ytWrap{
+  width:100%;
+  border-radius:22px;
+  overflow:hidden;
+  box-shadow:var(--shadow);
+  background:#000;
+}
+
+.yt{
+  width:100%;
+  aspect-ratio:16/9;
+  display:block;
+}
+
+/* =========================
+   typography
+   ========================= */
 .h1{font-size:26px;margin:18px 0 10px}
 .sectionTitle{font-size:15px;font-weight:900;margin:10px 0 10px}
 
-/* buttons */
+/* =========================
+   buttons
+   ========================= */
 .btnList{display:grid;grid-template-columns:1fr;gap:10px}
 .btn{
-  display:flex;align-items:center;justify-content:space-between;gap:10px;
-  padding:13px 14px;border-radius:16px;
-  background:#f6f6f6;border:1px solid var(--line);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:13px 14px;
+  border-radius:16px;
+  background:#f6f6f6;
+  border:1px solid var(--line);
   transition:transform .06s ease, background .12s ease;
 }
 .btn:hover{background:#eeeeee;transform:translateY(-1px)}
 .btnTitle{font-weight:900}
 .btnDesc{font-size:12px;color:var(--muted)}
+
 .btn--melon{
   background:var(--melon);
   color:#fff;
@@ -45,7 +131,9 @@ a{color:inherit;text-decoration:none}
 .btn--melon:hover{background:var(--melonHover)}
 .btn--melon .btnDesc{color:rgba(255,255,255,.85)}
 
-/* ✅ 탭 */
+/* =========================
+   guide tabs + cards
+   ========================= */
 .tabRow{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 14px}
 .tabBtn{
   border:1px solid var(--line);
@@ -62,7 +150,6 @@ a{color:inherit;text-decoration:none}
   color:rgba(0,0,0,.85);
 }
 
-/* ✅ 카드 그리드(스샷 느낌) */
 .cardGrid{
   display:grid;
   grid-template-columns:repeat(auto-fill,minmax(210px,1fr));
@@ -83,7 +170,7 @@ a{color:inherit;text-decoration:none}
   gap:12px;
 }
 
-/* 컬러는 탭별로 자동 느낌(간단 랜덤처럼 보이게) */
+/* 카드 컬러 */
 .cardTile:nth-child(1){background:linear-gradient(135deg,#5db6ff,#4ea1ff)}
 .cardTile:nth-child(2){background:linear-gradient(135deg,#b66bff,#a855f7)}
 .cardTile:nth-child(3){background:linear-gradient(135deg,#ff7ab8,#ff5aa3)}
@@ -104,90 +191,8 @@ a{color:inherit;text-decoration:none}
   opacity:.95;
 }
 
-/* footer */
+/* =========================
+   footer
+   ========================= */
 .footer{border-top:1px solid var(--line);margin-top:28px}
 .footerInner{padding:18px 0;color:var(--muted);font-size:12px}
-
-/* ✅ 헤더 로고(아이콘+텍스트) 크기/정렬 고정 (SVG가 커도 작게 보이게) */
-.logo{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  font-weight:900;
-  white-space:nowrap;
-}
-
-.logoImg{
-  width:26px;
-  height:26px;
-  max-width:26px;
-  max-height:26px;
-
-  /* =========================
-   ✅ HERO(뮤비) 전체폭/센터 크게
-   ========================= */
-.hero{
-  width:100%;
-  margin:0;
-  padding:16px 0 8px;
-}
-
-.heroInner{
-  max-width:1200px;   /* 큰 화면에서도 보기 좋게 */
-  margin:0 auto;
-  padding:0 16px;
-}
-
-.ytWrap{
-  width:100%;
-  border-radius:22px;
-  overflow:hidden;
-  box-shadow:var(--shadow);
-  background:#000;
-}
-
-.yt{
-  width:100%;
-  aspect-ratio:16/9;
-  display:block;
-}
-
-/* =========================
-   ✅ 헤더 로고 가운데 정렬
-   ========================= */
-.headerInner{
-  position:relative;
-  justify-content:center; /* 가운데로 */
-}
-
-/* 로고를 중앙에 고정 */
-.logo{
-  position:absolute;
-  left:50%;
-  transform:translateX(-50%);
-  display:flex;
-  align-items:center;
-  gap:10px;
-  font-weight:900;
-  white-space:nowrap;
-}
-
-/* 메뉴(원클릭/가이드)는 오른쪽으로 */
-.nav{
-  position:absolute;
-  right:16px;
-}
-
-/* 로고 이미지 크기(지금 쓰던 값 유지/조정) */
-.logoImg{
-  height:22px;
-  width:auto;
-  max-height:22px;
-  display:block;
-  object-fit:contain;
-}
-
-  display:block;
-  object-fit:contain;
-}
-
