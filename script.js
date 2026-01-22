@@ -4,7 +4,6 @@ function el(tag, className) {
   return e;
 }
 
-// ✅ 접속 기기 감지
 function detectDevice() {
   const ua = navigator.userAgent || "";
   const isAndroid = /Android/i.test(ua);
@@ -20,24 +19,32 @@ function pickUrl(link) {
   return urls[device] || urls.pc || urls.ios || urls.android || "#";
 }
 
-// ✅ 원클릭 렌더
 function renderLinks(containerId) {
   const wrap = document.getElementById(containerId);
   if (!wrap) return;
 
-  QUICK_LINKS.forEach((l) => {
-    const a = el("a", "btn btn--melon");
+  const device = detectDevice();
+
+  // ✅ iOS(아이폰/아이패드)에서는 버튼 1개만 보여주기
+  const linksToShow = (device === "ios")
+    ? (QUICK_LINKS.length > 0 ? [QUICK_LINKS[0]] : [])
+    : QUICK_LINKS;
+
+  linksToShow.forEach((l) => {
+    const a = el("a", "btn");
     a.href = pickUrl(l);
     a.target = "_blank";
     a.rel = "noreferrer";
 
     const left = el("span");
-    const t = el("div", "btnTitle"); t.textContent = l.title;
+    const t = el("div", "btnTitle"); t.textContent = (device === "ios") ? "멜론 원클릭" : l.title;
     const d = el("div", "btnDesc"); d.textContent = l.desc || "";
     left.appendChild(t); left.appendChild(d);
 
-    const right = el("span"); right.textContent = "→";
-    a.appendChild(left); a.appendChild(right);
+    const right = el("span"); right.textContent = "↗";
+
+    a.appendChild(left);
+    a.appendChild(right);
     wrap.appendChild(a);
   });
 }
