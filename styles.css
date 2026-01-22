@@ -280,7 +280,7 @@ a{color:inherit;text-decoration:none}
 
 /* 로고 크게 */
 .brandImg{
-  height: 8000px;   /* ✅ PC 로고 크기 */
+  height: 5000px;   /* ✅ PC 로고 크기 */
   width: auto;
   display: block;
   object-fit: contain;
@@ -289,7 +289,7 @@ a{color:inherit;text-decoration:none}
 /* ✅ 모바일에서만 조금 줄이기 */
 @media (max-width: 768px){
   .brandImg{
-    height: 5000px; /* ✅ 모바일 로고 크기 */
+    height: 3000px; /* ✅ 모바일 로고 크기 */
   }
 }
 
