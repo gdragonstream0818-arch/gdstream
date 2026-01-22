@@ -7,26 +7,19 @@
   <link rel="stylesheet" href="/styles.css" />
 </head>
 <body>
-  <header class="header header--simple">
-  <div class="headerBar">
-    <!-- 왼쪽 로고 -->
-   <a class="brand" href="/" aria-label="지드래곤 음원총공팀">
-  <picture>
-    <!-- 모바일 로고 -->
-    <source media="(max-width: 768px)" srcset="/assets/header/logo-m.svg">
-    <!-- PC 로고(기본) -->
-    <img class="brandImg" src="/assets/header/logo-pc.svg" alt="지드래곤 음원총공팀">
-  </picture>
-</a>
+  <header class="header">
+    <div class="headerInner">
+      <a class="logo" href="/">
+        <img class="logoImg" src="/assets/logo.svg" alt="G-DRAGON">
+        <span>지드래곤 음원총공팀</span>
+      </a>
 
-    <!-- 오른쪽 햄버거 -->
-    <button class="hamburger" type="button" aria-label="메뉴">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-  </div>
-</header>
+      <nav class="nav">
+        <a href="/streaming/">원클릭</a>
+        <a href="/guide/">가이드</a>
+      </nav>
+    </div>
+  </header>
 
   <!-- ✅ HERO: 모바일/PC 다른 배너 이미지 + 클릭하면 뮤비로 이동 -->
   <section class="hero">
