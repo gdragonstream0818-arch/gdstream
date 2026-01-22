@@ -29,30 +29,52 @@ function renderLinks(containerId) {
   const device = detectDevice();
   const deviceLabel = device === "ios" ? "iPhone" : device === "android" ? "Android" : "PC";
 
-  // 상단 안내(선택된 기기 표시)
-  const info = el("div", "p");
-  info.style.marginBottom = "12px";
-  info.textContent = `현재 접속 기기: ${deviceLabel} (자동으로 해당 링크가 열립니다)`;
-  wrap.parentElement?.insertBefore(info, wrap);
+  // ✅ 중복 방지: 기존 내용 비우기
+  wrap.innerHTML = "";
 
-  QUICK_LINKS.forEach((l) => {
+  // ✅ 상단 안내: 이미 있으면 또 만들지 않게 처리
+  let info = wrap.parentElement?.querySelector(".deviceInfo");
+  if (!info) {
+    info = el("div", "p deviceInfo");
+    info.style.marginBottom = "12px";
+    wrap.parentElement?.insertBefore(info, wrap);
+  }
+  info.textContent = `현재 접속 기기: ${deviceLabel} (자동으로 해당 링크가 열립니다)`;
+
+  // ✅ iOS는 1개만 / PC·Android는 3개
+  const linksToShow =
+    device === "ios"
+      ? (QUICK_LINKS && QUICK_LINKS.length ? [QUICK_LINKS[0]] : [])
+      : (QUICK_LINKS || []);
+
+  linksToShow.forEach((l, idx) => {
     const a = el("a", "btn");
     a.href = pickUrl(l);
     a.target = "_blank";
     a.rel = "noreferrer";
 
     const left = el("span");
-    const t = el("div", "btnTitle"); t.textContent = l.title;
-    const d = el("div", "btnDesc"); d.textContent = l.desc || "";
-    left.appendChild(t); left.appendChild(d);
 
-    const right = el("span"); right.textContent = "↗";
+    // ✅ 제목: iOS는 "멜론 원클릭" 하나만
+    const t = el("div", "btnTitle");
+    t.textContent = "멜론 원클릭";
+
+    // ✅ 설명: iOS는 고정 / PC·Android는 1/2/3 표시
+    const d = el("div", "btnDesc");
+    d.textContent = device === "ios" ? "아이폰 자동 링크" : `링크 ${idx + 1}`;
+
+    left.appendChild(t);
+    left.appendChild(d);
+
+    const right = el("span");
+    right.textContent = "↗";
 
     a.appendChild(left);
     a.appendChild(right);
     wrap.appendChild(a);
   });
 }
+
 
 /* =========================
    ✅ 가이드 탭 렌더 (너 data.js에 GUIDE_TABS 있으니 유지)
@@ -124,6 +146,10 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // /guide/ 페이지면 탭 렌더
+  if (document.getElementById("guideTabs") && document.getElementById("guideCards")) {
+    renderGuideTabs("guideTabs", "guideCards");
+  }
+});
   if (document.getElementById("guideTabs") && document.getElementById("guideCards")) {
     renderGuideTabs("guideTabs", "guideCards");
   }
