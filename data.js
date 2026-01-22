@@ -43,7 +43,7 @@ const GUIDE_TABS = [
     key: "download",
     title: "다운로드 가이드",
     cards: [
-      { title: "멜론 다운로드 가이드", desc: "파일/앱 안내", icon: "📲", url: "/guide/download/" }
+      { title: "멜론 다운로드 가이드", desc: "멜론", icon: "⬇️", url: "/guide/download/melon/" }
     ]
   }
 ];
