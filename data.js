@@ -1,36 +1,49 @@
-const MELON = {
-  name: "멜론",
-  iconUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Melon_logo.svg/512px-Melon_logo.svg.png",
+const QUICK_LINKS = [
+  {
+    title: "멜론 원클릭 1",
+    desc: "멜론 바로가기",
+    urls: {
+      android: "https://tinyurl.com/3ny3yz6f",
+      ios: "https://tinyurl.com/4f3a9sfc",
+      pc: "https://tinyurl.com/mt6jn9cs"
+    }
+  },
+  {
+    title: "멜론 원클릭 2",
+    desc: "멜론 바로가기",
+    urls: {
+      android: "https://tinyurl.com/nb86e9xe",
+      ios: "https://tinyurl.com/4f3a9sfc",
+      pc: "https://tinyurl.com/muydwrzw"
+    }
+  },
+  {
+    title: "멜론 원클릭 3",
+    desc: "멜론 바로가기",
+    urls: {
+      android: "https://tinyurl.com/3jvw3983",
+      ios: "https://tinyurl.com/4f3a9sfc",
+      pc: "https://tinyurl.com/yypnz498"
+    }
+  }
+];
 
-  ios: "https://tinyurl.com/4f3a9sfc",
-
-  android: [
-    { label: "링크 1", url: "https://tinyurl.com/3ny3yz6f" },
-    { label: "링크 2", url: "https://tinyurl.com/nb86e9xe" },
-    { label: "링크 3", url: "https://tinyurl.com/3jvw3983" }
-  ],
-
-  pc: [
-    { label: "링크 1", url: "https://tinyurl.com/mt6jn9cs" },
-    { label: "링크 2", url: "https://tinyurl.com/muydwrzw" },
-    { label: "링크 3", url: "https://tinyurl.com/yypnz498" }
-  ]
-};
 
 const GUIDE_TABS = [
   {
     key: "streaming",
     title: "스트리밍 가이드",
     cards: [
-      { title: "멜론 스트리밍 가이드", desc: "필수 체크", icon: "🎧", url: "/guide/streaming/" },
-      { title: "음방 가이드", desc: "방송/투표 연동", icon: "📺", url: "/guide/streaming/" }
+      { title: "멜론", desc: "필수 체크", icon: "🎧", url: "/guide/streaming/" },
+      { title: "스포티파이", desc: "필수 체크", icon: "🎧", url: "/guide/streaming/" },
+      { title: "애플뮤직", desc: "필수 체크", icon: "🎧", url: "/guide/streaming/" }
     ]
   },
   {
     key: "download",
     title: "다운로드 가이드",
     cards: [
-      { title: "다운로드 가이드", desc: "파일/앱 안내", icon: "📲", url: "/guide/download/" }
+      { title: "멜론", desc: "파일/앱 안내", icon: "📲", url: "/guide/download/" }
     ]
   },
   {
