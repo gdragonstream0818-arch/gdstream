@@ -107,3 +107,16 @@ a{color:inherit;text-decoration:none}
 /* footer */
 .footer{border-top:1px solid var(--line);margin-top:28px}
 .footerInner{padding:18px 0;color:var(--muted);font-size:12px}
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-weight:900;
+}
+.logoImg{
+  width:22px;
+  height:22px;
+  display:block;
+}
+
