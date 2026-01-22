@@ -4,6 +4,7 @@ function el(tag, className) {
   return e;
 }
 
+// ✅ 접속 기기 감지
 function detectDevice() {
   const ua = navigator.userAgent || "";
   const isAndroid = /Android/i.test(ua);
@@ -19,85 +20,84 @@ function pickUrl(link) {
   return urls[device] || urls.pc || urls.ios || urls.android || "#";
 }
 
+// ✅ 원클릭 렌더
 function renderLinks(containerId) {
   const wrap = document.getElementById(containerId);
   if (!wrap) return;
 
-  const device = detectDevice();
-
-  // ✅ iOS(아이폰/아이패드)에서는 버튼 1개만 보여주기
-  const linksToShow = (device === "ios")
-    ? (QUICK_LINKS.length > 0 ? [QUICK_LINKS[0]] : [])
-    : QUICK_LINKS;
-
-  linksToShow.forEach((l) => {
-    const a = el("a", "btn");
+  QUICK_LINKS.forEach((l) => {
+    const a = el("a", "btn btn--melon");
     a.href = pickUrl(l);
     a.target = "_blank";
     a.rel = "noreferrer";
 
     const left = el("span");
-    const t = el("div", "btnTitle"); t.textContent = (device === "ios") ? "멜론 원클릭" : l.title;
+    const t = el("div", "btnTitle"); t.textContent = l.title;
     const d = el("div", "btnDesc"); d.textContent = l.desc || "";
     left.appendChild(t); left.appendChild(d);
 
-    const right = el("span"); right.textContent = "↗";
-
-    a.appendChild(left);
-    a.appendChild(right);
+    const right = el("span"); right.textContent = "→";
+    a.appendChild(left); a.appendChild(right);
     wrap.appendChild(a);
   });
 }
 
-/* 가이드용 */
-function renderGuides(containerId) {
-  const wrap = document.getElementById(containerId);
-  if (!wrap) return;
+// ✅ 가이드 탭 렌더 (카드 UI)
+function renderGuideTabs(tabsContainerId, cardsContainerId) {
+  const tabsWrap = document.getElementById(tabsContainerId);
+  const cardsWrap = document.getElementById(cardsContainerId);
+  if (!tabsWrap || !cardsWrap) return;
 
-  if (!Array.isArray(GUIDE_CATEGORIES) || GUIDE_CATEGORIES.length === 0) {
-    const empty = el("p", "p");
-    empty.textContent = "";
-    wrap.appendChild(empty);
-    return;
-  }
+  const tabs = Array.isArray(GUIDE_TABS) ? GUIDE_TABS : [];
+  if (tabs.length === 0) return;
 
-  const backdrop = document.getElementById("modalBackdrop");
-  const modalImg = document.getElementById("modalImg");
-  const modalLabel = document.getElementById("modalLabel");
-  const closeBtn = document.getElementById("modalClose");
+  let activeKey = tabs[0].key;
 
-  const openModal = (src, label) => {
-    modalImg.src = src;
-    modalLabel.textContent = label || "";
-    backdrop.classList.add("open");
-  };
+  const drawCards = () => {
+    cardsWrap.innerHTML = "";
+    const tab = tabs.find(t => t.key === activeKey);
+    const cards = tab?.cards || [];
 
-  const closeModal = () => {
-    backdrop.classList.remove("open");
-    modalImg.src = "";
-    modalLabel.textContent = "";
-  };
+    cards.forEach((c) => {
+      const a = el("a", "cardTile");
+      a.href = c.url || "#";
 
-  backdrop.addEventListener("click", closeModal);
-  closeBtn.addEventListener("click", closeModal);
-  window.addEventListener("keydown", (e) => { if (e.key === "Escape") closeModal(); });
+      const top = el("div", "cardTop");
+      const small = el("div", "cardSmall");
+      small.textContent = tab.title;
 
-  GUIDE_CATEGORIES.forEach((cat) => {
-    const titleRow = el("div", "sectionTitle");
-    titleRow.textContent = cat.title;
+      const title = el("div", "cardTitle");
+      title.textContent = c.title;
 
-    const grid = el("div", "gallery");
-    (cat.images || []).forEach((img) => {
-      const box = el("div", "thumb");
-      const im = el("img");
-      im.src = img.src;
-      im.alt = img.label || cat.title;
-      box.appendChild(im);
-      box.addEventListener("click", () => openModal(img.src, img.label));
-      grid.appendChild(box);
+      top.appendChild(small);
+      top.appendChild(title);
+
+      const icon = el("div", "cardIcon");
+      icon.textContent = c.icon || "📌";
+
+      a.appendChild(top);
+      a.appendChild(icon);
+
+      cardsWrap.appendChild(a);
     });
+  };
 
-    wrap.appendChild(titleRow);
-    wrap.appendChild(grid);
-  });
+  const drawTabs = () => {
+    tabsWrap.innerHTML = "";
+    tabs.forEach((t) => {
+      const b = el("button", "tabBtn");
+      if (t.key === activeKey) b.classList.add("active");
+      b.type = "button";
+      b.textContent = t.title;
+      b.onclick = () => {
+        activeKey = t.key;
+        drawTabs();
+        drawCards();
+      };
+      tabsWrap.appendChild(b);
+    });
+  };
+
+  drawTabs();
+  drawCards();
 }
