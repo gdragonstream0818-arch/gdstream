@@ -21,7 +21,6 @@
     </div>
   </header>
 
-  <!-- ✅ HERO: 뮤비 전체폭/크게 -->
   <section class="hero">
     <div class="heroInner">
       <div class="ytWrap">
@@ -45,7 +44,8 @@
       </div>
 
       <div class="btnList">
-        <a class="btn btn--melon" href="/streaming/">
+        <!-- ✅ 여기: id 추가 + href는 # -->
+        <a class="btn btn--melon" id="melonMainBtn" href="#">
           <span>
             <div class="btnTitle">멜론 원클릭</div>
             <div class="btnDesc">기기별 자동 링크</div>
@@ -75,5 +75,9 @@
   <footer class="footer">
     <div class="container footerInner">© 지드래곤 음원총공팀</div>
   </footer>
+
+  <!-- ✅ 중요: script.js를 불러와야 버튼 분기 동작함 -->
+  <script src="/script.js"></script>
 </body>
 </html>
+
