@@ -255,15 +255,16 @@ a{color:inherit;text-decoration:none}
 /* =========================
    ✅ NMIXX 스타일 헤더: 좌 로고 / 우 햄버거
    ========================= */
-.header--simple{
+.header{
   position: sticky;
   top: 0;
   z-index: 50;
-  background: #fff;
+  background: rgba(255,255,255,.92);
+  backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(0,0,0,.10);
 }
 
-.headerBar{
+.header--simple .headerBar{
   height: 64px;
   display: flex;
   align-items: center;
@@ -277,11 +278,23 @@ a{color:inherit;text-decoration:none}
   align-items: center;
 }
 
+/* ✅ 로고 PC/모바일 분기 picture 안의 img에 적용 */
 .brandImg{
-  height: 42px;   /* 여기만 줄이면 로고 작아짐 */
+  height: 42px;   /* PC 기본 크기 */
   width: auto;
   display: block;
   object-fit: contain;
+}
+
+/* ✅ 모바일에서 로고 더 작게 */
+@media (max-width: 768px){
+  .header--simple .headerBar{
+    height: 58px;
+    padding: 10px 14px;
+  }
+  .brandImg{
+    height: 34px;
+  }
 }
 
 /* 햄버거 */
@@ -305,5 +318,3 @@ a{color:inherit;text-decoration:none}
   background: #111;
   border-radius: 999px;
 }
-
-
