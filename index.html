@@ -11,8 +11,8 @@
     <div class="container headerInner">
       <a class="logo" href="/">GDSTREAM</a>
       <nav class="nav">
-        <a href="/guide/">가이드</a>
         <a href="/streaming/">원클릭</a>
+        <a href="/guide/">가이드</a>
       </nav>
     </div>
   </header>
@@ -20,33 +20,58 @@
   <main class="container">
     <h1 class="h1">GDSTREAM</h1>
 
-    <div class="grid">
-      <div class="card">
-        <div class="sectionTitle">원클릭</div>
+    <!-- ✅ 1) 들어가자마자 유튜브 뮤비 -->
+    <section class="section">
+      <div class="ytWrap">
+        <iframe
+          class="yt"
+          src="https://www.youtube.com/embed/o9DhvbqYzns?rel=0&modestbranding=1"
+          title="G-DRAGON - TOO BAD (MV)"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </section>
+
+    <!-- ✅ 2) 원클릭 스트리밍 (가로 1개씩) -->
+    <section class="section">
+      <div class="sectionTitleRow">
+        <div class="sectionTitle">원클릭 스트리밍</div>
+      </div>
+
+      <div class="btnList">
+        <a class="btn btn--red" href="/streaming/">
+          <span>
+            <div class="btnTitle">멜론 원클릭</div>
+            <div class="btnDesc">기기별 자동 링크</div>
+          </span>
+          <span>→</span>
+        </a>
+
         <a class="btn" href="/streaming/">
           <span>
-            <div class="btnTitle">원클릭 바로가기</div>
-            <div class="btnDesc">Melon</div>
+            <div class="btnTitle">멜론 원클릭 1/2/3</div>
+            <div class="btnDesc">PC/Android 전용 버튼 포함</div>
           </span>
           <span>→</span>
         </a>
       </div>
+    </section>
 
-      <div class="card">
+    <!-- ✅ 3) 가이드 (그 아래) -->
+    <section class="section">
+      <div class="sectionTitleRow">
         <div class="sectionTitle">가이드</div>
+      </div>
+
+      <div class="btnList">
         <a class="btn" href="/guide/">
           <span>
-            <div class="btnTitle">가이드 보러가기</div>
-            <div class="btnDesc">Streaming</div>
+            <div class="btnTitle">스트리밍 가이드</div>
+            <div class="btnDesc">이미지로 한 번에 보기</div>
           </span>
           <span>→</span>
         </a>
-      </div>
-    </div>
-  </main>
 
-  <footer class="footer">
-    <div class="container footerInner">© GDSTREAM</div>
-  </footer>
-</body>
-</html>
+        <a class="btn btn--redOutline" href="/guide/">
