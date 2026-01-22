@@ -1,32 +1,34 @@
-// ✅ 여기만 바꾸면 사이트 내용이 바뀜!
+// ✅ 멜론 원클릭 (기기별 자동 선택) + 1/2/3 버튼
 
-// 1) 원클릭 링크들 (나중에 네 링크로 바꾸기)
 const QUICK_LINKS = [
-  { title: "멜론 원클릭", desc: "바로가기", url: "https://example.com" },
-  { title: "지니 원클릭", desc: "바로가기", url: "https://example.com" },
-  { title: "벅스 원클릭", desc: "바로가기", url: "https://example.com" },
-  { title: "바이브 원클릭", desc: "바로가기", url: "https://example.com" },
-  { title: "플로 원클릭", desc: "바로가기", url: "https://example.com" }
-];
-
-// 2) 가이드 이미지(플랫폼별)
-// 이미지 파일은 /guides/플랫폼/파일명 으로 올려야 해.
-const GUIDE_CATEGORIES = [
   {
-    key: "melon",
-    title: "멜론 가이드",
-    badge: "스트리밍",
-    images: [
-      { src: "/guides/melon/01.png", label: "멜론 1" },
-      { src: "/guides/melon/02.png", label: "멜론 2" }
-    ]
+    title: "멜론 원클릭 1",
+    desc: "멜론 바로가기",
+    urls: {
+      android: "https://tinyurl.com/3ny3yz6f",
+      ios: "https://tinyurl.com/4f3a9sfc",
+      pc: "https://tinyurl.com/mt6jn9cs"
+    }
   },
   {
-    key: "genie",
-    title: "지니 가이드",
-    badge: "스트리밍",
-    images: [
-      { src: "/guides/genie/01.png", label: "지니 1" }
-    ]
+    title: "멜론 원클릭 2",
+    desc: "멜론 바로가기",
+    urls: {
+      android: "https://tinyurl.com/nb86e9xe",
+      ios: "https://tinyurl.com/4f3a9sfc",
+      pc: "https://tinyurl.com/muydwrzw"
+    }
+  },
+  {
+    title: "멜론 원클릭 3",
+    desc: "멜론 바로가기",
+    urls: {
+      android: "https://tinyurl.com/3jvw3983",
+      ios: "https://tinyurl.com/4f3a9sfc",
+      pc: "https://tinyurl.com/yypnz498"
+    }
   }
 ];
+
+// (가이드는 아직 안 쓸 거면 비워둬도 됨)
+const GUIDE_CATEGORIES = [];
