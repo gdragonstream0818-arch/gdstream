@@ -4,31 +4,38 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>원클릭</title>
-  <link rel="stylesheet" href="/styles.css" />
+
+  <!-- ✅ streaming/ 폴더 안이므로 상대경로 추천 -->
+  <link rel="stylesheet" href="../styles.css" />
 </head>
 <body>
-  <header class="header">
-    <div class="container headerInner">
-      <a class="logo" href="/">
-  <img class="logoImg" src="/assets/logo.svg" alt="G-DRAGON">
-  <span>지드래곤 음원총공팀</span>
-</a>
-      
-      <nav class="nav">
-        <a href="/guide/">가이드</a>
-        <a href="/streaming/">원클릭</a>
-      </nav>
+  <header class="header header--simple">
+    <div class="headerBar">
+      <!-- ✅ 메인과 동일한 로고 (모바일/PC 분기) -->
+      <a class="brand" href="../" aria-label="지드래곤 음원총공팀">
+        <picture>
+          <source media="(max-width: 768px)" srcset="../assets/header/logo-m.svg">
+          <img class="brandImg" src="../assets/header/logo-pc.svg" alt="지드래곤 음원총공팀">
+        </picture>
+      </a>
+
+      <!-- ✅ 햄버거 (메인과 동일) -->
+      <button class="hamburger" type="button" aria-label="메뉴">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
   </header>
 
   <main class="container">
     <h1 class="h1">원클릭 바로가기</h1>
-
     <div class="btnGrid" id="linksWrap"></div>
   </main>
 
-  <script src="/data.js"></script>
-  <script src="/script.js"></script>
+  <!-- ✅ streaming/ 폴더 안이므로 상대경로 추천 -->
+  <script src="../data.js"></script>
+  <script src="../script.js"></script>
   <script>
     renderLinks("linksWrap");
   </script>
