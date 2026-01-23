@@ -8,25 +8,25 @@
 </head>
 <body>
   <header class="header header--simple">
-  <div class="headerBar">
-    <!-- 왼쪽 로고 -->
-   <a class="brand" href="/" aria-label="지드래곤 음원총공팀">
-  <picture>
-    <!-- 모바일 로고 -->
-    <source media="(max-width: 768px)" srcset="/assets/header/header-m.jpg">
-    <!-- PC 로고(기본) -->
-    <img class="brandImg" src="/assets/header/header-pc.jpg" alt="지드래곤 음원총공팀">
-  </picture>
-</a>
+    <div class="headerBar">
+      <!-- ✅ 왼쪽 로고 (모바일/PC 분기) -->
+      <a class="brand" href="/" aria-label="지드래곤 음원총공팀">
+        <picture>
+          <!-- 모바일 로고 -->
+          <source media="(max-width: 768px)" srcset="/assets/header/logo-m.svg">
+          <!-- PC 로고 -->
+          <img class="brandImg" src="/assets/header/logo-pc.svg" alt="지드래곤 음원총공팀">
+        </picture>
+      </a>
 
-    <!-- 오른쪽 햄버거 -->
-    <button class="hamburger" type="button" aria-label="메뉴">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-  </div>
-</header>
+      <!-- ✅ 오른쪽 햄버거 -->
+      <button class="hamburger" type="button" aria-label="메뉴">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
 
   <!-- ✅ HERO: 모바일/PC 다른 배너 이미지 + 클릭하면 뮤비로 이동 -->
   <section class="hero">
@@ -34,14 +34,12 @@
       <a class="heroLink"
          href="https://youtu.be/o9DhvbqYzns?si=7uozTe90cIU0ZY27"
          target="_blank" rel="noreferrer">
-
         <picture>
-          <!-- ✅ 모바일 -->
+          <!-- 모바일 배너 -->
           <source media="(max-width: 768px)" srcset="/assets/header/header-m.jpg">
-          <!-- ✅ PC 기본 -->
+          <!-- PC 배너 -->
           <img class="heroImg" src="/assets/header/header-pc.jpg" alt="G-DRAGON - TOO BAD (MV)">
         </picture>
-        
       </a>
     </div>
   </section>
