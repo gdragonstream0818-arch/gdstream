@@ -3,93 +3,85 @@
   --text:#111111;
   --muted:rgba(0,0,0,.55);
   --line:rgba(0,0,0,.10);
-  --shadow:0 10px 30px rgba(0,0,0,.10);
-  --radius:22px;
+  --shadow:0 10px 30px rgba(0,0,0,.08);
 
+  /* 멜론 연두 */
   --melon:#23d160;
   --melonHover:#16a34a;
 }
 
 *{box-sizing:border-box}
-html,body{height:100%}
-body{
-  margin:0;
-  background:var(--bg);
-  color:var(--text);
-  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial}
 a{color:inherit;text-decoration:none}
-img{max-width:100%;display:block}
 .container{max-width:980px;margin:0 auto;padding:0 16px}
 
 /* =========================
-   ✅ HEADER (좌 로고 / 우 햄버거)
+   header
    ========================= */
 .header{
   position:sticky;
   top:0;
-  z-index:50;
+  z-index:10;
   background:rgba(255,255,255,.92);
   backdrop-filter:blur(10px);
-  -webkit-backdrop-filter:blur(10px);
   border-bottom:1px solid var(--line);
 }
 
-.headerBar{
-  height:64px;
+.headerInner{
+  display:flex;
+  flex-direction:column;   /* ✅ 로고 위, 메뉴 아래 */
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  padding:12px 16px;
+  height:auto;             /* ✅ 56px 고정 해제 */
+  position:relative;
+}
+
+
+/* 로고(윗줄) */
+.logo{
+  position:static;         /* ✅ absolute 제거 */
+  transform:none;
   display:flex;
   align-items:center;
-  justify-content:space-between;
-  padding:12px 16px;
-  max-width:1100px;
-  margin:0 auto;
-}
-
-/* 로고 */
-.brand{
-  display:inline-flex;
-  align-items:center;
   gap:10px;
-  min-width:0;
+  font-weight:900;
+  white-space:nowrap;
 }
 
-.brandImg{
-  height:44px;     /* PC */
-  width:auto;
-  max-width:220px;
+.logoImg{
+  width:26px;
+  height:26px;
+  display:block;
   object-fit:contain;
 }
 
-@media (max-width:768px){
-  .headerBar{height:60px;padding:10px 14px}
-  .brandImg{height:40px;max-width:180px}
+/* 메뉴(아랫줄) */
+.nav{
+  display:flex;
+  gap:10px;
+  font-size:14px;
+  color:var(--muted);
 }
 
-/* 햄버거 */
-.hamburger{
-  width:44px;
-  height:44px;
-  border:0;
-  background:transparent;
-  padding:8px;
-  display:inline-flex;
-  flex-direction:column;
-  justify-content:center;
-  gap:7px;
-  cursor:pointer;
-}
-
-.hamburger span{
-  display:block;
-  height:3px;
-  width:28px;
-  background:#111;
+.nav a{
+  padding:8px 12px;
   border-radius:999px;
+  border:1px solid var(--line);
+  background:#fff;
+}
+
+.nav a:hover{
+  background:rgba(0,0,0,.06);
+  color:var(--text);
 }
 
 /* =========================
-   ✅ HERO 배너 (클릭 가능한 메인 이미지)
+   HERO(뮤비) 전체폭/센터 크게
+   - container 폭 제한을 뚫고 화면 기준으로 꽉
    ========================= */
+/* ✅ 뮤비 폭: 가운데 + 적당한 최대폭(=day6 느낌) */
 .hero{
   width:100%;
   margin:0;
@@ -97,61 +89,50 @@ img{max-width:100%;display:block}
 }
 
 .heroInner{
-  max-width:1100px;
+  max-width:1100px;   /* ← 여기 숫자로 폭 조절 (1000~1200 추천) */
   margin:0 auto;
   padding:0 16px;
 }
 
-.heroLink{
-  display:block;
-  border-radius:var(--radius);
-  overflow:hidden;
-  background:#000;
-  box-shadow:var(--shadow);
-}
-
-/* 이미지가 둥근모서리 안에서 꽉 차게 */
-.heroImg{
+.ytWrap{
   width:100%;
-  height:auto;
+  border-radius:22px;
+  overflow:hidden;
+  box-shadow:var(--shadow);
+  background:#000;
+}
+
+.yt{
+  width:100%;
+  aspect-ratio:16/9;
+  display:block;
 }
 
 /* =========================
-   ✅ 섹션/타이틀
+   typography
    ========================= */
-.section{margin:18px 0}
-.sectionTitleRow{display:flex;align-items:center;justify-content:space-between}
-.sectionTitle{
-  font-size:15px;
-  font-weight:900;
-  margin:10px 0;
-}
+.h1{font-size:26px;margin:18px 0 10px}
+.sectionTitle{font-size:15px;font-weight:900;margin:10px 0 10px}
 
 /* =========================
-   ✅ 버튼 리스트
+   buttons
    ========================= */
 .btnList{display:grid;grid-template-columns:1fr;gap:10px}
-
 .btn{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:12px;
-
+  gap:10px;
   padding:13px 14px;
   border-radius:16px;
   background:#f6f6f6;
   border:1px solid var(--line);
-
   transition:transform .06s ease, background .12s ease;
 }
-
 .btn:hover{background:#eeeeee;transform:translateY(-1px)}
+.btnTitle{font-weight:900}
+.btnDesc{font-size:12px;color:var(--muted)}
 
-.btnTitle{font-weight:900;line-height:1.2}
-.btnDesc{font-size:12px;color:var(--muted);margin-top:2px}
-
-/* 멜론 버튼 */
 .btn--melon{
   background:var(--melon);
   color:#fff;
@@ -161,14 +142,176 @@ img{max-width:100%;display:block}
 .btn--melon .btnDesc{color:rgba(255,255,255,.85)}
 
 /* =========================
-   ✅ footer
+   guide tabs + cards
    ========================= */
-.footer{
-  border-top:1px solid var(--line);
-  margin-top:28px;
+.tabRow{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 14px}
+.tabBtn{
+  border:1px solid var(--line);
+  background:#fff;
+  padding:8px 12px;
+  border-radius:999px;
+  font-size:13px;
+  cursor:pointer;
+  color:rgba(0,0,0,.65);
 }
-.footerInner{
-  padding:18px 0;
-  color:var(--muted);
-  font-size:12px;
+.tabBtn.active{
+  border-color:rgba(35,209,96,.35);
+  background:rgba(35,209,96,.10);
+  color:rgba(0,0,0,.85);
+}
+
+.cardGrid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(210px,1fr));
+  gap:14px;
+  margin-bottom:18px;
+}
+.cardTile{
+  position:relative;
+  border-radius:22px;
+  padding:18px;
+  border:1px solid rgba(0,0,0,.08);
+  box-shadow:var(--shadow);
+  overflow:hidden;
+  min-height:150px;
+  display:flex;
+  align-items:stretch;
+  justify-content:space-between;
+  gap:12px;
+}
+
+/* 카드 컬러 */
+.cardTile:nth-child(1){background:linear-gradient(135deg,#23d160,#16a34a)}
+.cardTile:nth-child(2){background:linear-gradient(135deg,#16a34a,#000)}
+.cardTile:nth-child(3){background:linear-gradient(135deg,#ff2d55,#ff3b30)}
+.cardTile:nth-child(4){background:linear-gradient(135deg,#23d160,#16a34a)}
+.cardTile:nth-child(5){background:linear-gradient(135deg,#ff2bd6, #7c3aed)}
+
+
+.cardTop{display:flex;flex-direction:column;gap:6px}
+.cardSmall{font-size:12px;color:rgba(255,255,255,.85);font-weight:700}
+.cardTitle{font-size:20px;font-weight:900;color:#fff;line-height:1.15}
+.cardIcon{
+  font-size:40px;
+  display:flex;
+  align-items:flex-end;
+  justify-content:flex-end;
+  opacity:.95;
+}
+
+/* =========================
+   footer
+   ========================= */
+.footer{border-top:1px solid var(--line);margin-top:28px}
+.footerInner{padding:18px 0;color:var(--muted);font-size:12px}
+
+.guideImg{
+  width:100%;
+  max-width:980px;
+  display:block;
+  margin:14px auto 24px;
+  border-radius:18px;
+  box-shadow:var(--shadow);
+  border:1px solid rgba(0,0,0,.08);
+}
+
+.heroLink{
+  position:relative;
+  display:block;
+  border-radius:22px;
+  overflow:hidden;
+  box-shadow:var(--shadow);
+  background:#000;
+}
+
+.heroImg{
+  width:100%;
+  display:block;
+  height:auto;
+}
+
+.playBadge{
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  width:72px;
+  height:72px;
+  border-radius:999px;
+  background:rgba(0,0,0,.55);
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:28px;
+  line-height:1;
+  backdrop-filter: blur(6px);
+}
+
+.heroLink:hover .playBadge{
+  background:rgba(0,0,0,.70);
+}
+
+/* =========================
+   ✅ NMIXX 스타일 헤더: 좌 로고 / 우 햄버거
+   ========================= */
+.header{
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255,255,255,.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(0,0,0,.10);
+}
+
+.header--simple .headerBar{
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 18px;
+}
+
+/* 로고 */
+.brand{
+  display: inline-flex;
+  align-items: center;
+}
+
+/* 로고 크게 */
+.brandImg{
+  height: 800px;   /* ✅ PC 로고 크기 */
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
+
+/* ✅ 모바일에서만 조금 줄이기 */
+@media (max-width: 768px){
+  .brandImg{
+    height: 500px; /* ✅ 모바일 로고 크기 */
+  }
+}
+
+
+/* 햄버거 */
+.hamburger{
+  width: 44px;
+  height: 44px;
+  border: 0;
+  background: transparent;
+  padding: 8px;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 7px;
+  cursor: pointer;
+}
+
+.hamburger span{
+  display: block;
+  height: 3px;
+  width: 28px;
+  background: #111;
+  border-radius: 999px;
 }
