@@ -1,7 +1,30 @@
-/* =========================
-   ✅ HEADER: 좌 로고 / 우 햄버거 (최종 고정)
-   ========================= */
+:root{
+  --bg:#ffffff;
+  --text:#111111;
+  --muted:rgba(0,0,0,.55);
+  --line:rgba(0,0,0,.10);
+  --shadow:0 10px 30px rgba(0,0,0,.10);
+  --radius:22px;
 
+  --melon:#23d160;
+  --melonHover:#16a34a;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.container{max-width:980px;margin:0 auto;padding:0 16px}
+
+/* =========================
+   ✅ HEADER: 좌 로고 / 우 햄버거
+   ========================= */
 .header{
   position:sticky;
   top:0;
@@ -12,7 +35,6 @@
   border-bottom:1px solid var(--line);
 }
 
-/* headerBar가 너의 HTML에 있음 */
 .headerBar{
   height:64px;
   display:flex;
@@ -23,26 +45,17 @@
   margin:0 auto;
 }
 
-/* 로고 래퍼 */
+/* 로고 */
 .brand{
   display:inline-flex;
   align-items:center;
   min-width:0;
 }
-
-/* 로고 이미지 */
 .brandImg{
-  height:44px;        /* ✅ PC */
+  height:44px;        /* PC */
   width:auto;
   max-width:220px;
-  display:block;
   object-fit:contain;
-}
-
-/* 모바일 로고 크기 */
-@media (max-width:768px){
-  .headerBar{height:60px;padding:10px 14px;}
-  .brandImg{height:40px;max-width:180px;}
 }
 
 /* 햄버거 */
@@ -58,7 +71,6 @@
   gap:7px;
   cursor:pointer;
 }
-
 .hamburger span{
   display:block;
   height:3px;
@@ -66,3 +78,118 @@
   background:#111;
   border-radius:999px;
 }
+
+@media (max-width:768px){
+  .headerBar{height:60px;padding:10px 14px}
+  .brandImg{height:40px;max-width:180px}  /* 모바일 */
+}
+
+/* =========================
+   ✅ HERO 배너 (클릭하면 유튜브)
+   ========================= */
+.hero{
+  width:100%;
+  margin:0;
+  padding:16px 0 12px;
+}
+.heroInner{
+  max-width:1100px;
+  margin:0 auto;
+  padding:0 16px;
+}
+
+.heroLink{
+  position:relative;
+  display:block;
+  border-radius:var(--radius);
+  overflow:hidden;
+  background:#000;
+  box-shadow:var(--shadow);
+}
+
+.heroImg{
+  width:100%;
+  height:auto;
+  display:block;
+}
+
+/* (선택) 가운데 플레이 배지 — 필요 없으면 지워도 됨 */
+.playBadge{
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  width:72px;
+  height:72px;
+  border-radius:999px;
+  background:rgba(0,0,0,.55);
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:28px;
+  line-height:1;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+.heroLink:hover .playBadge{background:rgba(0,0,0,.70)}
+
+/* =========================
+   ✅ 섹션/타이틀
+   ========================= */
+.section{margin:18px 0}
+.sectionTitleRow{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.sectionTitle{
+  font-size:15px;
+  font-weight:900;
+  margin:10px 0;
+}
+
+/* =========================
+   ✅ 버튼
+   ========================= */
+.btnList{display:grid;grid-template-columns:1fr;gap:10px}
+
+.btn{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+
+  padding:13px 14px;
+  border-radius:16px;
+  background:#f6f6f6;
+  border:1px solid var(--line);
+
+  transition:transform .06s ease, background .12s ease;
+}
+.btn:hover{background:#eeeeee;transform:translateY(-1px)}
+
+.btnTitle{font-weight:900;line-height:1.2}
+.btnDesc{font-size:12px;color:var(--muted);margin-top:2px}
+
+.btn--melon{
+  background:var(--melon);
+  color:#fff;
+  border-color:rgba(0,0,0,.08);
+}
+.btn--melon:hover{background:var(--melonHover)}
+.btn--melon .btnDesc{color:rgba(255,255,255,.85)}
+
+/* =========================
+   ✅ footer
+   ========================= */
+.footer{
+  border-top:1px solid var(--line);
+  margin-top:28px;
+}
+.footerInner{
+  padding:18px 0;
+  color:var(--muted);
+  font-size:12px;
+}
+
