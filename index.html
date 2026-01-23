@@ -7,33 +7,42 @@
   <link rel="stylesheet" href="/styles.css" />
 </head>
 <body>
-  <header class="header">
-    <div class="headerInner">
-      <a class="logo" href="/">
-        <img class="logoImg" src="/assets/logo.svg" alt="G-DRAGON">
-        <span>지드래곤 음원총공팀</span>
-      </a>
+  <header class="header header--simple">
+  <div class="headerBar">
+    <!-- 왼쪽 로고 -->
+   <a class="brand" href="/" aria-label="지드래곤 음원총공팀">
+  <picture>
+    <!-- 모바일 로고 -->
+    <source media="(max-width: 768px)" srcset="/assets/header/header-m.jpg">
+    <!-- PC 로고(기본) -->
+    <img class="brandImg" src="/assets/header/header-pc.jpg" alt="지드래곤 음원총공팀">
+  </picture>
+</a>
 
-      <nav class="nav">
-        <a href="/streaming/">원클릭</a>
-        <a href="/guide/">가이드</a>
-      </nav>
-    </div>
-  </header>
+    <!-- 오른쪽 햄버거 -->
+    <button class="hamburger" type="button" aria-label="메뉴">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</header>
 
+  <!-- ✅ HERO: 모바일/PC 다른 배너 이미지 + 클릭하면 뮤비로 이동 -->
   <section class="hero">
     <div class="heroInner">
-      <div class="ytWrap">
-        <iframe
-          id="mv"
-          class="yt"
-          src="https://www.youtube.com/embed/o9DhvbqYzns?rel=0&modestbranding=1"
-          title="G-DRAGON - TOO BAD (MV)"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen
-        ></iframe>
-      </div>
+      <a class="heroLink"
+         href="https://youtu.be/o9DhvbqYzns?si=7uozTe90cIU0ZY27"
+         target="_blank" rel="noreferrer">
+
+        <picture>
+          <!-- ✅ 모바일 -->
+          <source media="(max-width: 768px)" srcset="/assets/header/assetshero-m.jpg">
+          <!-- ✅ PC 기본 -->
+          <img class="heroImg" src="/assets/header/assetshero-pc.jpg" alt="G-DRAGON - TOO BAD (MV)">
+        </picture>
+        
+      </a>
     </div>
   </section>
 
@@ -45,7 +54,7 @@
 
       <div class="btnList">
         <!-- ✅ 메인 버튼: script.js가 잡아서 기기별로 이동시킴 -->
-        <a class="btn btn--melon" id="melonMainBtn" href="#">
+        <a class="btn btn--melon" id="melonMainBtn" href="/streaming/">
           <span>
             <div class="btnTitle">멜론 원클릭</div>
             <div class="btnDesc">기기별 자동 링크</div>
