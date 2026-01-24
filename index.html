@@ -41,8 +41,12 @@
     .ocModalBody{ padding:14px 18px 18px; }
     .ocModalGrid{ display:grid; gap:10px; }
 
+    /* ✅ 버튼 텍스트 가운데 정렬 + 화살표 제거에 맞춤 */
     .ocModalBtn{
-      display:flex; align-items:center; justify-content:space-between;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
       padding: 14px 14px;
       border-radius: 14px;
       text-decoration:none;
@@ -128,8 +132,10 @@
             <div class="ocArrow">→</div>
           </a>
 
-          <!-- 나머지는 기존 그대로 -->
-          <a class="ocBtn" href="/streaming/" aria-label="플로 원클릭">
+          <!-- ✅ 플로: 모달 오픈 -->
+          <a class="ocBtn" href="#"
+             data-platform="flo"
+             aria-label="플로 원클릭">
             <div class="ocIcon"><img src="/assets/icons/platform/flo.svg" alt="플로"></div>
             <div class="ocText">
               <div class="ocName">플로</div>
@@ -138,7 +144,10 @@
             <div class="ocArrow">→</div>
           </a>
 
-          <a class="ocBtn" href="/streaming/" aria-label="바이브 원클릭">
+          <!-- ✅ 바이브: 모달 오픈 -->
+          <a class="ocBtn" href="#"
+             data-platform="vibe"
+             aria-label="바이브 원클릭">
             <div class="ocIcon"><img src="/assets/icons/platform/vibe.svg" alt="바이브"></div>
             <div class="ocText">
               <div class="ocName">바이브</div>
@@ -147,7 +156,10 @@
             <div class="ocArrow">→</div>
           </a>
 
-          <a class="ocBtn" href="/streaming/" aria-label="스포티파이 원클릭">
+          <!-- ✅ 스포티파이: 모달 오픈 -->
+          <a class="ocBtn" href="#"
+             data-platform="spotify"
+             aria-label="스포티파이 원클릭">
             <div class="ocIcon"><img src="/assets/icons/platform/spotify.svg" alt="스포티파이"></div>
             <div class="ocText">
               <div class="ocName">스포티파이</div>
@@ -283,35 +295,62 @@
     <div class="container footerInner">© 지드래곤 음원총공팀</div>
   </footer>
 
-  <!-- ✅ 원클릭 모달 JS: 원클릭 버튼(멜론/지니/벅스)만 가로챔 -->
+  <!-- ✅ 원클릭 모달 JS: 원클릭 버튼(6개) 클릭 가로챔 -->
   <script>
-    // 플랫폼별 버튼 목록(일단 예시 경로)
+    // 플랫폼별 버튼 목록(예시 경로) + 버튼명: 원클릭1/2/3
     const OC_LINKS = {
       melon: {
         title: "멜론",
         kicker: "MELON one click",
         links: [
-          { label: "스트리밍 바로가기", href: "/streaming/melon/streaming.html" },
-          { label: "다운로드 바로가기", href: "/streaming/melon/download.html" },
-          { label: "플레이리스트", href: "/streaming/melon/playlist.html" }
+          { label: "원클릭1", href: "/streaming/melon/oneclick1.html" },
+          { label: "원클릭2", href: "/streaming/melon/oneclick2.html" },
+          { label: "원클릭3", href: "/streaming/melon/oneclick3.html" }
         ]
       },
       genie: {
         title: "지니",
         kicker: "GENIE one click",
         links: [
-          { label: "스트리밍 바로가기", href: "/streaming/genie/streaming.html" },
-          { label: "다운로드 바로가기", href: "/streaming/genie/download.html" },
-          { label: "플레이리스트", href: "/streaming/genie/playlist.html" }
+          { label: "원클릭1", href: "/streaming/genie/oneclick1.html" },
+          { label: "원클릭2", href: "/streaming/genie/oneclick2.html" },
+          { label: "원클릭3", href: "/streaming/genie/oneclick3.html" }
         ]
       },
       bugs: {
         title: "벅스",
         kicker: "BUGS one click",
         links: [
-          { label: "스트리밍 바로가기", href: "/streaming/bugs/streaming.html" },
-          { label: "다운로드 바로가기", href: "/streaming/bugs/download.html" },
-          { label: "플레이리스트", href: "/streaming/bugs/playlist.html" }
+          { label: "원클릭1", href: "/streaming/bugs/oneclick1.html" },
+          { label: "원클릭2", href: "/streaming/bugs/oneclick2.html" },
+          { label: "원클릭3", href: "/streaming/bugs/oneclick3.html" }
+        ]
+      },
+      flo: {
+        title: "플로",
+        kicker: "FLO one click",
+        links: [
+          { label: "원클릭1", href: "/streaming/flo/oneclick1.html" },
+          { label: "원클릭2", href: "/streaming/flo/oneclick2.html" },
+          { label: "원클릭3", href: "/streaming/flo/oneclick3.html" }
+        ]
+      },
+      vibe: {
+        title: "바이브",
+        kicker: "VIBE one click",
+        links: [
+          { label: "원클릭1", href: "/streaming/vibe/oneclick1.html" },
+          { label: "원클릭2", href: "/streaming/vibe/oneclick2.html" },
+          { label: "원클릭3", href: "/streaming/vibe/oneclick3.html" }
+        ]
+      },
+      spotify: {
+        title: "스포티파이",
+        kicker: "SPOTIFY one click",
+        links: [
+          { label: "원클릭1", href: "/streaming/spotify/oneclick1.html" },
+          { label: "원클릭2", href: "/streaming/spotify/oneclick2.html" },
+          { label: "원클릭3", href: "/streaming/spotify/oneclick3.html" }
         ]
       }
     };
@@ -330,10 +369,10 @@
       titleEl.textContent = data.title;
       kickerEl.textContent = data.kicker;
 
+      // ✅ 버튼 텍스트만 (가운데 정렬)
       gridEl.innerHTML = data.links.map(item => `
         <a class="ocModalBtn" href="${item.href}">
           <span>${item.label}</span>
-          <span>→</span>
         </a>
       `).join("");
 
@@ -348,7 +387,7 @@
       document.body.style.overflow = "";
     }
 
-    // 멜론/지니/벅스만 클릭 가로채서 모달 오픈
+    // ✅ data-platform 있는 6개 버튼 모두 모달 오픈
     document.querySelectorAll('.ocBtn[data-platform]').forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
