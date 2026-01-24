@@ -8,19 +8,12 @@
 </head>
 <body>
 
-  <!-- ✅ HEADER: 좌 로고 / 우 햄버거 -->
+  <!-- ✅ HEADER: 로고만 (햄버거 제거 / 로고 단일 파일) -->
   <header class="header header--simple">
-    <div class="headerBar">
+    <div class="headerBar headerBar--center">
       <a class="brand" href="/" aria-label="지드래곤 음원총공팀">
-        <picture>
-          <source media="(max-width: 768px)" srcset="/assets/header/logo-m.svg">
-          <img class="brandImg" src="/assets/header/logo-pc.svg" alt="지드래곤 음원총공팀 로고">
-        </picture>
+        <img class="brandImg" src="/assets/header/logo.svg" alt="지드래곤 음원총공팀 로고">
       </a>
-
-      <button class="hamburger" type="button" aria-label="메뉴">
-        <span></span><span></span><span></span>
-      </button>
     </div>
   </header>
 
@@ -41,7 +34,7 @@
 
   <main class="container">
 
-    <!-- ✅ 원클릭 섹션(플레이브/엔믹스 느낌) -->
+    <!-- ✅ 원클릭 섹션 -->
     <section class="section">
       <div class="oneclickPanel">
         <div class="oneclickHead">
@@ -51,7 +44,6 @@
         </div>
 
         <div class="oneclickGrid">
-          <!-- ✅ 지금은 버튼 UI만. (다음 단계에서 data.js/script.js로 링크 연결 가능) -->
           <a class="ocBtn" href="/streaming/" aria-label="멜론 원클릭">
             <div class="ocIcon"><img src="/assets/icons/platform/melon.svg" alt="멜론"></div>
             <div class="ocText">
@@ -109,11 +101,9 @@
       </div>
     </section>
 
-    <!-- ✅ 바로가기 -->
+    <!-- ✅ 바로가기 (가이드 CTA만 유지) -->
     <section class="section">
       <div class="sectionTitle">바로가기</div>
-
-      <!-- ✅ 가이드 버튼: 더 크게/존재감 있게 -->
       <a class="ctaGuide" href="/guide/">
         <div class="ctaGuideText">
           <div class="ctaGuideTitle">음원총공 가이드</div>
@@ -139,7 +129,7 @@
             <span class="socialName">Instagram</span>
           </a>
           <a class="socialBtn" href="https://x.com/ibgdrgn" target="_blank" rel="noreferrer">
-            <span class="socialIcon"><img src="/assets/icons/social/x.svg" alt="X"></span>
+            <span class="socialIcon"><img src="/assets/icons/social/X.svg" alt="x"></span>
             <span class="socialName">X</span>
           </a>
           <a class="socialBtn" href="https://weibo.com/u/3786649467" target="_blank" rel="noreferrer">
@@ -160,27 +150,22 @@
             <span class="socialIcon"><img src="/assets/icons/social/youtube.svg" alt="YouTube"></span>
             <span class="socialName">YouTube</span>
           </a>
-
           <a class="socialBtn" href="https://www.instagram.com/8lo8lo8lowme" target="_blank" rel="noreferrer">
             <span class="socialIcon"><img src="/assets/icons/social/instagram.svg" alt="Instagram"></span>
             <span class="socialName">팔로미</span>
           </a>
-
           <a class="socialBtn" href="https://www.instagram.com/fanplusonedotcom" target="_blank" rel="noreferrer">
             <span class="socialIcon"><img src="/assets/icons/social/instagram.svg" alt="Instagram"></span>
             <span class="socialName">fanplusone</span>
           </a>
-
           <a class="socialBtn" href="https://x.com/FANPLUS1DOTCOM" target="_blank" rel="noreferrer">
             <span class="socialIcon"><img src="/assets/icons/social/x.svg" alt="X"></span>
             <span class="socialName">fanplusone</span>
           </a>
-
           <a class="socialBtn" href="https://www.tiktok.com/@fanplusonedotcom" target="_blank" rel="noreferrer">
             <span class="socialIcon"><img src="/assets/icons/social/tiktok.svg" alt="TikTok"></span>
             <span class="socialName">TikTok</span>
           </a>
-
           <a class="socialBtn" href="https://gdragon.ai/" target="_blank" rel="noreferrer">
             <span class="socialIcon"><img src="/assets/icons/social/bstage.svg" alt="b.stage"></span>
             <span class="socialName">b.stage</span>
@@ -199,24 +184,20 @@
             <span class="socialIcon"><img src="/assets/icons/social/x.svg" alt="X"></span>
             <span class="socialName">X</span>
           </a>
-
           <a class="socialBtn" href="https://www.instagram.com/gdragon_stream/" target="_blank" rel="noreferrer">
             <span class="socialIcon"><img src="/assets/icons/social/instagram.svg" alt="Instagram"></span>
             <span class="socialName">Instagram</span>
           </a>
-
           <a class="socialBtn" href="https://www.threads.com/@gdragon_stream?xmt=AQF0-9Qrl0GaLacu6i-jscBusw1dgbuFYdABjjHnuAWiOaA" target="_blank" rel="noreferrer">
             <span class="socialIcon"><img src="/assets/icons/social/threads.svg" alt="Threads"></span>
             <span class="socialName">Threads</span>
           </a>
-
           <a class="socialBtn" href="https://gall.dcinside.com/mgallery/board/lists/?id=gdpeaceminusone" target="_blank" rel="noreferrer">
             <span class="socialIcon"><img src="/assets/icons/social/dcinside.svg" alt="디시인사이드"></span>
-            <span class="socialName">디시</span>
+            <span class="socialName">디시인사이드</span>
           </a>
         </div>
       </div>
-
     </section>
 
   </main>
@@ -227,4 +208,3 @@
 
 </body>
 </html>
-
