@@ -7,13 +7,29 @@
   <link rel="stylesheet" href="/styles.css" />
 </head>
 <body>
-  <!-- ✅ 공통 헤더가 여기 들어감 -->
-  <div id="appHeader"></div>
 
-  <!-- ✅ HERO: 모바일/PC 배너 + 클릭하면 유튜브 -->
+  <!-- ✅ HEADER: 좌 로고 / 우 햄버거 -->
+  <header class="header header--simple">
+    <div class="headerBar">
+      <a class="brand" href="/" aria-label="지드래곤 음원총공팀">
+        <picture>
+          <source media="(max-width: 768px)" srcset="/assets/header/logo-m.svg">
+          <img class="brandImg" src="/assets/header/logo-pc.svg" alt="지드래곤 음원총공팀 로고">
+        </picture>
+      </a>
+
+      <button class="hamburger" type="button" aria-label="메뉴">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ✅ HERO: 클릭하면 Too Bad MV -->
   <section class="hero">
     <div class="heroInner">
-      <a class="heroLink" id="heroLink" target="_blank" rel="noreferrer">
+      <a class="heroLink"
+         href="https://youtu.be/o9DhvbqYzns?si=7uozTe90cIU0ZY27"
+         target="_blank" rel="noreferrer">
         <picture>
           <source media="(max-width: 768px)" srcset="/assets/header/header-m.jpg">
           <img class="heroImg" src="/assets/header/header-pc.jpg" alt="G-DRAGON - TOO BAD (MV)">
@@ -24,9 +40,73 @@
   </section>
 
   <main class="container">
-    <!-- ✅ 메인에 바로 원클릭 (플레이브/엔믹스 느낌 박스) -->
+
+    <!-- ✅ 원클릭 섹션(플레이브/엔믹스 느낌) -->
     <section class="section">
-      <div id="homeOneclick"></div>
+      <div class="oneclickPanel">
+        <div class="oneclickHead">
+          <div class="oneclickKicker">스트리밍 하이팅밤팅!</div>
+          <h2 class="oneclickTitle">원클릭 스트리밍</h2>
+          <p class="oneclickSub">플랫폼을 선택하면 바로 스트리밍을 시작할 수 있어요.</p>
+        </div>
+
+        <div class="oneclickGrid">
+          <!-- ✅ 지금은 버튼 UI만. (다음 단계에서 data.js/script.js로 링크 연결 가능) -->
+          <a class="ocBtn" href="/streaming/" aria-label="멜론 원클릭">
+            <div class="ocIcon"><img src="/assets/icons/melon.png" alt=""></div>
+            <div class="ocText">
+              <div class="ocName">멜론</div>
+              <div class="ocSub">원클릭 스트리밍</div>
+            </div>
+            <div class="ocArrow">→</div>
+          </a>
+
+          <a class="ocBtn" href="/streaming/" aria-label="지니 원클릭">
+            <div class="ocIcon"><img src="/assets/icons/genie.png" alt=""></div>
+            <div class="ocText">
+              <div class="ocName">지니</div>
+              <div class="ocSub">원클릭 스트리밍</div>
+            </div>
+            <div class="ocArrow">→</div>
+          </a>
+
+          <a class="ocBtn" href="/streaming/" aria-label="벅스 원클릭">
+            <div class="ocIcon"><img src="/assets/icons/bugs.png" alt=""></div>
+            <div class="ocText">
+              <div class="ocName">벅스</div>
+              <div class="ocSub">원클릭 스트리밍</div>
+            </div>
+            <div class="ocArrow">→</div>
+          </a>
+
+          <a class="ocBtn" href="/streaming/" aria-label="플로 원클릭">
+            <div class="ocIcon"><img src="/assets/icons/flo.png" alt=""></div>
+            <div class="ocText">
+              <div class="ocName">플로</div>
+              <div class="ocSub">원클릭 스트리밍</div>
+            </div>
+            <div class="ocArrow">→</div>
+          </a>
+
+          <a class="ocBtn" href="/streaming/" aria-label="바이브 원클릭">
+            <div class="ocIcon"><img src="/assets/icons/vibe.png" alt=""></div>
+            <div class="ocText">
+              <div class="ocName">바이브</div>
+              <div class="ocSub">원클릭 스트리밍</div>
+            </div>
+            <div class="ocArrow">→</div>
+          </a>
+
+          <a class="ocBtn" href="/streaming/" aria-label="스포티파이 원클릭">
+            <div class="ocIcon"><img src="/assets/icons/spotify.png" alt=""></div>
+            <div class="ocText">
+              <div class="ocName">스포티파이</div>
+              <div class="ocSub">원클릭 스트리밍</div>
+            </div>
+            <div class="ocArrow">→</div>
+          </a>
+        </div>
+      </div>
     </section>
 
     <!-- ✅ 바로가기 -->
@@ -36,7 +116,7 @@
         <a class="btn" href="/guide/">
           <span>
             <div class="btnTitle">음원총공 가이드</div>
-            <div class="btnDesc">플랫폼별 가이드 이미지 보기</div>
+            <div class="btnDesc">가이드 이미지 보기</div>
           </span>
           <span>→</span>
         </a>
@@ -46,3 +126,15 @@
             <div class="btnTitle">차트 확인</div>
             <div class="btnDesc">멜론/지니/벅스/바이브/플로</div>
           </span>
+          <span>→</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footerInner">© 지드래곤 음원총공팀</div>
+  </footer>
+
+</body>
+</html>
