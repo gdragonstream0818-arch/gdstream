@@ -7,71 +7,49 @@
   <link rel="stylesheet" href="/styles.css" />
 </head>
 <body>
-  <header class="header header--simple">
-    <div class="headerBar">
-      <!-- ✅ 왼쪽 로고 (모바일/PC 분기) -->
-      <a class="brand" href="/" aria-label="지드래곤 음원총공팀">
-        <picture>
-          <!-- 모바일 로고 -->
-          <source media="(max-width: 768px)" srcset="/assets/header/logo-m.svg">
-          <!-- PC 로고 -->
-          <img class="brandImg" src="/assets/header/logo-pc.svg" alt="지드래곤 음원총공팀">
-        </picture>
-      </a>
+  <!-- ✅ 공통 헤더가 여기 들어감 -->
+  <div id="appHeader"></div>
 
-      <!-- ✅ 오른쪽 햄버거 -->
-      <button class="hamburger" type="button" aria-label="메뉴">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-    </div>
-  </header>
-
-  <!-- ✅ HERO: 모바일/PC 다른 배너 이미지 + 클릭하면 뮤비로 이동 -->
+  <!-- ✅ HERO: 모바일/PC 배너 + 클릭하면 유튜브 -->
   <section class="hero">
     <div class="heroInner">
-      <a class="heroLink"
-         href="https://youtu.be/o9DhvbqYzns?si=7uozTe90cIU0ZY27"
-         target="_blank" rel="noreferrer">
+      <a class="heroLink" id="heroLink" target="_blank" rel="noreferrer">
         <picture>
-          <!-- 모바일 배너 -->
           <source media="(max-width: 768px)" srcset="/assets/header/header-m.jpg">
-          <!-- PC 배너 -->
           <img class="heroImg" src="/assets/header/header-pc.jpg" alt="G-DRAGON - TOO BAD (MV)">
         </picture>
+        <div class="playBadge">▶</div>
       </a>
     </div>
   </section>
 
   <main class="container">
+    <!-- ✅ 원클릭 미리보기 -->
     <section class="section">
       <div class="sectionTitleRow">
         <div class="sectionTitle">원클릭 스트리밍</div>
+        <a class="sectionLink" href="/streaming/">전체 보기 →</a>
       </div>
 
-      <div class="btnList">
-        <!-- ✅ 메인 버튼: script.js가 잡아서 기기별로 이동시킴 -->
-        <a class="btn btn--melon" id="melonMainBtn" href="/streaming/">
-          <span>
-            <div class="btnTitle">멜론 원클릭</div>
-            <div class="btnDesc">기기별 자동 링크</div>
-          </span>
-          <span>→</span>
-        </a>
-      </div>
+      <div class="platformGrid" id="homePlatforms"></div>
     </section>
 
+    <!-- ✅ 바로가기 -->
     <section class="section">
-      <div class="sectionTitleRow">
-        <div class="sectionTitle">가이드</div>
-      </div>
-
+      <div class="sectionTitle">바로가기</div>
       <div class="btnList">
         <a class="btn" href="/guide/">
           <span>
-            <div class="btnTitle">가이드 보러가기</div>
-            <div class="btnDesc">스트리밍 / 다운로드 / 투표</div>
+            <div class="btnTitle">음원총공 가이드</div>
+            <div class="btnDesc">플랫폼별 가이드 이미지 보기</div>
+          </span>
+          <span>→</span>
+        </a>
+
+        <a class="btn" href="/charts/">
+          <span>
+            <div class="btnTitle">차트 확인</div>
+            <div class="btnDesc">멜론/지니/벅스/바이브/플로</div>
           </span>
           <span>→</span>
         </a>
@@ -79,12 +57,15 @@
     </section>
   </main>
 
-  <footer class="footer">
-    <div class="container footerInner">© 지드래곤 음원총공팀</div>
-  </footer>
+  <!-- ✅ 공통 푸터가 여기 들어감 -->
+  <div id="appFooter"></div>
 
-  <!-- ✅ 중요: data.js 먼저, script.js 나중 -->
+  <!-- ✅ data.js → script.js 순서 중요 -->
   <script src="/data.js"></script>
   <script src="/script.js"></script>
+  <script>
+    initLayout("home");
+    renderHomePlatforms("homePlatforms");
+  </script>
 </body>
 </html>
