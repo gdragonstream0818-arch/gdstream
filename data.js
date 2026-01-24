@@ -98,9 +98,9 @@ window.SITE_DATA = {
       icon: "",
       // ✅ 통합 링크 1개(어떤 기기든 동일)
       oneclick: {
-        android: [{ label: "원클릭", url: "" }],
-        ios:     [{ label: "원클릭", url: "" }],
-        web:     [{ label: "원클릭", url: "" }]
+        android: [{ label: "원클릭", url: "https://open.spotify.com/playlist/66FeSLRYIx2R9trDZrXmhd?si=XRjx7plaS5-r-T3dKbFLqA" }],
+        ios:     [{ label: "원클릭", url: "https://open.spotify.com/playlist/66FeSLRYIx2R9trDZrXmhd?si=XRjx7plaS5-r-T3dKbFLqA" }],
+        web:     [{ label: "원클릭", url: "https://open.spotify.com/playlist/66FeSLRYIx2R9trDZrXmhd?si=XRjx7plaS5-r-T3dKbFLqA" }]
       }
     },
   ],
