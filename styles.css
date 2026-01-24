@@ -587,3 +587,15 @@ img{max-width:100%;display:block}
   transform:none;
   box-shadow:0 8px 18px rgba(0,0,0,.06);
 }
+
+/* =========================
+   ✅ Social icon image sizing (필수)
+   ========================= */
+.socialIcon img{
+  width:20px;
+  height:20px;
+  object-fit:contain;
+  display:block;
+}
+
+
