@@ -104,9 +104,9 @@ window.SITE_DATA = {
       icon: "/assets/icons/platform/spotify.svg",
       modalImage: "/assets/modal/spotify.jpg",
       links: {
-        android: { type: "single", url: "" },
-        ios: { type: "single", url: "" },
-        web: { type: "single", url: "" }
+        android: { type: "single", url: "https://open.spotify.com/playlist/66FeSLRYIx2R9trDZrXmhd?si=XRjx7plaS5-r-T3dKbFLqA" },
+        ios: { type: "single", url: "https://open.spotify.com/playlist/66FeSLRYIx2R9trDZrXmhd?si=XRjx7plaS5-r-T3dKbFLqA" },
+        web: { type: "single", url: "https://open.spotify.com/playlist/66FeSLRYIx2R9trDZrXmhd?si=XRjx7plaS5-r-T3dKbFLqA" }
       }
     }
   ],
