@@ -24,14 +24,16 @@
   </section>
 
   <main class="container">
-    <!-- ✅ 원클릭 미리보기 -->
+    <!-- ✅ 메인에 바로 원클릭 -->
     <section class="section">
       <div class="sectionTitleRow">
         <div class="sectionTitle">원클릭 스트리밍</div>
-        <a class="sectionLink" href="/streaming/">전체 보기 →</a>
       </div>
 
-      <div class="platformGrid" id="homePlatforms"></div>
+      <!-- (선택) 배경 패널 느낌 원하면 styles.css에 featurePanel 추가 가능 -->
+      <!-- <div class="featurePanel"> -->
+        <div class="platformGrid" id="homePlatforms"></div>
+      <!-- </div> -->
     </section>
 
     <!-- ✅ 바로가기 -->
@@ -57,6 +59,24 @@
     </section>
   </main>
 
+  <!-- ✅ 홈에서도 원클릭 모달 사용 -->
+  <div class="modalOverlay" id="platformModal" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-label="원클릭 링크">
+      <div class="modalTop">
+        <div class="modalTitle" id="modalTitle">플랫폼</div>
+        <button class="modalClose" type="button" aria-label="닫기" id="modalClose">✕</button>
+      </div>
+
+      <div class="segRow" id="deviceSeg"></div>
+
+      <div class="modalBody">
+        <div class="stepBox" id="modalSteps"></div>
+        <div class="btnList" id="modalLinks"></div>
+        <div class="hint" id="modalHint"></div>
+      </div>
+    </div>
+  </div>
+
   <!-- ✅ 공통 푸터가 여기 들어감 -->
   <div id="appFooter"></div>
 
@@ -65,7 +85,9 @@
   <script src="/script.js"></script>
   <script>
     initLayout("home");
-    renderHomePlatforms("homePlatforms");
+    // ✅ 홈에서 카드 클릭하면 모달 뜨도록 (원클릭과 동일 렌더러 사용)
+    renderStreamingPlatforms("homePlatforms");
   </script>
 </body>
 </html>
+
