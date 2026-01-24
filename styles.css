@@ -421,3 +421,76 @@ img{max-width:100%;display:block}
   color:var(--muted);
   font-size:12px;
 }
+
+/* =========================
+   ✅ HOME 원클릭: 플레이브/엔믹스 느낌 박스 + 둥근 버튼
+   ========================= */
+.oneclickPanel{
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(0,0,0,.06);
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(180,190,255,.45), rgba(255,210,230,.35));
+}
+
+.oneclickHead{
+  padding:16px 16px 8px;
+}
+.oneclickKicker{
+  font-size:12px;
+  font-weight:900;
+  color: rgba(0,0,0,.55);
+  margin-bottom:6px;
+}
+.oneclickTitle{
+  font-size:20px;
+  font-weight:900;
+  margin:0;
+}
+
+.oneclickGrid{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:12px;
+  padding:14px 16px 18px;
+}
+
+@media (max-width:768px){
+  .oneclickTitle{font-size:18px}
+  .oneclickGrid{grid-template-columns:repeat(2, 1fr)}
+}
+
+.ocBtn{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:14px 14px;
+  border-radius:18px;
+  background:rgba(255,255,255,.82);
+  border:1px solid rgba(0,0,0,.08);
+  box-shadow: 0 8px 20px rgba(0,0,0,.06);
+  cursor:pointer;
+  transition:transform .08s ease, background .12s ease;
+}
+.ocBtn:hover{transform:translateY(-1px); background:rgba(255,255,255,.92);}
+
+.ocIcon{
+  width:38px;height:38px;
+  border-radius:14px;
+  background:#fff;
+  border:1px solid rgba(0,0,0,.08);
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+  flex:0 0 auto;
+}
+.ocIcon img{width:22px;height:22px;object-fit:contain}
+
+.ocText{min-width:0}
+.ocName{font-weight:900}
+.ocSub{font-size:12px;color:var(--muted);margin-top:2px}
+
+.ocArrow{
+  margin-left:auto;
+  font-weight:900;
+  opacity:.6;
+}
