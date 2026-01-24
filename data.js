@@ -9,13 +9,11 @@ window.SITE_DATA = {
     heroLink: "https://youtu.be/o9DhvbqYzns?si=7uozTe90cIU0ZY27"
   },
 
-  // ✅ 원클릭 플랫폼
   platforms: [
     {
       id: "melon",
       name: "멜론",
       icon: "",
-      // ✅ 멜론만: 기기별 버튼 개수/링크 다름
       oneclick: {
         android: [
           { label: "원클릭1", url: "https://tinyurl.com/3ny3yz6f" },
@@ -33,12 +31,78 @@ window.SITE_DATA = {
       }
     },
 
-    // ✅ 나머지는 지금처럼 3개 버튼(기본 경로)로 표시(링크는 나중에 채워도 됨)
-    { id:"genie",   name:"지니",      icon:"" },
-    { id:"bugs",    name:"벅스",      icon:"" },
-    { id:"flo",     name:"플로",      icon:"" },
-    { id:"vibe",    name:"바이브",    icon:"" },
-    { id:"spotify", name:"스포티파이", icon:"" },
+    {
+      id: "genie",
+      name: "지니",
+      icon: "",
+      // ✅ 각 기기마다 링크 1개씩(나중에 url만 채우면 됨)
+      oneclick: {
+        android: [{ label: "원클릭", url: "" }],
+        ios:     [{ label: "원클릭", url: "" }],
+        web:     [{ label: "원클릭", url: "" }]
+      }
+    },
+
+    {
+      id: "bugs",
+      name: "벅스",
+      icon: "",
+      // ✅ 통합 링크 1개(어떤 기기든 동일)
+      oneclick: {
+        android: [{ label: "원클릭", url: "" }],
+        ios:     [{ label: "원클릭", url: "" }],
+        web:     [{ label: "원클릭", url: "" }]
+      }
+    },
+
+    {
+      id: "flo",
+      name: "플로",
+      icon: "",
+      // ✅ 통합 링크 1개(어떤 기기든 동일)
+      oneclick: {
+        android: [{ label: "원클릭", url: "" }],
+        ios:     [{ label: "원클릭", url: "" }],
+        web:     [{ label: "원클릭", url: "" }]
+      }
+    },
+
+    {
+      id: "vibe",
+      name: "바이브",
+      icon: "",
+      // ✅ PC 미지원 / iOS & Android는 1~4번까지
+      oneclick: {
+        android: [
+          { label: "원클릭1", url: "" },
+          { label: "원클릭2", url: "" },
+          { label: "원클릭3", url: "" },
+          { label: "원클릭4", url: "" }
+        ],
+        ios: [
+          { label: "원클릭1", url: "" },
+          { label: "원클릭2", url: "" },
+          { label: "원클릭3", url: "" },
+          { label: "원클릭4", url: "" }
+        ],
+        web: [] // ✅ 빈 배열이면 "PC 미지원" 안내가 뜨게 script.js에서 처리
+      },
+      unsupported: {
+        web: "바이브는 PC를 지원하지 않습니다. 모바일(iOS/Android)에서 이용해 주세요."
+      }
+    },
+
+    {
+      id: "spotify",
+      name: "스포티파이",
+      icon: "",
+      // ✅ 통합 링크 1개(어떤 기기든 동일)
+      oneclick: {
+        android: [{ label: "원클릭", url: "" }],
+        ios:     [{ label: "원클릭", url: "" }],
+        web:     [{ label: "원클릭", url: "" }]
+      }
+    },
   ],
 
   streamingSteps: ["앱 실행", "곡 검색", "재생/반복(플리 저장 권장)"],
@@ -79,4 +143,3 @@ window.SITE_DATA = {
 
   footerText: "© 지드래곤 음원총공팀"
 };
-
