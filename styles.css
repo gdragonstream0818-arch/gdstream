@@ -5,9 +5,6 @@
   --line:rgba(0,0,0,.10);
   --shadow:0 10px 30px rgba(0,0,0,.10);
   --radius:22px;
-
-  --melon:#23d160;
-  --melonHover:#16a34a;
 }
 
 *{box-sizing:border-box}
@@ -23,7 +20,7 @@ img{max-width:100%;display:block}
 .container{max-width:980px;margin:0 auto;padding:0 16px}
 
 /* =========================
-   ✅ HEADER: 좌 로고 / 우 햄버거
+   HEADER (좌 로고 / 우 햄버거)
    ========================= */
 .header{
   position:sticky;
@@ -34,7 +31,6 @@ img{max-width:100%;display:block}
   -webkit-backdrop-filter:blur(10px);
   border-bottom:1px solid var(--line);
 }
-
 .headerBar{
   height:64px;
   display:flex;
@@ -44,26 +40,17 @@ img{max-width:100%;display:block}
   max-width:1100px;
   margin:0 auto;
 }
-
-/* 로고 */
-.brand{
-  display:inline-flex;
-  align-items:center;
-  min-width:0;
-}
+.brand{display:inline-flex;align-items:center;min-width:0}
 .brandImg{
-  height:44px;        /* PC */
+  height:44px;
   width:auto;
-  max-width:220px;
+  max-width:240px;
   object-fit:contain;
 }
 
-/* 햄버거 */
 .hamburger{
-  width:44px;
-  height:44px;
-  border:0;
-  background:transparent;
+  width:44px;height:44px;
+  border:0;background:transparent;
   padding:8px;
   display:inline-flex;
   flex-direction:column;
@@ -81,23 +68,77 @@ img{max-width:100%;display:block}
 
 @media (max-width:768px){
   .headerBar{height:60px;padding:10px 14px}
-  .brandImg{height:40px;max-width:180px}  /* 모바일 */
+  .brandImg{height:40px;max-width:200px}
 }
 
 /* =========================
-   ✅ HERO 배너 (클릭하면 유튜브)
+   MENU OVERLAY (햄버거)
    ========================= */
-.hero{
-  width:100%;
-  margin:0;
-  padding:16px 0 12px;
+.menuOverlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.35);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .16s ease;
+  z-index:999;
 }
-.heroInner{
-  max-width:1100px;
-  margin:0 auto;
-  padding:0 16px;
+.menuOverlay.open{opacity:1;pointer-events:auto}
+
+.menuPanel{
+  position:absolute;
+  top:0; right:0;
+  height:100%;
+  width:min(360px, 88vw);
+  background:#fff;
+  border-left:1px solid var(--line);
+  box-shadow:var(--shadow);
+  transform:translateX(100%);
+  transition:transform .18s ease;
+  padding:16px;
+}
+.menuOverlay.open .menuPanel{transform:translateX(0)}
+
+.menuTop{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:6px 4px 12px;
+  border-bottom:1px solid var(--line);
+  margin-bottom:12px;
+}
+.menuTitle{font-weight:900;letter-spacing:.3px}
+.menuClose{
+  width:40px;height:40px;
+  border:1px solid var(--line);
+  background:#f3f3f3;
+  border-radius:12px;
+  cursor:pointer;
+}
+.menuList{display:flex;flex-direction:column;gap:10px;padding:6px 2px}
+.menuList a{
+  padding:12px 12px;
+  border-radius:14px;
+  border:1px solid var(--line);
+  background:#f6f6f6;
+  font-weight:900;
+}
+.menuList a:hover{background:#eee}
+
+.menuFoot{
+  margin-top:14px;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.5;
 }
 
+/* =========================
+   HERO (메인 배너)
+   ========================= */
+.hero{width:100%;margin:0;padding:16px 0 12px}
+.heroInner{max-width:1100px;margin:0 auto;padding:0 16px}
 .heroLink{
   position:relative;
   display:block;
@@ -106,14 +147,8 @@ img{max-width:100%;display:block}
   background:#000;
   box-shadow:var(--shadow);
 }
+.heroImg{width:100%;height:auto;display:block}
 
-.heroImg{
-  width:100%;
-  height:auto;
-  display:block;
-}
-
-/* (선택) 가운데 플레이 배지 — 필요 없으면 HTML에서 빼도 됨 */
 .playBadge{
   position:absolute;
   left:50%;
@@ -135,117 +170,79 @@ img{max-width:100%;display:block}
 .heroLink:hover .playBadge{background:rgba(0,0,0,.70)}
 
 /* =========================
-   ✅ 섹션/타이틀
+   TYPO
    ========================= */
-.section{margin:18px 0}
-.sectionTitleRow{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-}
-.sectionTitle{
-  font-size:15px;
-  font-weight:900;
-  margin:10px 0;
-}
+.h1{font-size:24px;margin:18px 0 6px;font-weight:900}
+.sub{margin:0 0 14px;color:var(--muted);font-size:13px;line-height:1.5}
 
-/* 공통 H1 (streaming/guide에서 사용) */
-.h1{
-  font-size:26px;
-  margin:18px 0 10px;
-}
+.section{margin:18px 0}
+.sectionTitleRow{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.sectionTitle{font-size:15px;font-weight:900;margin:10px 0}
+.sectionLink{font-size:13px;color:var(--muted)}
+.sectionLink:hover{color:var(--text)}
 
 /* =========================
-   ✅ 버튼 (메인 페이지에서 사용)
+   BUTTON LIST
    ========================= */
 .btnList{display:grid;grid-template-columns:1fr;gap:10px}
-
 .btn{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-
-  padding:13px 14px;
-  border-radius:16px;
-  background:#f6f6f6;
-  border:1px solid var(--line);
-
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:13px 14px;border-radius:16px;
+  background:#f6f6f6;border:1px solid var(--line);
   transition:transform .06s ease, background .12s ease;
 }
 .btn:hover{background:#eeeeee;transform:translateY(-1px)}
-
 .btnTitle{font-weight:900;line-height:1.2}
 .btnDesc{font-size:12px;color:var(--muted);margin-top:2px}
 
-.btn--melon{
-  background:var(--melon);
-  color:#fff;
-  border-color:rgba(0,0,0,.08);
-}
-.btn--melon:hover{background:var(--melonHover)}
-.btn--melon .btnDesc{color:rgba(255,255,255,.85)}
-
 /* =========================
-   ✅ streaming 페이지 btnGrid (복구/추가)
-   - script.js가 만드는 카드/버튼들이 여기로 스타일 먹음
+   PLATFORM GRID (원클릭 카드)
    ========================= */
-.btnGrid{
+.platformGrid{
   display:grid;
-  grid-template-columns:1fr;
+  grid-template-columns:repeat(3, 1fr);
   gap:10px;
-  margin-top:12px;
 }
-@media (min-width:700px){
-  .btnGrid{grid-template-columns:repeat(2, 1fr);}
+@media (max-width:768px){
+  .platformGrid{grid-template-columns:repeat(2, 1fr)}
 }
 
-/* script.js가 어떤 클래스를 쓰든 받쳐주기(안전망) */
-.btnTile, .gridBtn{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-
-  padding:13px 14px;
-  border-radius:16px;
-  background:#f6f6f6;
+.platformCard{
   border:1px solid var(--line);
-
+  background:#fff;
+  border-radius:18px;
+  box-shadow:var(--shadow);
+  padding:12px;
+  display:flex;
+  gap:10px;
+  align-items:center;
+  cursor:pointer;
   transition:transform .06s ease, background .12s ease;
 }
-.btnTile:hover, .gridBtn:hover{
-  background:#eeeeee;
-  transform:translateY(-1px);
-}
+.platformCard:hover{background:#fafafa;transform:translateY(-1px)}
 
-/* btnGrid 안의 링크가 a 태그로 만들어질 때도 동일하게 */
-.btnGrid a{
+.platformIcon{
+  width:38px;height:38px;
+  border-radius:14px;
+  background:#f4f4f4;
   display:flex;
   align-items:center;
-  justify-content:space-between;
-  gap:12px;
-
-  padding:13px 14px;
-  border-radius:16px;
-  background:#f6f6f6;
-  border:1px solid var(--line);
-
-  transition:transform .06s ease, background .12s ease;
+  justify-content:center;
+  overflow:hidden;
+  flex:0 0 auto;
+  font-weight:900;
+  color:rgba(0,0,0,.55);
+  font-size:12px;
 }
-.btnGrid a:hover{background:#eeeeee;transform:translateY(-1px)}
+.platformIcon img{width:22px;height:22px;object-fit:contain}
+.platformText{min-width:0}
+.platformName{font-weight:900}
+.platformSub{font-size:12px;color:var(--muted);margin-top:2px}
 
 /* =========================
-   ✅ GUIDE: 탭 + 카드 + 이미지 (복구)
+   TABS (가이드/차트)
    ========================= */
-
-/* 탭 */
-.tabRow{
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap;
-  margin:6px 0 14px;
-}
+.tabRow{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 14px}
 .tabBtn{
   border:1px solid var(--line);
   background:#fff;
@@ -255,84 +252,165 @@ img{max-width:100%;display:block}
   cursor:pointer;
   color:rgba(0,0,0,.65);
 }
-.tabBtn:hover{
-  background:rgba(0,0,0,.06);
-  color:rgba(0,0,0,.85);
-}
 .tabBtn.active{
-  border-color:rgba(35,209,96,.35);
-  background:rgba(35,209,96,.10);
+  border-color:rgba(0,0,0,.18);
+  background:rgba(0,0,0,.05);
   color:rgba(0,0,0,.85);
 }
 
-/* 카드 그리드 */
-.cardGrid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill, minmax(210px, 1fr));
-  gap:14px;
-  margin-bottom:18px;
+.placeholder{
+  border:1px dashed rgba(0,0,0,.2);
+  border-radius:18px;
+  padding:16px;
+  color:var(--muted);
+  background:#fafafa;
 }
 
-.cardTile{
-  position:relative;
-  border-radius:var(--radius);
-  padding:18px;
-  border:1px solid rgba(0,0,0,.08);
-  box-shadow:var(--shadow);
-  overflow:hidden;
-  min-height:150px;
-
-  display:flex;
-  align-items:stretch;
-  justify-content:space-between;
-  gap:12px;
-}
-
-/* 카드 내부 텍스트 */
-.cardTop{
-  display:flex;
-  flex-direction:column;
-  gap:6px;
-}
-.cardSmall{
-  font-size:12px;
-  color:rgba(255,255,255,.85);
-  font-weight:700;
-}
-.cardTitle{
-  font-size:20px;
-  font-weight:900;
-  color:#fff;
-  line-height:1.15;
-}
-.cardIcon{
-  font-size:40px;
-  display:flex;
-  align-items:flex-end;
-  justify-content:flex-end;
-  opacity:.95;
-}
-
-/* 카드 색상(기존 느낌 유지) */
-.cardTile:nth-child(1){background:linear-gradient(135deg,#23d160,#16a34a)}
-.cardTile:nth-child(2){background:linear-gradient(135deg,#16a34a,#000)}
-.cardTile:nth-child(3){background:linear-gradient(135deg,#ff2d55,#ff3b30)}
-.cardTile:nth-child(4){background:linear-gradient(135deg,#23d160,#16a34a)}
-.cardTile:nth-child(5){background:linear-gradient(135deg,#ff2bd6,#7c3aed)}
-
-/* 가이드 이미지(있을 때) */
+/* guide images */
 .guideImg{
   width:100%;
-  max-width:980px;
   display:block;
-  margin:14px auto 24px;
+  margin:14px auto 18px;
   border-radius:18px;
   box-shadow:var(--shadow);
   border:1px solid rgba(0,0,0,.08);
 }
 
 /* =========================
-   ✅ footer
+   MODAL (원클릭)
+   ========================= */
+.modalOverlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.35);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .16s ease;
+  z-index:1000;
+  padding:18px;
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+}
+.modalOverlay.open{opacity:1;pointer-events:auto}
+
+.modal{
+  width:min(520px, 100%);
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:22px;
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+
+.modalTop{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:14px 14px;
+  border-bottom:1px solid var(--line);
+}
+.modalTitle{font-weight:900}
+.modalClose{
+  width:40px;height:40px;
+  border:1px solid var(--line);
+  background:#f3f3f3;
+  border-radius:12px;
+  cursor:pointer;
+}
+
+.segRow{
+  display:flex;
+  gap:8px;
+  padding:12px 14px 0;
+}
+.segBtn{
+  flex:1;
+  border:1px solid var(--line);
+  background:#fff;
+  padding:10px 10px;
+  border-radius:999px;
+  cursor:pointer;
+  font-weight:900;
+  color:rgba(0,0,0,.65);
+  font-size:13px;
+}
+.segBtn.active{
+  background:rgba(0,0,0,.06);
+  color:rgba(0,0,0,.85);
+}
+
+.modalBody{padding:12px 14px 14px}
+.stepBox{
+  border:1px solid var(--line);
+  border-radius:16px;
+  background:#fafafa;
+  padding:12px;
+  margin-bottom:10px;
+  color:rgba(0,0,0,.75);
+  font-size:13px;
+  line-height:1.5;
+}
+.hint{
+  margin-top:10px;
+  font-size:12px;
+  color:var(--muted);
+  line-height:1.5;
+}
+
+.primaryBtn{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:13px 14px;border-radius:16px;
+  background:#111;color:#fff;border:1px solid rgba(0,0,0,.08);
+}
+.primaryBtn:hover{filter:brightness(1.05)}
+
+/* =========================
+   CHART BOX
+   ========================= */
+.chartMeta{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin:6px 0 10px;
+  font-size:12px;
+  color:var(--muted);
+}
+.dot{opacity:.7}
+.chartBox{
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:#fff;
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+.chartRow{
+  display:grid;
+  grid-template-columns:56px 1fr 78px;
+  gap:10px;
+  padding:12px 12px;
+  border-top:1px solid var(--line);
+  align-items:center;
+}
+.chartRow:first-child{border-top:0}
+.rank{font-weight:900}
+.song{min-width:0}
+.songTitle{font-weight:900}
+.songArtist{font-size:12px;color:var(--muted);margin-top:2px}
+.change{
+  text-align:right;
+  font-weight:900;
+  color:rgba(0,0,0,.75);
+  font-size:12px;
+}
+.change.up{color:#16a34a}
+.change.down{color:#dc2626}
+.change.new{color:#2563eb}
+
+/* =========================
+   FOOTER
    ========================= */
 .footer{
   border-top:1px solid var(--line);
