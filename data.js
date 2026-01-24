@@ -2,30 +2,47 @@ window.SITE_DATA = {
   siteName: "지드래곤 음원총공팀",
 
   assets: {
-    // ✅ 너가 이미 가진 로고/배너 경로 그대로 사용
     logoMobile: "/assets/header/logo-m.svg",
     logoPc: "/assets/header/logo-pc.svg",
     heroMobile: "/assets/header/header-m.jpg",
     heroPc: "/assets/header/header-pc.jpg",
-
-    // ✅ Too Bad MV 링크(원하면 나중에 여기만 교체하면 됨)
     heroLink: "https://youtu.be/o9DhvbqYzns?si=7uozTe90cIU0ZY27"
   },
 
-  // ✅ 원클릭 플랫폼(링크는 나중에 채워도 됨)
+  // ✅ 원클릭 플랫폼
   platforms: [
-    { id:"melon",   name:"멜론",     icon:"", links:{ android:"", ios:"", web:"" } },
-    { id:"genie",   name:"지니",     icon:"", links:{ android:"", ios:"", web:"" } },
-    { id:"bugs",    name:"벅스",     icon:"", links:{ android:"", ios:"", web:"" } },
-    { id:"flo",     name:"플로",     icon:"", links:{ android:"", ios:"", web:"" } },
-    { id:"vibe",    name:"바이브",   icon:"", links:{ android:"", ios:"", web:"" } },
-    { id:"spotify", name:"스포티파이", icon:"", links:{ android:"", ios:"", web:"" } },
+    {
+      id: "melon",
+      name: "멜론",
+      icon: "",
+      // ✅ 멜론만: 기기별 버튼 개수/링크 다름
+      oneclick: {
+        android: [
+          { label: "원클릭1", url: "https://tinyurl.com/3ny3yz6f" },
+          { label: "원클릭2", url: "https://tinyurl.com/nb86e9xe" },
+          { label: "원클릭3", url: "https://tinyurl.com/3jvw3983" }
+        ],
+        ios: [
+          { label: "원클릭", url: "https://tinyurl.com/4f3a9sfc" }
+        ],
+        web: [
+          { label: "원클릭1", url: "https://tinyurl.com/mt6jn9cs" },
+          { label: "원클릭2", url: "https://tinyurl.com/muydwrzw" },
+          { label: "원클릭3", url: "https://tinyurl.com/yypnz498" }
+        ]
+      }
+    },
+
+    // ✅ 나머지는 지금처럼 3개 버튼(기본 경로)로 표시(링크는 나중에 채워도 됨)
+    { id:"genie",   name:"지니",      icon:"" },
+    { id:"bugs",    name:"벅스",      icon:"" },
+    { id:"flo",     name:"플로",      icon:"" },
+    { id:"vibe",    name:"바이브",    icon:"" },
+    { id:"spotify", name:"스포티파이", icon:"" },
   ],
 
-  // ✅ 모달에 표시될 공통 단계
   streamingSteps: ["앱 실행", "곡 검색", "재생/반복(플리 저장 권장)"],
 
-  // ✅ 가이드 탭(지금 갖고 있는 이미지 반영)
   guides: [
     { id:"melon", name:"멜론", images:[
       "/assets/guides/melon.png",
@@ -41,18 +58,15 @@ window.SITE_DATA = {
       "/assets/guides/apple1.png",
       "/assets/guides/apple2.png"
     ]},
-
-    // 아직 없는 가이드는 빈 배열로 두면 "준비중"이 뜸
     { id:"genie", name:"지니", images:[] },
     { id:"bugs",  name:"벅스", images:[] },
     { id:"flo",   name:"플로", images:[] },
     { id:"vibe",  name:"바이브", images:[] },
   ],
 
-  // ✅ 차트(서버 붙일 때만 동작)
   chart: {
-    apiBase: "",               // 가비아 API 주소 넣기(예: https://api.xxx.com/api/charts)
-    defaultPlatform: "melon",  // 첫 화면 멜론
+    apiBase: "",
+    defaultPlatform: "melon",
     platforms: [
       { id:"melon", name:"멜론" },
       { id:"genie", name:"지니" },
@@ -65,3 +79,4 @@ window.SITE_DATA = {
 
   footerText: "© 지드래곤 음원총공팀"
 };
+
