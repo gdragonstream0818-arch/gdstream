@@ -44,7 +44,7 @@
         </div>
 
         <div class="oneclickGrid">
-          <a class="ocBtn" href="/streaming/" aria-label="멜론 원클릭">
+          <a class="ocBtn" href="#" data-oneclick="melon" aria-label="멜론 원클릭">
             <div class="ocIcon"><img src="/assets/icons/platform/melon.svg" alt="멜론"></div>
             <div class="ocText">
               <div class="ocName">멜론</div>
@@ -204,6 +204,34 @@
 
   <footer class="footer">
     <div class="container footerInner">© 지드래곤 음원총공팀</div>
+    <!-- ✅ ONECLICK MODAL (Melon only for now) -->
+<div class="ocModalOverlay" id="ocModalOverlay" aria-hidden="true">
+  <div class="ocModal" role="dialog" aria-modal="true" aria-label="원클릭 모달">
+    <div class="ocModalTop">
+      <div class="ocModalTitle" id="ocModalTitle">멜론 원클릭</div>
+      <button class="ocModalClose" type="button" id="ocModalClose" aria-label="닫기">✕</button>
+    </div>
+
+    <!-- ✅ (선택) 너가 준비할 이미지 자리: src만 나중에 바꾸면 됨 -->
+    <div class="ocModalHero">
+      <img id="ocModalImg" class="ocModalImg" src="/assets/oneclick/melon-modal.png" alt="멜론 원클릭 안내 이미지">
+      <!-- ↑ 지금 파일 없으면 깨져 보일 수 있어. 파일 아직 없으면 아래처럼 바꿔도 됨:
+           <div class="ocModalImgPlaceholder">여기에 이미지 넣기</div>
+      -->
+    </div>
+
+    <div class="ocModalBody">
+      <div class="ocDeviceLine">
+        <span class="ocDeviceBadge" id="ocDeviceBadge">기기: 자동 인식</span>
+        <span class="ocHint" id="ocHint">기기에 맞는 원클릭 버튼을 눌러주세요.</span>
+      </div>
+
+      <!-- ✅ 링크 버튼이 여기 자동 렌더링됨 -->
+      <div class="ocLinkGrid" id="ocLinkGrid"></div>
+    </div>
+  </div>
+</div>
+
   </footer>
 
 </body>
