@@ -113,7 +113,7 @@ img{max-width:100%;display:block}
   display:block;
 }
 
-/* (선택) 가운데 플레이 배지 — 필요 없으면 지워도 됨 */
+/* (선택) 가운데 플레이 배지 — 필요 없으면 HTML에서 빼도 됨 */
 .playBadge{
   position:absolute;
   left:50%;
@@ -149,8 +149,14 @@ img{max-width:100%;display:block}
   margin:10px 0;
 }
 
+/* 공통 H1 (streaming/guide에서 사용) */
+.h1{
+  font-size:26px;
+  margin:18px 0 10px;
+}
+
 /* =========================
-   ✅ 버튼
+   ✅ 버튼 (메인 페이지에서 사용)
    ========================= */
 .btnList{display:grid;grid-template-columns:1fr;gap:10px}
 
@@ -181,6 +187,151 @@ img{max-width:100%;display:block}
 .btn--melon .btnDesc{color:rgba(255,255,255,.85)}
 
 /* =========================
+   ✅ streaming 페이지 btnGrid (복구/추가)
+   - script.js가 만드는 카드/버튼들이 여기로 스타일 먹음
+   ========================= */
+.btnGrid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:10px;
+  margin-top:12px;
+}
+@media (min-width:700px){
+  .btnGrid{grid-template-columns:repeat(2, 1fr);}
+}
+
+/* script.js가 어떤 클래스를 쓰든 받쳐주기(안전망) */
+.btnTile, .gridBtn{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+
+  padding:13px 14px;
+  border-radius:16px;
+  background:#f6f6f6;
+  border:1px solid var(--line);
+
+  transition:transform .06s ease, background .12s ease;
+}
+.btnTile:hover, .gridBtn:hover{
+  background:#eeeeee;
+  transform:translateY(-1px);
+}
+
+/* btnGrid 안의 링크가 a 태그로 만들어질 때도 동일하게 */
+.btnGrid a{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+
+  padding:13px 14px;
+  border-radius:16px;
+  background:#f6f6f6;
+  border:1px solid var(--line);
+
+  transition:transform .06s ease, background .12s ease;
+}
+.btnGrid a:hover{background:#eeeeee;transform:translateY(-1px)}
+
+/* =========================
+   ✅ GUIDE: 탭 + 카드 + 이미지 (복구)
+   ========================= */
+
+/* 탭 */
+.tabRow{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin:6px 0 14px;
+}
+.tabBtn{
+  border:1px solid var(--line);
+  background:#fff;
+  padding:8px 12px;
+  border-radius:999px;
+  font-size:13px;
+  cursor:pointer;
+  color:rgba(0,0,0,.65);
+}
+.tabBtn:hover{
+  background:rgba(0,0,0,.06);
+  color:rgba(0,0,0,.85);
+}
+.tabBtn.active{
+  border-color:rgba(35,209,96,.35);
+  background:rgba(35,209,96,.10);
+  color:rgba(0,0,0,.85);
+}
+
+/* 카드 그리드 */
+.cardGrid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(210px, 1fr));
+  gap:14px;
+  margin-bottom:18px;
+}
+
+.cardTile{
+  position:relative;
+  border-radius:var(--radius);
+  padding:18px;
+  border:1px solid rgba(0,0,0,.08);
+  box-shadow:var(--shadow);
+  overflow:hidden;
+  min-height:150px;
+
+  display:flex;
+  align-items:stretch;
+  justify-content:space-between;
+  gap:12px;
+}
+
+/* 카드 내부 텍스트 */
+.cardTop{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+.cardSmall{
+  font-size:12px;
+  color:rgba(255,255,255,.85);
+  font-weight:700;
+}
+.cardTitle{
+  font-size:20px;
+  font-weight:900;
+  color:#fff;
+  line-height:1.15;
+}
+.cardIcon{
+  font-size:40px;
+  display:flex;
+  align-items:flex-end;
+  justify-content:flex-end;
+  opacity:.95;
+}
+
+/* 카드 색상(기존 느낌 유지) */
+.cardTile:nth-child(1){background:linear-gradient(135deg,#23d160,#16a34a)}
+.cardTile:nth-child(2){background:linear-gradient(135deg,#16a34a,#000)}
+.cardTile:nth-child(3){background:linear-gradient(135deg,#ff2d55,#ff3b30)}
+.cardTile:nth-child(4){background:linear-gradient(135deg,#23d160,#16a34a)}
+.cardTile:nth-child(5){background:linear-gradient(135deg,#ff2bd6,#7c3aed)}
+
+/* 가이드 이미지(있을 때) */
+.guideImg{
+  width:100%;
+  max-width:980px;
+  display:block;
+  margin:14px auto 24px;
+  border-radius:18px;
+  box-shadow:var(--shadow);
+  border:1px solid rgba(0,0,0,.08);
+}
+
+/* =========================
    ✅ footer
    ========================= */
 .footer{
@@ -192,4 +343,3 @@ img{max-width:100%;display:block}
   color:var(--muted);
   font-size:12px;
 }
-
