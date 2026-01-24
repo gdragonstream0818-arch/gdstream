@@ -7,16 +7,23 @@
   <link rel="stylesheet" href="/styles.css" />
 </head>
 <body>
-  <header class="header">
-    <div class="headerInner">
-      <a class="logo" href="/">
-        <img class="logoImg" src="/assets/logo.svg" alt="G-DRAGON">
-        <span>지드래곤 음원총공팀</span>
+  <!-- ✅ 메인과 동일 헤더 -->
+  <header class="header header--simple">
+    <div class="headerBar">
+      <!-- ✅ 새 로고 (모바일/PC 분기) -->
+      <a class="brand" href="/" aria-label="지드래곤 음원총공팀">
+        <picture>
+          <source media="(max-width: 768px)" srcset="/assets/header/logo-m.svg">
+          <img class="brandImg" src="/assets/header/logo-pc.svg" alt="지드래곤 음원총공팀">
+        </picture>
       </a>
-      <nav class="nav">
-        <a href="/streaming/">원클릭</a>
-        <a href="/guide/">가이드</a>
-      </nav>
+
+      <!-- ✅ 오른쪽 햄버거 -->
+      <button class="hamburger" type="button" aria-label="메뉴">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
   </header>
 
@@ -26,6 +33,12 @@
     <img class="guideImg" src="/assets/guides/apple1.png" alt="애플뮤직 스밍가이드 1">
     <img class="guideImg" src="/assets/guides/apple2.png" alt="애플뮤직 스밍가이드 2">
   </main>
+
+  <footer class="footer">
+    <div class="container footerInner">© 지드래곤 음원총공팀</div>
+  </footer>
+</body>
+</html>
 
   <footer class="footer">
     <div class="container footerInner">© 지드래곤 음원총공팀</div>
