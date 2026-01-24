@@ -438,3 +438,152 @@ img{max-width:100%;display:block}
   border:1px solid rgba(0,0,0,.06);
   box-shadow:0 12px 25px rgba(0,0,0,.10);
 }
+
+/* =========================
+   ✅ HOME: Guide CTA (bigger, nicer)
+   ========================= */
+.ctaGuide{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+
+  padding:18px 18px;
+  border-radius:20px;
+
+  background:linear-gradient(135deg, rgba(180,190,255,.35), rgba(255,210,230,.30));
+  border:1px solid rgba(0,0,0,.06);
+  box-shadow:0 12px 28px rgba(0,0,0,.10);
+
+  transition:transform .10s ease, box-shadow .15s ease, filter .15s ease;
+}
+
+.ctaGuide:hover{
+  transform:translateY(-2px);
+  box-shadow:0 16px 34px rgba(0,0,0,.14);
+  filter:saturate(1.05);
+}
+
+.ctaGuideText{min-width:0}
+.ctaGuideTitle{
+  font-size:18px;
+  font-weight:1000;
+  letter-spacing:-0.02em;
+}
+.ctaGuideDesc{
+  margin-top:6px;
+  font-size:13px;
+  color:rgba(0,0,0,.60);
+  font-weight:700;
+}
+
+.ctaGuideArrow{
+  font-weight:1000;
+  font-size:18px;
+  opacity:.75;
+}
+
+/* =========================
+   ✅ HOME: Social cards (NMIXX vibe)
+   ========================= */
+.socialCard{
+  margin-top:12px;
+  border-radius:22px;
+  background:rgba(255,255,255,.92);
+  border:1px solid rgba(0,0,0,.08);
+  box-shadow:0 10px 28px rgba(0,0,0,.10);
+  padding:16px;
+}
+
+.socialHead{
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:12px;
+}
+
+.socialTitle{
+  font-size:18px;
+  font-weight:1000;
+  letter-spacing:-0.02em;
+}
+
+.socialDesc{
+  font-size:13px;
+  color:rgba(0,0,0,.55);
+  font-weight:700;
+}
+
+.socialGrid{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+
+.socialBtn{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+
+  padding:10px 12px;
+  border-radius:16px;
+
+  background:#fff;
+  border:1px solid rgba(0,0,0,.08);
+  box-shadow:0 8px 18px rgba(0,0,0,.06);
+
+  transition:transform .10s ease, background .12s ease, box-shadow .12s ease;
+}
+
+.socialBtn:hover{
+  transform:translateY(-1px);
+  box-shadow:0 10px 22px rgba(0,0,0,.10);
+  background:rgba(255,255,255,.98);
+}
+
+.socialIcon{
+  width:34px;height:34px;
+  border-radius:12px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:1000;
+  font-size:13px;
+  color:#111;
+  border:1px solid rgba(0,0,0,.08);
+  background:rgba(0,0,0,.03);
+}
+
+.socialName{
+  font-weight:900;
+  font-size:13px;
+  color:#111;
+}
+
+/* 아이콘 컬러 무드(텍스트로 대체해도 이쁨) */
+.socialIcon--ig{background:linear-gradient(135deg, rgba(255,0,150,.18), rgba(255,200,0,.18));}
+.socialIcon--x{background:linear-gradient(135deg, rgba(0,0,0,.10), rgba(0,0,0,.02));}
+.socialIcon--yt{background:linear-gradient(135deg, rgba(255,0,0,.18), rgba(255,0,0,.06));}
+.socialIcon--wb{background:linear-gradient(135deg, rgba(255,80,0,.18), rgba(255,180,0,.10));}
+.socialIcon--tt{background:linear-gradient(135deg, rgba(0,255,255,.10), rgba(255,0,255,.10));}
+.socialIcon--bs{background:linear-gradient(135deg, rgba(60,130,255,.16), rgba(140,90,255,.14));}
+.socialIcon--th{background:linear-gradient(135deg, rgba(0,0,0,.10), rgba(255,255,255,.06));}
+.socialIcon--dc{background:linear-gradient(135deg, rgba(60,130,255,.12), rgba(60,130,255,.04));}
+
+.socialHint{
+  margin-top:10px;
+  font-size:12px;
+  color:rgba(0,0,0,.55);
+  font-weight:700;
+}
+
+/* disabled */
+.socialBtn--disabled{
+  opacity:.55;
+  cursor:not-allowed;
+}
+.socialBtn--disabled:hover{
+  transform:none;
+  box-shadow:0 8px 18px rgba(0,0,0,.06);
+}
