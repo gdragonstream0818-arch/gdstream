@@ -65,3 +65,29 @@ window.SITE_DATA = {
 
   footerText: "© 지드래곤 음원총공팀"
 };
+
+// ✅ OneClick data (Melon only for now)
+window.ONECLICK = {
+  melon: {
+    title: "멜론 원클릭",
+    // ✅ 모달에 들어갈 이미지(너가 나중에 파일만 교체하면 됨)
+    // 파일 없으면 빈 문자열 ""로 두면 자동으로 숨김 처리 가능하게도 해줄 수 있어.
+    modalImage: "/assets/oneclick/melon-modal.png",
+
+    links: {
+      android: [
+        { label: "안드로이드 1", url: "https://tinyurl.com/3ny3yz6f" },
+        { label: "안드로이드 2", url: "https://tinyurl.com/nb86e9xe" },
+        { label: "안드로이드 3", url: "https://tinyurl.com/3jvw3983" }
+      ],
+      ios: [
+        { label: "아이폰 원클릭", url: "https://tinyurl.com/4f3a9sfc" }
+      ],
+      pc: [
+        { label: "PC 1", url: "https://tinyurl.com/mt6jn9cs" },
+        { label: "PC 2", url: "https://tinyurl.com/muydwrzw" },
+        { label: "PC 3", url: "https://tinyurl.com/yypnz498" }
+      ]
+    }
+  }
+};
