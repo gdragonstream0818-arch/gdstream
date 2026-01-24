@@ -5,6 +5,9 @@
   --line:rgba(0,0,0,.10);
   --shadow:0 10px 30px rgba(0,0,0,.10);
   --radius:22px;
+
+  --melon:#23d160;
+  --melonHover:#16a34a;
 }
 
 *{box-sizing:border-box}
@@ -20,7 +23,7 @@ img{max-width:100%;display:block}
 .container{max-width:980px;margin:0 auto;padding:0 16px}
 
 /* =========================
-   HEADER (좌 로고 / 우 햄버거)
+   ✅ HEADER: 좌 로고 / 우 햄버거
    ========================= */
 .header{
   position:sticky;
@@ -31,6 +34,7 @@ img{max-width:100%;display:block}
   -webkit-backdrop-filter:blur(10px);
   border-bottom:1px solid var(--line);
 }
+
 .headerBar{
   height:64px;
   display:flex;
@@ -40,6 +44,7 @@ img{max-width:100%;display:block}
   max-width:1100px;
   margin:0 auto;
 }
+
 .brand{display:inline-flex;align-items:center;min-width:0}
 .brandImg{
   height:44px;
@@ -72,73 +77,11 @@ img{max-width:100%;display:block}
 }
 
 /* =========================
-   MENU OVERLAY (햄버거)
-   ========================= */
-.menuOverlay{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.35);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  opacity:0;
-  pointer-events:none;
-  transition:opacity .16s ease;
-  z-index:999;
-}
-.menuOverlay.open{opacity:1;pointer-events:auto}
-
-.menuPanel{
-  position:absolute;
-  top:0; right:0;
-  height:100%;
-  width:min(360px, 88vw);
-  background:#fff;
-  border-left:1px solid var(--line);
-  box-shadow:var(--shadow);
-  transform:translateX(100%);
-  transition:transform .18s ease;
-  padding:16px;
-}
-.menuOverlay.open .menuPanel{transform:translateX(0)}
-
-.menuTop{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:6px 4px 12px;
-  border-bottom:1px solid var(--line);
-  margin-bottom:12px;
-}
-.menuTitle{font-weight:900;letter-spacing:.3px}
-.menuClose{
-  width:40px;height:40px;
-  border:1px solid var(--line);
-  background:#f3f3f3;
-  border-radius:12px;
-  cursor:pointer;
-}
-.menuList{display:flex;flex-direction:column;gap:10px;padding:6px 2px}
-.menuList a{
-  padding:12px 12px;
-  border-radius:14px;
-  border:1px solid var(--line);
-  background:#f6f6f6;
-  font-weight:900;
-}
-.menuList a:hover{background:#eee}
-
-.menuFoot{
-  margin-top:14px;
-  color:var(--muted);
-  font-size:12px;
-  line-height:1.5;
-}
-
-/* =========================
-   HERO (메인 배너)
+   ✅ HERO 배너 (클릭하면 유튜브)
    ========================= */
 .hero{width:100%;margin:0;padding:16px 0 12px}
 .heroInner{max-width:1100px;margin:0 auto;padding:0 16px}
+
 .heroLink{
   position:relative;
   display:block;
@@ -154,8 +97,7 @@ img{max-width:100%;display:block}
   left:50%;
   top:50%;
   transform:translate(-50%,-50%);
-  width:72px;
-  height:72px;
+  width:72px;height:72px;
   border-radius:999px;
   background:rgba(0,0,0,.55);
   color:#fff;
@@ -170,25 +112,25 @@ img{max-width:100%;display:block}
 .heroLink:hover .playBadge{background:rgba(0,0,0,.70)}
 
 /* =========================
-   TYPO
+   ✅ 섹션/타이틀
    ========================= */
-.h1{font-size:24px;margin:18px 0 6px;font-weight:900}
-.sub{margin:0 0 14px;color:var(--muted);font-size:13px;line-height:1.5}
-
 .section{margin:18px 0}
-.sectionTitleRow{display:flex;align-items:center;justify-content:space-between;gap:10px}
-.sectionTitle{font-size:15px;font-weight:900;margin:10px 0}
-.sectionLink{font-size:13px;color:var(--muted)}
-.sectionLink:hover{color:var(--text)}
+.sectionTitle{
+  font-size:15px;
+  font-weight:900;
+  margin:10px 0;
+}
 
 /* =========================
-   BUTTON LIST
+   ✅ 바로가기 버튼 리스트
    ========================= */
 .btnList{display:grid;grid-template-columns:1fr;gap:10px}
 .btn{
   display:flex;align-items:center;justify-content:space-between;gap:12px;
-  padding:13px 14px;border-radius:16px;
-  background:#f6f6f6;border:1px solid var(--line);
+  padding:13px 14px;
+  border-radius:16px;
+  background:#f6f6f6;
+  border:1px solid var(--line);
   transition:transform .06s ease, background .12s ease;
 }
 .btn:hover{background:#eeeeee;transform:translateY(-1px)}
@@ -196,256 +138,34 @@ img{max-width:100%;display:block}
 .btnDesc{font-size:12px;color:var(--muted);margin-top:2px}
 
 /* =========================
-   PLATFORM GRID (원클릭 카드)
-   ========================= */
-.platformGrid{
-  display:grid;
-  grid-template-columns:repeat(3, 1fr);
-  gap:10px;
-}
-@media (max-width:768px){
-  .platformGrid{grid-template-columns:repeat(2, 1fr)}
-}
-
-.platformCard{
-  border:1px solid var(--line);
-  background:#fff;
-  border-radius:18px;
-  box-shadow:var(--shadow);
-  padding:12px;
-  display:flex;
-  gap:10px;
-  align-items:center;
-  cursor:pointer;
-  transition:transform .06s ease, background .12s ease;
-}
-.platformCard:hover{background:#fafafa;transform:translateY(-1px)}
-
-.platformIcon{
-  width:38px;height:38px;
-  border-radius:14px;
-  background:#f4f4f4;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  overflow:hidden;
-  flex:0 0 auto;
-  font-weight:900;
-  color:rgba(0,0,0,.55);
-  font-size:12px;
-}
-.platformIcon img{width:22px;height:22px;object-fit:contain}
-.platformText{min-width:0}
-.platformName{font-weight:900}
-.platformSub{font-size:12px;color:var(--muted);margin-top:2px}
-
-/* =========================
-   TABS (가이드/차트)
-   ========================= */
-.tabRow{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 14px}
-.tabBtn{
-  border:1px solid var(--line);
-  background:#fff;
-  padding:8px 12px;
-  border-radius:999px;
-  font-size:13px;
-  cursor:pointer;
-  color:rgba(0,0,0,.65);
-}
-.tabBtn.active{
-  border-color:rgba(0,0,0,.18);
-  background:rgba(0,0,0,.05);
-  color:rgba(0,0,0,.85);
-}
-
-.placeholder{
-  border:1px dashed rgba(0,0,0,.2);
-  border-radius:18px;
-  padding:16px;
-  color:var(--muted);
-  background:#fafafa;
-}
-
-/* guide images */
-.guideImg{
-  width:100%;
-  display:block;
-  margin:14px auto 18px;
-  border-radius:18px;
-  box-shadow:var(--shadow);
-  border:1px solid rgba(0,0,0,.08);
-}
-
-/* =========================
-   MODAL (원클릭)
-   ========================= */
-.modalOverlay{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.35);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  opacity:0;
-  pointer-events:none;
-  transition:opacity .16s ease;
-  z-index:1000;
-  padding:18px;
-  display:flex;
-  align-items:flex-end;
-  justify-content:center;
-}
-.modalOverlay.open{opacity:1;pointer-events:auto}
-
-.modal{
-  width:min(520px, 100%);
-  background:#fff;
-  border:1px solid var(--line);
-  border-radius:22px;
-  box-shadow:var(--shadow);
-  overflow:hidden;
-}
-
-.modalTop{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:14px 14px;
-  border-bottom:1px solid var(--line);
-}
-.modalTitle{font-weight:900}
-.modalClose{
-  width:40px;height:40px;
-  border:1px solid var(--line);
-  background:#f3f3f3;
-  border-radius:12px;
-  cursor:pointer;
-}
-
-.segRow{
-  display:flex;
-  gap:8px;
-  padding:12px 14px 0;
-}
-.segBtn{
-  flex:1;
-  border:1px solid var(--line);
-  background:#fff;
-  padding:10px 10px;
-  border-radius:999px;
-  cursor:pointer;
-  font-weight:900;
-  color:rgba(0,0,0,.65);
-  font-size:13px;
-}
-.segBtn.active{
-  background:rgba(0,0,0,.06);
-  color:rgba(0,0,0,.85);
-}
-
-.modalBody{padding:12px 14px 14px}
-.stepBox{
-  border:1px solid var(--line);
-  border-radius:16px;
-  background:#fafafa;
-  padding:12px;
-  margin-bottom:10px;
-  color:rgba(0,0,0,.75);
-  font-size:13px;
-  line-height:1.5;
-}
-.hint{
-  margin-top:10px;
-  font-size:12px;
-  color:var(--muted);
-  line-height:1.5;
-}
-
-.primaryBtn{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:13px 14px;border-radius:16px;
-  background:#111;color:#fff;border:1px solid rgba(0,0,0,.08);
-}
-.primaryBtn:hover{filter:brightness(1.05)}
-
-/* =========================
-   CHART BOX
-   ========================= */
-.chartMeta{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  margin:6px 0 10px;
-  font-size:12px;
-  color:var(--muted);
-}
-.dot{opacity:.7}
-.chartBox{
-  border:1px solid var(--line);
-  border-radius:18px;
-  background:#fff;
-  box-shadow:var(--shadow);
-  overflow:hidden;
-}
-.chartRow{
-  display:grid;
-  grid-template-columns:56px 1fr 78px;
-  gap:10px;
-  padding:12px 12px;
-  border-top:1px solid var(--line);
-  align-items:center;
-}
-.chartRow:first-child{border-top:0}
-.rank{font-weight:900}
-.song{min-width:0}
-.songTitle{font-weight:900}
-.songArtist{font-size:12px;color:var(--muted);margin-top:2px}
-.change{
-  text-align:right;
-  font-weight:900;
-  color:rgba(0,0,0,.75);
-  font-size:12px;
-}
-.change.up{color:#16a34a}
-.change.down{color:#dc2626}
-.change.new{color:#2563eb}
-
-/* =========================
-   FOOTER
-   ========================= */
-.footer{
-  border-top:1px solid var(--line);
-  margin-top:28px;
-}
-.footerInner{
-  padding:18px 0;
-  color:var(--muted);
-  font-size:12px;
-}
-
-/* =========================
-   ✅ HOME 원클릭: 플레이브/엔믹스 느낌 박스 + 둥근 버튼
+   ✅ 원클릭 섹션(플레이브/엔믹스 느낌)
    ========================= */
 .oneclickPanel{
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  border: 1px solid rgba(0,0,0,.06);
-  overflow: hidden;
-  background: linear-gradient(135deg, rgba(180,190,255,.45), rgba(255,210,230,.35));
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  border:1px solid rgba(0,0,0,.06);
+  overflow:hidden;
+  background:linear-gradient(135deg, rgba(180,190,255,.45), rgba(255,210,230,.35));
 }
-
 .oneclickHead{
   padding:16px 16px 8px;
 }
 .oneclickKicker{
   font-size:12px;
   font-weight:900;
-  color: rgba(0,0,0,.55);
+  color:rgba(0,0,0,.55);
   margin-bottom:6px;
 }
 .oneclickTitle{
   font-size:20px;
   font-weight:900;
   margin:0;
+}
+.oneclickSub{
+  margin:8px 0 0;
+  font-size:12px;
+  color:rgba(0,0,0,.55);
+  line-height:1.5;
 }
 
 .oneclickGrid{
@@ -454,7 +174,6 @@ img{max-width:100%;display:block}
   gap:12px;
   padding:14px 16px 18px;
 }
-
 @media (max-width:768px){
   .oneclickTitle{font-size:18px}
   .oneclickGrid{grid-template-columns:repeat(2, 1fr)}
@@ -468,22 +187,25 @@ img{max-width:100%;display:block}
   border-radius:18px;
   background:rgba(255,255,255,.82);
   border:1px solid rgba(0,0,0,.08);
-  box-shadow: 0 8px 20px rgba(0,0,0,.06);
+  box-shadow:0 8px 20px rgba(0,0,0,.06);
   cursor:pointer;
   transition:transform .08s ease, background .12s ease;
 }
-.ocBtn:hover{transform:translateY(-1px); background:rgba(255,255,255,.92);}
+.ocBtn:hover{transform:translateY(-1px);background:rgba(255,255,255,.92);}
 
 .ocIcon{
   width:38px;height:38px;
   border-radius:14px;
   background:#fff;
   border:1px solid rgba(0,0,0,.08);
-  display:flex;align-items:center;justify-content:center;
+  display:flex;
+  align-items:center;
+  justify-content:center;
   overflow:hidden;
   flex:0 0 auto;
 }
 .ocIcon img{width:22px;height:22px;object-fit:contain}
+.ocIcon span{font-weight:900;color:rgba(0,0,0,.55)}
 
 .ocText{min-width:0}
 .ocName{font-weight:900}
@@ -493,4 +215,17 @@ img{max-width:100%;display:block}
   margin-left:auto;
   font-weight:900;
   opacity:.6;
+}
+
+/* =========================
+   footer
+   ========================= */
+.footer{
+  border-top:1px solid var(--line);
+  margin-top:28px;
+}
+.footerInner{
+  padding:18px 0;
+  color:var(--muted);
+  font-size:12px;
 }
