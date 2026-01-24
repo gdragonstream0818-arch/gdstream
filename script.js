@@ -12,24 +12,13 @@
   // ✅ URL 정규화: tinyurl.com/... 같은 경우 https:// 붙여줌
   function normalizeUrl(url) {
     const s = String(url || "").trim();
-    if (!s) return "#";
+    if (!s) return "";
     if (s.startsWith("http://") || s.startsWith("https://")) return s;
-    // tinyurl.com/... 형태 방지
     return "https://" + s.replace(/^\/+/, "");
   }
 
-  // ✅ 플랫폼 찾기
   function findPlatform(id) {
     return (SITE().platforms || []).find(p => p.id === id) || null;
-  }
-
-  // ✅ 기본(기존) 버튼 3개: /streaming/{platform}/oneclick1.html 형태
-  function defaultThreeButtons(platformId) {
-    return [
-      { label: "원클릭1", url: `/streaming/${platformId}/oneclick1.html` },
-      { label: "원클릭2", url: `/streaming/${platformId}/oneclick2.html` },
-      { label: "원클릭3", url: `/streaming/${platformId}/oneclick3.html` },
-    ];
   }
 
   // ✅ 모달 요소
@@ -40,43 +29,70 @@
   const kickerEl = document.getElementById("ocModalKicker");
   const gridEl = document.getElementById("ocModalGrid");
 
-  if (!modal || !overlay || !closeBtn || !titleEl || !kickerEl || !gridEl) {
-    // 모달 DOM이 없으면 종료
-    return;
-  }
+  if (!modal || !overlay || !closeBtn || !titleEl || !kickerEl || !gridEl) return;
 
   function openModal(platformId) {
     const p = findPlatform(platformId);
     const device = detectDevice();
-
-    // 제목/키커
     const platformName = p?.name || platformId;
+
     titleEl.textContent = platformName;
     kickerEl.textContent = `${platformName.toUpperCase()} one click`;
 
-    // ✅ 버튼 목록 결정
+    // ✅ 버튼 목록 가져오기 (data.js 기반)
+    const oneclick = p?.oneclick || null;
     let buttons = null;
 
-    // ✅ 멜론만: data.js의 oneclick[device] 사용 (iOS 1개 / PC·Android 3개)
-    if (platformId === "melon" && p?.oneclick) {
-      buttons = p.oneclick[device] || p.oneclick.web || null;
+    if (oneclick) {
+      // 기기별 우선 → web fallback
+      const candidate = oneclick[device] ?? oneclick.web ?? null;
+
+      // 바이브 PC 미지원 같은 케이스: 빈 배열이면 안내 표시
+      if (Array.isArray(candidate) && candidate.length === 0) {
+        const msg = p?.unsupported?.[device] || p?.unsupported?.web || "해당 기기에서는 지원하지 않습니다.";
+        gridEl.innerHTML = `
+          <div style="padding:14px; border:1px solid rgba(0,0,0,.08); border-radius:14px; background:#fafafa; text-align:center; line-height:1.5;">
+            ${msg}
+          </div>
+        `;
+      } else if (Array.isArray(candidate)) {
+        buttons = candidate;
+      }
     }
 
-    // ✅ 그 외 플랫폼: 기본 3개 버튼 유지
-    if (!Array.isArray(buttons) || buttons.length === 0) {
-      buttons = defaultThreeButtons(platformId);
-    }
-
-    // ✅ 렌더링 (가운데 정렬 버튼)
-    gridEl.innerHTML = buttons.map(b => {
-      const href = normalizeUrl(b.url);
-      const label = String(b.label || "원클릭").trim() || "원클릭";
-      return `
-        <a class="ocModalBtn" href="${href}" target="_blank" rel="noreferrer">
-          <span>${label}</span>
-        </a>
+    // oneclick이 없거나 candidate가 없으면 빈 상태 처리
+    if (!buttons && gridEl.innerHTML.trim() === "") {
+      gridEl.innerHTML = `
+        <div style="padding:14px; border:1px solid rgba(0,0,0,.08); border-radius:14px; background:#fafafa; text-align:center; line-height:1.5;">
+          아직 링크가 준비되지 않았어요.
+        </div>
       `;
-    }).join("");
+    }
+
+    // ✅ 버튼 렌더 (링크 비어있으면 '준비중'으로 비활성화)
+    if (Array.isArray(buttons)) {
+      gridEl.innerHTML = buttons.map(b => {
+        const label = String(b.label || "원클릭").trim() || "원클릭";
+        const href = normalizeUrl(b.url);
+
+        // url이 비어있으면 클릭 불가 + 흐리게 표시
+        if (!href) {
+          return `
+            <a class="ocModalBtn" href="#"
+               aria-disabled="true"
+               style="opacity:.45; cursor:not-allowed; pointer-events:none;">
+              <span>${label} (준비중)</span>
+            </a>
+          `;
+        }
+
+        return `
+          <a class="ocModalBtn" href="${href}" target="_blank" rel="noreferrer">
+            <span>${label}</span>
+          </a>
+        `;
+      }).join("");
+    }
 
     modal.classList.add("is-open");
     modal.setAttribute("aria-hidden", "false");
@@ -93,16 +109,13 @@
   document.querySelectorAll(".ocBtn[data-platform]").forEach(btn => {
     btn.addEventListener("click", (e) => {
       e.preventDefault();
-      const platformId = btn.dataset.platform;
-      openModal(platformId);
+      openModal(btn.dataset.platform);
     });
   });
 
   overlay.addEventListener("click", closeModal);
   closeBtn.addEventListener("click", closeModal);
-
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && modal.classList.contains("is-open")) closeModal();
   });
 })();
-
