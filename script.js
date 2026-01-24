@@ -479,5 +479,7 @@ function renderLinks(containerId) {
   window.renderStreamingPlatforms = renderStreamingPlatforms;
   window.renderGuide = renderGuide;
   window.renderCharts = renderCharts;
+  window.renderHomeOneclickPlave = renderHomeOneclickPlave;
+
 })();
 
