@@ -532,3 +532,20 @@ img{max-width:100%;display:block}
   border:1px solid rgba(0,0,0,.06);
   box-shadow:0 12px 25px rgba(0,0,0,.10);
 }
+
+/* =========================
+   ✅ PC에서 전체 폭(플레이브 느낌) + 히어로/본문 폭 통일
+   - styles.css 맨 아래에 그대로 추가
+   ========================= */
+
+/* 기본(태블릿/작은 PC 포함): 히어로/헤더/본문 폭을 일단 동일하게 맞춤 */
+.container{ max-width:980px; }
+.heroInner{ max-width:980px; }
+.headerBar{ max-width:980px; }
+
+/* 큰 PC에서만 약 20% 줄이기(980 -> 780 근처) */
+@media (min-width: 1024px){
+  .container{ max-width:780px; }
+  .heroInner{ max-width:780px; }
+  .headerBar{ max-width:780px; }
+}
