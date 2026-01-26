@@ -194,9 +194,9 @@ img{max-width:100%;display:block}
 
 /* ✅ 아이콘을 "둥근 사각형 이미지 타일"처럼 보이게 */
 .ocIcon{
-  width:44px;
-  height:44px;
-  border-radius:14px;
+  width:38px;
+  height:38px;
+  border-radius:12px;
   padding:0;
   background:transparent;
   border:1px solid rgba(0,0,0,.08);
@@ -204,7 +204,7 @@ img{max-width:100%;display:block}
   display:flex;
   align-items:stretch;
   justify-content:stretch;
-  flex:0 0 44px;
+  flex:0 0 38px;
 }
 
 .ocIcon img{
