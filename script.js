@@ -9,6 +9,21 @@
     return "web";
   }
 
+  // ✅ PC OS 라벨(플레이브처럼)
+  function detectWebOSLabel() {
+    const ua = (navigator.userAgent || "").toLowerCase();
+    if (ua.includes("windows")) return "PC (Windows)";
+    if (ua.includes("mac os") || ua.includes("macintosh")) return "Mac";
+    if (ua.includes("linux")) return "PC (Linux)";
+    return "PC";
+  }
+
+  function deviceLabel(device) {
+    if (device === "android") return "Android";
+    if (device === "ios") return "iOS";
+    return detectWebOSLabel();
+  }
+
   // ✅ URL 정규화: tinyurl.com/... 같은 경우 https:// 붙여줌
   function normalizeUrl(url) {
     const s = String(url || "").trim();
@@ -25,19 +40,54 @@
   const modal = document.getElementById("ocModal");
   const overlay = document.getElementById("ocOverlay");
   const closeBtn = document.getElementById("ocClose");
+
   const titleEl = document.getElementById("ocModalTitle");
-  const kickerEl = document.getElementById("ocModalKicker");
+  const descEl = document.getElementById("ocHeroDesc");
+  const noticeEl = document.getElementById("ocActionNotice");
+
+  const heroImgEl = document.getElementById("ocHeroImg");
+
+  const deviceEl = document.getElementById("ocDeviceLabel");
+  const hintEl = document.getElementById("ocDeviceHint");
   const gridEl = document.getElementById("ocModalGrid");
 
-  if (!modal || !overlay || !closeBtn || !titleEl || !kickerEl || !gridEl) return;
+  // ✅ kickerEl 제거했으므로 kicker 체크 절대 하지 않음
+  if (!modal || !overlay || !closeBtn || !titleEl || !gridEl) return;
 
   function openModal(platformId) {
     const p = findPlatform(platformId);
     const device = detectDevice();
     const platformName = p?.name || platformId;
 
-    titleEl.textContent = platformName;
-    kickerEl.textContent = `${platformName.toUpperCase()} one click`;
+    // ✅ 제목/문구 (플레이브 스타일)
+    titleEl.textContent = `${platformName} 원클릭 스트리밍`;
+
+    // data.js에서 커스텀하고 싶으면 p.modalDesc / p.modalNotice 넣으면 됨
+    if (descEl) {
+      descEl.textContent = p?.modalDesc || "기기에 맞는 원클릭 버튼이 자동으로 지원돼요.";
+    }
+    if (noticeEl) {
+      noticeEl.textContent = p?.modalNotice || "중복곡 허용 + 재생목록 전체 삭제 후 원클릭을 눌러 주세요!";
+    }
+
+    // ✅ (선택) 헤더 이미지: data.js에 p.modalHeroImg 넣으면 자동 표시
+    if (heroImgEl) {
+      const src = (p?.modalHeroImg || "").trim();
+      if (src) {
+        heroImgEl.src = src;
+        heroImgEl.classList.remove("is-hidden");
+      } else {
+        heroImgEl.removeAttribute("src");
+        heroImgEl.classList.add("is-hidden"); // 깨진 이미지 아이콘 방지
+      }
+    }
+
+    // ✅ 기기 표기
+    if (deviceEl) deviceEl.textContent = deviceLabel(device);
+    if (hintEl) hintEl.textContent = "";
+
+    // ✅ 항상 초기화
+    gridEl.innerHTML = "";
 
     // ✅ 버튼 목록 가져오기 (data.js 기반)
     const oneclick = p?.oneclick || null;
@@ -47,11 +97,15 @@
       // 기기별 우선 → web fallback
       const candidate = oneclick[device] ?? oneclick.web ?? null;
 
-      // 바이브 PC 미지원 같은 케이스: 빈 배열이면 안내 표시
+      // 빈 배열이면 안내 표시
       if (Array.isArray(candidate) && candidate.length === 0) {
-        const msg = p?.unsupported?.[device] || p?.unsupported?.web || "해당 기기에서는 지원하지 않습니다.";
+        const msg =
+          p?.unsupported?.[device] ||
+          p?.unsupported?.web ||
+          "해당 기기에서는 지원하지 않습니다.";
+
         gridEl.innerHTML = `
-          <div style="padding:14px; border:1px solid rgba(0,0,0,.08); border-radius:14px; background:#fafafa; text-align:center; line-height:1.5;">
+          <div style="grid-column:1/-1; padding:14px; border:1px solid rgba(0,0,0,.08); border-radius:14px; background:#fafafa; text-align:center; line-height:1.5;">
             ${msg}
           </div>
         `;
@@ -63,19 +117,22 @@
     // oneclick이 없거나 candidate가 없으면 빈 상태 처리
     if (!buttons && gridEl.innerHTML.trim() === "") {
       gridEl.innerHTML = `
-        <div style="padding:14px; border:1px solid rgba(0,0,0,.08); border-radius:14px; background:#fafafa; text-align:center; line-height:1.5;">
+        <div style="grid-column:1/-1; padding:14px; border:1px solid rgba(0,0,0,.08); border-radius:14px; background:#fafafa; text-align:center; line-height:1.5;">
           아직 링크가 준비되지 않았어요.
         </div>
       `;
     }
 
-    // ✅ 버튼 렌더 (링크 비어있으면 '준비중'으로 비활성화)
+    // ✅ 버튼 렌더 (링크 비어있으면 '준비중' 비활성화)
     if (Array.isArray(buttons)) {
+      if (hintEl) {
+        hintEl.textContent = `${buttons.length}개의 버튼을 모두 클릭해 주세요!`;
+      }
+
       gridEl.innerHTML = buttons.map(b => {
         const label = String(b.label || "원클릭").trim() || "원클릭";
         const href = normalizeUrl(b.url);
 
-        // url이 비어있으면 클릭 불가 + 흐리게 표시
         if (!href) {
           return `
             <a class="ocModalBtn" href="#"
@@ -105,7 +162,7 @@
     document.body.style.overflow = "";
   }
 
-  // ✅ 원클릭 6개 버튼 모두 클릭 가로채서 모달 오픈
+  // ✅ 원클릭 버튼 클릭 → 모달 오픈
   document.querySelectorAll(".ocBtn[data-platform]").forEach(btn => {
     btn.addEventListener("click", (e) => {
       e.preventDefault();
