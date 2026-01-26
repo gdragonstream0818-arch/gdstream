@@ -216,21 +216,19 @@
 
   <!-- ✅ HERO: 클릭하면 Too Bad MV -->
   <section class="hero">
-  <div class="heroInner">
-    <a class="heroLink"
-       href="https://youtu.be/o9DhvbqYzns?si=7uozTe90cIU0ZY27"
-       target="_blank" rel="noreferrer">
-      <picture>
-        <source media="(max-width: 768px)" srcset="/assets/header/header-pc.jpg">
-        <img class="heroImg" src="/assets/header/header-pc.jpg" alt="G-DRAGON - TOO BAD (MV)">
-      </picture>
-
-      <!-- ✅ 구조는 유지하되, 표시만 숨김 -->
-      <div class="playBadge" aria-hidden="true">▶</div>
-    </a>
-  </div>
-</section>
-
+    <div class="heroInner">
+      <a class="heroLink"
+         href="https://youtu.be/o9DhvbqYzns?si=7uozTe90cIU0ZY27"
+         target="_blank" rel="noreferrer">
+        <picture>
+          <!-- ✅ 모바일도 PC용 이미지 사용(레이아웃은 기존 styles.css 그대로) -->
+          <source media="(max-width: 768px)" srcset="/assets/header/header-pc.jpg">
+          <img class="heroImg" src="/assets/header/header-pc.jpg" alt="G-DRAGON - TOO BAD (MV)">
+        </picture>
+        <div class="playBadge">▶</div>
+      </a>
+    </div>
+  </section>
 
   <main class="container">
 
