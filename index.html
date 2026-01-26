@@ -154,36 +154,66 @@
       font-weight:600;
     }
 
-    /* ================================
-       ✅ PC 레이아웃: 플레이브처럼 "적당히 넓게" 중앙 컬럼
-       - 너무 좁아지는 문제 해결
-       - 히어로/원클릭/가이드 폭 라인 맞추기
-       ================================ */
-    :root { --pageMax: 980px; } /* 필요하면 900~1100 사이로 조절 */
+    /* =========================================================
+       ✅ 플레이브 느낌으로 정리 (PC: 컴팩트 / 히어로-카드 라인 정렬 / 모바일 히어로 풀폭)
+       ========================================================= */
+    :root{
+      --pageMaxDesktop: 920px;   /* PC에서 너무 커 보이지 않게: 필요하면 880~1020 사이 조절 */
+      --pageGutterDesktop: 24px; /* PC 좌우 여백 */
+    }
 
+    /* ✅ PC: 전체 레이아웃을 플레이브처럼 "적당히 컴팩트"하게 */
     @media (min-width: 769px){
-      /* 본문 컨테이너 폭: 너무 좁지 않게, 중앙 정렬 */
       .container{
-        max-width: var(--pageMax) !important;
+        max-width: var(--pageMaxDesktop) !important;
         margin-left: auto !important;
         margin-right: auto !important;
+        padding-left: var(--pageGutterDesktop) !important;
+        padding-right: var(--pageGutterDesktop) !important;
       }
 
-      /* 헤더도 본문 폭에 맞추기 */
       .headerBar{
-        max-width: var(--pageMax) !important;
+        max-width: var(--pageMaxDesktop) !important;
         margin-left: auto !important;
         margin-right: auto !important;
+        padding-left: var(--pageGutterDesktop) !important;
+        padding-right: var(--pageGutterDesktop) !important;
       }
 
-      /* 히어로가 아래 카드들보다 좁게 잡히는 경우 강제 풀기 */
+      /* ✅ 히어로가 아래 카드보다 좁아지는 원인(내부 max-width)을 강제로 해제 */
       .heroInner{
         width: 100% !important;
         max-width: none !important;
       }
       .heroLink{
-        display: block !important;
+        display:block !important;
+        width:100% !important;
+        max-width:none !important;
+      }
+      .heroLink picture{ display:block !important; width:100% !important; }
+      .heroImg{
+        display:block !important;
+        width:100% !important;
+        height:auto !important;
+      }
+    }
+
+    /* ✅ 모바일: 히어로는 "가로 꽉" (컨테이너 패딩 제거 + 라운드 제거로 풀폭 느낌) */
+    @media (max-width: 768px){
+      .hero .container{
+        max-width: none !important;
         width: 100% !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+      }
+      .heroInner{
+        width: 100% !important;
+        max-width: none !important;
+      }
+      .heroLink{
+        width: 100% !important;
+        max-width: none !important;
+        border-radius: 0 !important;
       }
       .heroLink picture{ display:block !important; width:100% !important; }
       .heroImg{
@@ -207,14 +237,13 @@
 
   <!-- ✅ HERO: 클릭하면 Too Bad MV -->
   <section class="hero">
-    <div class="container"> <!-- ✅ 원클릭(.container)과 같은 기준 폭 -->
+    <div class="container">
       <div class="heroInner">
         <a class="heroLink"
            href="https://youtu.be/o9DhvbqYzns?si=7uozTe90cIU0ZY27"
            target="_blank" rel="noreferrer">
+          <!-- ✅ 모바일/PC 모두 PC용 히어로 사진만 사용 -->
           <picture>
-            <!-- ✅ 모바일/PC 모두 PC용 히어로 사진 사용 -->
-            <source media="(max-width: 768px)" srcset="/assets/header/header-pc.jpg">
             <img class="heroImg" src="/assets/header/header-pc.jpg" alt="G-DRAGON - TOO BAD (MV)">
           </picture>
           <div class="playBadge">▶</div>
