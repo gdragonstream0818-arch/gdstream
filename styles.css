@@ -192,18 +192,28 @@ img{max-width:100%;display:block}
 }
 .ocBtn:hover{transform:translateY(-1px);background:rgba(255,255,255,.92);}
 
+/* ✅ 아이콘을 "둥근 사각형 이미지 타일"처럼 보이게 */
 .ocIcon{
-  width:38px;height:38px;
+  width:44px;
+  height:44px;
   border-radius:14px;
-  background:#fff;
+  padding:0;
+  background:transparent;
   border:1px solid rgba(0,0,0,.08);
+  overflow:hidden;          /* 둥근 모서리로 이미지 잘라내기 */
   display:flex;
-  align-items:center;
-  justify-content:center;
-  overflow:hidden;
-  flex:0 0 auto;
+  align-items:stretch;
+  justify-content:stretch;
+  flex:0 0 44px;
 }
-.ocIcon img{width:22px;height:22px;object-fit:contain;display:block}
+
+.ocIcon img{
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit:cover;         /* 로고가 아니라 "이미지 타일"처럼 꽉 채움 */
+  border-radius:14px;
+}
 
 .ocText{min-width:0}
 .ocName{font-weight:900}
