@@ -1,7 +1,6 @@
 (function () {
   const SITE = () => window.SITE_DATA || {};
 
-  // ✅ 기기 감지: android / ios / web
   function detectDevice() {
     const ua = (navigator.userAgent || "").toLowerCase();
     if (ua.includes("android")) return "android";
@@ -9,7 +8,6 @@
     return "web";
   }
 
-  // ✅ PC OS 라벨(플레이브처럼)
   function detectWebOSLabel() {
     const ua = (navigator.userAgent || "").toLowerCase();
     if (ua.includes("windows")) return "PC (Windows)";
@@ -24,7 +22,6 @@
     return detectWebOSLabel();
   }
 
-  // ✅ URL 정규화: tinyurl.com/... 같은 경우 https:// 붙여줌
   function normalizeUrl(url) {
     const s = String(url || "").trim();
     if (!s) return "";
@@ -36,13 +33,11 @@
     return (SITE().platforms || []).find(p => p.id === id) || null;
   }
 
-  // ✅ 모달 요소
   const modal = document.getElementById("ocModal");
   const overlay = document.getElementById("ocOverlay");
   const closeBtn = document.getElementById("ocClose");
 
   const titleEl = document.getElementById("ocModalTitle");
-  const descEl = document.getElementById("ocHeroDesc");
   const noticeEl = document.getElementById("ocActionNotice");
 
   const heroImgEl = document.getElementById("ocHeroImg");
@@ -51,7 +46,6 @@
   const hintEl = document.getElementById("ocDeviceHint");
   const gridEl = document.getElementById("ocModalGrid");
 
-  // ✅ kickerEl 제거했으므로 kicker 체크 절대 하지 않음
   if (!modal || !overlay || !closeBtn || !titleEl || !gridEl) return;
 
   function openModal(platformId) {
@@ -59,18 +53,12 @@
     const device = detectDevice();
     const platformName = p?.name || platformId;
 
-    // ✅ 제목/문구 (플레이브 스타일)
     titleEl.textContent = `${platformName} 원클릭 스트리밍`;
 
-    // data.js에서 커스텀하고 싶으면 p.modalDesc / p.modalNotice 넣으면 됨
-    if (descEl) {
-      descEl.textContent = p?.modalDesc || "기기에 맞는 원클릭 버튼이 자동으로 지원돼요.";
-    }
     if (noticeEl) {
       noticeEl.textContent = p?.modalNotice || "중복곡 허용 + 재생목록 전체 삭제 후 원클릭을 눌러 주세요!";
     }
 
-    // ✅ (선택) 헤더 이미지: data.js에 p.modalHeroImg 넣으면 자동 표시
     if (heroImgEl) {
       const src = (p?.modalHeroImg || "").trim();
       if (src) {
@@ -78,26 +66,21 @@
         heroImgEl.classList.remove("is-hidden");
       } else {
         heroImgEl.removeAttribute("src");
-        heroImgEl.classList.add("is-hidden"); // 깨진 이미지 아이콘 방지
+        heroImgEl.classList.add("is-hidden");
       }
     }
 
-    // ✅ 기기 표기
     if (deviceEl) deviceEl.textContent = deviceLabel(device);
     if (hintEl) hintEl.textContent = "";
 
-    // ✅ 항상 초기화
     gridEl.innerHTML = "";
 
-    // ✅ 버튼 목록 가져오기 (data.js 기반)
     const oneclick = p?.oneclick || null;
     let buttons = null;
 
     if (oneclick) {
-      // 기기별 우선 → web fallback
       const candidate = oneclick[device] ?? oneclick.web ?? null;
 
-      // 빈 배열이면 안내 표시
       if (Array.isArray(candidate) && candidate.length === 0) {
         const msg =
           p?.unsupported?.[device] ||
@@ -114,7 +97,6 @@
       }
     }
 
-    // oneclick이 없거나 candidate가 없으면 빈 상태 처리
     if (!buttons && gridEl.innerHTML.trim() === "") {
       gridEl.innerHTML = `
         <div style="grid-column:1/-1; padding:14px; border:1px solid rgba(0,0,0,.08); border-radius:14px; background:#fafafa; text-align:center; line-height:1.5;">
@@ -123,7 +105,6 @@
       `;
     }
 
-    // ✅ 버튼 렌더 (링크 비어있으면 '준비중' 비활성화)
     if (Array.isArray(buttons)) {
       if (hintEl) {
         hintEl.textContent = `${buttons.length}개의 버튼을 모두 클릭해 주세요!`;
@@ -162,7 +143,6 @@
     document.body.style.overflow = "";
   }
 
-  // ✅ 원클릭 버튼 클릭 → 모달 오픈
   document.querySelectorAll(".ocBtn[data-platform]").forEach(btn => {
     btn.addEventListener("click", (e) => {
       e.preventDefault();
