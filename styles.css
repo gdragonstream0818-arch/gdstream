@@ -565,7 +565,7 @@ img{max-width:100%;display:block}
   display:block;
 }
 
-/* ✅ 모달 안내문: 박스 제거 + 파란 글씨(가독성 유지) */
+/* ✅ 모달 안내문: 박스 제거 */
 #ocActionNotice.ocActionNotice{
   margin-top: 10px;
   padding: 0 !important;
@@ -576,7 +576,7 @@ img{max-width:100%;display:block}
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
 
-  color: #3b82f6 !important; /* 파란 글씨 */
+  color: #fff !important; 
   font-weight: 900 !important;
   font-size: 13px !important;
   line-height: 1.35 !important;
@@ -585,3 +585,17 @@ img{max-width:100%;display:block}
 
 /* ✅ 원클릭 버튼이 1개일 때(스크립트에서 is-wide 붙일 예정) 가로 꽉 채우기 */
 .ocModalBtn.is-wide{ grid-column: 1 / -1; }
+
+/* ✅ 모달: 미지원/빈상태 안내도 전체 폭으로 */
+.ocModalEmpty{
+  grid-column: 1 / -1;
+  padding: 14px;
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: 14px;
+  background: #fafafa;
+  text-align: center;
+  line-height: 1.5;
+  font-weight: 800;
+  color: rgba(0,0,0,.75);
+}
+
