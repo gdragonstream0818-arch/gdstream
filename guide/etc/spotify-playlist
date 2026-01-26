@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <link rel="icon" href="/assets/meta/favicon.png" type="image/png" sizes="any">
+
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://i.ibb.co/JgfVvDn/ogw.png">
+  <meta property="og:title" content="가이드 | 지드래곤 음원총공팀">
+  <meta property="og:url" content="https://gdstream.site/">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="가이드 | 지드래곤 음원총공팀">
+  <meta name="twitter:image" content="https://i.ibb.co/JgfVvDn/ogw.png">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>가이드 | 지드래곤 음원총공팀</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+
+<body>
+
+  <!-- ✅ HEADER: 메인 홈처럼 (로고 1개 / 햄버거 제거) -->
+  <header class="header header--simple">
+    <div class="headerBar headerBar--center">
+      <a class="brand" href="/" aria-label="지드래곤 음원총공팀">
+        <img class="brandImg" src="/assets/header/logo.svg" alt="지드래곤 음원총공팀 로고">
+      </a>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1 class="h1">스포티파이 플레이리스트 제작·공유 가이드</h1>
+
+    <!-- ✅ 이미지 파일 이름만 너가 올린 걸로 맞추면 됨 -->
+    <img class="guideImg" src="/assets/guides/spotify-playlist.jpg" alt="스포티파이 플레이리스트 제작·공유 가이드">
+  </main>
+
+  <footer class="footer">
+    <div class="container footerInner">© 지드래곤 음원총공팀</div>
+  </footer>
+</body>
+</html>
