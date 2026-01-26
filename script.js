@@ -1,6 +1,7 @@
 (function () {
   const SITE = () => window.SITE_DATA || {};
 
+  // ✅ 기기 감지: android / ios / web
   function detectDevice() {
     const ua = (navigator.userAgent || "").toLowerCase();
     if (ua.includes("android")) return "android";
@@ -22,6 +23,7 @@
     return detectWebOSLabel();
   }
 
+  // ✅ URL 정규화
   function normalizeUrl(url) {
     const s = String(url || "").trim();
     if (!s) return "";
@@ -33,6 +35,7 @@
     return (SITE().platforms || []).find(p => p.id === id) || null;
   }
 
+  // ✅ 모달 요소
   const modal = document.getElementById("ocModal");
   const overlay = document.getElementById("ocOverlay");
   const closeBtn = document.getElementById("ocClose");
@@ -59,15 +62,13 @@
       noticeEl.textContent = p?.modalNotice || "중복곡 허용 + 재생목록 전체 삭제 후 원클릭을 눌러 주세요!";
     }
 
+    // ✅ 여기만 핵심 수정: 플랫폼 이미지 없으면 index.html에 있는 기본 src 유지
     if (heroImgEl) {
-      const src = (p?.modalHeroImg || "").trim();
-      if (src) {
-        heroImgEl.src = src;
-        heroImgEl.classList.remove("is-hidden");
-      } else {
-        heroImgEl.removeAttribute("src");
-        heroImgEl.classList.add("is-hidden");
-      }
+      const fallback = heroImgEl.getAttribute("src") || "/assets/header/default.jpg";
+      const src = String(p?.modalHeroImg || fallback).trim();
+
+      heroImgEl.src = src;
+      heroImgEl.classList.remove("is-hidden");
     }
 
     if (deviceEl) deviceEl.textContent = deviceLabel(device);
@@ -75,12 +76,15 @@
 
     gridEl.innerHTML = "";
 
+    // ✅ 버튼 목록 가져오기 (data.js 기반)
     const oneclick = p?.oneclick || null;
     let buttons = null;
 
     if (oneclick) {
+      // 기기별 우선 → web fallback
       const candidate = oneclick[device] ?? oneclick.web ?? null;
 
+      // PC 미지원 등: 빈 배열이면 안내
       if (Array.isArray(candidate) && candidate.length === 0) {
         const msg =
           p?.unsupported?.[device] ||
@@ -105,10 +109,9 @@
       `;
     }
 
+    // ✅ 버튼 렌더
     if (Array.isArray(buttons)) {
-      if (hintEl) {
-        hintEl.textContent = `${buttons.length}개의 버튼을 모두 클릭해 주세요!`;
-      }
+      if (hintEl) hintEl.textContent = "";
 
       gridEl.innerHTML = buttons.map(b => {
         const label = String(b.label || "원클릭").trim() || "원클릭";
@@ -143,6 +146,7 @@
     document.body.style.overflow = "";
   }
 
+  // ✅ 원클릭 버튼 클릭 → 모달 오픈
   document.querySelectorAll(".ocBtn[data-platform]").forEach(btn => {
     btn.addEventListener("click", (e) => {
       e.preventDefault();
