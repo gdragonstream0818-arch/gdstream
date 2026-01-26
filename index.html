@@ -13,13 +13,13 @@
   <meta name="twitter:title" content="지드래곤 음원총공팀">
   <meta name="twitter:description" content="FAM을 위한 음원서포트 정보">
   <meta name="twitter:image" content="https://i.ibb.co/m7KNwV8/favicon-png.png">
-  
+
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>지드래곤 음원총공팀</title>
   <link rel="stylesheet" href="/styles.css" />
 
-  <!-- ✅ 원클릭 모달: 상단 이미지(플레이브 느낌) 포함 -->
+  <!-- ✅ 원클릭 모달(플레이브 스타일): 칩 제거 + 안내문 + 기기 표기 -->
   <style>
     .ocModal { display:none; position:fixed; inset:0; z-index:9999; }
     .ocModal.is-open { display:block; }
@@ -78,20 +78,7 @@
       position:absolute; left:18px; right:18px; bottom:16px;
       color:#fff;
     }
-    .ocModalKicker{
-      display:inline-flex;
-      gap:8px;
-      align-items:center;
-      padding:6px 10px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.16);
-      border: 1px solid rgba(255,255,255,.18);
-      font-size:12px;
-      letter-spacing:.02em;
-      backdrop-filter: blur(8px);
-      margin-bottom: 10px;
-      text-transform:uppercase;
-    }
+
     .ocModalTitle{
       margin:0;
       font-size:26px;
@@ -106,17 +93,56 @@
       text-shadow: 0 6px 18px rgba(0,0,0,.55);
     }
 
+    /* ✅ 플레이브 느낌: 안내 바 */
+    .ocActionNotice{
+      margin-top: 12px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: rgba(0,0,0,.38);
+      border: 1px solid rgba(255,255,255,.16);
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.35;
+      backdrop-filter: blur(8px);
+    }
+
     /* ✅ 바디 */
     .ocModalBody{
       padding: 16px 18px 18px;
       background: #fff;
     }
+
+    /* ✅ 기기 라인 */
+    .ocDeviceBar{
+      display:flex;
+      align-items:baseline;
+      justify-content:space-between;
+      gap:12px;
+      padding: 2px 2px 14px;
+    }
+    .ocDeviceLabel{
+      font-size: 15px;
+      font-weight: 900;
+      color:#111;
+    }
+    .ocDeviceHint{
+      font-size: 13px;
+      font-weight: 800;
+      color: rgba(0,0,0,.45);
+      text-align:right;
+    }
+
+    /* ✅ 그리드: 2열(플레이브 느낌) */
     .ocModalGrid{
       display:grid;
       gap:12px;
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @media (max-width: 420px){
+      .ocModalGrid{ grid-template-columns: 1fr; }
     }
 
-    /* ✅ 버튼(가운데 정렬) */
+    /* ✅ 버튼 */
     .ocModalBtn{
       display:flex;
       align-items:center;
@@ -128,84 +154,19 @@
       background: #f3f4f6;
       color:#111;
       border: 1px solid rgba(0,0,0,.06);
-      font-weight:700;
+      font-weight:800;
       letter-spacing:-.01em;
       box-shadow: 0 10px 22px rgba(0,0,0,.06);
     }
     .ocModalBtn:hover{ background:#eceff3; }
 
-    /* ✅ 준비중(비활성) */
-    .ocModalBtn.is-disabled{
-      opacity:.45;
-      cursor:not-allowed;
-      pointer-events:none;
-      box-shadow:none;
-    }
-
-    /* ✅ 안내 박스 */
-    .ocNotice{
-      padding: 14px;
-      border: 1px solid rgba(0,0,0,.08);
-      border-radius: 14px;
-      background: #fafafa;
-      text-align:center;
-      line-height:1.55;
-      color:#222;
-      font-weight:600;
-    }
-
-    /* =========================================================
-       ✅ 요청 반영 (최소 수정)
-       - PC: 지금보다 20% 컴팩트 (컨테이너 폭/여백)
-       - PC: 히어로 폭이 원클릭/가이드와 같은 라인으로 맞게
-       - 모바일: 히어로는 "원래 styles.css 동작" 그대로 사용 (오버라이드 X)
-       ========================================================= */
-
-    :root{
-      --pageMaxDesktop: 736px;   /* ✅ PC 폭(20% 감소) */
-      --pageGutterDesktop: 20px; /* ✅ PC 좌우 여백 */
-    }
-
-    /* ✅ PC만 손대기 */
-    @media (min-width: 769px){
-      .container{
-        max-width: var(--pageMaxDesktop) !important;
-        margin-left: auto !important;
-        margin-right: auto !important;
-        padding-left: var(--pageGutterDesktop) !important;
-        padding-right: var(--pageGutterDesktop) !important;
-      }
-
-      .headerBar{
-        max-width: var(--pageMaxDesktop) !important;
-        margin-left: auto !important;
-        margin-right: auto !important;
-        padding-left: var(--pageGutterDesktop) !important;
-        padding-right: var(--pageGutterDesktop) !important;
-      }
-
-      /* ✅ 히어로가 아래 카드보다 "작게" 잡히는 내부 max-width 해제 */
-      .heroInner{
-        width: 100% !important;
-        max-width: none !important;
-      }
-      .heroLink{
-        display:block !important;
-        width:100% !important;
-        max-width:none !important;
-      }
-      .heroLink picture{ display:block !important; width:100% !important; }
-      .heroImg{
-        display:block !important;
-        width:100% !important;
-        height:auto !important;
-      }
-    }
+    /* ✅ 이미지 src가 없을 때 깨진 아이콘 방지 */
+    .ocHeroImg.is-hidden{ display:none; }
   </style>
 </head>
 <body>
 
-  <!-- ✅ HEADER: 로고만 (햄버거 제거 / 로고 단일 파일) -->
+  <!-- ✅ HEADER: 로고만 -->
   <header class="header header--simple">
     <div class="headerBar headerBar--center">
       <a class="brand" href="/" aria-label="지드래곤 음원총공팀">
@@ -221,8 +182,6 @@
          href="https://youtu.be/o9DhvbqYzns?si=7uozTe90cIU0ZY27"
          target="_blank" rel="noreferrer">
         <picture>
-          <!-- ✅ 모바일도 PC용 이미지 사용(레이아웃은 기존 styles.css 그대로) -->
-          <source media="(max-width: 768px)" srcset="/assets/header/header-pc.jpg">
           <img class="heroImg" src="/assets/header/header-pc.jpg" alt="G-DRAGON - TOO BAD (MV)">
         </picture>
         <div class="playBadge">▶</div>
@@ -244,56 +203,44 @@
         <div class="oneclickGrid">
           <a class="ocBtn" href="#" data-platform="melon" aria-label="멜론 원클릭">
             <div class="ocIcon"><img src="/assets/icons/platform/melon.svg" alt="멜론"></div>
-            <div class="ocText">
-              <div class="ocName">멜론</div>
-            </div>
+            <div class="ocText"><div class="ocName">멜론</div></div>
             <div class="ocArrow">→</div>
           </a>
 
           <a class="ocBtn" href="#" data-platform="genie" aria-label="지니 원클릭">
             <div class="ocIcon"><img src="/assets/icons/platform/genie.svg" alt="지니"></div>
-            <div class="ocText">
-              <div class="ocName">지니</div>
-            </div>
+            <div class="ocText"><div class="ocName">지니</div></div>
             <div class="ocArrow">→</div>
           </a>
 
           <a class="ocBtn" href="#" data-platform="bugs" aria-label="벅스 원클릭">
             <div class="ocIcon"><img src="/assets/icons/platform/bugs.svg" alt="벅스"></div>
-            <div class="ocText">
-              <div class="ocName">벅스</div>
-            </div>
+            <div class="ocText"><div class="ocName">벅스</div></div>
             <div class="ocArrow">→</div>
           </a>
 
           <a class="ocBtn" href="#" data-platform="flo" aria-label="플로 원클릭">
             <div class="ocIcon"><img src="/assets/icons/platform/flo.svg" alt="플로"></div>
-            <div class="ocText">
-              <div class="ocName">플로</div>
-            </div>
+            <div class="ocText"><div class="ocName">플로</div></div>
             <div class="ocArrow">→</div>
           </a>
 
           <a class="ocBtn" href="#" data-platform="vibe" aria-label="바이브 원클릭">
             <div class="ocIcon"><img src="/assets/icons/platform/vibe.svg" alt="바이브"></div>
-            <div class="ocText">
-              <div class="ocName">바이브</div>
-            </div>
+            <div class="ocText"><div class="ocName">바이브</div></div>
             <div class="ocArrow">→</div>
           </a>
 
           <a class="ocBtn" href="#" data-platform="spotify" aria-label="스포티파이 원클릭">
             <div class="ocIcon"><img src="/assets/icons/platform/spotify.svg" alt="스포티파이"></div>
-            <div class="ocText">
-              <div class="ocName">스포티파이</div>
-            </div>
+            <div class="ocText"><div class="ocName">스포티파이</div></div>
             <div class="ocArrow">→</div>
           </a>
         </div>
       </div>
     </section>
 
-    <!-- ✅ 바로가기 (가이드 CTA만 유지) -->
+    <!-- ✅ 바로가기 -->
     <section class="section">
       <div class="sectionTitle">바로가기</div>
       <a class="ctaGuide" href="/guide/">
@@ -305,11 +252,10 @@
       </a>
     </section>
 
-    <!-- ✅ 계정 모아보기 (3분류) -->
+    <!-- ✅ 계정 모아보기 -->
     <section class="section">
       <div class="sectionTitle">계정 모아보기</div>
 
-      <!-- 1) 지디 개인 -->
       <div class="socialCard">
         <div class="socialHead">
           <div class="socialTitle">G-DRAGON INDIVIDUAL</div>
@@ -331,7 +277,6 @@
         </div>
       </div>
 
-      <!-- 2) 지디 오피셜 -->
       <div class="socialCard">
         <div class="socialHead">
           <div class="socialTitle">G-DRAGON OFFICIAL</div>
@@ -365,7 +310,6 @@
         </div>
       </div>
 
-      <!-- 3) 지드래곤 음원총공팀 -->
       <div class="socialCard">
         <div class="socialHead">
           <div class="socialTitle">GDRAGON STREAM</div>
@@ -394,7 +338,7 @@
 
   </main>
 
-  <!-- ✅ 원클릭 모달(상단 이미지 헤더 포함) -->
+  <!-- ✅ 원클릭 모달(플레이브 스타일) -->
   <div id="ocModal" class="ocModal" aria-hidden="true">
     <div id="ocOverlay" class="ocModalOverlay"></div>
 
@@ -406,13 +350,21 @@
         <button id="ocClose" type="button" class="ocModalClose" aria-label="닫기">✕</button>
 
         <div class="ocHeroText">
-          <div id="ocModalKicker" class="ocModalKicker">ONE CLICK</div>
-          <h3 id="ocModalTitle" class="ocModalTitle">플랫폼</h3>
+          <h3 id="ocModalTitle" class="ocModalTitle">원클릭 스트리밍</h3>
           <p id="ocHeroDesc" class="ocHeroDesc">기기에 맞는 원클릭 버튼이 자동으로 지원돼요.</p>
+
+          <div id="ocActionNotice" class="ocActionNotice">
+            중복곡 허용 + 재생목록 전체 삭제 후 원클릭을 눌러 주세요!
+          </div>
         </div>
       </div>
 
       <div class="ocModalBody">
+        <div class="ocDeviceBar">
+          <div id="ocDeviceLabel" class="ocDeviceLabel">PC</div>
+          <div id="ocDeviceHint" class="ocDeviceHint"></div>
+        </div>
+
         <div id="ocModalGrid" class="ocModalGrid"></div>
       </div>
     </div>
@@ -425,6 +377,6 @@
   <!-- ✅ 구조화: data.js + script.js 로드 -->
   <script src="/data.js"></script>
   <script src="/script.js"></script>
-
 </body>
 </html>
+
