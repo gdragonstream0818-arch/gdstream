@@ -154,26 +154,43 @@
       font-weight:600;
     }
 
-    /* ✅ PC에서도 모바일처럼 '좁은 컬럼'로 보이게 (플레이브 느낌) */
-    :root { --pageMax: 560px; } /* 원하면 520~640 사이로 조절 */
+    /* ================================
+       ✅ PC 레이아웃: 플레이브처럼 "적당히 넓게" 중앙 컬럼
+       - 너무 좁아지는 문제 해결
+       - 히어로/원클릭/가이드 폭 라인 맞추기
+       ================================ */
+    :root { --pageMax: 980px; } /* 필요하면 900~1100 사이로 조절 */
 
     @media (min-width: 769px){
+      /* 본문 컨테이너 폭: 너무 좁지 않게, 중앙 정렬 */
       .container{
-        width: min(100%, var(--pageMax)) !important;
+        max-width: var(--pageMax) !important;
         margin-left: auto !important;
         margin-right: auto !important;
       }
 
-      /* 헤더(로고 영역)도 본문 폭에 맞추기 */
+      /* 헤더도 본문 폭에 맞추기 */
       .headerBar{
-        width: min(100%, var(--pageMax)) !important;
+        max-width: var(--pageMax) !important;
         margin-left: auto !important;
         margin-right: auto !important;
       }
 
-      /* 혹시 히어로가 살짝 넘치는 경우 예방 */
-      .heroInner{ width:100% !important; }
-      .heroImg{ width:100% !important; height:auto; display:block; }
+      /* 히어로가 아래 카드들보다 좁게 잡히는 경우 강제 풀기 */
+      .heroInner{
+        width: 100% !important;
+        max-width: none !important;
+      }
+      .heroLink{
+        display: block !important;
+        width: 100% !important;
+      }
+      .heroLink picture{ display:block !important; width:100% !important; }
+      .heroImg{
+        display:block !important;
+        width:100% !important;
+        height:auto !important;
+      }
     }
   </style>
 </head>
@@ -190,7 +207,7 @@
 
   <!-- ✅ HERO: 클릭하면 Too Bad MV -->
   <section class="hero">
-    <div class="container"> <!-- ✅ 추가: 원클릭(.container) 폭에 맞춤 -->
+    <div class="container"> <!-- ✅ 원클릭(.container)과 같은 기준 폭 -->
       <div class="heroInner">
         <a class="heroLink"
            href="https://youtu.be/o9DhvbqYzns?si=7uozTe90cIU0ZY27"
