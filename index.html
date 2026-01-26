@@ -153,6 +153,28 @@
       color:#222;
       font-weight:600;
     }
+
+    /* ✅ PC에서도 모바일처럼 '좁은 컬럼'로 보이게 (플레이브 느낌) */
+    :root { --pageMax: 560px; } /* 원하면 520~640 사이로 조절 */
+
+    @media (min-width: 769px){
+      .container{
+        width: min(100%, var(--pageMax)) !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+      }
+
+      /* 헤더(로고 영역)도 본문 폭에 맞추기 */
+      .headerBar{
+        width: min(100%, var(--pageMax)) !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+      }
+
+      /* 혹시 히어로가 살짝 넘치는 경우 예방 */
+      .heroInner{ width:100% !important; }
+      .heroImg{ width:100% !important; height:auto; display:block; }
+    }
   </style>
 </head>
 <body>
@@ -168,20 +190,21 @@
 
   <!-- ✅ HERO: 클릭하면 Too Bad MV -->
   <section class="hero">
-  <div class="container"> <!-- ✅ 추가: 원클릭(.container) 폭에 맞춤 -->
-    <div class="heroInner">
-      <a class="heroLink"
-         href="https://youtu.be/o9DhvbqYzns?si=7uozTe90cIU0ZY27"
-         target="_blank" rel="noreferrer">
-        <picture>
-          <source media="(max-width: 768px)" srcset="/assets/header/header-m.jpg">
-          <img class="heroImg" src="/assets/header/header-pc.jpg" alt="G-DRAGON - TOO BAD (MV)">
-        </picture>
-        <div class="playBadge">▶</div>
-      </a>
+    <div class="container"> <!-- ✅ 추가: 원클릭(.container) 폭에 맞춤 -->
+      <div class="heroInner">
+        <a class="heroLink"
+           href="https://youtu.be/o9DhvbqYzns?si=7uozTe90cIU0ZY27"
+           target="_blank" rel="noreferrer">
+          <picture>
+            <!-- ✅ 모바일/PC 모두 PC용 히어로 사진 사용 -->
+            <source media="(max-width: 768px)" srcset="/assets/header/header-pc.jpg">
+            <img class="heroImg" src="/assets/header/header-pc.jpg" alt="G-DRAGON - TOO BAD (MV)">
+          </picture>
+          <div class="playBadge">▶</div>
+        </a>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
   <main class="container">
 
