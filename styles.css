@@ -1,5 +1,5 @@
 :root{
-  --bg:#ffffff;
+  --bg:linear-gradient(180deg, #e9ecff 0%, #c9d2ff 48%, #a7b7ee 100%);
   --text:#111111;
   --muted:rgba(0,0,0,.55);
   --line:rgba(0,0,0,.10);
@@ -132,7 +132,7 @@ img{max-width:100%;display:block}
   box-shadow:var(--shadow);
   border:1px solid rgba(0,0,0,.06);
   overflow:hidden;
-  background:linear-gradient(135deg, rgba(180,190,255,.45), rgba(255,210,230,.35));
+  background:linear-gradient(135deg, rgba(165,170,205,.52), rgba(120,110,165,.38));
 }
 .oneclickHead{
   padding:16px 16px 8px;
@@ -215,7 +215,7 @@ img{max-width:100%;display:block}
   padding:18px 18px;
   border-radius:20px;
 
-  background:linear-gradient(135deg, rgba(180,190,255,.35), rgba(255,210,230,.30));
+  background:linear-gradient(135deg, rgba(160,165,205,.46), rgba(110,100,160,.38));
   border:1px solid rgba(0,0,0,.06);
   box-shadow:0 12px 28px rgba(0,0,0,.10);
 
@@ -253,7 +253,7 @@ img{max-width:100%;display:block}
 .socialCard{
   margin-top:12px;
   border-radius:22px;
-  background:rgba(255,255,255,.92);
+  background:rgba(248,250,255,.90);
   border:1px solid rgba(0,0,0,.08);
   box-shadow:0 10px 28px rgba(0,0,0,.10);
   padding:16px;
@@ -293,7 +293,7 @@ img{max-width:100%;display:block}
   padding:10px 12px;
   border-radius:16px;
 
-  background:#fff;
+  background:rgba(255,255,255,.92);
   border:1px solid rgba(0,0,0,.08);
   box-shadow:0 8px 18px rgba(0,0,0,.06);
 
@@ -313,7 +313,7 @@ img{max-width:100%;display:block}
   align-items:center;
   justify-content:center;
   border:1px solid rgba(0,0,0,.08);
-  background:rgba(0,0,0,.03);
+  background:rgba(15,23,42,.03);
 }
 
 /* ✅ 이미지 아이콘 사이즈 */
