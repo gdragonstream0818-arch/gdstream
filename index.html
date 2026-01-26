@@ -155,14 +155,19 @@
     }
 
     /* =========================================================
-       ✅ 플레이브 느낌으로 정리 (PC: 컴팩트 / 히어로-카드 라인 정렬 / 모바일 히어로 풀폭)
+       ✅ 요청 반영
+       1) PC 전체 폭: 지금보다 약 20% 더 컴팩트하게
+       2) PC에서 히어로 폭이 원클릭/가이드와 "같은 라인"으로 맞게
+       3) 모바일 히어로: 이미지가 꽉 차게(모서리 라운드 유지)
        ========================================================= */
+
     :root{
-      --pageMaxDesktop: 920px;   /* PC에서 너무 커 보이지 않게: 필요하면 880~1020 사이 조절 */
-      --pageGutterDesktop: 24px; /* PC 좌우 여백 */
+      --pageMaxDesktop: 736px;   /* ✅ 920px에서 약 20% 줄임 */
+      --pageGutterDesktop: 20px; /* ✅ PC 좌우 여백도 살짝 줄임 */
+      --heroRadiusMobile: 22px;  /* ✅ 모바일 라운드(원래 둥글둥글 느낌 유지용) */
     }
 
-    /* ✅ PC: 전체 레이아웃을 플레이브처럼 "적당히 컴팩트"하게 */
+    /* ✅ PC: 전체 레이아웃 컴팩트 + 히어로 라인 맞추기 */
     @media (min-width: 769px){
       .container{
         max-width: var(--pageMaxDesktop) !important;
@@ -180,7 +185,7 @@
         padding-right: var(--pageGutterDesktop) !important;
       }
 
-      /* ✅ 히어로가 아래 카드보다 좁아지는 원인(내부 max-width)을 강제로 해제 */
+      /* ✅ 히어로가 아래 카드보다 "작게" 잡히는 원인(내부 max-width)을 해제 */
       .heroInner{
         width: 100% !important;
         max-width: none !important;
@@ -189,6 +194,7 @@
         display:block !important;
         width:100% !important;
         max-width:none !important;
+        overflow:hidden !important;
       }
       .heroLink picture{ display:block !important; width:100% !important; }
       .heroImg{
@@ -198,28 +204,26 @@
       }
     }
 
-    /* ✅ 모바일: 히어로는 "가로 꽉" (컨테이너 패딩 제거 + 라운드 제거로 풀폭 느낌) */
+    /* ✅ 모바일: 모서리 뾰족해진 원인(border-radius:0)을 없애고,
+       이미지가 박스 안에서 꽉 차도록 cover 적용 */
     @media (max-width: 768px){
-      .hero .container{
-        max-width: none !important;
-        width: 100% !important;
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-      }
       .heroInner{
         width: 100% !important;
         max-width: none !important;
       }
       .heroLink{
-        width: 100% !important;
-        max-width: none !important;
-        border-radius: 0 !important;
+        display:block !important;
+        width:100% !important;
+        max-width:none !important;
+        overflow:hidden !important;
+        border-radius: var(--heroRadiusMobile) !important; /* ✅ 둥글둥글 유지 */
       }
       .heroLink picture{ display:block !important; width:100% !important; }
       .heroImg{
         display:block !important;
         width:100% !important;
-        height:auto !important;
+        height:100% !important;
+        object-fit: cover !important; /* ✅ 모바일에서 "풀로 맞춤" */
       }
     }
   </style>
