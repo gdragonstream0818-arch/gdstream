@@ -35,9 +35,25 @@
       <h1 class="h1">가이드</h1>
       <p class="guideLead">궁금한 가이드를 찾아보세요!</p>
 
-      <!-- ✅ 카테고리 선택 (UI 먼저 완성) -->
-      <div class="guideFilter">
-        <label class="srOnly" for="guideCategory">가이드 카테고리</label>
+      <!-- ✅ 칩 탭 (드롭다운 대신) -->
+      <nav class="guideTabs" role="tablist" aria-label="가이드 카테고리">
+        <button type="button" class="gTab isActive" role="tab" aria-selected="true" aria-controls="sec-streaming" data-key="streaming">
+          스트리밍 가이드
+        </button>
+        <button type="button" class="gTab" role="tab" aria-selected="false" aria-controls="sec-download" data-key="download">
+          다운로드 가이드
+        </button>
+        <button type="button" class="gTab" role="tab" aria-selected="false" aria-controls="sec-etc" data-key="etc">
+          기타
+        </button>
+        <button type="button" class="gTab" role="tab" aria-selected="false" aria-controls="sec-list" data-key="list">
+          스트리밍리스트
+        </button>
+      </nav>
+
+      <!-- ✅ 접근성/백업용 select (화면에서는 숨김) -->
+      <div class="guideFilter srOnly">
+        <label for="guideCategory">가이드 카테고리</label>
         <select id="guideCategory" class="guideSelect">
           <option value="streaming" selected>스트리밍 가이드</option>
           <option value="download">다운로드 가이드</option>
@@ -47,136 +63,175 @@
       </div>
     </section>
 
-    <!-- ✅ 콘텐츠 패널 (플레이브 느낌 배경) -->
+    <!-- ✅ 콘텐츠 패널 -->
     <section class="guidePanel">
 
       <!-- ====== (1) 스트리밍 가이드 ====== -->
-      <div class="guideSection" id="sec-streaming">
+      <div class="guideSection" id="sec-streaming" role="tabpanel" aria-label="스트리밍 가이드">
         <div class="guideGrid">
-          <!-- ✅ 여기(멜론/스포티/애플)만 "네가 만든 폴더"로 링크 수정 -->
+
           <a class="gCard gCard--melon" href="/guide/streaming/melon/">
-            <div class="gCardTop">
-              <div class="gBrand">Melon</div>
-              <div class="gTitle">멜론</div>
+            <div class="gCardText">
+              <div class="gCardTop">
+                <div class="gBrand">Melon</div>
+                <div class="gTitle">멜론</div>
+              </div>
+              <div class="gSub">스트리밍 가이드</div>
             </div>
-            <div class="gSub">스트리밍 가이드</div>
+            <span class="gArrow" aria-hidden="true">→</span>
           </a>
 
-          <!-- (아직 안 만들었으면 그대로 두거나 나중에 바꿔도 됨) -->
           <a class="gCard gCard--genie" href="/guide/genie/">
-            <div class="gCardTop">
-              <div class="gBrand">genie</div>
-              <div class="gTitle">지니</div>
+            <div class="gCardText">
+              <div class="gCardTop">
+                <div class="gBrand">genie</div>
+                <div class="gTitle">지니</div>
+              </div>
+              <div class="gSub">스트리밍 가이드</div>
             </div>
-            <div class="gSub">스트리밍 가이드</div>
+            <span class="gArrow" aria-hidden="true">→</span>
           </a>
 
           <a class="gCard gCard--bugs" href="/guide/bugs/">
-            <div class="gCardTop">
-              <div class="gBrand">Bugs!</div>
-              <div class="gTitle">벅스</div>
+            <div class="gCardText">
+              <div class="gCardTop">
+                <div class="gBrand">Bugs!</div>
+                <div class="gTitle">벅스</div>
+              </div>
+              <div class="gSub">스트리밍 가이드</div>
             </div>
-            <div class="gSub">스트리밍 가이드</div>
+            <span class="gArrow" aria-hidden="true">→</span>
           </a>
 
           <a class="gCard gCard--flo" href="/guide/flo/">
-            <div class="gCardTop">
-              <div class="gBrand">FLO</div>
-              <div class="gTitle">플로</div>
+            <div class="gCardText">
+              <div class="gCardTop">
+                <div class="gBrand">FLO</div>
+                <div class="gTitle">플로</div>
+              </div>
+              <div class="gSub">스트리밍 가이드</div>
             </div>
-            <div class="gSub">스트리밍 가이드</div>
+            <span class="gArrow" aria-hidden="true">→</span>
           </a>
 
           <a class="gCard gCard--vibe" href="/guide/vibe/">
-            <div class="gCardTop">
-              <div class="gBrand">VIBE</div>
-              <div class="gTitle">바이브</div>
+            <div class="gCardText">
+              <div class="gCardTop">
+                <div class="gBrand">VIBE</div>
+                <div class="gTitle">바이브</div>
+              </div>
+              <div class="gSub">스트리밍 가이드</div>
             </div>
-            <div class="gSub">스트리밍 가이드</div>
+            <span class="gArrow" aria-hidden="true">→</span>
           </a>
 
           <a class="gCard gCard--spotify" href="/guide/streaming/spotify/">
-            <div class="gCardTop">
-              <div class="gBrand">Spotify</div>
-              <div class="gTitle">스포티파이</div>
+            <div class="gCardText">
+              <div class="gCardTop">
+                <div class="gBrand">Spotify</div>
+                <div class="gTitle">스포티파이</div>
+              </div>
+              <div class="gSub">스트리밍 가이드</div>
             </div>
-            <div class="gSub">스트리밍 가이드</div>
+            <span class="gArrow" aria-hidden="true">→</span>
           </a>
 
           <a class="gCard gCard--apple" href="/guide/streaming/applemusic/">
-            <div class="gCardTop">
-              <div class="gBrand">Apple Music</div>
-              <div class="gTitle">애플뮤직</div>
+            <div class="gCardText">
+              <div class="gCardTop">
+                <div class="gBrand">Apple Music</div>
+                <div class="gTitle">애플뮤직</div>
+              </div>
+              <div class="gSub">스트리밍 가이드</div>
             </div>
-            <div class="gSub">스트리밍 가이드</div>
+            <span class="gArrow" aria-hidden="true">→</span>
           </a>
 
           <a class="gCard gCard--sh" href="/guide/streaming/stationhead/">
-            <div class="gCardTop">
-              <div class="gBrand">Stationhead</div>
-              <div class="gTitle">스테이션헤드</div>
+            <div class="gCardText">
+              <div class="gCardTop">
+                <div class="gBrand">Stationhead</div>
+                <div class="gTitle">스테이션헤드</div>
+              </div>
+              <div class="gSub">연결 가이드</div>
             </div>
-            <div class="gSub">연결 가이드</div>
+            <span class="gArrow" aria-hidden="true">→</span>
           </a>
+
         </div>
       </div>
 
       <!-- ====== (2) 다운로드 가이드 ====== -->
-      <div class="guideSection" id="sec-download" hidden>
+      <div class="guideSection" id="sec-download" role="tabpanel" aria-label="다운로드 가이드" hidden>
         <div class="guideGrid">
-          <!-- ✅ 네가 만든 폴더로 연결 -->
+
           <a class="gCard gCard--melon" href="/guide/download/melon/">
-            <div class="gCardTop">
-              <div class="gBrand">Melon</div>
-              <div class="gTitle">멜론</div>
+            <div class="gCardText">
+              <div class="gCardTop">
+                <div class="gBrand">Melon</div>
+                <div class="gTitle">멜론</div>
+              </div>
+              <div class="gSub">다운로드 가이드</div>
             </div>
-            <div class="gSub">다운로드 가이드</div>
+            <span class="gArrow" aria-hidden="true">→</span>
           </a>
 
-          <!-- 나머지 그대로 -->
           <a class="gCard gCard--genie" href="/guide/download/genie/">
-            <div class="gCardTop">
-              <div class="gBrand">genie</div>
-              <div class="gTitle">지니</div>
+            <div class="gCardText">
+              <div class="gCardTop">
+                <div class="gBrand">genie</div>
+                <div class="gTitle">지니</div>
+              </div>
+              <div class="gSub">다운로드 가이드</div>
             </div>
-            <div class="gSub">다운로드 가이드</div>
+            <span class="gArrow" aria-hidden="true">→</span>
           </a>
 
           <a class="gCard gCard--bugs" href="/guide/download/bugs/">
-            <div class="gCardTop">
-              <div class="gBrand">Bugs!</div>
-              <div class="gTitle">벅스</div>
+            <div class="gCardText">
+              <div class="gCardTop">
+                <div class="gBrand">Bugs!</div>
+                <div class="gTitle">벅스</div>
+              </div>
+              <div class="gSub">다운로드 가이드</div>
             </div>
-            <div class="gSub">다운로드 가이드</div>
+            <span class="gArrow" aria-hidden="true">→</span>
           </a>
+
         </div>
       </div>
 
       <!-- ====== (3) 기타 ====== -->
-      <div class="guideSection" id="sec-etc" hidden>
+      <div class="guideSection" id="sec-etc" role="tabpanel" aria-label="기타" hidden>
         <div class="guideGrid">
 
-          <!-- ✅ 추가: 스포티파이 플레이리스트 제작/공유 가이드 (스포티파이 색 그대로) -->
-          <a class="gCard gCard--spotify" href="/guide/etc/spotify-playlist.jpg/">
-            <div class="gCardTop">
-              <div class="gBrand">Spotify</div>
-              <div class="gTitle">스포티파이<br/>플레이리스트</div>
+          <a class="gCard gCard--spotify" href="/guide/etc/spotify-playlist/">
+            <div class="gCardText">
+              <div class="gCardTop">
+                <div class="gBrand">Spotify</div>
+                <div class="gTitle">스포티파이 플레이리스트</div>
+              </div>
+              <div class="gSub">제작·공유 가이드</div>
             </div>
-            <div class="gSub">제작·공유 가이드</div>
+            <span class="gArrow" aria-hidden="true">→</span>
           </a>
 
           <a class="gCard gCard--etc" href="/guide/etc/soundassistant/">
-            <div class="gCardTop">
-              <div class="gBrand">SoundAssistant</div>
-              <div class="gTitle">사운드<br/>어시스턴트</div>
+            <div class="gCardText">
+              <div class="gCardTop">
+                <div class="gBrand">SoundAssistant</div>
+                <div class="gTitle">사운드 어시스턴트</div>
+              </div>
+              <div class="gSub">소리 설정 가이드</div>
             </div>
-            <div class="gSub">소리 설정 가이드</div>
+            <span class="gArrow" aria-hidden="true">→</span>
           </a>
+
         </div>
       </div>
 
       <!-- ====== (4) 스트리밍리스트 ====== -->
-      <div class="guideSection" id="sec-list" hidden>
+      <div class="guideSection" id="sec-list" role="tabpanel" aria-label="스트리밍 리스트" hidden>
         <div class="listBox">
           <img class="listImg" src="/assets/guides/streaminglist260108.png" alt="스트리밍 리스트 이미지">
         </div>
@@ -189,23 +244,41 @@
     <div class="container footerInner">© 지드래곤 음원총공팀</div>
   </footer>
 
-  <!-- ✅ 카테고리 전환 (작은 JS만. data.js 연결은 다음 단계) -->
   <script>
     (function(){
       const sel = document.getElementById("guideCategory");
+      const tabs = Array.from(document.querySelectorAll(".gTab"));
+
       const sections = {
         streaming: document.getElementById("sec-streaming"),
         download: document.getElementById("sec-download"),
         etc: document.getElementById("sec-etc"),
         list: document.getElementById("sec-list"),
       };
+
       function show(key){
         Object.keys(sections).forEach(k=>{
           sections[k].hidden = (k !== key);
         });
+
+        tabs.forEach(btn=>{
+          const active = btn.dataset.key === key;
+          btn.classList.toggle("isActive", active);
+          btn.setAttribute("aria-selected", active ? "true" : "false");
+        });
+
+        if (sel && sel.value !== key) sel.value = key;
       }
-      sel.addEventListener("change", ()=> show(sel.value));
-      show(sel.value);
+
+      tabs.forEach(btn=>{
+        btn.addEventListener("click", ()=> show(btn.dataset.key));
+      });
+
+      if (sel){
+        sel.addEventListener("change", ()=> show(sel.value));
+      }
+
+      show((sel && sel.value) ? sel.value : "streaming");
     })();
   </script>
 </body>
