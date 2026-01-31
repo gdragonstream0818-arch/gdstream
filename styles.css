@@ -609,3 +609,109 @@ img{max-width:100%;display:block}
   color: rgba(0,0,0,.75);
 }
 
+/* ====== EXO-style row cards override ====== */
+
+/* 1) 카드 컨테이너: 2열 그리드 강제 해제 → 세로 리스트 */
+.guideGrid,
+.guideGrid--list {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 16px !important;
+}
+
+/* 2) 카드 자체: 가로로 긴 형태 */
+.gCard {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 16px !important;
+
+  width: 100% !important;
+  padding: 16px 18px !important;
+  border-radius: 24px !important;
+
+  /* 혹시 예전 카드 배경/그라데이션 남아있으면 지움 */
+  background: #fff !important;
+  background-image: none !important;
+
+  border: 1px solid rgba(0,0,0,.08) !important;
+  box-shadow: 0 10px 28px rgba(0,0,0,.06) !important;
+
+  text-decoration: none !important;
+  color: #111 !important;
+}
+
+/* 3) 왼쪽 썸네일(로고) 박스: 엑소처럼 딱 고정 크기 + 둥근 마감 */
+.gThumb {
+  width: 92px !important;
+  height: 92px !important;
+  flex: 0 0 92px !important;
+
+  border-radius: 22px !important;   /* ← ‘끝부분 둥글게’ 핵심 */
+  overflow: hidden !important;       /* ← 이미지가 둥글게 잘리게 */
+  background: #f3f4f6 !important;
+
+  border: 1px solid rgba(0,0,0,.06) !important;
+  display: grid !important;
+  place-items: center !important;
+}
+
+/* 4) 이미지 자체도 둥글게 + 꽉 채우기(또는 로고는 contain 유지) */
+.gThumbImg {
+  width: 100% !important;
+  height: 100% !important;
+
+  /* 로고면 contain 추천(찌그러짐 방지) */
+  object-fit: contain !important;
+
+  /* padding을 주면 로고가 예쁘게 들어감 */
+  padding: 14px !important;
+
+  /* 혹시 이미지가 네모로 보여도, 컨테이너가 클리핑함 */
+  border-radius: 22px !important;
+  display: block !important;
+  background: #fff !important;
+}
+
+/* 5) 텍스트 영역: 오른쪽으로 배치 */
+.gCardText {
+  flex: 1 !important;
+  min-width: 0 !important;
+}
+
+/* 브랜드/타이틀 크기: 엑소 느낌으로 */
+.gBrand {
+  font-size: 18px !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.2px !important;
+}
+.gTitle {
+  font-size: 28px !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.6px !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+.gSub {
+  margin-top: 8px !important;
+  font-size: 16px !important;
+  font-weight: 800 !important;
+  color: rgba(17,17,17,.68) !important;
+}
+
+/* 6) 화살표(오른쪽 끝) */
+.gArrow {
+  font-size: 22px !important;
+  font-weight: 900 !important;
+  color: rgba(17,17,17,.45) !important;
+}
+
+/* 모바일에서 살짝 줄이기 */
+@media (max-width: 420px){
+  .gThumb { width: 78px !important; height: 78px !important; flex-basis: 78px !important; border-radius: 18px !important; }
+  .gThumbImg { border-radius: 18px !important; padding: 12px !important; }
+  .gTitle { font-size: 24px !important; }
+  .gBrand { font-size: 16px !important; }
+  .gSub { font-size: 14px !important; }
+}
