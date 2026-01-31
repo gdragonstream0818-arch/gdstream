@@ -5,22 +5,165 @@
 
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://i.ibb.co/JgfVvDn/ogw.png">
-  <meta property="og:title" content="가이드 | 지드래곤 음원총공팀">
+  <meta property="og:title" content="지드래곤 음원총공팀">
+  <meta property="og:description" content="FAM을 위한 음원서포트 정보">
   <meta property="og:url" content="https://gdstream.site/">
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="가이드 | 지드래곤 음원총공팀">
+  <meta name="twitter:title" content="지드래곤 음원총공팀">
+  <meta name="twitter:description" content="FAM을 위한 음원서포트 정보">
   <meta name="twitter:image" content="https://i.ibb.co/JgfVvDn/ogw.png">
 
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>가이드 | 지드래곤 음원총공팀</title>
+  <title>지드래곤 음원총공팀</title>
   <link rel="stylesheet" href="/styles.css" />
-</head>
 
+  <!-- ✅ 원클릭 모달(플레이브 스타일): 칩 제거 + 안내문 + 기기 표기 -->
+  <style>
+    .ocModal { display:none; position:fixed; inset:0; z-index:9999; }
+    .ocModal.is-open { display:block; }
+    .ocModalOverlay{ position:absolute; inset:0; background: rgba(0,0,0,.62); }
+
+    .ocModalPanel{
+      position:absolute; left:50%; top:50%;
+      transform: translate(-50%, -50%);
+      width: min(560px, calc(100vw - 28px));
+      background: #fff;
+      border-radius: 18px;
+      overflow:hidden;
+      box-shadow: 0 22px 70px rgba(0,0,0,.45);
+    }
+
+    /* ✅ 상단 이미지 헤더 */
+    .ocHero{
+      position: relative;
+      height: 210px;
+      background: #111;
+    }
+    .ocHeroImg{
+      position:absolute; inset:0;
+      width:100%; height:100%;
+      object-fit:cover;
+      filter: saturate(1.02);
+      transform: scale(1.02);
+    }
+    .ocHeroShade{
+      position:absolute; inset:0;
+      background: linear-gradient(
+        180deg,
+        rgba(0,0,0,.10) 0%,
+        rgba(0,0,0,.35) 55%,
+        rgba(0,0,0,.85) 100%
+      );
+    }
+
+    /* ✅ 우상단 닫기 버튼(이미지 위) */
+    .ocModalClose{
+      position:absolute; right:14px; top:12px;
+      width:40px; height:40px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.35);
+      background: rgba(0,0,0,.35);
+      color:#fff;
+      font-size:18px;
+      cursor:pointer;
+      display:flex; align-items:center; justify-content:center;
+      backdrop-filter: blur(6px);
+    }
+    .ocModalClose:hover{ background: rgba(0,0,0,.5); }
+
+    /* ✅ 타이틀/서브텍스트(이미지 아래쪽) */
+    .ocHeroText{
+      position:absolute; left:18px; right:18px; bottom:16px;
+      color:#fff;
+    }
+
+    .ocModalTitle{
+      margin:0;
+      font-size:26px;
+      line-height:1.1;
+      letter-spacing:-.02em;
+      text-shadow: 0 6px 22px rgba(0,0,0,.55);
+    }
+
+    /* ✅ 플레이브 느낌: 안내 바 */
+    .ocActionNotice{
+      margin-top: 12px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: rgba(0,0,0,.38);
+      border: 1px solid rgba(255,255,255,.16);
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.35;
+      backdrop-filter: blur(8px);
+    }
+
+    /* ✅ 바디 */
+    .ocModalBody{
+      padding: 16px 18px 18px;
+      background: #fff;
+    }
+
+    /* ✅ 기기 라인 */
+    .ocDeviceBar{
+      display:flex;
+      align-items:baseline;
+      justify-content:space-between;
+      gap:12px;
+      padding: 2px 2px 14px;
+    }
+    .ocDeviceLabel{
+      font-size: 15px;
+      font-weight: 900;
+      color:#111;
+    }
+    .ocDeviceHint{
+      font-size: 13px;
+      font-weight: 800;
+      color: rgba(0,0,0,.45);
+      text-align:right;
+    }
+
+    /* ✅ 그리드: 2열(플레이브 느낌) */
+    .ocModalGrid{
+      display:grid;
+      gap:12px;
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @media (max-width: 420px){
+      .ocModalGrid{ grid-template-columns: 1fr; }
+    }
+
+    /* ✅ 버튼 */
+    .ocModalBtn{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding: 16px 14px;
+      border-radius: 16px;
+      text-decoration:none;
+      background: #f3f4f6;
+      color:#111;
+      border: 1px solid rgba(0,0,0,.06);
+      font-weight:800;
+      letter-spacing:-.01em;
+      box-shadow: 0 10px 22px rgba(0,0,0,.06);
+    }
+    .ocModalBtn:hover{ background:#eceff3; }
+
+    /* ✅ 이미지 src가 없을 때 깨진 아이콘 방지 */
+    .ocHeroImg.is-hidden{ display:none; }
+
+    /* ✅ ✅ 여기 추가: 모달 이미지 위 검정막(Shade) 제거 */
+    .ocHeroShade{ display:none !important; }
+  </style>
+</head>
 <body>
 
-  <!-- HEADER -->
+  <!-- ✅ HEADER: 로고만 -->
   <header class="header header--simple">
     <div class="headerBar headerBar--center">
       <a class="brand" href="/" aria-label="지드래곤 음원총공팀">
@@ -29,337 +172,205 @@
     </div>
   </header>
 
+  <!-- ✅ HERO: 클릭하면 Too Bad MV -->
+  <section class="hero">
+    <div class="heroInner">
+      <a class="heroLink"
+         href="https://youtu.be/o9DhvbqYzns?si=7uozTe90cIU0ZY27"
+         target="_blank" rel="noreferrer">
+        <picture>
+          <img class="heroImg" src="/assets/header/header-pc.jpg" alt="G-DRAGON - TOO BAD (MV)">
+        </picture>
+        <div class="playBadge">▶</div>
+      </a>
+    </div>
+  </section>
+
   <main class="container">
 
-    <!-- TOP -->
-    <section class="guideTop">
-      <h1 class="h1">가이드</h1>
-      <p class="guideLead">궁금한 가이드를 찾아보세요!</p>
+    <!-- ✅ 원클릭 섹션 -->
+    <section class="section">
+      <div class="oneclickPanel">
+        <div class="oneclickHead">
+          <div class="oneclickKicker">only for FAM</div>
+          <h2 class="oneclickTitle">원클릭 스트리밍</h2>
+          <p class="oneclickSub">플랫폼을 선택하면 바로 스트리밍을 시작할 수 있어요.</p>
+        </div>
 
-      <!-- ✅ 라인 탭 (예시 이미지처럼: 텍스트 + 하단 라인 + 파란 인디케이터) -->
-      <nav class="guideTabsLine" role="tablist" aria-label="가이드 카테고리">
-        <button type="button"
-                class="gLineTab isActive"
-                role="tab"
-                aria-selected="true"
-                aria-controls="sec-streaming"
-                data-key="streaming">
-          스트리밍 가이드
-        </button>
+        <div class="oneclickGrid">
+          <a class="ocBtn" href="#" data-platform="melon" aria-label="멜론 원클릭">
+            <div class="ocIcon"><img src="/assets/icons/platform/melon.svg" alt="멜론"></div>
+            <div class="ocText"><div class="ocName">멜론</div></div>
+            <div class="ocArrow">→</div>
+          </a>
 
-        <button type="button"
-                class="gLineTab"
-                role="tab"
-                aria-selected="false"
-                aria-controls="sec-download"
-                data-key="download">
-          다운로드 가이드
-        </button>
+          <a class="ocBtn" href="#" data-platform="genie" aria-label="지니 원클릭">
+            <div class="ocIcon"><img src="/assets/icons/platform/genie.png" alt="지니"></div>
+            <div class="ocText"><div class="ocName">지니</div></div>
+            <div class="ocArrow">→</div>
+          </a>
 
-        <button type="button"
-                class="gLineTab"
-                role="tab"
-                aria-selected="false"
-                aria-controls="sec-etc"
-                data-key="etc">
-          기타
-        </button>
+          <a class="ocBtn" href="#" data-platform="bugs" aria-label="벅스 원클릭">
+            <div class="ocIcon"><img src="/assets/icons/platform/bugs.jpg" alt="벅스"></div>
+            <div class="ocText"><div class="ocName">벅스</div></div>
+            <div class="ocArrow">→</div>
+          </a>
 
-        <button type="button"
-                class="gLineTab"
-                role="tab"
-                aria-selected="false"
-                aria-controls="sec-list"
-                data-key="list">
-          스트리밍리스트
-        </button>
+          <a class="ocBtn" href="#" data-platform="flo" aria-label="플로 원클릭">
+            <div class="ocIcon"><img src="/assets/icons/platform/flo.jpg" alt="플로"></div>
+            <div class="ocText"><div class="ocName">플로</div></div>
+            <div class="ocArrow">→</div>
+          </a>
 
-        <!-- 인디케이터(파란 언더라인). CSS에서 예쁘게 만들고,
-             JS가 위치/폭을 맞춰줄거야 -->
-        <span class="gLineIndicator" aria-hidden="true"></span>
-      </nav>
+          <a class="ocBtn" href="#" data-platform="vibe" aria-label="바이브 원클릭">
+            <div class="ocIcon"><img src="/assets/icons/platform/vibe.jpg" alt="바이브"></div>
+            <div class="ocText"><div class="ocName">바이브</div></div>
+            <div class="ocArrow">→</div>
+          </a>
 
-      <!-- ✅ 접근성/백업용 select (화면에서는 숨김 처리할 예정) -->
-      <div class="guideFilter srOnly">
-        <label for="guideCategory">가이드 카테고리</label>
-        <select id="guideCategory" class="guideSelect">
-          <option value="streaming" selected>스트리밍 가이드</option>
-          <option value="download">다운로드 가이드</option>
-          <option value="etc">기타</option>
-          <option value="list">스트리밍리스트</option>
-        </select>
+          <a class="ocBtn" href="#" data-platform="spotify" aria-label="스포티파이 원클릭">
+            <div class="ocIcon"><img src="/assets/icons/platform/spotify.png" alt="스포티파이"></div>
+            <div class="ocText"><div class="ocName">스포티파이</div></div>
+            <div class="ocArrow">→</div>
+          </a>
+        </div>
       </div>
     </section>
 
-    <!-- PANEL -->
-    <section class="guidePanel">
-
-      <!-- (1) 스트리밍 가이드 -->
-      <div class="guideSection" id="sec-streaming" role="tabpanel" aria-label="스트리밍 가이드">
-        <div class="guideGrid guideGrid--list">
-
-          <a class="gCard gCard--melon" href="/guide/streaming/melon/">
-            <div class="gThumb" aria-hidden="true">
-              <img class="gThumbImg" src="/assets/icons/platform/melon.svg" alt="">
-            </div>
-            <div class="gCardText">
-              <div class="gCardTop">
-                <div class="gBrand">Melon</div>
-                <div class="gTitle">멜론</div>
-              </div>
-              <div class="gSub">스트리밍가이드</div>
-            </div>
-            <span class="gArrow" aria-hidden="true">→</span>
-          </a>
-
-          <a class="gCard gCard--genie" href="/guide/streaming/genie/">
-            <div class="gThumb" aria-hidden="true">
-              <img class="gThumbImg" src="/assets/icons/platform/genie.png" alt="">
-            </div>
-            <div class="gCardText">
-              <div class="gCardTop">
-                <div class="gBrand">genie</div>
-                <div class="gTitle">지니</div>
-              </div>
-              <div class="gSub">스트리밍가이드</div>
-            </div>
-            <span class="gArrow" aria-hidden="true">→</span>
-          </a>
-
-          <a class="gCard gCard--bugs" href="/guide/streaming/bugs/">
-            <div class="gThumb" aria-hidden="true">
-              <img class="gThumbImg" src="/assets/icons/platform/bugs.jpg" alt="">
-            </div>
-            <div class="gCardText">
-              <div class="gCardTop">
-                <div class="gBrand">Bugs!</div>
-                <div class="gTitle">벅스</div>
-              </div>
-              <div class="gSub">스트리밍가이드</div>
-            </div>
-            <span class="gArrow" aria-hidden="true">→</span>
-          </a>
-
-          <a class="gCard gCard--flo" href="/guide/streaming/flo/">
-            <div class="gThumb" aria-hidden="true">
-              <img class="gThumbImg" src="/assets/icons/platform/flo.jpg" alt="">
-            </div>
-            <div class="gCardText">
-              <div class="gCardTop">
-                <div class="gBrand">FLO</div>
-                <div class="gTitle">플로</div>
-              </div>
-              <div class="gSub">스트리밍가이드</div>
-            </div>
-            <span class="gArrow" aria-hidden="true">→</span>
-          </a>
-
-          <a class="gCard gCard--vibe" href="/guide/streaming/vibe/">
-            <div class="gThumb" aria-hidden="true">
-              <img class="gThumbImg" src="/assets/icons/platform/vibe.jpg" alt="">
-            </div>
-            <div class="gCardText">
-              <div class="gCardTop">
-                <div class="gBrand">VIBE</div>
-                <div class="gTitle">바이브</div>
-              </div>
-              <div class="gSub">스트리밍가이드</div>
-            </div>
-            <span class="gArrow" aria-hidden="true">→</span>
-          </a>
-
-          <a class="gCard gCard--spotify" href="/guide/streaming/spotify/">
-            <div class="gThumb" aria-hidden="true">
-              <img class="gThumbImg" src="/assets/icons/platform/spotify.png" alt="">
-            </div>
-            <div class="gCardText">
-              <div class="gCardTop">
-                <div class="gBrand">Spotify</div>
-                <div class="gTitle">스포티파이</div>
-              </div>
-              <div class="gSub">스트리밍가이드</div>
-            </div>
-            <span class="gArrow" aria-hidden="true">→</span>
-          </a>
-
-          <!-- 이미지 없는 항목은 비워둠 -->
-          <a class="gCard" href="/guide/streaming/applemusic/">
-            <div class="gThumb gThumb--empty" aria-hidden="true"></div>
-            <div class="gCardText">
-              <div class="gCardTop">
-                <div class="gBrand">Apple Music</div>
-                <div class="gTitle">애플뮤직</div>
-              </div>
-              <div class="gSub">스트리밍가이드</div>
-            </div>
-            <span class="gArrow" aria-hidden="true">→</span>
-          </a>
-
+    <!-- ✅ 바로가기 -->
+    <section class="section">
+      <div class="sectionTitle">바로가기</div>
+      <a class="ctaGuide" href="/guide/">
+        <div class="ctaGuideText">
+          <div class="ctaGuideTitle">가이드</div>
+          <div class="ctaGuideDesc">스트리밍 / 다운로드 / 기타 / 스트리밍리스트</div>
         </div>
-      </div>
-
-      <!-- (2) 다운로드 가이드 -->
-      <div class="guideSection" id="sec-download" role="tabpanel" aria-label="다운로드 가이드" hidden>
-        <div class="guideGrid guideGrid--list">
-
-          <a class="gCard gCard--melon" href="/guide/download/melon/">
-            <div class="gThumb" aria-hidden="true">
-              <img class="gThumbImg" src="/assets/icons/platform/melon.svg" alt="">
-            </div>
-            <div class="gCardText">
-              <div class="gCardTop">
-                <div class="gBrand">Melon</div>
-                <div class="gTitle">멜론</div>
-              </div>
-              <div class="gSub">다운로드가이드</div>
-            </div>
-            <span class="gArrow" aria-hidden="true">→</span>
-          </a>
-
-          <a class="gCard gCard--genie" href="/guide/download/genie/">
-            <div class="gThumb" aria-hidden="true">
-              <img class="gThumbImg" src="/assets/icons/platform/genie.png" alt="">
-            </div>
-            <div class="gCardText">
-              <div class="gCardTop">
-                <div class="gBrand">genie</div>
-                <div class="gTitle">지니</div>
-              </div>
-              <div class="gSub">다운로드가이드</div>
-            </div>
-            <span class="gArrow" aria-hidden="true">→</span>
-          </a>
-
-          <a class="gCard gCard--bugs" href="/guide/download/bugs/">
-            <div class="gThumb" aria-hidden="true">
-              <img class="gThumbImg" src="/assets/icons/platform/bugs.jpg" alt="">
-            </div>
-            <div class="gCardText">
-              <div class="gCardTop">
-                <div class="gBrand">Bugs!</div>
-                <div class="gTitle">벅스</div>
-              </div>
-              <div class="gSub">다운로드가이드</div>
-            </div>
-            <span class="gArrow" aria-hidden="true">→</span>
-          </a>
-
-        </div>
-      </div>
-
-      <!-- (3) 기타 -->
-      <div class="guideSection" id="sec-etc" role="tabpanel" aria-label="기타" hidden>
-        <div class="guideGrid guideGrid--list">
-
-          <a class="gCard gCard--spotify" href="/guide/etc/spotify-playlist/">
-            <div class="gThumb" aria-hidden="true">
-              <img class="gThumbImg" src="/assets/icons/platform/spotify.png" alt="">
-            </div>
-            <div class="gCardText">
-              <div class="gCardTop">
-                <div class="gBrand">Spotify</div>
-                <div class="gTitle">플레이리스트</div>
-              </div>
-              <div class="gSub">제작·공유가이드</div>
-            </div>
-            <span class="gArrow" aria-hidden="true">→</span>
-          </a>
-
-          <a class="gCard" href="/guide/etc/soundassistant/">
-            <div class="gThumb gThumb--empty" aria-hidden="true"></div>
-            <div class="gCardText">
-              <div class="gCardTop">
-                <div class="gBrand">SoundAssistant</div>
-                <div class="gTitle">사운드 어시스턴트</div>
-              </div>
-              <div class="gSub">소리설정가이드</div>
-            </div>
-            <span class="gArrow" aria-hidden="true">→</span>
-          </a>
-
-        </div>
-      </div>
-
-      <!-- (4) 스트리밍리스트 -->
-      <div class="guideSection" id="sec-list" role="tabpanel" aria-label="스트리밍 리스트" hidden>
-        <div class="listBox">
-          <img class="listImg" src="/assets/guides/streaminglist260108.png" alt="스트리밍 리스트 이미지">
-        </div>
-      </div>
-
+        <div class="ctaGuideArrow">→</div>
+      </a>
     </section>
+
+    <!-- ✅ 계정 모아보기 -->
+    <section class="section">
+      <div class="sectionTitle">계정 모아보기</div>
+
+      <div class="socialCard">
+        <div class="socialHead">
+          <div class="socialTitle">G-DRAGON INDIVIDUAL</div>
+          <div class="socialDesc">지드래곤 개인 계정</div>
+        </div>
+        <div class="socialGrid">
+          <a class="socialBtn" href="https://www.instagram.com/xxxibgdrgn" target="_blank" rel="noreferrer">
+            <span class="socialIcon"><img src="/assets/icons/social/instagram.svg" alt="Instagram"></span>
+            <span class="socialName">Instagram</span>
+          </a>
+          <a class="socialBtn" href="https://x.com/ibgdrgn" target="_blank" rel="noreferrer">
+            <span class="socialIcon"><img src="/assets/icons/social/x.svg" alt="x"></span>
+            <span class="socialName">X</span>
+          </a>
+          <a class="socialBtn" href="https://weibo.com/u/3786649467" target="_blank" rel="noreferrer">
+            <span class="socialIcon"><img src="/assets/icons/social/weibo.svg" alt="Weibo"></span>
+            <span class="socialName">Weibo</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="socialCard">
+        <div class="socialHead">
+          <div class="socialTitle">G-DRAGON OFFICIAL</div>
+          <div class="socialDesc">공식 계정</div>
+        </div>
+        <div class="socialGrid">
+          <a class="socialBtn" href="https://www.youtube.com/@xxxibgdrgn" target="_blank" rel="noreferrer">
+            <span class="socialIcon"><img src="/assets/icons/social/youtube.svg" alt="YouTube"></span>
+            <span class="socialName">YouTube</span>
+          </a>
+          <a class="socialBtn" href="https://www.instagram.com/8lo8lo8lowme" target="_blank" rel="noreferrer">
+            <span class="socialIcon"><img src="/assets/icons/social/instagram.svg" alt="Instagram"></span>
+            <span class="socialName">팔로미</span>
+          </a>
+          <a class="socialBtn" href="https://www.instagram.com/fanplusonedotcom" target="_blank" rel="noreferrer">
+            <span class="socialIcon"><img src="/assets/icons/social/instagram.svg" alt="Instagram"></span>
+            <span class="socialName">fanplusone</span>
+          </a>
+          <a class="socialBtn" href="https://x.com/FANPLUS1DOTCOM" target="_blank" rel="noreferrer">
+            <span class="socialIcon"><img src="/assets/icons/social/x.svg" alt="X"></span>
+            <span class="socialName">fanplusone</span>
+          </a>
+          <a class="socialBtn" href="https://www.tiktok.com/@fanplusonedotcom" target="_blank" rel="noreferrer">
+            <span class="socialIcon"><img src="/assets/icons/social/tiktok.svg" alt="TikTok"></span>
+            <span class="socialName">TikTok</span>
+          </a>
+          <a class="socialBtn" href="https://gdragon.ai/" target="_blank" rel="noreferrer">
+            <span class="socialIcon"><img src="/assets/icons/social/bstage.svg" alt="b.stage"></span>
+            <span class="socialName">b.stage</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="socialCard">
+        <div class="socialHead">
+          <div class="socialTitle">GDRAGON STREAM</div>
+          <div class="socialDesc">음원총공팀 계정</div>
+        </div>
+        <div class="socialGrid">
+          <a class="socialBtn" href="https://x.com/GDRAGON_STREAM" target="_blank" rel="noreferrer">
+            <span class="socialIcon"><img src="/assets/icons/social/x.svg" alt="X"></span>
+            <span class="socialName">X</span>
+          </a>
+          <a class="socialBtn" href="https://www.instagram.com/gdragon_stream/" target="_blank" rel="noreferrer">
+            <span class="socialIcon"><img src="/assets/icons/social/instagram.svg" alt="Instagram"></span>
+            <span class="socialName">Instagram</span>
+          </a>
+          <a class="socialBtn" href="https://www.threads.com/@gdragon_stream?xmt=AQF0-9Qrl0GaLacu6i-jscBusw1dgbuFYdABjjHnuAWiOaA" target="_blank" rel="noreferrer">
+            <span class="socialIcon"><img src="/assets/icons/social/threads.svg" alt="Threads"></span>
+            <span class="socialName">Threads</span>
+          </a>
+          <a class="socialBtn" href="https://gall.dcinside.com/mgallery/board/lists/?id=gdpeaceminusone" target="_blank" rel="noreferrer">
+            <span class="socialIcon"><img src="/assets/icons/social/dcinside.svg" alt="디시인사이드"></span>
+            <span class="socialName">디시인사이드</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
   </main>
+
+  <!-- ✅ 원클릭 모달(플레이브 스타일) -->
+  <div id="ocModal" class="ocModal" aria-hidden="true">
+    <div id="ocOverlay" class="ocModalOverlay"></div>
+
+    <div class="ocModalPanel" role="dialog" aria-modal="true" aria-labelledby="ocModalTitle">
+      <div class="ocHero">
+        <img id="ocHeroImg" class="ocHeroImg" src="/assets/header/default.jpg" alt="">
+        <div class="ocHeroShade"></div>
+
+        <button id="ocClose" type="button" class="ocModalClose" aria-label="닫기">✕</button>
+
+        <div class="ocHeroText">
+          <h3 id="ocModalTitle" class="ocModalTitle">원클릭 스트리밍</h3>
+
+          <div id="ocActionNotice" class="ocActionNotice">
+            중복곡 허용 + 재생목록 전체 삭제 후 원클릭을 눌러 주세요!
+          </div>
+        </div>
+      </div>
+
+      <div class="ocModalBody">
+        <div class="ocDeviceBar">
+          <div id="ocDeviceLabel" class="ocDeviceLabel">PC</div>
+          <div id="ocDeviceHint" class="ocDeviceHint"></div>
+        </div>
+
+        <div id="ocModalGrid" class="ocModalGrid"></div>
+      </div>
+    </div>
+  </div>
 
   <footer class="footer">
     <div class="container footerInner">© 지드래곤 음원총공팀</div>
   </footer>
 
-  <script>
-    (function(){
-      const sel = document.getElementById("guideCategory");
-      const tabs = Array.from(document.querySelectorAll(".gLineTab"));
-      const indicator = document.querySelector(".gLineIndicator");
-
-      const sections = {
-        streaming: document.getElementById("sec-streaming"),
-        download: document.getElementById("sec-download"),
-        etc: document.getElementById("sec-etc"),
-        list: document.getElementById("sec-list"),
-      };
-
-      function moveIndicatorTo(el){
-        if (!indicator || !el) return;
-        const nav = el.parentElement;
-        const navRect = nav.getBoundingClientRect();
-        const rect = el.getBoundingClientRect();
-        const left = rect.left - navRect.left + nav.scrollLeft;
-        indicator.style.width = rect.width + "px";
-        indicator.style.transform = "translateX(" + left + "px)";
-      }
-
-      function show(key){
-        Object.keys(sections).forEach(k=>{
-          sections[k].hidden = (k !== key);
-        });
-
-        tabs.forEach(btn=>{
-          const active = btn.dataset.key === key;
-          btn.classList.toggle("isActive", active);
-          btn.setAttribute("aria-selected", active ? "true" : "false");
-          if (active) moveIndicatorTo(btn);
-        });
-
-        if (sel && sel.value !== key) sel.value = key;
-      }
-
-      tabs.forEach(btn=>{
-        btn.addEventListener("click", ()=> show(btn.dataset.key));
-      });
-
-      if (sel){
-        sel.addEventListener("change", ()=> show(sel.value));
-      }
-
-      // 초기 위치 + 리사이즈 대응
-      const initial = (sel && sel.value) ? sel.value : "streaming";
-      show(initial);
-
-      window.addEventListener("resize", ()=>{
-        const active = document.querySelector(".gLineTab.isActive");
-        if (active) moveIndicatorTo(active);
-      });
-
-      // 탭이 가로 스크롤되는 경우에도 인디케이터 위치 유지
-      const nav = document.querySelector(".guideTabsLine");
-      if (nav){
-        nav.addEventListener("scroll", ()=>{
-          const active = document.querySelector(".gLineTab.isActive");
-          if (active) moveIndicatorTo(active);
-        }, { passive: true });
-      }
-    })();
-  </script>
+  <script src="/data.js"></script>
+  <script src="/script.js"></script>
 </body>
 </html>
-
-
