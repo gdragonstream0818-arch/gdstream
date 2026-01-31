@@ -612,3 +612,26 @@ img{max-width:100%;display:block}
   font-weight: 800;
   color: rgba(0,0,0,.75);
 }
+
+/* ✅ 모바일에서만: 영문(브랜드) 위 / 한글(타이틀) 아래로 줄바꿈 */
+@media (max-width: 520px){
+  /* 기존: .gCardTop { display:flex; gap:12px; } */
+  .gCardTop{
+    display: block;
+  }
+
+  .gBrand{
+    display: block;
+    margin-bottom: 4px;
+    white-space: normal;     /* 혹시라도 줄바꿈 필요하면 허용 */
+  }
+
+  .gTitle{
+    display: block;
+    white-space: normal;     /* 한글도 줄바꿈 가능 */
+    overflow: visible;
+    text-overflow: clip;
+    line-height: 1.1;
+  }
+}
+
