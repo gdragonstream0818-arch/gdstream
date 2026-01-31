@@ -645,3 +645,13 @@ img{max-width:100%;display:block}
   }
 }
 
+/* ✅ 모바일에서도 로고 여백 없이 꽉 채우기 강제 */
+@media (max-width: 600px){
+  .gThumbImg{
+    padding: 0 !important;
+    object-fit: cover !important;
+    background: transparent !important;
+  }
+}
+
+
