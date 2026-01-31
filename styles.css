@@ -6,8 +6,8 @@
   --shadow:0 10px 30px rgba(0,0,0,.10);
   --radius:22px;
 
-  --melon:#23d160;
-  --melonHover:#16a34a;
+  /* 브랜드/포인트 */
+  --accent:#2563eb; /* 탭 파란 언더라인 */
 
   /* ✅ 페이지 폭 통일(히어로/헤더/본문) */
   --pageMax:980px; /* 기본 */
@@ -31,7 +31,7 @@ img{max-width:100%;display:block}
 .container{max-width:var(--pageMax);margin:0 auto;padding:0 16px}
 
 /* =========================
-   ✅ HEADER: 로고만 (단일 로고 / 햄버거 없음)
+   HEADER
    ========================= */
 .header{
   position:sticky;
@@ -50,35 +50,27 @@ img{max-width:100%;display:block}
   justify-content:space-between;
   padding:12px 18px;
 
-  /* ✅ 폭 통일 */
   max-width:var(--pageMax);
   margin:0 auto;
 }
-
-/* ✅ 로고만 중앙 정렬 */
-.headerBar--center{
-  justify-content:center;
-}
+.headerBar--center{justify-content:center;}
 
 .brand{display:inline-flex;align-items:center;min-width:0}
 .brandImg{
-  height:46px;           /* PC 로고 크기 */
+  height:46px;
   width:auto;
   max-width:260px;
   object-fit:contain;
 }
-
 @media (max-width:768px){
   .headerBar{height:60px;padding:10px 14px}
-  .brandImg{height:40px;max-width:220px}  /* 모바일 로고 크기 */
+  .brandImg{height:40px;max-width:220px}
 }
 
 /* =========================
-   ✅ HERO 배너 (클릭하면 유튜브)
+   HERO
    ========================= */
 .hero{width:100%;margin:0;padding:16px 0 12px}
-
-/* ✅ 폭 통일 */
 .heroInner{max-width:var(--pageMax);margin:0 auto;padding:0 16px}
 
 .heroLink{
@@ -111,7 +103,7 @@ img{max-width:100%;display:block}
 .heroLink:hover .playBadge{background:rgba(0,0,0,.70)}
 
 /* =========================
-   ✅ 섹션/타이틀
+   SECTION / TITLE
    ========================= */
 .section{margin:18px 0}
 .sectionTitle{
@@ -121,7 +113,7 @@ img{max-width:100%;display:block}
 }
 
 /* =========================
-   ✅ 바로가기 버튼 리스트
+   BUTTON LIST
    ========================= */
 .btnList{display:grid;grid-template-columns:1fr;gap:10px}
 .btn{
@@ -137,7 +129,7 @@ img{max-width:100%;display:block}
 .btnDesc{font-size:12px;color:var(--muted);margin-top:2px}
 
 /* =========================
-   ✅ 원클릭 섹션
+   ONECLICK
    ========================= */
 .oneclickPanel{
   border-radius:var(--radius);
@@ -146,20 +138,12 @@ img{max-width:100%;display:block}
   overflow:hidden;
   background:linear-gradient(135deg, rgba(190,205,235,.45), rgba(245,195,190,.35));
 }
-.oneclickHead{
-  padding:16px 16px 8px;
-}
+.oneclickHead{padding:16px 16px 8px;}
 .oneclickKicker{
-  font-size:12px;
-  font-weight:900;
-  color:rgba(0,0,0,.55);
+  font-size:12px;font-weight:900;color:rgba(0,0,0,.55);
   margin-bottom:6px;
 }
-.oneclickTitle{
-  font-size:20px;
-  font-weight:900;
-  margin:0;
-}
+.oneclickTitle{font-size:20px;font-weight:900;margin:0;}
 .oneclickSub{
   margin:8px 0 0;
   font-size:12px;
@@ -192,85 +176,54 @@ img{max-width:100%;display:block}
 }
 .ocBtn:hover{transform:translateY(-1px);background:rgba(255,255,255,.92);}
 
-/* ✅ 아이콘을 "둥근 사각형 이미지 타일"처럼 보이게 */
 .ocIcon{
-  width:38px;
-  height:38px;
+  width:38px;height:38px;
   border-radius:12px;
-  padding:0;
-  background:transparent;
   border:1px solid rgba(0,0,0,.08);
-  overflow:hidden;          /* 둥근 모서리로 이미지 잘라내기 */
+  overflow:hidden;
   display:flex;
   align-items:stretch;
   justify-content:stretch;
   flex:0 0 38px;
 }
-
 .ocIcon img{
   width:100%;
   height:100%;
+  object-fit:cover;
   display:block;
-  object-fit:cover;         /* 로고가 아니라 "이미지 타일"처럼 꽉 채움 */
-  border-radius:14px;
 }
 
 .ocText{min-width:0}
 .ocName{font-weight:900}
 .ocSub{font-size:12px;color:var(--muted);margin-top:2px}
-
-.ocArrow{
-  margin-left:auto;
-  font-weight:900;
-  opacity:.6;
-}
+.ocArrow{margin-left:auto;font-weight:900;opacity:.6}
 
 /* =========================
-   ✅ HOME: Guide CTA (bigger, nicer)
+   HOME: GUIDE CTA
    ========================= */
 .ctaGuide{
   display:flex;
   align-items:center;
   justify-content:space-between;
   gap:12px;
-
   padding:18px 18px;
   border-radius:20px;
-
   background:linear-gradient(135deg, rgba(190,205,235,.35), rgba(245,195,190,.30));
   border:1px solid rgba(0,0,0,.06);
   box-shadow:0 12px 28px rgba(0,0,0,.10);
-
   transition:transform .10s ease, box-shadow .15s ease, filter .15s ease;
 }
-
 .ctaGuide:hover{
   transform:translateY(-2px);
   box-shadow:0 16px 34px rgba(0,0,0,.14);
   filter:saturate(1.05);
 }
-
-.ctaGuideText{min-width:0}
-.ctaGuideTitle{
-  font-size:18px;
-  font-weight:1000;
-  letter-spacing:-0.02em;
-}
-.ctaGuideDesc{
-  margin-top:6px;
-  font-size:13px;
-  color:rgba(0,0,0,.60);
-  font-weight:700;
-}
-
-.ctaGuideArrow{
-  font-weight:1000;
-  font-size:18px;
-  opacity:.75;
-}
+.ctaGuideTitle{font-size:18px;font-weight:1000;letter-spacing:-0.02em;}
+.ctaGuideDesc{margin-top:6px;font-size:13px;color:rgba(0,0,0,.60);font-weight:700;}
+.ctaGuideArrow{font-weight:1000;font-size:18px;opacity:.75;}
 
 /* =========================
-   ✅ HOME: Social cards (NMIXX vibe)
+   HOME: SOCIAL
    ========================= */
 .socialCard{
   margin-top:12px;
@@ -280,7 +233,6 @@ img{max-width:100%;display:block}
   box-shadow:0 10px 28px rgba(0,0,0,.10);
   padding:16px;
 }
-
 .socialHead{
   display:flex;
   align-items:baseline;
@@ -288,46 +240,26 @@ img{max-width:100%;display:block}
   gap:10px;
   margin-bottom:12px;
 }
+.socialTitle{font-size:18px;font-weight:1000;letter-spacing:-0.02em;}
+.socialDesc{font-size:13px;color:rgba(0,0,0,.55);font-weight:700;}
 
-.socialTitle{
-  font-size:18px;
-  font-weight:1000;
-  letter-spacing:-0.02em;
-}
-
-.socialDesc{
-  font-size:13px;
-  color:rgba(0,0,0,.55);
-  font-weight:700;
-}
-
-.socialGrid{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-}
-
+.socialGrid{display:flex;flex-wrap:wrap;gap:10px;}
 .socialBtn{
   display:inline-flex;
   align-items:center;
   gap:10px;
-
   padding:10px 12px;
   border-radius:16px;
-
   background:#fff;
   border:1px solid rgba(0,0,0,.08);
   box-shadow:0 8px 18px rgba(0,0,0,.06);
-
   transition:transform .10s ease, background .12s ease, box-shadow .12s ease;
 }
-
 .socialBtn:hover{
   transform:translateY(-1px);
   box-shadow:0 10px 22px rgba(0,0,0,.10);
   background:rgba(255,255,255,.98);
 }
-
 .socialIcon{
   width:34px;height:34px;
   border-radius:12px;
@@ -337,39 +269,18 @@ img{max-width:100%;display:block}
   border:1px solid rgba(0,0,0,.08);
   background:rgba(0,0,0,.03);
 }
-
-/* ✅ 이미지 아이콘 사이즈 */
-.socialIcon img{
-  width:20px;
-  height:20px;
-  object-fit:contain;
-  display:block;
-}
-
-.socialName{
-  font-weight:900;
-  font-size:13px;
-  color:#111;
-}
+.socialIcon img{width:20px;height:20px;object-fit:contain;display:block;}
+.socialName{font-weight:900;font-size:13px;color:#111;}
 
 /* =========================
-   footer
+   FOOTER
    ========================= */
-.footer{
-  border-top:1px solid var(--line);
-  margin-top:28px;
-}
-.footerInner{
-  padding:18px 0;
-  color:var(--muted);
-  font-size:12px;
-}
+.footer{border-top:1px solid var(--line);margin-top:28px;}
+.footerInner{padding:18px 0;color:var(--muted);font-size:12px;}
 
 /* =========================
-   ✅ GUIDE page (Plave vibe)
+   A11Y
    ========================= */
-
-/* 접근성 숨김 라벨 */
 .srOnly{
   position:absolute !important;
   width:1px;height:1px;
@@ -378,35 +289,28 @@ img{max-width:100%;display:block}
   white-space:nowrap;border:0;
 }
 
+/* =========================
+   GUIDE PAGE
+   ========================= */
 .h1{
   font-size:28px;
   margin:18px 0 6px;
   letter-spacing:-0.02em;
 }
-
-.guideTop{
-  padding-top:8px;
-}
-
+.guideTop{padding-top:8px;}
 .guideLead{
-  margin:0 0 14px;
+  margin:0 0 12px;
   color:rgba(0,0,0,.55);
   font-size:14px;
 }
 
-.guideFilter{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  margin:8px 0 16px;
-}
-
+/* (선택) select 백업용 — 화면에서는 srOnly로 숨겨둔 상태 */
+.guideFilter{display:flex;align-items:center;gap:10px;margin:8px 0 16px;}
 .guideSelect{
   width:100%;
   max-width:260px;
   appearance:none;
   -webkit-appearance:none;
-
   padding:12px 14px;
   border-radius:999px;
   border:1px solid rgba(0,0,0,.08);
@@ -414,7 +318,6 @@ img{max-width:100%;display:block}
   box-shadow:0 10px 25px rgba(0,0,0,.06);
   font-weight:900;
   cursor:pointer;
-
   background-image:
     linear-gradient(45deg, transparent 50%, rgba(0,0,0,.55) 50%),
     linear-gradient(135deg, rgba(0,0,0,.55) 50%, transparent 50%);
@@ -425,7 +328,54 @@ img{max-width:100%;display:block}
   background-repeat:no-repeat;
 }
 
+/* ✅ 상단 라인 탭 */
+.guideTabsLine{
+  position:relative;
+  display:flex;
+  gap:22px;
+  margin-top:14px;
+  padding:0 2px;
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+  border-bottom:1px solid rgba(17,17,17,.10);
+}
+.guideTabsLine::-webkit-scrollbar{display:none;}
+
+.gLineTab{
+  appearance:none;
+  border:0;
+  background:transparent;
+  padding:12px 6px 14px;
+  font-weight:900;
+  font-size:15px;
+  letter-spacing:-0.2px;
+  color:rgba(17,17,17,.55);
+  cursor:pointer;
+  white-space:nowrap;
+}
+.gLineTab.isActive{color:rgba(17,17,17,.92);}
+.gLineTab:focus-visible{
+  outline:3px solid rgba(0,0,0,.18);
+  outline-offset:3px;
+  border-radius:10px;
+}
+
+.gLineIndicator{
+  position:absolute;
+  left:0;
+  bottom:-1px;
+  height:3px;
+  width:0px;
+  background:var(--accent);
+  border-radius:999px;
+  transform:translateX(0);
+  transition:transform .22s ease, width .22s ease;
+}
+
+/* ✅ 패널 배경(전체 틴트) */
 .guidePanel{
+  margin-top:12px;
   border-radius:var(--radius);
   overflow:hidden;
   border:1px solid rgba(0,0,0,.06);
@@ -434,169 +384,223 @@ img{max-width:100%;display:block}
   padding:14px;
 }
 
-.guideGrid{
-  display:grid;
-  grid-template-columns:repeat(4, 1fr);
-  gap:12px;
+/* ✅ 카드 리스트(가로 카드) */
+.guideGrid,
+.guideGrid--list{
+  display:flex;
+  flex-direction:column;
+  gap:16px;
 }
 
-@media (max-width:980px){
-  .guideGrid{grid-template-columns:repeat(3, 1fr)}
-}
-@media (max-width:768px){
-  .guideGrid{grid-template-columns:repeat(2, 1fr)}
-}
-
+/* ✅ 가로 카드 */
 .gCard{
   position:relative;
-  display:block;
-  border-radius:18px;
+  display:flex;
+  align-items:center;
+  gap:16px;
+  width:100%;
+
+  padding:16px 18px;
+  border-radius:24px;
   overflow:hidden;
 
-  background:rgba(255,255,255,.78);
-  border:1px solid rgba(0,0,0,.06);
-  box-shadow:0 10px 25px rgba(0,0,0,.08);
-
-  padding:16px;
-  min-height:148px;
+  background: var(--card-fill, #fff);
+  border:1px solid rgba(0,0,0,.08);
+  box-shadow:0 12px 28px rgba(0,0,0,.07);
 
   transition:transform .10s ease, box-shadow .15s ease;
 }
-
 .gCard:hover{
   transform:translateY(-2px);
-  box-shadow:0 14px 30px rgba(0,0,0,.12);
+  box-shadow:0 16px 34px rgba(0,0,0,.10);
 }
 
-.gCard::after{
+/* 카드에 은은한 빛 레이어(과하지 않게) */
+.gCard::before{
   content:"";
   position:absolute;
-  inset:-40px -40px auto auto;
-  width:140px;
-  height:140px;
-  border-radius:999px;
-  background:rgba(255,255,255,.35);
-  transform:rotate(15deg);
+  inset:-1px;
+  pointer-events:none;
+  background:
+    radial-gradient(900px 240px at 12% 0%, rgba(255,255,255,.55), rgba(255,255,255,0) 58%),
+    radial-gradient(800px 260px at 100% 35%, rgba(255,255,255,.35), rgba(255,255,255,0) 55%);
+  opacity:.85;
 }
 
-.gCardTop{
+/* 썸네일(로고) */
+.gThumb{
+  width:92px;height:92px;
+  flex:0 0 92px;
+  border-radius:22px;
+  overflow:hidden;
+  background:rgba(255,255,255,.70);
+  border:1px solid rgba(0,0,0,.10);
+  box-shadow:0 8px 18px rgba(0,0,0,.06);
+  display:grid;
+  place-items:center;
   position:relative;
   z-index:1;
 }
+.gThumbImg{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  padding:14px;
+  display:block;
+  background:#fff;
+}
 
+/* 이미지 없는 항목 */
+.gThumb--empty{
+  background:
+    linear-gradient(135deg, rgba(0,0,0,.04), rgba(0,0,0,.02));
+  border:1px dashed rgba(0,0,0,.18);
+  box-shadow:none;
+}
+
+/* 텍스트 */
+.gCardText{
+  flex:1;
+  min-width:0;
+  position:relative;
+  z-index:1;
+}
+.gCardTop{
+  display:flex;
+  align-items:baseline;
+  gap:12px;
+}
 .gBrand{
-  font-size:13px;
+  font-size:18px;
   font-weight:900;
-  opacity:.9;
+  letter-spacing:-0.2px;
+  color:rgba(17,17,17,.78);
+  white-space:nowrap;
 }
-
 .gTitle{
-  margin-top:8px;
-  font-size:26px;
+  font-size:28px;
   font-weight:1000;
-  letter-spacing:-0.03em;
+  letter-spacing:-0.6px;
+  color:rgba(17,17,17,.96);
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
 }
-
 .gSub{
   margin-top:8px;
   font-size:16px;
   font-weight:900;
-  opacity:.95;
-  letter-spacing:-0.02em;
+  color:rgba(17,17,17,.62);
 }
 
-.gMeta{
-  position:absolute;
-  left:14px;
-  bottom:12px;
-  font-size:12px;
-  color:rgba(0,0,0,.70);
-  font-weight:800;
+/* 화살표 */
+.gArrow{
+  margin-left:auto;
+  font-size:22px;
+  font-weight:1000;
+  color:rgba(17,17,17,.35);
+  position:relative;
   z-index:1;
 }
+.gCard:hover .gArrow{color:rgba(17,17,17,.60);}
 
-/* 개별 카드 테마 */
-.gCard--melon{background:linear-gradient(135deg, rgba(34,197,94,.25), rgba(255,255,255,.85));}
-.gCard--genie{background:linear-gradient(135deg, rgba(59,130,246,.20), rgba(255,255,255,.85));}
-.gCard--bugs{background:linear-gradient(135deg, rgba(249,115,22,.20), rgba(255,255,255,.85));}
-.gCard--flo{background:linear-gradient(135deg, rgba(99,102,241,.22), rgba(255,255,255,.85));}
-.gCard--vibe{background:linear-gradient(135deg, rgba(168,85,247,.22), rgba(255,255,255,.85));}
-.gCard--spotify{background:linear-gradient(135deg, rgba(34,197,94,.20), rgba(255,255,255,.85));}
-.gCard--apple{background:linear-gradient(135deg, rgba(244,63,94,.18), rgba(255,255,255,.85));}
-.gCard--sh{background:linear-gradient(135deg, rgba(14,165,233,.18), rgba(255,255,255,.85));}
-.gCard--etc{background:linear-gradient(135deg, rgba(148,163,184,.28), rgba(255,255,255,.85));}
+/* 모바일 최적화 */
+@media (max-width:420px){
+  .gThumb{width:78px;height:78px;flex-basis:78px;border-radius:18px;}
+  .gThumbImg{padding:12px;}
+  .gTitle{font-size:24px;}
+  .gBrand{font-size:16px;}
+  .gSub{font-size:14px;}
+}
 
-/* 스트리밍리스트 박스 */
+/* ✅ 카드 배경: 플랫폼별 틴트 */
+.gCard--melon{
+  --card-fill: linear-gradient(135deg,
+    rgba(34,197,94,.22) 0%,
+    rgba(34,197,94,.08) 38%,
+    rgba(255,255,255,.96) 82%,
+    rgba(255,255,255,1) 100%);
+}
+.gCard--genie{
+  --card-fill: linear-gradient(135deg,
+    rgba(59,130,246,.22) 0%,
+    rgba(59,130,246,.08) 38%,
+    rgba(255,255,255,.96) 82%,
+    rgba(255,255,255,1) 100%);
+}
+.gCard--bugs{
+  --card-fill: linear-gradient(135deg,
+    rgba(249,115,22,.22) 0%,
+    rgba(249,115,22,.08) 38%,
+    rgba(255,255,255,.96) 82%,
+    rgba(255,255,255,1) 100%);
+}
+.gCard--flo{
+  --card-fill: linear-gradient(135deg,
+    rgba(99,102,241,.24) 0%,
+    rgba(99,102,241,.09) 38%,
+    rgba(255,255,255,.96) 82%,
+    rgba(255,255,255,1) 100%);
+}
+.gCard--vibe{
+  --card-fill: linear-gradient(135deg,
+    rgba(168,85,247,.24) 0%,
+    rgba(168,85,247,.09) 38%,
+    rgba(255,255,255,.96) 82%,
+    rgba(255,255,255,1) 100%);
+}
+.gCard--spotify{
+  --card-fill: linear-gradient(135deg,
+    rgba(34,197,94,.18) 0%,
+    rgba(34,197,94,.07) 38%,
+    rgba(255,255,255,.96) 82%,
+    rgba(255,255,255,1) 100%);
+}
+
+/* =========================
+   GUIDE: LIST IMAGE
+   ========================= */
 .listBox{
   border-radius:18px;
-  background:rgba(255,255,255,.78);
-  border:1px solid rgba(0,0,0,.06);
-  box-shadow:0 10px 25px rgba(0,0,0,.08);
-  padding:16px;
+  background:transparent;
+  border:none;
+  box-shadow:none;
+  padding:0;
+  overflow:hidden;
 }
-
-.listTitle{
-  margin:0;
-  font-size:20px;
-  font-weight:1000;
-  letter-spacing:-0.02em;
-}
-
-.listDesc{
-  margin:8px 0 14px;
-  color:rgba(0,0,0,.55);
-  font-size:13px;
-}
-
 .listImg{
   width:100%;
-  border-radius:14px;
-  border:1px solid rgba(0,0,0,.06);
-  box-shadow:0 12px 25px rgba(0,0,0,.10);
-}
-
-/* =========================================================
-   ✅ 추가 수정들(깔끔하게 필요한 것만)
-   ========================================================= */
-
-/* ✅ GUIDE > 스트리밍리스트: 이중 흰색 프레임 제거 */
-#sec-list .listBox{
-  padding:0 !important;
-  background:transparent !important;
-  border:none !important;
-  box-shadow:none !important;
-  border-radius:18px !important;
-  overflow:hidden !important;
-}
-#sec-list .listImg{
-  border:none !important;
-  box-shadow:none !important;
-  border-radius:18px !important;
   display:block;
+  border-radius:18px;
+  border:none;
+  box-shadow:none;
 }
 
-/* ✅ 모달 안내문: 박스 제거 */
+/* =========================
+   MODAL / ETC (네가 쓰던 유지)
+   ========================= */
+
+/* 모달 안내문: 박스 제거 */
 #ocActionNotice.ocActionNotice{
   margin-top: 10px;
-  padding: 0 !important;
-  background: transparent !important;
-  border: none !important;
-  border-radius: 0 !important;
-  box-shadow: none !important;
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
-
-  color: #fff !important; 
-  font-weight: 900 !important;
-  font-size: 13px !important;
-  line-height: 1.35 !important;
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  color: #fff;
+  font-weight: 900;
+  font-size: 13px;
+  line-height: 1.35;
   text-shadow: 0 6px 18px rgba(0,0,0,.45);
 }
 
-/* ✅ 원클릭 버튼이 1개일 때(스크립트에서 is-wide 붙일 예정) 가로 꽉 채우기 */
+/* 원클릭 버튼이 1개일 때(스크립트에서 is-wide 붙일 예정) */
 .ocModalBtn.is-wide{ grid-column: 1 / -1; }
 
-/* ✅ 모달: 미지원/빈상태 안내도 전체 폭으로 */
+/* 모달: 미지원/빈상태 안내 */
 .ocModalEmpty{
   grid-column: 1 / -1;
   padding: 14px;
@@ -607,111 +611,4 @@ img{max-width:100%;display:block}
   line-height: 1.5;
   font-weight: 800;
   color: rgba(0,0,0,.75);
-}
-
-/* ====== EXO-style row cards override ====== */
-
-/* 1) 카드 컨테이너: 2열 그리드 강제 해제 → 세로 리스트 */
-.guideGrid,
-.guideGrid--list {
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 16px !important;
-}
-
-/* 2) 카드 자체: 가로로 긴 형태 */
-.gCard {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: space-between !important;
-  gap: 16px !important;
-
-  width: 100% !important;
-  padding: 16px 18px !important;
-  border-radius: 24px !important;
-
-  /* 혹시 예전 카드 배경/그라데이션 남아있으면 지움 */
-  background: #fff !important;
-  background-image: none !important;
-
-  border: 1px solid rgba(0,0,0,.08) !important;
-  box-shadow: 0 10px 28px rgba(0,0,0,.06) !important;
-
-  text-decoration: none !important;
-  color: #111 !important;
-}
-
-/* 3) 왼쪽 썸네일(로고) 박스: 엑소처럼 딱 고정 크기 + 둥근 마감 */
-.gThumb {
-  width: 92px !important;
-  height: 92px !important;
-  flex: 0 0 92px !important;
-
-  border-radius: 22px !important;   /* ← ‘끝부분 둥글게’ 핵심 */
-  overflow: hidden !important;       /* ← 이미지가 둥글게 잘리게 */
-  background: #f3f4f6 !important;
-
-  border: 1px solid rgba(0,0,0,.06) !important;
-  display: grid !important;
-  place-items: center !important;
-}
-
-/* 4) 이미지 자체도 둥글게 + 꽉 채우기(또는 로고는 contain 유지) */
-.gThumbImg {
-  width: 100% !important;
-  height: 100% !important;
-
-  /* 로고면 contain 추천(찌그러짐 방지) */
-  object-fit: contain !important;
-
-  /* padding을 주면 로고가 예쁘게 들어감 */
-  padding: 14px !important;
-
-  /* 혹시 이미지가 네모로 보여도, 컨테이너가 클리핑함 */
-  border-radius: 22px !important;
-  display: block !important;
-  background: #fff !important;
-}
-
-/* 5) 텍스트 영역: 오른쪽으로 배치 */
-.gCardText {
-  flex: 1 !important;
-  min-width: 0 !important;
-}
-
-/* 브랜드/타이틀 크기: 엑소 느낌으로 */
-.gBrand {
-  font-size: 18px !important;
-  font-weight: 900 !important;
-  letter-spacing: -0.2px !important;
-}
-.gTitle {
-  font-size: 28px !important;
-  font-weight: 900 !important;
-  letter-spacing: -0.6px !important;
-  white-space: nowrap !important;
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
-}
-.gSub {
-  margin-top: 8px !important;
-  font-size: 16px !important;
-  font-weight: 800 !important;
-  color: rgba(17,17,17,.68) !important;
-}
-
-/* 6) 화살표(오른쪽 끝) */
-.gArrow {
-  font-size: 22px !important;
-  font-weight: 900 !important;
-  color: rgba(17,17,17,.45) !important;
-}
-
-/* 모바일에서 살짝 줄이기 */
-@media (max-width: 420px){
-  .gThumb { width: 78px !important; height: 78px !important; flex-basis: 78px !important; border-radius: 18px !important; }
-  .gThumbImg { border-radius: 18px !important; padding: 12px !important; }
-  .gTitle { font-size: 24px !important; }
-  .gBrand { font-size: 16px !important; }
-  .gSub { font-size: 14px !important; }
 }
