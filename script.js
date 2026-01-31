@@ -121,7 +121,7 @@
       if (buttons.length === 1) {
         const onlyBtn = gridEl.querySelector(".ocModalBtn");
         if (onlyBtn) onlyBtn.classList.add("is-wide");
-        deviceHintEl.textContent = "1개의 버튼을 클릭해 주세요!";
+        deviceHintEl.textContent = "1개의 버튼을 클릭해주세요!";
       } else {
         deviceHintEl.textContent = `${buttons.length}개의 버튼을 순서대로 모두 클릭해주세요!`;
       }
