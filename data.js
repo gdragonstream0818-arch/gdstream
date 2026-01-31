@@ -37,9 +37,9 @@ window.SITE_DATA = {
       icon: "",
       // ✅ 각 기기마다 링크 1개씩(나중에 url만 채우면 됨)
       oneclick: {
-        android: [{ label: "원클릭", url: "" }],
-        ios:     [{ label: "원클릭", url: "" }],
-        web:     [{ label: "원클릭", url: "" }]
+        android: [{ label: "원클릭", url: "https://tinyurl.com/yswaxwuu" }],
+        ios:     [{ label: "원클릭", url: "https://tinyurl.com/5c7mrjhb" }],
+        web:     [{ label: "원클릭", url: "https://tinyurl.com/3aurpxk7" }]
       }
     },
 
@@ -49,9 +49,9 @@ window.SITE_DATA = {
       icon: "",
       // ✅ 통합 링크 1개(어떤 기기든 동일)
       oneclick: {
-        android: [{ label: "원클릭", url: "" }],
-        ios:     [{ label: "원클릭", url: "" }],
-        web:     [{ label: "원클릭", url: "" }]
+        android: [{ label: "원클릭", url: "https://tinyurl.com/5h82z28u" }],
+        ios:     [{ label: "원클릭", url: "https://tinyurl.com/5h82z28u" }],
+        web:     [{ label: "원클릭", url: "https://tinyurl.com/hbrjccve" }]
       }
     },
 
@@ -61,9 +61,9 @@ window.SITE_DATA = {
       icon: "",
       // ✅ 통합 링크 1개(어떤 기기든 동일)
       oneclick: {
-        android: [{ label: "원클릭", url: "" }],
-        ios:     [{ label: "원클릭", url: "" }],
-        web:     [{ label: "원클릭", url: "" }]
+        android: [{ label: "원클릭", url: "https://tinyurl.com/4ecxw6wy" }],
+        ios:     [{ label: "원클릭", url: "https://tinyurl.com/4ecxw6wy" }],
+        web:     [{ label: "원클릭", url: "https://tinyurl.com/4ecxw6wy" }]
       }
     },
 
@@ -74,10 +74,9 @@ window.SITE_DATA = {
       // ✅ PC 미지원 / iOS & Android는 1~4번까지
       oneclick: {
         android: [
-          { label: "원클릭1", url: "" },
-          { label: "원클릭2", url: "" },
-          { label: "원클릭3", url: "" },
-          { label: "원클릭4", url: "" }
+          { label: "원클릭1", url: "https://tinyurl.com/2s7mz7jv" },
+          { label: "원클릭2", url: "https://tinyurl.com/46z9na2d" },
+          { label: "원클릭3", url: "https://tinyurl.com/bdz6wv42" }
         ],
         ios: [
           { label: "원클릭1", url: "" },
