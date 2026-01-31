@@ -79,10 +79,9 @@ window.SITE_DATA = {
           { label: "원클릭3", url: "https://tinyurl.com/bdz6wv42" }
         ],
         ios: [
-          { label: "원클릭1", url: "" },
-          { label: "원클릭2", url: "" },
-          { label: "원클릭3", url: "" },
-          { label: "원클릭4", url: "" }
+          { label: "원클릭1", url: "https://tinyurl.com/2s7mz7jv" },
+          { label: "원클릭2", url: "https://tinyurl.com/46z9na2d" },
+          { label: "원클릭3", url: "https://tinyurl.com/bdz6wv42" }
         ],
         web: [] // ✅ 빈 배열이면 "PC 미지원" 안내가 뜨게 script.js에서 처리
       },
