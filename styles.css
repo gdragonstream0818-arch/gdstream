@@ -566,6 +566,24 @@ img{max-width:100%;display:block}
     rgba(255,255,255,.96) 82%,
     rgba(255,255,255,1) 100%);
 }
+/* ✅ Apple Music (Red tint) */
+.gCard--applemusic{
+  --card-fill: linear-gradient(135deg,
+    rgba(239,68,68,.22) 0%,   /* red-500 느낌 */
+    rgba(239,68,68,.08) 38%,
+    rgba(255,255,255,.96) 82%,
+    rgba(255,255,255,1) 100%);
+}
+
+/* ✅ SoundAssist (Purple tint) */
+.gCard--soundassist{
+  --card-fill: linear-gradient(135deg,
+    rgba(168,85,247,.24) 0%,  /* violet-500 느낌 */
+    rgba(168,85,247,.09) 38%,
+    rgba(255,255,255,.96) 82%,
+    rgba(255,255,255,1) 100%);
+}
+
 
 /* =========================
    GUIDE: LIST IMAGE
