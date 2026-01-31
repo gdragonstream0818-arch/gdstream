@@ -433,21 +433,31 @@ img{max-width:100%;display:block}
   flex:0 0 92px;
   border-radius:22px;
   overflow:hidden;
-  background:rgba(255,255,255,.70);
-  border:1px solid rgba(0,0,0,.10);
-  box-shadow:0 8px 18px rgba(0,0,0,.06);
-  display:grid;
-  place-items:center;
+
+  /* 타일 느낌만 남기고, 내부 여백은 없게 */
+  background: rgba(255,255,255,.55);
+  border: 1px solid rgba(0,0,0,.10);
+  box-shadow: 0 8px 18px rgba(0,0,0,.06);
+
+  display:block;
   position:relative;
   z-index:1;
 }
+
 .gThumbImg{
   width:100%;
   height:100%;
-  object-fit:contain;
-  padding:14px;
+
+  /* ✅ 여백 제거 */
+  padding:0;
+
+  /* ✅ 꽉 채우기 (공백 없이) */
+  object-fit: cover;
+
+  /* ✅ 배경도 제거(흰 박스 느낌 없애기) */
+  background: transparent;
+
   display:block;
-  background:#fff;
 }
 
 /* 이미지 없는 항목 */
