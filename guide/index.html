@@ -16,25 +16,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>가이드 | 지드래곤 음원총공팀</title>
   <link rel="stylesheet" href="/styles.css" />
-</head>
-
-<body>
-
-  <!-- HEADER -->
-  <header class="header header--simple">
-    <div class="headerBar headerBar--center">
-      <a class="brand" href="/" aria-label="지드래곤 음원총공팀">
-        <img class="brandImg" src="/assets/header/logo.svg" alt="지드래곤 음원총공팀 로고">
-      </a>
-    </div>
-  </header>
-
-  <main class="container">
-
-    <!-- TOP -->
-    <section class="guideTop">
-      <h1 class="h1">가이드</h1>
-      <p class="guideLead">궁금한 가이드를 찾아보세요!</p>
 
   <style>
     .guideTop {
@@ -105,6 +86,62 @@
   </header>
 
   <main class="container">
+
+    <!-- TOP -->
+    <section class="guideTop">
+      <h1 class="h1">가이드</h1>
+      <p class="guideLead">궁금한 가이드를 찾아보세요!</p>
+
+      <nav class="guideTabsLine" role="tablist" aria-label="가이드 카테고리">
+        <button type="button"
+                class="gLineTab isActive"
+                role="tab"
+                aria-selected="true"
+                aria-controls="sec-streaming"
+                data-key="streaming">
+          스트리밍 가이드
+        </button>
+
+        <button type="button"
+                class="gLineTab"
+                role="tab"
+                aria-selected="false"
+                aria-controls="sec-download"
+                data-key="download">
+          다운로드 가이드
+        </button>
+
+        <button type="button"
+                class="gLineTab"
+                role="tab"
+                aria-selected="false"
+                aria-controls="sec-etc"
+                data-key="etc">
+          기타
+        </button>
+
+        <button type="button"
+                class="gLineTab"
+                role="tab"
+                aria-selected="false"
+                aria-controls="sec-list"
+                data-key="list">
+          스트리밍리스트
+        </button>
+
+        <span class="gLineIndicator" aria-hidden="true"></span>
+      </nav>
+
+      <div class="guideFilter srOnly">
+        <label for="guideCategory">가이드 카테고리</label>
+        <select id="guideCategory" class="guideSelect">
+          <option value="streaming" selected>스트리밍 가이드</option>
+          <option value="download">다운로드 가이드</option>
+          <option value="etc">기타</option>
+          <option value="list">스트리밍리스트</option>
+        </select>
+      </div>
+    </section>
 
     <!-- PANEL -->
     <section class="guidePanel">
@@ -313,8 +350,9 @@
   </footer>
 
   <script>
-    (function(){
+    (function () {
       const sel = document.getElementById("guideCategory");
+      const nav = document.querySelector(".guideTabsLine");
       const tabs = Array.from(document.querySelectorAll(".gLineTab"));
       const indicator = document.querySelector(".gLineIndicator");
 
@@ -325,56 +363,97 @@
         list: document.getElementById("sec-list"),
       };
 
-      function moveIndicatorTo(el){
-        if (!indicator || !el) return;
-        const nav = el.parentElement;
+      if (!nav || !tabs.length || !indicator) return;
+
+      function moveIndicatorTo(el) {
+        if (!el) return;
+
         const navRect = nav.getBoundingClientRect();
         const rect = el.getBoundingClientRect();
         const left = rect.left - navRect.left + nav.scrollLeft;
+
         indicator.style.width = rect.width + "px";
         indicator.style.transform = "translateX(" + left + "px)";
       }
 
-      function show(key){
-        Object.keys(sections).forEach(k=>{
+      function scrollTabIntoView(el) {
+        if (!el) return;
+
+        const navWidth = nav.clientWidth;
+        const tabLeft = el.offsetLeft;
+        const tabWidth = el.offsetWidth;
+
+        const target = tabLeft - (navWidth / 2) + (tabWidth / 2);
+        const maxScroll = nav.scrollWidth - navWidth;
+        const nextLeft = Math.max(0, Math.min(target, maxScroll));
+
+        nav.scrollTo({
+          left: nextLeft,
+          behavior: "smooth"
+        });
+      }
+
+      function show(key, shouldScroll = true) {
+        Object.keys(sections).forEach(k => {
           sections[k].hidden = (k !== key);
         });
 
-        tabs.forEach(btn=>{
+        let activeBtn = null;
+
+        tabs.forEach(btn => {
           const active = btn.dataset.key === key;
           btn.classList.toggle("isActive", active);
           btn.setAttribute("aria-selected", active ? "true" : "false");
-          if (active) moveIndicatorTo(btn);
+          if (active) activeBtn = btn;
         });
 
-        if (sel && sel.value !== key) sel.value = key;
+        if (sel && sel.value !== key) {
+          sel.value = key;
+        }
+
+        if (activeBtn) {
+          moveIndicatorTo(activeBtn);
+          if (shouldScroll) scrollTabIntoView(activeBtn);
+        }
       }
 
-      tabs.forEach(btn=>{
-        btn.addEventListener("click", ()=> show(btn.dataset.key));
+      tabs.forEach(btn => {
+        btn.addEventListener("click", () => {
+          show(btn.dataset.key, true);
+        });
       });
 
-      if (sel){
-        sel.addEventListener("change", ()=> show(sel.value));
+      if (sel) {
+        sel.addEventListener("change", () => {
+          show(sel.value, true);
+        });
       }
 
-      // 초기 위치 + 리사이즈 대응
-      const initial = (sel && sel.value) ? sel.value : "streaming";
-      show(initial);
-
-      window.addEventListener("resize", ()=>{
+      let rafId = null;
+      nav.addEventListener("scroll", () => {
         const active = document.querySelector(".gLineTab.isActive");
-        if (active) moveIndicatorTo(active);
+        if (!active) return;
+
+        if (rafId) cancelAnimationFrame(rafId);
+        rafId = requestAnimationFrame(() => {
+          moveIndicatorTo(active);
+        });
+      }, { passive: true });
+
+      window.addEventListener("resize", () => {
+        const active = document.querySelector(".gLineTab.isActive");
+        if (!active) return;
+        moveIndicatorTo(active);
       });
 
-      // 탭이 가로 스크롤되는 경우에도 인디케이터 위치 유지
-      const nav = document.querySelector(".guideTabsLine");
-      if (nav){
-        nav.addEventListener("scroll", ()=>{
-          const active = document.querySelector(".gLineTab.isActive");
-          if (active) moveIndicatorTo(active);
-        }, { passive: true });
-      }
+      window.addEventListener("load", () => {
+        const active = document.querySelector(".gLineTab.isActive");
+        if (!active) return;
+        moveIndicatorTo(active);
+      });
+
+      const initial = (sel && sel.value) ? sel.value : "streaming";
+      show(initial, false);
     })();
   </script>
 </body>
