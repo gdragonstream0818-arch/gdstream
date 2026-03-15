@@ -36,60 +36,75 @@
       <h1 class="h1">가이드</h1>
       <p class="guideLead">궁금한 가이드를 찾아보세요!</p>
 
-      <!-- ✅ 라인 탭 (예시 이미지처럼: 텍스트 + 하단 라인 + 파란 인디케이터) -->
-      <nav class="guideTabsLine" role="tablist" aria-label="가이드 카테고리">
-        <button type="button"
-                class="gLineTab isActive"
-                role="tab"
-                aria-selected="true"
-                aria-controls="sec-streaming"
-                data-key="streaming">
-          스트리밍 가이드
-        </button>
+  <style>
+    .guideTop {
+      overflow: hidden;
+    }
 
-        <button type="button"
-                class="gLineTab"
-                role="tab"
-                aria-selected="false"
-                aria-controls="sec-download"
-                data-key="download">
-          다운로드 가이드
-        </button>
+    .guideTabsLine {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 0;
+      overflow-x: auto;
+      overflow-y: hidden;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding: 0 16px;
+      border-bottom: 1px solid #e5e7eb;
+      scroll-behavior: smooth;
+    }
 
-        <button type="button"
-                class="gLineTab"
-                role="tab"
-                aria-selected="false"
-                aria-controls="sec-etc"
-                data-key="etc">
-          기타
-        </button>
+    .guideTabsLine::-webkit-scrollbar {
+      display: none;
+    }
 
-        <button type="button"
-                class="gLineTab"
-                role="tab"
-                aria-selected="false"
-                aria-controls="sec-list"
-                data-key="list">
-          스트리밍리스트
-        </button>
+    .guideTabsLine::before,
+    .guideTabsLine::after {
+      content: "";
+      flex: 0 0 4px;
+    }
 
-        <!-- 인디케이터(파란 언더라인). CSS에서 예쁘게 만들고,
-             JS가 위치/폭을 맞춰줄거야 -->
-        <span class="gLineIndicator" aria-hidden="true"></span>
-      </nav>
+    .gLineTab {
+      position: relative;
+      flex: 0 0 auto;
+      border: 0;
+      background: transparent;
+      padding: 14px 18px 16px;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: color 0.25s ease;
+    }
 
-      <!-- ✅ 접근성/백업용 select (화면에서는 숨김 처리할 예정) -->
-      <div class="guideFilter srOnly">
-        <label for="guideCategory">가이드 카테고리</label>
-        <select id="guideCategory" class="guideSelect">
-          <option value="streaming" selected>스트리밍 가이드</option>
-          <option value="download">다운로드 가이드</option>
-          <option value="etc">기타</option>
-          <option value="list">스트리밍리스트</option>
-        </select>
-      </div>
-    </section>
+    .gLineIndicator {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 3px;
+      border-radius: 999px;
+      background: #2563eb;
+      transform: translateX(0);
+      transition: transform 0.3s ease, width 0.3s ease;
+      will-change: transform, width;
+      pointer-events: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="header header--simple">
+    <div class="headerBar headerBar--center">
+      <a class="brand" href="/" aria-label="지드래곤 음원총공팀">
+        <img class="brandImg" src="/assets/header/logo.svg" alt="지드래곤 음원총공팀 로고">
+      </a>
+    </div>
+  </header>
+
+  <main class="container">
 
     <!-- PANEL -->
     <section class="guidePanel">
