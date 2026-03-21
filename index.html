@@ -159,6 +159,123 @@
 
     /* ✅ ✅ 여기 추가: 모달 이미지 위 검정막(Shade) 제거 */
     .ocHeroShade{ display:none !important; }
+
+    /* ✅ 아이디 수집 바로가기 버튼 */
+    .ctaGuide--collect{
+      margin-top:12px;
+    }
+
+    /* ✅ 아이디 수집 모달 */
+    .collectModal { display:none; position:fixed; inset:0; z-index:10000; }
+    .collectModal.is-open { display:block; }
+    .collectModalOverlay{
+      position:absolute; inset:0;
+      background: rgba(0,0,0,.62);
+    }
+
+    .collectModalPanel{
+      position:absolute;
+      left:50%; top:50%;
+      transform:translate(-50%, -50%);
+      width:min(560px, calc(100vw - 28px));
+      background:#fff;
+      border-radius:18px;
+      overflow:hidden;
+      box-shadow:0 22px 70px rgba(0,0,0,.45);
+    }
+
+    .collectHero{
+      position:relative;
+      height:210px;
+      background:#111;
+    }
+
+    .collectHeroImg{
+      position:absolute; inset:0;
+      width:100%; height:100%;
+      object-fit:cover;
+      transform:scale(1.02);
+    }
+
+    .collectModalClose{
+      position:absolute; right:14px; top:12px;
+      width:40px; height:40px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.35);
+      background:rgba(0,0,0,.35);
+      color:#fff;
+      font-size:18px;
+      cursor:pointer;
+      display:flex; align-items:center; justify-content:center;
+      backdrop-filter:blur(6px);
+    }
+
+    .collectModalClose:hover{
+      background:rgba(0,0,0,.5);
+    }
+
+    .collectHeroText{
+      position:absolute;
+      left:18px; right:18px; bottom:16px;
+      color:#fff;
+    }
+
+    .collectModalTitle{
+      margin:0;
+      font-size:26px;
+      line-height:1.1;
+      letter-spacing:-.02em;
+      text-shadow:0 6px 22px rgba(0,0,0,.55);
+    }
+
+    .collectNotice{
+      margin-top:12px;
+      padding:10px 12px;
+      border-radius:14px;
+      background:rgba(0,0,0,.38);
+      border:1px solid rgba(255,255,255,.16);
+      font-size:13px;
+      font-weight:700;
+      line-height:1.35;
+      backdrop-filter:blur(8px);
+    }
+
+    .collectModalBody{
+      padding:18px;
+      background:#fff;
+    }
+
+    .collectModalGrid{
+      display:grid;
+      gap:12px;
+      grid-template-columns:repeat(2, 1fr);
+    }
+
+    @media (max-width: 420px){
+      .collectModalGrid{
+        grid-template-columns:1fr;
+      }
+    }
+
+    .collectModalBtn{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:16px 14px;
+      border-radius:16px;
+      text-decoration:none;
+      background:#f3f4f6;
+      color:#111;
+      border:1px solid rgba(0,0,0,.06);
+      font-weight:800;
+      letter-spacing:-.01em;
+      box-shadow:0 10px 22px rgba(0,0,0,.06);
+    }
+
+    .collectModalBtn:hover{
+      background:#eceff3;
+    }
   </style>
 </head>
 <body>
@@ -240,10 +357,19 @@
     <!-- ✅ 바로가기 -->
     <section class="section">
       <div class="sectionTitle">바로가기</div>
+
       <a class="ctaGuide" href="/guide/">
         <div class="ctaGuideText">
           <div class="ctaGuideTitle">가이드</div>
           <div class="ctaGuideDesc">스트리밍 / 다운로드 / 기타 / 스트리밍리스트</div>
+        </div>
+        <div class="ctaGuideArrow">→</div>
+      </a>
+
+      <a class="ctaGuide ctaGuide--collect" href="#" id="openCollectModal">
+        <div class="ctaGuideText">
+          <div class="ctaGuideTitle">아이디 수집</div>
+          <div class="ctaGuideDesc">가이드 확인 후 아이디 제출하기</div>
         </div>
         <div class="ctaGuideArrow">→</div>
       </a>
@@ -366,11 +492,83 @@
     </div>
   </div>
 
+  <!-- ✅ 아이디 수집 모달 -->
+  <div id="collectModal" class="collectModal" aria-hidden="true">
+    <div id="collectOverlay" class="collectModalOverlay"></div>
+
+    <div class="collectModalPanel" role="dialog" aria-modal="true" aria-labelledby="collectModalTitle">
+      <div class="collectHero">
+        <img class="collectHeroImg" src="/assets/header/default.jpg" alt="아이디 수집 안내 이미지">
+
+        <button id="collectClose" type="button" class="collectModalClose" aria-label="닫기">✕</button>
+
+        <div class="collectHeroText">
+          <h3 id="collectModalTitle" class="collectModalTitle">아이디 수집</h3>
+          <div class="collectNotice">
+            가이드를 먼저 확인한 뒤 아이디를 제출해주세요.
+          </div>
+        </div>
+      </div>
+
+      <div class="collectModalBody">
+        <div class="collectModalGrid">
+          <a class="collectModalBtn" href="/guide/">
+            가이드
+          </a>
+
+          <a class="collectModalBtn" href="/collect/">
+            아이디 제출하기
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <footer class="footer">
     <div class="container footerInner">© 지드래곤 음원총공팀</div>
   </footer>
 
   <script src="/data.js"></script>
   <script src="/script.js"></script>
+
+  <script>
+    const openCollectModal = document.getElementById('openCollectModal');
+    const collectModal = document.getElementById('collectModal');
+    const collectOverlay = document.getElementById('collectOverlay');
+    const collectClose = document.getElementById('collectClose');
+
+    function openCollect() {
+      collectModal.classList.add('is-open');
+      collectModal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeCollect() {
+      collectModal.classList.remove('is-open');
+      collectModal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    if (openCollectModal) {
+      openCollectModal.addEventListener('click', function(e) {
+        e.preventDefault();
+        openCollect();
+      });
+    }
+
+    if (collectOverlay) {
+      collectOverlay.addEventListener('click', closeCollect);
+    }
+
+    if (collectClose) {
+      collectClose.addEventListener('click', closeCollect);
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && collectModal.classList.contains('is-open')) {
+        closeCollect();
+      }
+    });
+  </script>
 </body>
 </html>
