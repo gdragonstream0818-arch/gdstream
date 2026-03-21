@@ -19,6 +19,7 @@
   <title>지드래곤 음원총공팀</title>
   <link rel="stylesheet" href="/styles.css" />
 
+  <!-- ✅ 원클릭 모달(플레이브 스타일): 칩 제거 + 안내문 + 기기 표기 -->
   <style>
     .ocModal { display:none; position:fixed; inset:0; z-index:9999; }
     .ocModal.is-open { display:block; }
@@ -34,6 +35,7 @@
       box-shadow: 0 22px 70px rgba(0,0,0,.45);
     }
 
+    /* ✅ 상단 이미지 헤더 */
     .ocHero{
       position: relative;
       height: 210px;
@@ -56,6 +58,7 @@
       );
     }
 
+    /* ✅ 우상단 닫기 버튼(이미지 위) */
     .ocModalClose{
       position:absolute; right:14px; top:12px;
       width:40px; height:40px;
@@ -70,6 +73,7 @@
     }
     .ocModalClose:hover{ background: rgba(0,0,0,.5); }
 
+    /* ✅ 타이틀/서브텍스트(이미지 아래쪽) */
     .ocHeroText{
       position:absolute; left:18px; right:18px; bottom:16px;
       color:#fff;
@@ -83,6 +87,7 @@
       text-shadow: 0 6px 22px rgba(0,0,0,.55);
     }
 
+    /* ✅ 플레이브 느낌: 안내 바 */
     .ocActionNotice{
       margin-top: 12px;
       padding: 10px 12px;
@@ -95,11 +100,13 @@
       backdrop-filter: blur(8px);
     }
 
+    /* ✅ 바디 */
     .ocModalBody{
       padding: 16px 18px 18px;
       background: #fff;
     }
 
+    /* ✅ 기기 라인 */
     .ocDeviceBar{
       display:flex;
       align-items:baseline;
@@ -119,6 +126,7 @@
       text-align:right;
     }
 
+    /* ✅ 그리드: 2열(플레이브 느낌) */
     .ocModalGrid{
       display:grid;
       gap:12px;
@@ -128,6 +136,7 @@
       .ocModalGrid{ grid-template-columns: 1fr; }
     }
 
+    /* ✅ 버튼 */
     .ocModalBtn{
       display:flex;
       align-items:center;
@@ -145,67 +154,69 @@
     }
     .ocModalBtn:hover{ background:#eceff3; }
 
+    /* ✅ 이미지 src가 없을 때 깨진 아이콘 방지 */
     .ocHeroImg.is-hidden{ display:none; }
 
+    /* ✅ ✅ 여기 추가: 모달 이미지 위 검정막(Shade) 제거 */
     .ocHeroShade{ display:none !important; }
 
+    /* ✅ 아이디 수집 바로가기 버튼 */
     .ctaGuide--collect{
       margin-top:12px;
     }
 
+    /* ✅ 아이디 수집 모달 */
     .collectModal { display:none; position:fixed; inset:0; z-index:10000; }
     .collectModal.is-open { display:block; }
-    .collectModalOverlay{ position:absolute; inset:0; background: rgba(0,0,0,.62); }
+    .collectModalOverlay{
+      position:absolute; inset:0;
+      background: rgba(0,0,0,.62);
+    }
 
     .collectModalPanel{
-      position:absolute; left:50%; top:50%;
-      transform: translate(-50%, -50%);
-      width: min(560px, calc(100vw - 28px));
-      background: #fff;
-      border-radius: 18px;
+      position:absolute;
+      left:50%; top:50%;
+      transform:translate(-50%, -50%);
+      width:min(560px, calc(100vw - 28px));
+      background:#fff;
+      border-radius:18px;
       overflow:hidden;
-      box-shadow: 0 22px 70px rgba(0,0,0,.45);
+      box-shadow:0 22px 70px rgba(0,0,0,.45);
     }
 
     .collectHero{
-      position: relative;
-      height: 210px;
-      background: #111;
+      position:relative;
+      height:210px;
+      background:#111;
     }
+
     .collectHeroImg{
       position:absolute; inset:0;
       width:100%; height:100%;
       object-fit:cover;
-      filter: saturate(1.02);
-      transform: scale(1.02);
-    }
-    .collectHeroShade{
-      position:absolute; inset:0;
-      background: linear-gradient(
-        180deg,
-        rgba(0,0,0,.10) 0%,
-        rgba(0,0,0,.35) 55%,
-        rgba(0,0,0,.85) 100%
-      );
-      display:none !important;
+      transform:scale(1.02);
     }
 
     .collectModalClose{
       position:absolute; right:14px; top:12px;
       width:40px; height:40px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.35);
-      background: rgba(0,0,0,.35);
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.35);
+      background:rgba(0,0,0,.35);
       color:#fff;
       font-size:18px;
       cursor:pointer;
       display:flex; align-items:center; justify-content:center;
-      backdrop-filter: blur(6px);
+      backdrop-filter:blur(6px);
     }
-    .collectModalClose:hover{ background: rgba(0,0,0,.5); }
+
+    .collectModalClose:hover{
+      background:rgba(0,0,0,.5);
+    }
 
     .collectHeroText{
-      position:absolute; left:18px; right:18px; bottom:16px;
+      position:absolute;
+      left:18px; right:18px; bottom:16px;
       color:#fff;
     }
 
@@ -214,52 +225,36 @@
       font-size:26px;
       line-height:1.1;
       letter-spacing:-.02em;
-      text-shadow: 0 6px 22px rgba(0,0,0,.55);
+      text-shadow:0 6px 22px rgba(0,0,0,.55);
     }
 
     .collectNotice{
-      margin-top: 12px;
-      padding: 10px 12px;
-      border-radius: 14px;
-      background: rgba(0,0,0,.38);
-      border: 1px solid rgba(255,255,255,.16);
-      font-size: 13px;
-      font-weight: 700;
-      line-height: 1.35;
-      backdrop-filter: blur(8px);
+      margin-top:12px;
+      padding:10px 12px;
+      border-radius:14px;
+      background:rgba(0,0,0,.38);
+      border:1px solid rgba(255,255,255,.16);
+      font-size:13px;
+      font-weight:700;
+      line-height:1.35;
+      backdrop-filter:blur(8px);
     }
 
     .collectModalBody{
-      padding: 16px 18px 18px;
-      background: #fff;
-    }
-
-    .collectDeviceBar{
-      display:flex;
-      align-items:baseline;
-      justify-content:space-between;
-      gap:12px;
-      padding: 2px 2px 14px;
-    }
-    .collectDeviceLabel{
-      font-size: 15px;
-      font-weight: 900;
-      color:#111;
-    }
-    .collectDeviceHint{
-      font-size: 13px;
-      font-weight: 800;
-      color: rgba(0,0,0,.45);
-      text-align:right;
+      padding:18px;
+      background:#fff;
     }
 
     .collectModalGrid{
       display:grid;
       gap:12px;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns:repeat(2, 1fr);
     }
+
     @media (max-width: 420px){
-      .collectModalGrid{ grid-template-columns: 1fr; }
+      .collectModalGrid{
+        grid-template-columns:1fr;
+      }
     }
 
     .collectModalBtn{
@@ -267,21 +262,25 @@
       align-items:center;
       justify-content:center;
       text-align:center;
-      padding: 16px 14px;
-      border-radius: 16px;
+      padding:16px 14px;
+      border-radius:16px;
       text-decoration:none;
-      background: #f3f4f6;
+      background:#f3f4f6;
       color:#111;
-      border: 1px solid rgba(0,0,0,.06);
+      border:1px solid rgba(0,0,0,.06);
       font-weight:800;
       letter-spacing:-.01em;
-      box-shadow: 0 10px 22px rgba(0,0,0,.06);
+      box-shadow:0 10px 22px rgba(0,0,0,.06);
     }
-    .collectModalBtn:hover{ background:#eceff3; }
+
+    .collectModalBtn:hover{
+      background:#eceff3;
+    }
   </style>
 </head>
 <body>
 
+  <!-- ✅ HEADER: 로고만 -->
   <header class="header header--simple">
     <div class="headerBar headerBar--center">
       <a class="brand" href="/" aria-label="지드래곤 음원총공팀">
@@ -290,6 +289,7 @@
     </div>
   </header>
 
+  <!-- ✅ HERO: 클릭하면 Too Bad MV -->
   <section class="hero">
     <div class="heroInner">
       <a class="heroLink"
@@ -305,6 +305,7 @@
 
   <main class="container">
 
+    <!-- ✅ 원클릭 섹션 -->
     <section class="section">
       <div class="oneclickPanel">
         <div class="oneclickHead">
@@ -353,6 +354,7 @@
       </div>
     </section>
 
+    <!-- ✅ 바로가기 -->
     <section class="section">
       <div class="sectionTitle">바로가기</div>
 
@@ -373,6 +375,7 @@
       </a>
     </section>
 
+    <!-- ✅ 계정 모아보기 -->
     <section class="section">
       <div class="sectionTitle">계정 모아보기</div>
 
@@ -458,6 +461,7 @@
 
   </main>
 
+  <!-- ✅ 원클릭 모달(플레이브 스타일) -->
   <div id="ocModal" class="ocModal" aria-hidden="true">
     <div id="ocOverlay" class="ocModalOverlay"></div>
 
@@ -488,13 +492,13 @@
     </div>
   </div>
 
+  <!-- ✅ 아이디 수집 모달 -->
   <div id="collectModal" class="collectModal" aria-hidden="true">
     <div id="collectOverlay" class="collectModalOverlay"></div>
 
     <div class="collectModalPanel" role="dialog" aria-modal="true" aria-labelledby="collectModalTitle">
       <div class="collectHero">
         <img class="collectHeroImg" src="/assets/header/default.jpg" alt="아이디 수집 안내 이미지">
-        <div class="collectHeroShade"></div>
 
         <button id="collectClose" type="button" class="collectModalClose" aria-label="닫기">✕</button>
 
@@ -507,11 +511,6 @@
       </div>
 
       <div class="collectModalBody">
-        <div class="collectDeviceBar">
-          <div class="collectDeviceLabel">바로가기</div>
-          <div class="collectDeviceHint"></div>
-        </div>
-
         <div class="collectModalGrid">
           <a class="collectModalBtn" href="/guide/">
             가이드
