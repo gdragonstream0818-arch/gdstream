@@ -35,9 +35,9 @@ window.SITE_DATA = {
       icon: "",
       // ✅ 각 기기마다 링크 1개씩(나중에 url만 채우면 됨)
       oneclick: {
-        android: [{ label: "원클릭", url: "" }],
-        ios:     [{ label: "원클릭", url: "" }],
-        web:     [{ label: "원클릭", url: "" }]
+        android: [{ label: "원클릭", url: "https://tinyurl.com/55hwju39" }],
+        ios:     [{ label: "원클릭", url: "https://tinyurl.com/2bxpdvvc" }],
+        web:     [{ label: "원클릭", url: "https://tinyurl.com/yjrhaj5c" }]
       }
     },
 
@@ -47,9 +47,9 @@ window.SITE_DATA = {
       icon: "",
       // ✅ 통합 링크 1개(어떤 기기든 동일)
       oneclick: {
-        android: [{ label: "원클릭", url: "" }],
-        ios:     [{ label: "원클릭", url: "" }],
-        web:     [{ label: "원클릭", url: "" }]
+        android: [{ label: "원클릭", url: "https://tinyurl.com/5xp4k6yr" }],
+        ios:     [{ label: "원클릭", url: "https://tinyurl.com/5xp4k6yr" }],
+        web:     [{ label: "원클릭", url: "https://tinyurl.com/44bxsjan" }]
       }
     },
 
@@ -59,9 +59,9 @@ window.SITE_DATA = {
       icon: "",
       // ✅ 통합 링크 1개(어떤 기기든 동일)
       oneclick: {
-        android: [{ label: "원클릭", url: "" }],
-        ios:     [{ label: "원클릭", url: "" }],
-        web:     [{ label: "원클릭", url: "" }]
+        android: [{ label: "원클릭", url: "https://tinyurl.com/yjnsc3cc" }],
+        ios:     [{ label: "원클릭", url: "https://tinyurl.com/yjnsc3cc" }],
+        web:     [{ label: "원클릭", url: "https://tinyurl.com/yjnsc3cc" }]
       }
     },
 
@@ -72,14 +72,12 @@ window.SITE_DATA = {
       // ✅ PC 미지원 / iOS & Android는 1~4번까지
       oneclick: {
         android: [
-          { label: "원클릭1", url: "" },
-          { label: "원클릭2", url: "" },
-          { label: "원클릭3", url: "" }
+          { label: "원클릭1", url: "https://tinyurl.com/4f9kjcvd" },
+          { label: "원클릭2", url: "https://tinyurl.com/4th6nz4n" }
         ],
         ios: [
-          { label: "원클릭1", url: "" },
-          { label: "원클릭2", url: "" },
-          { label: "원클릭3", url: "" }
+          { label: "원클릭1", url: "https://tinyurl.com/4f9kjcvd" },
+          { label: "원클릭2", url: "https://tinyurl.com/4th6nz4n" }
         ],
         web: [] // ✅ 빈 배열이면 "PC 미지원" 안내가 뜨게 script.js에서 처리
       },
