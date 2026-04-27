@@ -20,11 +20,10 @@ window.SITE_DATA = {
           { label: "원클릭2", url: "https://tinyurl.com/4j77ud25" }
         ],
         ios: [
-          { label: "원클릭", url: "https://tinyurl.com/4f3a9sfc" }
+          { label: "원클릭", url: "https://tinyurl.com/528y5ctu" }
         ],
         web: [
-          { label: "원클릭1", url: "https://tinyurl.com/45c6u5h4" },
-          { label: "원클릭2", url: "https://tinyurl.com/2umse9my" }
+          { label: "원클릭1", url: "https://tinyurl.com/45c6u5h4" }
         ]
       }
     },
