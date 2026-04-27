@@ -47,9 +47,9 @@ window.SITE_DATA = {
       icon: "",
       // ✅ 통합 링크 1개(어떤 기기든 동일)
       oneclick: {
-        android: [{ label: "원클릭", url: "https://tinyurl.com/5h82z28u" }],
-        ios:     [{ label: "원클릭", url: "https://tinyurl.com/5h82z28u" }],
-        web:     [{ label: "원클릭", url: "https://tinyurl.com/hbrjccve" }]
+        android: [{ label: "원클릭", url: "" }],
+        ios:     [{ label: "원클릭", url: "" }],
+        web:     [{ label: "원클릭", url: "" }]
       }
     },
 
@@ -59,9 +59,9 @@ window.SITE_DATA = {
       icon: "",
       // ✅ 통합 링크 1개(어떤 기기든 동일)
       oneclick: {
-        android: [{ label: "원클릭", url: "https://tinyurl.com/4ecxw6wy" }],
-        ios:     [{ label: "원클릭", url: "https://tinyurl.com/4ecxw6wy" }],
-        web:     [{ label: "원클릭", url: "https://tinyurl.com/4ecxw6wy" }]
+        android: [{ label: "원클릭", url: "" }],
+        ios:     [{ label: "원클릭", url: "" }],
+        web:     [{ label: "원클릭", url: "" }]
       }
     },
 
@@ -72,14 +72,14 @@ window.SITE_DATA = {
       // ✅ PC 미지원 / iOS & Android는 1~4번까지
       oneclick: {
         android: [
-          { label: "원클릭1", url: "https://tinyurl.com/2s7mz7jv" },
-          { label: "원클릭2", url: "https://tinyurl.com/46z9na2d" },
-          { label: "원클릭3", url: "https://tinyurl.com/bdz6wv42" }
+          { label: "원클릭1", url: "" },
+          { label: "원클릭2", url: "" },
+          { label: "원클릭3", url: "" }
         ],
         ios: [
-          { label: "원클릭1", url: "https://tinyurl.com/2s7mz7jv" },
-          { label: "원클릭2", url: "https://tinyurl.com/46z9na2d" },
-          { label: "원클릭3", url: "https://tinyurl.com/bdz6wv42" }
+          { label: "원클릭1", url: "" },
+          { label: "원클릭2", url: "" },
+          { label: "원클릭3", url: "" }
         ],
         web: [] // ✅ 빈 배열이면 "PC 미지원" 안내가 뜨게 script.js에서 처리
       },
@@ -94,9 +94,9 @@ window.SITE_DATA = {
       icon: "",
       // ✅ 통합 링크 1개(어떤 기기든 동일)
       oneclick: {
-        android: [{ label: "원클릭", url: "https://open.spotify.com/playlist/66FeSLRYIx2R9trDZrXmhd?si=XRjx7plaS5-r-T3dKbFLqA" }],
-        ios:     [{ label: "원클릭", url: "https://open.spotify.com/playlist/66FeSLRYIx2R9trDZrXmhd?si=XRjx7plaS5-r-T3dKbFLqA" }],
-        web:     [{ label: "원클릭", url: "https://open.spotify.com/playlist/66FeSLRYIx2R9trDZrXmhd?si=XRjx7plaS5-r-T3dKbFLqA" }]
+        android: [{ label: "원클릭", url: "" }],
+        ios:     [{ label: "원클릭", url: "" }],
+        web:     [{ label: "원클릭", url: "" }]
       }
     },
   ],
