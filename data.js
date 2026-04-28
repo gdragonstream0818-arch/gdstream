@@ -16,15 +16,15 @@ window.SITE_DATA = {
       icon: "",
       oneclick: {
         android: [
-          { label: "원클릭1", url: "https://tinyurl.com/y3ybfwrh" },
-          { label: "원클릭2", url: "https://tinyurl.com/4j77ud25" }
+          { label: "원클릭1", url: "https://tinyurl.com/mwnm4wc4" },
+          { label: "원클릭2", url: "https://tinyurl.com/2dx5ucyk" }
         ],
         ios: [
-          { label: "원클릭", url: "https://tinyurl.com/528y5ctu" }
+          { label: "원클릭", url: "https://tinyurl.com/4acue96k" }
         ],
         web: [
-          { label: "원클릭1", url: "https://tinyurl.com/45c6u5h4" },
-          { label: "원클릭2", url: "https://tinyurl.com/2umse9my" }
+          { label: "원클릭1", url: "https://tinyurl.com/yexaabyj" },
+          { label: "원클릭2", url: "https://tinyurl.com/yy2ewvkb" }
         ]
       }
     },
@@ -35,9 +35,9 @@ window.SITE_DATA = {
       icon: "",
       // ✅ 각 기기마다 링크 1개씩(나중에 url만 채우면 됨)
       oneclick: {
-        android: [{ label: "원클릭", url: "https://tinyurl.com/55hwju39" }],
-        ios:     [{ label: "원클릭", url: "https://tinyurl.com/2bxpdvvc" }],
-        web:     [{ label: "원클릭", url: "https://tinyurl.com/yjrhaj5c" }]
+        android: [{ label: "원클릭", url: "https://tinyurl.com/yc8x5v8s" }],
+        ios:     [{ label: "원클릭", url: "https://tinyurl.com/37ez7y2s" }],
+        web:     [{ label: "원클릭", url: "https://tinyurl.com/yrjn5vc7" }]
       }
     },
 
@@ -47,9 +47,9 @@ window.SITE_DATA = {
       icon: "",
       // ✅ 통합 링크 1개(어떤 기기든 동일)
       oneclick: {
-        android: [{ label: "원클릭", url: "https://tinyurl.com/5xp4k6yr" }],
-        ios:     [{ label: "원클릭", url: "https://tinyurl.com/5xp4k6yr" }],
-        web:     [{ label: "원클릭", url: "https://tinyurl.com/44bxsjan" }]
+        android: [{ label: "원클릭", url: "https://tinyurl.com/2ebrbez8" }],
+        ios:     [{ label: "원클릭", url: "https://tinyurl.com/2ebrbez8" }],
+        web:     [{ label: "원클릭", url: "https://tinyurl.com/mptw5b9n" }]
       }
     },
 
@@ -59,9 +59,9 @@ window.SITE_DATA = {
       icon: "",
       // ✅ 통합 링크 1개(어떤 기기든 동일)
       oneclick: {
-        android: [{ label: "원클릭", url: "https://tinyurl.com/yjnsc3cc" }],
-        ios:     [{ label: "원클릭", url: "https://tinyurl.com/yjnsc3cc" }],
-        web:     [{ label: "원클릭", url: "https://tinyurl.com/yjnsc3cc" }]
+        android: [{ label: "원클릭", url: "https://tinyurl.com/yyjej2kz" }],
+        ios:     [{ label: "원클릭", url: "https://tinyurl.com/yyjej2kz" }],
+        web:     [{ label: "원클릭", url: "https://tinyurl.com/yyjej2kz" }]
       }
     },
 
@@ -73,11 +73,11 @@ window.SITE_DATA = {
       oneclick: {
         android: [
           { label: "원클릭1", url: "https://tinyurl.com/4f9kjcvd" },
-          { label: "원클릭2", url: "https://tinyurl.com/4th6nz4n" }
+          { label: "원클릭2", url: "https://tinyurl.com/2u966w5c" }
         ],
         ios: [
           { label: "원클릭1", url: "https://tinyurl.com/4f9kjcvd" },
-          { label: "원클릭2", url: "https://tinyurl.com/4th6nz4n" }
+          { label: "원클릭2", url: "https://tinyurl.com/2u966w5c" }
         ],
         web: [] // ✅ 빈 배열이면 "PC 미지원" 안내가 뜨게 script.js에서 처리
       },
