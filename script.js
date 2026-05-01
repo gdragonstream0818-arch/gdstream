@@ -56,8 +56,8 @@
     const device = detectDevice();
     const platformName = p?.name || platformId;
 
-    // ✅ 타이틀 (플레이브처럼)
-    titleEl.textContent = `${platformName} 원클릭 스트리밍`;
+    // ✅ 타이틀 
+    titleEl.textContent = `${platformName} 원클릭 링크`;
 
     // ✅ 기기 표기
     deviceLabelEl.textContent = deviceLabel(device);
