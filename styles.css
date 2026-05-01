@@ -29,7 +29,7 @@ body{
   background-image:
     linear-gradient(rgba(255,255,255,.16) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255,255,255,.16) 1px, transparent 1px),
-    url("assets/header/background.png.png");
+    url("assets/header/background-p.png");
   background-size:72px 72px,72px 72px,cover;
   background-position:center,center,center top;
   background-repeat:repeat,repeat,no-repeat;
@@ -38,10 +38,16 @@ body{
   font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
 }
 
-/* ✅ 모바일에서 배경이미지 확대 방지 */
+/* ✅ 모바일 배경 이미지 */
 @media (max-width:768px){
   body{
-    background-size:72px 72px,72px 72px,100% auto;
+    background-image:
+      linear-gradient(rgba(255,255,255,.16) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.16) 1px, transparent 1px),
+      url("assets/header/background-m.png");
+    background-size:72px 72px,72px 72px,cover;
+    background-position:center,center,center top;
+    background-repeat:repeat,repeat,no-repeat;
     background-attachment:scroll;
   }
 }
