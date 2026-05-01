@@ -20,15 +20,21 @@
   <link rel="stylesheet" href="/styles.css" />
 
   <style>
-    /* ✅ 첫 메인 이미지: 처음엔 흑백 */
+    /* ✅ PC: header-pc.jpg 사용 / 효과 없음 */
     .heroImg{
-      filter: grayscale(50%);
-      transition: filter .8s ease;
+      filter: none;
     }
 
-    /* ✅ 스크롤하면 컬러 */
-    .heroImg.is-color{
-      filter: grayscale(0%);
+    /* ✅ 모바일: header-m.jpg 사용 / 처음엔 살짝 흑백, 스크롤하면 컬러 */
+    @media (max-width: 768px){
+      .heroImg{
+        filter: grayscale(70%);
+        transition: filter .8s ease;
+      }
+
+      .heroImg.is-color{
+        filter: grayscale(0%);
+      }
     }
 
     .ocModal { display:none; position:fixed; inset:0; z-index:9999; }
@@ -289,6 +295,7 @@
          href="https://youtu.be/o9DhvbqYzns?si=7uozTe90cIU0ZY27"
          target="_blank" rel="noreferrer">
         <picture>
+          <source media="(max-width: 768px)" srcset="/assets/header/header-m.jpg">
           <img class="heroImg" src="/assets/header/header-pc.jpg" alt="G-DRAGON - TOO BAD (MV)">
         </picture>
         <div class="playBadge">▶</div>
@@ -557,18 +564,29 @@
       }
     });
 
-    window.addEventListener("scroll", function () {
+    function updateHeroColorEffect() {
       const heroImg = document.querySelector(".heroImg");
+      const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
       if (!heroImg) return;
+
+      if (!isMobile) {
+        heroImg.classList.remove("is-color");
+        return;
+      }
 
       if (window.scrollY > 30) {
         heroImg.classList.add("is-color");
       } else {
         heroImg.classList.remove("is-color");
       }
-    });
+    }
+
+    window.addEventListener("scroll", updateHeroColorEffect);
+    window.addEventListener("resize", updateHeroColorEffect);
+    window.addEventListener("load", updateHeroColorEffect);
   </script>
 
 </body>
+</html>
 </html>
