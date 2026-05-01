@@ -19,14 +19,52 @@
   <title>지드래곤 음원총공팀</title>
   <link rel="stylesheet" href="/styles.css" />
 
-  <!-- ✅ 원클릭 모달: 칩 제거 + 안내문 + 기기 표기 -->
   <style>
+    /* ✅ 메인이미지 영역을 아래 박스들과 같은 너비로 맞춤 */
+    .hero{
+      width:100%;
+      margin:0;
+      padding:16px 0 12px;
+    }
+
+    .heroInner{
+      max-width:var(--pageMax) !important;
+      width:100% !important;
+      margin:0 auto !important;
+      padding-left:16px !important;
+      padding-right:16px !important;
+    }
+
+    .heroLink{
+      display:block !important;
+      width:100% !important;
+      border:none !important;
+      box-shadow:none !important;
+      background:transparent !important;
+      border-radius:0 !important;
+      overflow:hidden !important;
+    }
+
+    .heroImg{
+      display:block !important;
+      width:100% !important;
+      max-width:100% !important;
+      height:auto !important;
+      border:none !important;
+      box-shadow:none !important;
+      border-radius:0 !important;
+      background:transparent !important;
+    }
+
+    /* ✅ 원클릭 모달 */
     .ocModal { display:none; position:fixed; inset:0; z-index:9999; }
     .ocModal.is-open { display:block; }
     .ocModalOverlay{ position:absolute; inset:0; background: rgba(0,0,0,.62); }
 
     .ocModalPanel{
-      position:absolute; left:50%; top:50%;
+      position:absolute;
+      left:50%;
+      top:50%;
       transform: translate(-50%, -50%);
       width: min(560px, calc(100vw - 28px));
       background: #fff;
@@ -35,47 +73,53 @@
       box-shadow: 0 22px 70px rgba(0,0,0,.45);
     }
 
-    /* ✅ 상단 이미지 헤더 */
     .ocHero{
       position: relative;
       height: 210px;
       background: #111;
     }
+
     .ocHeroImg{
-      position:absolute; inset:0;
-      width:100%; height:100%;
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
       object-fit:cover;
       filter: saturate(1.02);
       transform: scale(1.02);
     }
+
     .ocHeroShade{
-      position:absolute; inset:0;
-      background: linear-gradient(
-        180deg,
-        rgba(0,0,0,.10) 0%,
-        rgba(0,0,0,.35) 55%,
-        rgba(0,0,0,.85) 100%
-      );
+      display:none !important;
     }
 
-    /* ✅ 우상단 닫기 버튼(이미지 위) */
     .ocModalClose{
-      position:absolute; right:14px; top:12px;
-      width:40px; height:40px;
+      position:absolute;
+      right:14px;
+      top:12px;
+      width:40px;
+      height:40px;
       border-radius: 999px;
       border: 1px solid rgba(255,255,255,.35);
       background: rgba(0,0,0,.35);
       color:#fff;
       font-size:18px;
       cursor:pointer;
-      display:flex; align-items:center; justify-content:center;
+      display:flex;
+      align-items:center;
+      justify-content:center;
       backdrop-filter: blur(6px);
     }
-    .ocModalClose:hover{ background: rgba(0,0,0,.5); }
 
-    /* ✅ 타이틀/서브텍스트(이미지 아래쪽) */
+    .ocModalClose:hover{
+      background: rgba(0,0,0,.5);
+    }
+
     .ocHeroText{
-      position:absolute; left:18px; right:18px; bottom:16px;
+      position:absolute;
+      left:18px;
+      right:18px;
+      bottom:16px;
       color:#fff;
     }
 
@@ -87,7 +131,6 @@
       text-shadow: 0 6px 22px rgba(0,0,0,.55);
     }
 
-    /* ✅ 안내 바 */
     .ocActionNotice{
       margin-top: 12px;
       padding: 10px 12px;
@@ -100,13 +143,11 @@
       backdrop-filter: blur(8px);
     }
 
-    /* ✅ 바디 */
     .ocModalBody{
       padding: 16px 18px 18px;
       background: #fff;
     }
 
-    /* ✅ 기기 라인 */
     .ocDeviceBar{
       display:flex;
       align-items:baseline;
@@ -114,11 +155,13 @@
       gap:12px;
       padding: 2px 2px 14px;
     }
+
     .ocDeviceLabel{
       font-size: 15px;
       font-weight: 900;
       color:#111;
     }
+
     .ocDeviceHint{
       font-size: 13px;
       font-weight: 800;
@@ -126,17 +169,18 @@
       text-align:right;
     }
 
-    /* ✅ 그리드: 2열 */
     .ocModalGrid{
       display:grid;
       gap:12px;
       grid-template-columns: repeat(2, 1fr);
     }
+
     @media (max-width: 420px){
-      .ocModalGrid{ grid-template-columns: 1fr; }
+      .ocModalGrid{
+        grid-template-columns: 1fr;
+      }
     }
 
-    /* ✅ 버튼 */
     .ocModalBtn{
       display:flex;
       align-items:center;
@@ -152,13 +196,14 @@
       letter-spacing:-.01em;
       box-shadow: 0 10px 22px rgba(0,0,0,.06);
     }
-    .ocModalBtn:hover{ background:#eceff3; }
 
-    /* ✅ 이미지 src가 없을 때 깨진 아이콘 방지 */
-    .ocHeroImg.is-hidden{ display:none; }
+    .ocModalBtn:hover{
+      background:#eceff3;
+    }
 
-    /* ✅ ✅ 여기 추가: 모달 이미지 위 검정막(Shade) 제거 */
-    .ocHeroShade{ display:none !important; }
+    .ocHeroImg.is-hidden{
+      display:none;
+    }
 
     /* ✅ 아이디 수집 바로가기 버튼 */
     .ctaGuide--collect{
@@ -166,16 +211,27 @@
     }
 
     /* ✅ 아이디 수집 모달 */
-    .collectModal { display:none; position:fixed; inset:0; z-index:10000; }
-    .collectModal.is-open { display:block; }
+    .collectModal{
+      display:none;
+      position:fixed;
+      inset:0;
+      z-index:10000;
+    }
+
+    .collectModal.is-open{
+      display:block;
+    }
+
     .collectModalOverlay{
-      position:absolute; inset:0;
+      position:absolute;
+      inset:0;
       background: rgba(0,0,0,.62);
     }
 
     .collectModalPanel{
       position:absolute;
-      left:50%; top:50%;
+      left:50%;
+      top:50%;
       transform:translate(-50%, -50%);
       width:min(560px, calc(100vw - 28px));
       background:#fff;
@@ -191,22 +247,29 @@
     }
 
     .collectHeroImg{
-      position:absolute; inset:0;
-      width:100%; height:100%;
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
       object-fit:cover;
       transform:scale(1.02);
     }
 
     .collectModalClose{
-      position:absolute; right:14px; top:12px;
-      width:40px; height:40px;
+      position:absolute;
+      right:14px;
+      top:12px;
+      width:40px;
+      height:40px;
       border-radius:999px;
       border:1px solid rgba(255,255,255,.35);
       background:rgba(0,0,0,.35);
       color:#fff;
       font-size:18px;
       cursor:pointer;
-      display:flex; align-items:center; justify-content:center;
+      display:flex;
+      align-items:center;
+      justify-content:center;
       backdrop-filter:blur(6px);
     }
 
@@ -216,8 +279,25 @@
 
     .collectHeroText{
       position:absolute;
-      left:18px; right:18px; bottom:16px;
+      left:18px;
+      right:18px;
+      bottom:16px;
       color:#fff;
+    }
+
+    .collectModalTitle{
+      margin:0;
+    }
+
+    .collectNotice{
+      margin-top:4px;
+      font-size:13px;
+      font-weight:700;
+      line-height:1.35;
+      background:none;
+      border:none;
+      backdrop-filter:none;
+      padding:0;
     }
 
     .collectModalBody{
@@ -257,26 +337,40 @@
       background:#eceff3;
     }
 
-  .collectModalTitle{
-     margin:0;
-   }
+    /* ✅ FOOTER 로고 */
+    .footerInner--logo{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding:24px 0 28px;
+      font-size:0;
+    }
 
-  .collectNotice{
-     margin-top:4px;
-     font-size:13px;
-     font-weight:700;
-     line-height:1.35;
-     background:none;
-     border:none;
-     backdrop-filter:none;
-     padding:0;
-   }
-    
+    .footerLogoLink{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .footerLogo{
+      height:38px;
+      width:auto;
+      max-width:220px;
+      object-fit:contain;
+      opacity:.9;
+    }
+
+    @media (max-width:768px){
+      .footerLogo{
+        height:34px;
+        max-width:200px;
+      }
+    }
   </style>
 </head>
+
 <body>
 
-  <!-- ✅ HEADER: 로고만 -->
   <header class="header header--simple">
     <div class="headerBar headerBar--center">
       <a class="brand" href="/" aria-label="지드래곤 음원총공팀">
@@ -285,12 +379,12 @@
     </div>
   </header>
 
-  <!-- ✅ HERO: 클릭하면 Too Bad MV -->
   <section class="hero">
-    <div class="container heroInner">
+    <div class="heroInner">
       <a class="heroLink"
          href="https://youtu.be/o9DhvbqYzns?si=7uozTe90cIU0ZY27"
-         target="_blank" rel="noreferrer">
+         target="_blank"
+         rel="noreferrer">
         <img class="heroImg" src="/assets/header/main.png" alt="G-DRAGON - TOO BAD (MV)">
       </a>
     </div>
@@ -298,7 +392,6 @@
 
   <main class="container">
 
-    <!-- ✅ 원클릭 섹션 -->
     <section class="section">
       <div class="oneclickPanel">
         <div class="oneclickHead">
@@ -347,7 +440,6 @@
       </div>
     </section>
 
-    <!-- ✅ 바로가기 -->
     <section class="section">
       <div class="sectionTitle">바로가기</div>
 
@@ -368,7 +460,6 @@
       </a>
     </section>
 
-    <!-- ✅ 계정 모아보기 -->
     <section class="section">
       <div class="sectionTitle">계정 모아보기</div>
 
@@ -377,15 +468,18 @@
           <div class="socialTitle">G-DRAGON INDIVIDUAL</div>
           <div class="socialDesc">지드래곤 개인 계정</div>
         </div>
+
         <div class="socialGrid">
           <a class="socialBtn" href="https://www.instagram.com/xxxibgdrgn" target="_blank" rel="noreferrer">
             <span class="socialIcon"><img src="/assets/icons/social/instagram.svg" alt="Instagram"></span>
             <span class="socialName">Instagram</span>
           </a>
+
           <a class="socialBtn" href="https://x.com/ibgdrgn" target="_blank" rel="noreferrer">
-            <span class="socialIcon"><img src="/assets/icons/social/x.svg" alt="x"></span>
+            <span class="socialIcon"><img src="/assets/icons/social/x.svg" alt="X"></span>
             <span class="socialName">X</span>
           </a>
+
           <a class="socialBtn" href="https://weibo.com/u/3786649467" target="_blank" rel="noreferrer">
             <span class="socialIcon"><img src="/assets/icons/social/weibo.svg" alt="Weibo"></span>
             <span class="socialName">Weibo</span>
@@ -398,27 +492,33 @@
           <div class="socialTitle">G-DRAGON OFFICIAL</div>
           <div class="socialDesc">공식 계정</div>
         </div>
+
         <div class="socialGrid">
           <a class="socialBtn" href="https://www.youtube.com/@xxxibgdrgn" target="_blank" rel="noreferrer">
             <span class="socialIcon"><img src="/assets/icons/social/youtube.svg" alt="YouTube"></span>
             <span class="socialName">YouTube</span>
           </a>
+
           <a class="socialBtn" href="https://www.instagram.com/8lo8lo8lowme" target="_blank" rel="noreferrer">
             <span class="socialIcon"><img src="/assets/icons/social/instagram.svg" alt="Instagram"></span>
             <span class="socialName">팔로미</span>
           </a>
+
           <a class="socialBtn" href="https://www.instagram.com/fanplusonedotcom" target="_blank" rel="noreferrer">
             <span class="socialIcon"><img src="/assets/icons/social/instagram.svg" alt="Instagram"></span>
             <span class="socialName">fanplusone</span>
           </a>
+
           <a class="socialBtn" href="https://x.com/FANPLUS1DOTCOM" target="_blank" rel="noreferrer">
             <span class="socialIcon"><img src="/assets/icons/social/x.svg" alt="X"></span>
             <span class="socialName">fanplusone</span>
           </a>
+
           <a class="socialBtn" href="https://www.tiktok.com/@fanplusonedotcom" target="_blank" rel="noreferrer">
             <span class="socialIcon"><img src="/assets/icons/social/tiktok.svg" alt="TikTok"></span>
             <span class="socialName">TikTok</span>
           </a>
+
           <a class="socialBtn" href="https://gdragon.ai/" target="_blank" rel="noreferrer">
             <span class="socialIcon"><img src="/assets/icons/social/bstage.svg" alt="b.stage"></span>
             <span class="socialName">b.stage</span>
@@ -431,19 +531,23 @@
           <div class="socialTitle">GDRAGON STREAM</div>
           <div class="socialDesc">음원총공팀 계정</div>
         </div>
+
         <div class="socialGrid">
           <a class="socialBtn" href="https://x.com/GDRAGON_STREAM" target="_blank" rel="noreferrer">
             <span class="socialIcon"><img src="/assets/icons/social/x.svg" alt="X"></span>
             <span class="socialName">X</span>
           </a>
+
           <a class="socialBtn" href="https://www.instagram.com/gdragon_stream/" target="_blank" rel="noreferrer">
             <span class="socialIcon"><img src="/assets/icons/social/instagram.svg" alt="Instagram"></span>
             <span class="socialName">Instagram</span>
           </a>
+
           <a class="socialBtn" href="https://www.threads.com/@gdragon_stream?xmt=AQF0-9Qrl0GaLacu6i-jscBusw1dgbuFYdABjjHnuAWiOaA" target="_blank" rel="noreferrer">
             <span class="socialIcon"><img src="/assets/icons/social/threads.svg" alt="Threads"></span>
             <span class="socialName">Threads</span>
           </a>
+
           <a class="socialBtn" href="https://gall.dcinside.com/mgallery/board/lists/?id=gdpeaceminusone" target="_blank" rel="noreferrer">
             <span class="socialIcon"><img src="/assets/icons/social/dcinside.svg" alt="디시인사이드"></span>
             <span class="socialName">디시인사이드</span>
@@ -454,7 +558,6 @@
 
   </main>
 
-  <!-- ✅ 원클릭 모달 -->
   <div id="ocModal" class="ocModal" aria-hidden="true">
     <div id="ocOverlay" class="ocModalOverlay"></div>
 
@@ -467,7 +570,6 @@
 
         <div class="ocHeroText">
           <h3 id="ocModalTitle" class="ocModalTitle">원클릭 스트리밍</h3>
-
           <div id="ocActionNotice" class="ocActionNotice">
             중복곡 허용 후 이용해주세요!
           </div>
@@ -485,7 +587,6 @@
     </div>
   </div>
 
-  <!-- ✅ 아이디 수집 모달 -->
   <div id="collectModal" class="collectModal" aria-hidden="true">
     <div id="collectOverlay" class="collectModalOverlay"></div>
 
@@ -505,11 +606,11 @@
 
       <div class="collectModalBody">
         <div class="collectModalGrid">
-          <a class="collectModalBtn" href="guide/etc/collectid/index.html/">
+          <a class="collectModalBtn" href="/guide/etc/collectid/">
             가이드
           </a>
 
-          <a class="collectModalBtn" href="https://naver.me/FNti54TO" target="_blank"">
+          <a class="collectModalBtn" href="https://naver.me/FNti54TO" target="_blank" rel="noreferrer">
             아이디 제출하기
           </a>
         </div>
@@ -518,13 +619,12 @@
   </div>
 
   <footer class="footer">
-  <div class="container footerInner footerInner--logo">
-    <a href="/" class="footerLogoLink" aria-label="지드래곤 음원총공팀 홈으로 이동">
-      <img class="footerLogo" src="/assets/header/logo1.png" alt="지드래곤 음원총공팀 로고">
-    </a>
-  </div>
-</footer>
-
+    <div class="container footerInner footerInner--logo">
+      <a href="/" class="footerLogoLink" aria-label="지드래곤 음원총공팀 홈으로 이동">
+        <img class="footerLogo" src="/assets/header/logo.svg" alt="지드래곤 음원총공팀 로고">
+      </a>
+    </div>
+  </footer>
 
   <script src="/data.js"></script>
   <script src="/script.js"></script>
@@ -570,39 +670,3 @@
   </script>
 </body>
 </html>
-
-/* ✅ 메인이미지 영역을 아래 박스들과 같은 너비로 맞춤 */
-.hero{
-  width:100%;
-  margin:0;
-  padding:16px 0 12px;
-}
-
-.heroInner{
-  max-width:var(--pageMax) !important;
-  width:100% !important;
-  margin:0 auto !important;
-  padding-left:16px !important;
-  padding-right:16px !important;
-}
-
-.heroLink{
-  display:block !important;
-  width:100% !important;
-  border:none !important;
-  box-shadow:none !important;
-  background:transparent !important;
-  border-radius:0 !important;
-  overflow:hidden !important;
-}
-
-.heroImg{
-  display:block !important;
-  width:100% !important;
-  max-width:100% !important;
-  height:auto !important;
-  border:none !important;
-  box-shadow:none !important;
-  border-radius:0 !important;
-  background:transparent !important;
-}
