@@ -705,3 +705,33 @@ img{max-width:100%;display:block}
     background: transparent !important;
   }
 }
+
+/* ✅ FOOTER 로고 */
+.footerInner--logo{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:24px 0 28px;
+  font-size:0;
+}
+
+.footerLogoLink{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.footerLogo{
+  height:38px;
+  width:auto;
+  max-width:220px;
+  object-fit:contain;
+  opacity:.9;
+}
+
+@media (max-width:768px){
+  .footerLogo{
+    height:34px;
+    max-width:200px;
+  }
+}
