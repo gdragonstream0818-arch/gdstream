@@ -35,29 +35,44 @@
       box-shadow: 0 22px 70px rgba(0,0,0,.45);
     }
 
-    /* ✅ 상단 이미지 헤더 */
-    .ocHero{
-      position: relative;
-      height: 210px;
-      background: #111;
-    }
-    .ocHeroImg{
-      position:absolute; inset:0;
-      width:100%; height:100%;
-      object-fit:cover;
-      filter: saturate(1.02);
-      transform: scale(1.02);
-    }
-    .ocHeroShade{
-      position:absolute; inset:0;
-      background: linear-gradient(
-        180deg,
-        rgba(0,0,0,.10) 0%,
-        rgba(0,0,0,.35) 55%,
-        rgba(0,0,0,.85) 100%
-      );
-    }
+/* ✅ 상단 이미지 헤더 */
+.ocHero{
+  position: relative;
+  height: 210px;
+  background: #111;
+  overflow: hidden;
+}
 
+.ocHeroImg{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  /* 처음엔 흑백 */
+  filter: grayscale(100%) saturate(1.02);
+
+  transform: scale(1.02);
+  transition: filter .8s ease;
+}
+
+/* ✅ 스크롤 내리면 컬러 */
+.ocHeroImg.is-color{
+  filter: grayscale(0%) saturate(1.02);
+}
+
+.ocHeroShade{
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0,0,0,.10) 0%,
+    rgba(0,0,0,.30) 55%,
+    rgba(0,0,0,.65) 100%
+  );
+}
+    
     /* ✅ 우상단 닫기 버튼(이미지 위) */
     .ocModalClose{
       position:absolute; right:14px; top:12px;
@@ -565,6 +580,18 @@
         closeCollect();
       }
     });
-  </script>
+
+  window.addEventListener("scroll", function () {
+    const heroImg = document.querySelector(".ocHeroImg");
+
+    if (!heroImg) return;
+
+    if (window.scrollY > 30) {
+      heroImg.classList.add("is-color");
+    } else {
+      heroImg.classList.remove("is-color");
+    }
+  });
+</script>
 </body>
 </html>
