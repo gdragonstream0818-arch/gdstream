@@ -47,7 +47,7 @@ body::before{
   background-image:
     linear-gradient(rgba(255,255,255,.16) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255,255,255,.16) 1px, transparent 1px),
-    url("assets/header/background-p.png");
+    url("assets/header/background-pc.png");
 
   background-size:72px 72px, 72px 72px, cover;
   background-position:center, center, center top;
