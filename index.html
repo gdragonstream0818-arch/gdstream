@@ -19,8 +19,18 @@
   <title>지드래곤 음원총공팀</title>
   <link rel="stylesheet" href="/styles.css" />
 
-  <!-- ✅ 원클릭 모달: 칩 제거 + 안내문 + 기기 표기 -->
   <style>
+    /* ✅ 첫 메인 이미지: 처음엔 흑백 */
+    .heroImg{
+      filter: grayscale(100%);
+      transition: filter .8s ease;
+    }
+
+    /* ✅ 스크롤하면 컬러 */
+    .heroImg.is-color{
+      filter: grayscale(0%);
+    }
+
     .ocModal { display:none; position:fixed; inset:0; z-index:9999; }
     .ocModal.is-open { display:block; }
     .ocModalOverlay{ position:absolute; inset:0; background: rgba(0,0,0,.62); }
@@ -35,45 +45,25 @@
       box-shadow: 0 22px 70px rgba(0,0,0,.45);
     }
 
-/* ✅ 상단 이미지 헤더 */
-.ocHero{
-  position: relative;
-  height: 210px;
-  background: #111;
-  overflow: hidden;
-}
+    .ocHero{
+      position: relative;
+      height: 210px;
+      background: #111;
+      overflow: hidden;
+    }
 
-.ocHeroImg{
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+    .ocHeroImg{
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: saturate(1.02);
+      transform: scale(1.02);
+    }
 
-  /* 처음엔 흑백 */
-  filter: grayscale(100%) saturate(1.02);
+    .ocHeroShade{ display:none !important; }
 
-  transform: scale(1.02);
-  transition: filter .8s ease;
-}
-
-/* ✅ 스크롤 내리면 컬러 */
-.ocHeroImg.is-color{
-  filter: grayscale(0%) saturate(1.02);
-}
-
-.ocHeroShade{
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(0,0,0,.10) 0%,
-    rgba(0,0,0,.30) 55%,
-    rgba(0,0,0,.65) 100%
-  );
-}
-    
-    /* ✅ 우상단 닫기 버튼(이미지 위) */
     .ocModalClose{
       position:absolute; right:14px; top:12px;
       width:40px; height:40px;
@@ -86,9 +76,9 @@
       display:flex; align-items:center; justify-content:center;
       backdrop-filter: blur(6px);
     }
+
     .ocModalClose:hover{ background: rgba(0,0,0,.5); }
 
-    /* ✅ 타이틀/서브텍스트(이미지 아래쪽) */
     .ocHeroText{
       position:absolute; left:18px; right:18px; bottom:16px;
       color:#fff;
@@ -102,7 +92,6 @@
       text-shadow: 0 6px 22px rgba(0,0,0,.55);
     }
 
-    /* ✅ 안내 바 */
     .ocActionNotice{
       margin-top: 12px;
       padding: 10px 12px;
@@ -115,13 +104,11 @@
       backdrop-filter: blur(8px);
     }
 
-    /* ✅ 바디 */
     .ocModalBody{
       padding: 16px 18px 18px;
       background: #fff;
     }
 
-    /* ✅ 기기 라인 */
     .ocDeviceBar{
       display:flex;
       align-items:baseline;
@@ -129,11 +116,13 @@
       gap:12px;
       padding: 2px 2px 14px;
     }
+
     .ocDeviceLabel{
       font-size: 15px;
       font-weight: 900;
       color:#111;
     }
+
     .ocDeviceHint{
       font-size: 13px;
       font-weight: 800;
@@ -141,17 +130,16 @@
       text-align:right;
     }
 
-    /* ✅ 그리드: 2열 */
     .ocModalGrid{
       display:grid;
       gap:12px;
       grid-template-columns: repeat(2, 1fr);
     }
+
     @media (max-width: 420px){
       .ocModalGrid{ grid-template-columns: 1fr; }
     }
 
-    /* ✅ 버튼 */
     .ocModalBtn{
       display:flex;
       align-items:center;
@@ -167,22 +155,18 @@
       letter-spacing:-.01em;
       box-shadow: 0 10px 22px rgba(0,0,0,.06);
     }
+
     .ocModalBtn:hover{ background:#eceff3; }
 
-    /* ✅ 이미지 src가 없을 때 깨진 아이콘 방지 */
     .ocHeroImg.is-hidden{ display:none; }
 
-    /* ✅ ✅ 여기 추가: 모달 이미지 위 검정막(Shade) 제거 */
-    .ocHeroShade{ display:none !important; }
-
-    /* ✅ 아이디 수집 바로가기 버튼 */
     .ctaGuide--collect{
       margin-top:12px;
     }
 
-    /* ✅ 아이디 수집 모달 */
     .collectModal { display:none; position:fixed; inset:0; z-index:10000; }
     .collectModal.is-open { display:block; }
+
     .collectModalOverlay{
       position:absolute; inset:0;
       background: rgba(0,0,0,.62);
@@ -272,26 +256,25 @@
       background:#eceff3;
     }
 
-  .collectModalTitle{
-     margin:0;
-   }
+    .collectModalTitle{
+      margin:0;
+    }
 
-  .collectNotice{
-     margin-top:4px;
-     font-size:13px;
-     font-weight:700;
-     line-height:1.35;
-     background:none;
-     border:none;
-     backdrop-filter:none;
-     padding:0;
-   }
-    
+    .collectNotice{
+      margin-top:4px;
+      font-size:13px;
+      font-weight:700;
+      line-height:1.35;
+      background:none;
+      border:none;
+      backdrop-filter:none;
+      padding:0;
+    }
   </style>
 </head>
+
 <body>
 
-  <!-- ✅ HEADER: 로고만 -->
   <header class="header header--simple">
     <div class="headerBar headerBar--center">
       <a class="brand" href="/" aria-label="지드래곤 음원총공팀">
@@ -300,7 +283,6 @@
     </div>
   </header>
 
-  <!-- ✅ HERO: 클릭하면 Too Bad MV -->
   <section class="hero">
     <div class="heroInner">
       <a class="heroLink"
@@ -316,7 +298,6 @@
 
   <main class="container">
 
-    <!-- ✅ 원클릭 섹션 -->
     <section class="section">
       <div class="oneclickPanel">
         <div class="oneclickHead">
@@ -365,7 +346,6 @@
       </div>
     </section>
 
-    <!-- ✅ 바로가기 -->
     <section class="section">
       <div class="sectionTitle">바로가기</div>
 
@@ -386,7 +366,6 @@
       </a>
     </section>
 
-    <!-- ✅ 계정 모아보기 -->
     <section class="section">
       <div class="sectionTitle">계정 모아보기</div>
 
@@ -472,7 +451,6 @@
 
   </main>
 
-  <!-- ✅ 원클릭 모달 -->
   <div id="ocModal" class="ocModal" aria-hidden="true">
     <div id="ocOverlay" class="ocModalOverlay"></div>
 
@@ -485,7 +463,6 @@
 
         <div class="ocHeroText">
           <h3 id="ocModalTitle" class="ocModalTitle">원클릭 스트리밍</h3>
-
           <div id="ocActionNotice" class="ocActionNotice">
             중복곡 허용 후 이용해주세요!
           </div>
@@ -503,7 +480,6 @@
     </div>
   </div>
 
-  <!-- ✅ 아이디 수집 모달 -->
   <div id="collectModal" class="collectModal" aria-hidden="true">
     <div id="collectOverlay" class="collectModalOverlay"></div>
 
@@ -527,7 +503,7 @@
             가이드
           </a>
 
-          <a class="collectModalBtn" href="https://naver.me/FNti54TO" target="_blank"">
+          <a class="collectModalBtn" href="https://naver.me/FNti54TO" target="_blank" rel="noreferrer">
             아이디 제출하기
           </a>
         </div>
@@ -581,17 +557,18 @@
       }
     });
 
-  window.addEventListener("scroll", function () {
-    const heroImg = document.querySelector(".ocHeroImg");
+    window.addEventListener("scroll", function () {
+      const heroImg = document.querySelector(".heroImg");
 
-    if (!heroImg) return;
+      if (!heroImg) return;
 
-    if (window.scrollY > 30) {
-      heroImg.classList.add("is-color");
-    } else {
-      heroImg.classList.remove("is-color");
-    }
-  });
-</script>
+      if (window.scrollY > 30) {
+        heroImg.classList.add("is-color");
+      } else {
+        heroImg.classList.remove("is-color");
+      }
+    });
+  </script>
+
 </body>
 </html>
