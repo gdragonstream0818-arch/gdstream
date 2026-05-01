@@ -736,33 +736,3 @@ img{max-width:100%;display:block}
   }
 }
 
-/* ✅ 메인이미지 너비를 아래 박스들과 맞춤 */
-.hero{
-  padding:16px 0 12px;
-}
-
-.heroInner{
-  max-width:var(--pageMax);
-  margin:0 auto;
-  padding:0 16px;
-}
-
-.heroLink{
-  width:100%;
-  display:block;
-  border:none !important;
-  box-shadow:none !important;
-  background:transparent !important;
-  border-radius:0 !important;
-  overflow:hidden !important;
-}
-
-.heroImg{
-  width:100%;
-  height:auto;
-  display:block;
-  border:none !important;
-  box-shadow:none !important;
-  border-radius:0 !important;
-  background:transparent !important;
-}
