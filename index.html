@@ -287,13 +287,11 @@
 
   <!-- ✅ HERO: 클릭하면 Too Bad MV -->
   <section class="hero">
-    <div class="heroInner">
+    <div class="container heroInner">
       <a class="heroLink"
          href="https://youtu.be/o9DhvbqYzns?si=7uozTe90cIU0ZY27"
          target="_blank" rel="noreferrer">
-        <picture>
-          <img class="heroImg" src="/assets/header/mainimg.png" alt="G-DRAGON - TOO BAD (MV)">
-        </picture>
+        <img class="heroImg" src="/assets/header/main.png" alt="G-DRAGON - TOO BAD (MV)">
       </a>
     </div>
   </section>
@@ -572,3 +570,39 @@
   </script>
 </body>
 </html>
+
+/* ✅ 메인이미지 영역을 아래 박스들과 같은 너비로 맞춤 */
+.hero{
+  width:100%;
+  margin:0;
+  padding:16px 0 12px;
+}
+
+.heroInner{
+  max-width:var(--pageMax) !important;
+  width:100% !important;
+  margin:0 auto !important;
+  padding-left:16px !important;
+  padding-right:16px !important;
+}
+
+.heroLink{
+  display:block !important;
+  width:100% !important;
+  border:none !important;
+  box-shadow:none !important;
+  background:transparent !important;
+  border-radius:0 !important;
+  overflow:hidden !important;
+}
+
+.heroImg{
+  display:block !important;
+  width:100% !important;
+  max-width:100% !important;
+  height:auto !important;
+  border:none !important;
+  box-shadow:none !important;
+  border-radius:0 !important;
+  background:transparent !important;
+}
