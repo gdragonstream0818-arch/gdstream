@@ -806,3 +806,7 @@ img{max-width:100%;display:block}
     border-radius:16px;
   }
 }
+
+.ctaGuide--collect{
+  margin-bottom:18px !important;
+}
