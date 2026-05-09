@@ -810,3 +810,12 @@ img{max-width:100%;display:block}
 .ctaGuide--collect{
   margin-bottom:50px !important;
 }
+
+/* 홈 섹션 제목 크기 통일 */
+main.container > .section > .sectionTitle{
+  font-size:18px !important;
+  font-weight:1000 !important;
+  line-height:1.2;
+  margin:12px 0 12px;
+  letter-spacing:-0.03em;
+}
