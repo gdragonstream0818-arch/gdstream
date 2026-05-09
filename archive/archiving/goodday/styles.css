@@ -1,178 +1,275 @@
+/* =========================
+   GOOD DAY ARCHIVE DETAIL
+   ========================= */
+
 .archivePage {
-  width: 100%;
-  padding: 24px 0 56px;
-  box-sizing: border-box;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 24px 0 56px !important;
+  box-sizing: border-box !important;
+  overflow-x: hidden !important;
 }
 
 .archivePage * {
-  box-sizing: border-box;
+  box-sizing: border-box !important;
 }
 
 .archiveArticle {
-  width: 100%;
-  max-width: 780px;
-  margin: 0 auto;
-  padding: 0;
-  background: #fff;
+  width: 100% !important;
+  max-width: 780px !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+  background: #fff !important;
 }
 
 /* 제목 영역 */
 .archiveHeader {
-  width: 100%;
-  padding: 0 20px;
-  margin: 0 auto 24px;
-  text-align: left;
+  width: 100% !important;
+  max-width: 760px !important;
+  margin: 0 auto 24px !important;
+  padding: 0 20px !important;
+  text-align: left !important;
 }
 
 .archiveCategory {
-  display: inline-block;
-  margin: 0 0 10px;
-  padding: 7px 13px;
-  border-radius: 999px;
-  background: #f5f1ea;
-  color: #8a6f4d;
-  font-size: 13px;
-  font-weight: 800;
+  display: inline-block !important;
+  margin: 0 0 10px !important;
+  padding: 7px 13px !important;
+  border-radius: 999px !important;
+  background: #f5f1ea !important;
+  color: #8a6f4d !important;
+  font-size: 13px !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.02em !important;
 }
 
 .archiveTitle {
-  margin: 0;
-  color: #111;
-  font-size: clamp(28px, 7vw, 44px);
-  font-weight: 900;
-  line-height: 1.12;
-  letter-spacing: -0.05em;
+  margin: 0 !important;
+  color: #111 !important;
+  font-size: clamp(32px, 8vw, 58px) !important;
+  font-weight: 900 !important;
+  line-height: 1.08 !important;
+  letter-spacing: -0.06em !important;
 }
 
 .archiveDate {
-  margin: 10px 0 0;
-  color: rgba(0, 0, 0, 0.45);
-  font-size: 14px;
-  font-weight: 700;
+  margin: 14px 0 0 !important;
+  color: rgba(0, 0, 0, 0.45) !important;
+  font-size: 17px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.04em !important;
 }
 
-/* 사진은 꽉 차게 */
+/* 본문 전체 */
 .archiveBody {
-  width: 100%;
-  margin: 0 auto;
-  padding: 0;
+  width: 100% !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
 }
 
+/* 사진은 화면 가로폭 꽉 차게 */
 .archiveFigure {
-  width: 100%;
-  margin: 0 0 32px;
-  padding: 0;
+  display: block !important;
+  width: 100vw !important;
+  max-width: 100vw !important;
+  margin: 0 0 42px calc(50% - 50vw) !important;
+  padding: 0 !important;
 }
 
 .archiveImage {
-  display: block;
-  width: 100%;
-  max-width: 100%;
-  height: auto;
-  margin: 0;
-  border-radius: 0;
-  box-shadow: none;
+  display: block !important;
+  width: 100vw !important;
+  max-width: 100vw !important;
+  height: auto !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
 }
 
-/* 본문은 사진보다 살짝 안쪽 */
+/* 글은 사진보다 살짝 안쪽 */
 .archiveContent {
-  width: 100%;
-  margin: 0;
-  padding: 0 20px;
-  color: #111;
-  font-size: 17px;
-  line-height: 1.85;
-  letter-spacing: -0.03em;
-  word-break: keep-all;
+  width: 100% !important;
+  max-width: 760px !important;
+  margin: 0 auto !important;
+  padding: 0 20px !important;
+  color: #111 !important;
+  font-size: 20px !important;
+  line-height: 1.85 !important;
+  letter-spacing: -0.04em !important;
+  word-break: keep-all !important;
 }
 
 .archiveContent p {
-  margin: 0 0 22px;
+  margin: 0 0 26px !important;
 }
 
 .archiveLead {
-  margin: 0 0 22px;
-  font-size: 21px;
-  font-weight: 800;
-  line-height: 1.6;
-  color: #111;
+  margin: 0 0 30px !important;
+  font-size: 28px !important;
+  font-weight: 900 !important;
+  line-height: 1.55 !important;
+  color: #111 !important;
+  letter-spacing: -0.05em !important;
 }
 
 .archiveSection {
-  margin-top: 38px;
-  padding-top: 0;
-  border-top: 0;
+  margin-top: 48px !important;
+  padding-top: 0 !important;
+  border-top: 0 !important;
 }
 
 .archiveSection h2 {
-  margin: 0 0 18px;
-  font-size: 30px;
-  font-weight: 900;
-  line-height: 1.25;
-  letter-spacing: -0.05em;
-  color: #111;
+  margin: 0 0 22px !important;
+  font-size: 38px !important;
+  font-weight: 900 !important;
+  line-height: 1.22 !important;
+  letter-spacing: -0.06em !important;
+  color: #111 !important;
 }
 
 .archiveSection h3 {
-  margin: 24px 0 10px;
-  font-size: 19px;
-  font-weight: 900;
-  color: #111;
+  margin: 28px 0 12px !important;
+  font-size: 22px !important;
+  font-weight: 900 !important;
+  color: #111 !important;
 }
 
 .archiveSection ul {
-  margin: 0;
-  padding-left: 24px;
+  margin: 0 !important;
+  padding-left: 26px !important;
 }
 
 .archiveSection li {
-  margin: 8px 0;
-  font-size: 17px;
-  line-height: 1.8;
+  margin: 10px 0 !important;
+  font-size: 20px !important;
+  line-height: 1.8 !important;
 }
 
 .archiveClosing {
-  margin-top: 42px;
-  padding: 24px 20px;
-  border-radius: 20px;
-  background: linear-gradient(135deg, #fff7dc, #f7efe5);
-  text-align: center;
-  color: #111;
-  font-size: 19px;
-  font-weight: 800;
-  line-height: 1.7;
+  margin-top: 48px !important;
+  padding: 26px 22px !important;
+  border-radius: 22px !important;
+  background: linear-gradient(135deg, #fff7dc, #f7efe5) !important;
+  text-align: center !important;
+  color: #111 !important;
+  font-size: 20px !important;
+  font-weight: 900 !important;
+  line-height: 1.7 !important;
 }
 
 .archiveClosing p {
-  margin: 0;
+  margin: 0 !important;
 }
 
 .archiveTags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 28px;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  margin-top: 30px !important;
 }
 
 .archiveTags span {
-  display: inline-flex;
-  align-items: center;
-  padding: 8px 12px;
-  border-radius: 999px;
-  background: #f4f4f4;
-  color: #555;
-  font-size: 14px;
-  font-weight: 800;
+  display: inline-flex !important;
+  align-items: center !important;
+  padding: 8px 12px !important;
+  border-radius: 999px !important;
+  background: #f4f4f4 !important;
+  color: #555 !important;
+  font-size: 14px !important;
+  font-weight: 800 !important;
 }
 
-/* PC에서는 너무 넓어지지 않게 */
-@media (min-width: 769px) {
-  .archiveHeader,
+/* PC에서는 사진이 너무 과하게 커지지 않게 사이트 폭 기준으로 */
+@media (min-width: 900px) {
+  .archiveFigure {
+    width: 780px !important;
+    max-width: 780px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .archiveImage {
+    width: 780px !important;
+    max-width: 780px !important;
+  }
+}
+
+/* 모바일 */
+@media (max-width: 768px) {
+  .archivePage {
+    padding: 24px 0 56px !important;
+  }
+
+  .archiveHeader {
+    padding: 0 20px !important;
+    margin-bottom: 24px !important;
+  }
+
+  .archiveTitle {
+    font-size: 44px !important;
+  }
+
+  .archiveDate {
+    font-size: 18px !important;
+  }
+
+  .archiveFigure {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    margin-left: calc(50% - 50vw) !important;
+    margin-right: 0 !important;
+    margin-bottom: 42px !important;
+  }
+
+  .archiveImage {
+    width: 100vw !important;
+    max-width: 100vw !important;
+  }
+
   .archiveContent {
-    max-width: 760px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 0;
-    padding-right: 0;
+    max-width: 100% !important;
+    padding: 0 20px !important;
+    font-size: 20px !important;
+    line-height: 1.85 !important;
+  }
+
+  .archiveLead {
+    font-size: 28px !important;
+    line-height: 1.55 !important;
+  }
+
+  .archiveSection h2 {
+    font-size: 38px !important;
+  }
+
+  .archiveSection li {
+    font-size: 20px !important;
+  }
+}
+
+@media (max-width: 420px) {
+  .archiveHeader {
+    padding: 0 18px !important;
+  }
+
+  .archiveTitle {
+    font-size: 38px !important;
+  }
+
+  .archiveContent {
+    padding: 0 18px !important;
+    font-size: 18px !important;
+  }
+
+  .archiveLead {
+    font-size: 25px !important;
+  }
+
+  .archiveSection h2 {
+    font-size: 34px !important;
+  }
+
+  .archiveSection li {
+    font-size: 18px !important;
   }
 }
