@@ -20,45 +20,58 @@
   <link rel="stylesheet" href="/styles.css" />
 
   <style>
-    /* ✅ PC: header-pc.jpg 사용 / 효과 없음 */
-    .heroImg{
+    .heroImg {
       filter: none;
     }
 
-    /* ✅ 모바일: header-m.jpg 사용 / 처음엔 살짝 흑백, 스크롤하면 컬러 */
-    @media (max-width: 768px){
-      .heroImg{
+    @media (max-width: 768px) {
+      .heroImg {
         filter: grayscale(40%);
         transition: filter .8s ease;
       }
 
-      .heroImg.is-color{
+      .heroImg.is-color {
         filter: grayscale(0%);
       }
     }
 
-    .ocModal { display:none; position:fixed; inset:0; z-index:9999; }
-    .ocModal.is-open { display:block; }
-    .ocModalOverlay{ position:absolute; inset:0; background: rgba(0,0,0,.62); }
+    .ocModal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+    }
 
-    .ocModalPanel{
-      position:absolute; left:50%; top:50%;
+    .ocModal.is-open {
+      display: block;
+    }
+
+    .ocModalOverlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, .62);
+    }
+
+    .ocModalPanel {
+      position: absolute;
+      left: 50%;
+      top: 50%;
       transform: translate(-50%, -50%);
       width: min(560px, calc(100vw - 28px));
       background: #fff;
       border-radius: 18px;
-      overflow:hidden;
-      box-shadow: 0 22px 70px rgba(0,0,0,.45);
+      overflow: hidden;
+      box-shadow: 0 22px 70px rgba(0, 0, 0, .45);
     }
 
-    .ocHero{
+    .ocHero {
       position: relative;
       height: 210px;
       background: #111;
       overflow: hidden;
     }
 
-    .ocHeroImg{
+    .ocHeroImg {
       position: absolute;
       inset: 0;
       width: 100%;
@@ -68,219 +81,255 @@
       transform: scale(1.02);
     }
 
-    .ocHeroShade{ display:none !important; }
+    .ocHeroShade {
+      display: none !important;
+    }
 
-    .ocModalClose{
-      position:absolute; right:14px; top:12px;
-      width:40px; height:40px;
+    .ocModalClose {
+      position: absolute;
+      right: 14px;
+      top: 12px;
+      width: 40px;
+      height: 40px;
       border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.35);
-      background: rgba(0,0,0,.35);
-      color:#fff;
-      font-size:18px;
-      cursor:pointer;
-      display:flex; align-items:center; justify-content:center;
+      border: 1px solid rgba(255, 255, 255, .35);
+      background: rgba(0, 0, 0, .35);
+      color: #fff;
+      font-size: 18px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       backdrop-filter: blur(6px);
     }
 
-    .ocModalClose:hover{ background: rgba(0,0,0,.5); }
-
-    .ocHeroText{
-      position:absolute; left:18px; right:18px; bottom:16px;
-      color:#fff;
+    .ocModalClose:hover {
+      background: rgba(0, 0, 0, .5);
     }
 
-    .ocModalTitle{
-      margin:0;
-      font-size:26px;
-      line-height:1.1;
-      letter-spacing:-.02em;
-      text-shadow: 0 6px 22px rgba(0,0,0,.55);
+    .ocHeroText {
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      bottom: 16px;
+      color: #fff;
     }
 
-    .ocActionNotice{
+    .ocModalTitle {
+      margin: 0;
+      font-size: 26px;
+      line-height: 1.1;
+      letter-spacing: -.02em;
+      text-shadow: 0 6px 22px rgba(0, 0, 0, .55);
+    }
+
+    .ocActionNotice {
       margin-top: 12px;
       padding: 10px 12px;
       border-radius: 14px;
-      background: rgba(0,0,0,.38);
-      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(0, 0, 0, .38);
+      border: 1px solid rgba(255, 255, 255, .16);
       font-size: 13px;
       font-weight: 700;
       line-height: 1.35;
       backdrop-filter: blur(8px);
     }
 
-    .ocModalBody{
+    .ocModalBody {
       padding: 16px 18px 18px;
       background: #fff;
     }
 
-    .ocDeviceBar{
-      display:flex;
-      align-items:baseline;
-      justify-content:space-between;
-      gap:12px;
+    .ocDeviceBar {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
       padding: 2px 2px 14px;
     }
 
-    .ocDeviceLabel{
+    .ocDeviceLabel {
       font-size: 15px;
       font-weight: 900;
-      color:#111;
+      color: #111;
     }
 
-    .ocDeviceHint{
+    .ocDeviceHint {
       font-size: 13px;
       font-weight: 800;
-      color: rgba(0,0,0,.45);
-      text-align:right;
+      color: rgba(0, 0, 0, .45);
+      text-align: right;
     }
 
-    .ocModalGrid{
-      display:grid;
-      gap:12px;
+    .ocModalGrid {
+      display: grid;
+      gap: 12px;
       grid-template-columns: repeat(2, 1fr);
     }
 
-    @media (max-width: 420px){
-      .ocModalGrid{ grid-template-columns: 1fr; }
-    }
-
-    .ocModalBtn{
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      padding: 16px 14px;
-      border-radius: 16px;
-      text-decoration:none;
-      background: #f3f4f6;
-      color:#111;
-      border: 1px solid rgba(0,0,0,.06);
-      font-weight:800;
-      letter-spacing:-.01em;
-      box-shadow: 0 10px 22px rgba(0,0,0,.06);
-    }
-
-    .ocModalBtn:hover{ background:#eceff3; }
-
-    .ocHeroImg.is-hidden{ display:none; }
-
-    .ctaGuide--collect{
-      margin-top:12px;
-    }
-
-    .collectModal { display:none; position:fixed; inset:0; z-index:10000; }
-    .collectModal.is-open { display:block; }
-
-    .collectModalOverlay{
-      position:absolute; inset:0;
-      background: rgba(0,0,0,.62);
-    }
-
-    .collectModalPanel{
-      position:absolute;
-      left:50%; top:50%;
-      transform:translate(-50%, -50%);
-      width:min(560px, calc(100vw - 28px));
-      background:#fff;
-      border-radius:18px;
-      overflow:hidden;
-      box-shadow:0 22px 70px rgba(0,0,0,.45);
-    }
-
-    .collectHero{
-      position:relative;
-      height:210px;
-      background:#111;
-    }
-
-    .collectHeroImg{
-      position:absolute; inset:0;
-      width:100%; height:100%;
-      object-fit:cover;
-      transform:scale(1.02);
-    }
-
-    .collectModalClose{
-      position:absolute; right:14px; top:12px;
-      width:40px; height:40px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.35);
-      background:rgba(0,0,0,.35);
-      color:#fff;
-      font-size:18px;
-      cursor:pointer;
-      display:flex; align-items:center; justify-content:center;
-      backdrop-filter:blur(6px);
-    }
-
-    .collectModalClose:hover{
-      background:rgba(0,0,0,.5);
-    }
-
-    .collectHeroText{
-      position:absolute;
-      left:18px; right:18px; bottom:16px;
-      color:#fff;
-    }
-
-    .collectModalBody{
-      padding:18px;
-      background:#fff;
-    }
-
-    .collectModalGrid{
-      display:grid;
-      gap:12px;
-      grid-template-columns:repeat(2, 1fr);
-    }
-
-    @media (max-width: 420px){
-      .collectModalGrid{
-        grid-template-columns:1fr;
+    @media (max-width: 420px) {
+      .ocModalGrid {
+        grid-template-columns: 1fr;
       }
     }
 
-    .collectModalBtn{
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      padding:16px 14px;
-      border-radius:16px;
-      text-decoration:none;
-      background:#f3f4f6;
-      color:#111;
-      border:1px solid rgba(0,0,0,.06);
-      font-weight:800;
-      letter-spacing:-.01em;
-      box-shadow:0 10px 22px rgba(0,0,0,.06);
+    .ocModalBtn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 16px 14px;
+      border-radius: 16px;
+      text-decoration: none;
+      background: #f3f4f6;
+      color: #111;
+      border: 1px solid rgba(0, 0, 0, .06);
+      font-weight: 800;
+      letter-spacing: -.01em;
+      box-shadow: 0 10px 22px rgba(0, 0, 0, .06);
     }
 
-    .collectModalBtn:hover{
-      background:#eceff3;
+    .ocModalBtn:hover {
+      background: #eceff3;
     }
 
-    .collectModalTitle{
-      margin:0;
+    .ocHeroImg.is-hidden {
+      display: none;
     }
 
-    .collectNotice{
-      margin-top:4px;
-      font-size:13px;
-      font-weight:700;
-      line-height:1.35;
-      background:none;
-      border:none;
-      backdrop-filter:none;
-      padding:0;
+    .ctaGuide--collect {
+      margin-top: 12px;
+    }
+
+    .collectModal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 10000;
+    }
+
+    .collectModal.is-open {
+      display: block;
+    }
+
+    .collectModalOverlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, .62);
+    }
+
+    .collectModalPanel {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: min(560px, calc(100vw - 28px));
+      background: #fff;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 22px 70px rgba(0, 0, 0, .45);
+    }
+
+    .collectHero {
+      position: relative;
+      height: 210px;
+      background: #111;
+    }
+
+    .collectHeroImg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.02);
+    }
+
+    .collectModalClose {
+      position: absolute;
+      right: 14px;
+      top: 12px;
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, .35);
+      background: rgba(0, 0, 0, .35);
+      color: #fff;
+      font-size: 18px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(6px);
+    }
+
+    .collectModalClose:hover {
+      background: rgba(0, 0, 0, .5);
+    }
+
+    .collectHeroText {
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      bottom: 16px;
+      color: #fff;
+    }
+
+    .collectModalTitle {
+      margin: 0;
+    }
+
+    .collectNotice {
+      margin-top: 4px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.35;
+      background: none;
+      border: none;
+      backdrop-filter: none;
+      padding: 0;
+    }
+
+    .collectModalBody {
+      padding: 18px;
+      background: #fff;
+    }
+
+    .collectModalGrid {
+      display: grid;
+      gap: 12px;
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 420px) {
+      .collectModalGrid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .collectModalBtn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 16px 14px;
+      border-radius: 16px;
+      text-decoration: none;
+      background: #f3f4f6;
+      color: #111;
+      border: 1px solid rgba(0, 0, 0, .06);
+      font-weight: 800;
+      letter-spacing: -.01em;
+      box-shadow: 0 10px 22px rgba(0, 0, 0, .06);
+    }
+
+    .collectModalBtn:hover {
+      background: #eceff3;
     }
   </style>
 </head>
 
 <body>
-
   <header class="header header--simple">
     <div class="headerBar headerBar--center">
       <a class="brand" href="/" aria-label="지드래곤 음원총공팀">
@@ -293,7 +342,8 @@
     <div class="heroInner">
       <a class="heroLink"
          href="https://youtu.be/o9DhvbqYzns?si=7uozTe90cIU0ZY27"
-         target="_blank" rel="noreferrer">
+         target="_blank"
+         rel="noreferrer">
         <picture>
           <source media="(max-width: 768px)" srcset="/assets/header/header-m.jpg">
           <img class="heroImg" src="/assets/header/header-pc.jpg" alt="G-DRAGON - TOO BAD (MV)">
@@ -303,7 +353,6 @@
   </section>
 
   <main class="container">
-
     <section class="section">
       <div class="oneclickPanel">
         <div class="oneclickHead">
@@ -373,59 +422,59 @@
     </section>
 
     <section class="section archiveSection">
-  <div class="sectionTitle">아카이빙</div>
+      <div class="sectionTitle">아카이빙</div>
 
-  <div class="archiveCoverScroll">
-    <a class="archiveCoverCard" href="archive/archiving/jacob&co/index.html">
-      <div class="archiveCoverImgBox">
-        <img src="/assets/archive/archive1.jpg" alt="제이콥앤코">
-      </div>
-      <div class="archiveCoverTitle">JACOB&CO</div>
-      <div class="archiveCoverTags">#제이콥앤코</div>
-    </a>
+      <div class="archiveCoverScroll">
+        <a class="archiveCoverCard" href="/archive/archiving/jacob-co/">
+          <div class="archiveCoverImgBox">
+            <img src="/assets/archive/archive1.jpg" alt="제이콥앤코">
+          </div>
+          <div class="archiveCoverTitle">JACOB&CO</div>
+          <div class="archiveCoverTags">#제이콥앤코</div>
+        </a>
 
-    <a class="archiveCoverCard" href="archive/archiving/yellowcoin/index.html">
-      <div class="archiveCoverImgBox">
-        <img src="/assets/archive/archive2.jpg" alt="노란동전">
-      </div>
-      <div class="archiveCoverTitle">노란 동전 자선 행사</div>
-      <div class="archiveCoverTags">#2년연속 #프랑스영부인초청</div>
-    </a>
+        <a class="archiveCoverCard" href="/archive/archiving/yellowcoin/">
+          <div class="archiveCoverImgBox">
+            <img src="/assets/archive/archive2.jpg" alt="노란동전">
+          </div>
+          <div class="archiveCoverTitle">노란 동전 자선 행사</div>
+          <div class="archiveCoverTags">#2년연속 #프랑스영부인초청</div>
+        </a>
 
-    <a class="archiveCoverCard" href="archive/archiving/fanplusone/index.html">
-      <div class="archiveCoverImgBox">
-        <img src="/assets/archive/archive3.jpg" alt="FANPLUSONE">
-      </div>
-      <div class="archiveCoverTitle">FANPLUSONE</div>
-      <div class="archiveCoverTags">#팬사랑 #가족</div>
-    </a>
+        <a class="archiveCoverCard" href="/archive/archiving/fanplusone/">
+          <div class="archiveCoverImgBox">
+            <img src="/assets/archive/archive3.jpg" alt="FANPLUSONE">
+          </div>
+          <div class="archiveCoverTitle">FANPLUSONE</div>
+          <div class="archiveCoverTags">#팬사랑 #가족</div>
+        </a>
 
-    <a class="archiveCoverCard" href="archive/archiving/exhibition/index.html">
-      <div class="archiveCoverImgBox">
-        <img src="/assets/archive/archive4.jpg" alt="EXHIBITION">
-      </div>
-      <div class="archiveCoverTitle">EXHIBITION</div>
-      <div class="archiveCoverTags">#위버맨쉬 #전시회</div>
-    </a>
+        <a class="archiveCoverCard" href="/archive/archiving/exhibition/">
+          <div class="archiveCoverImgBox">
+            <img src="/assets/archive/archive4.jpg" alt="EXHIBITION">
+          </div>
+          <div class="archiveCoverTitle">EXHIBITION</div>
+          <div class="archiveCoverTags">#위버맨쉬 #전시회</div>
+        </a>
 
-    <a class="archiveCoverCard" href="archive/archiving/goodday/index.html">
-      <div class="archiveCoverImgBox">
-        <img src="/assets/archive/archive5.jpg" alt="굿데이">
-      </div>
-      <div class="archiveCoverTitle">굿데이</div>
-      <div class="archiveCoverTags">#지디 #좋은날</div>
-    </a>
+        <a class="archiveCoverCard" href="/archive/archiving/goodday/">
+          <div class="archiveCoverImgBox">
+            <img src="/assets/archive/archive5.jpg" alt="굿데이">
+          </div>
+          <div class="archiveCoverTitle">굿데이</div>
+          <div class="archiveCoverTags">#지디 #좋은날</div>
+        </a>
 
-    <a class="archiveCoverCard" href="archive/archiving/nike/index.html">
-      <div class="archiveCoverImgBox">
-        <img src="/assets/archive/archive6.jpg" alt="나이키">
+        <a class="archiveCoverCard" href="/archive/archiving/nike/">
+          <div class="archiveCoverImgBox">
+            <img src="/assets/archive/archive6.jpg" alt="나이키">
+          </div>
+          <div class="archiveCoverTitle">NIKE</div>
+          <div class="archiveCoverTags">#파라노이즈 #권도</div>
+        </a>
       </div>
-      <div class="archiveCoverTitle">NIKE</div>
-      <div class="archiveCoverTags">#파라노이즈 #권도</div>
-    </a>
-  </div>
-</section>
-    
+    </section>
+
     <section class="section">
       <div class="sectionTitle">계정 모아보기</div>
 
@@ -434,15 +483,18 @@
           <div class="socialTitle">G-DRAGON INDIVIDUAL</div>
           <div class="socialDesc">지드래곤 개인 계정</div>
         </div>
+
         <div class="socialGrid">
           <a class="socialBtn" href="https://www.instagram.com/xxxibgdrgn" target="_blank" rel="noreferrer">
             <span class="socialIcon"><img src="/assets/icons/social/instagram.svg" alt="Instagram"></span>
             <span class="socialName">Instagram</span>
           </a>
+
           <a class="socialBtn" href="https://x.com/ibgdrgn" target="_blank" rel="noreferrer">
-            <span class="socialIcon"><img src="/assets/icons/social/x.svg" alt="x"></span>
+            <span class="socialIcon"><img src="/assets/icons/social/x.svg" alt="X"></span>
             <span class="socialName">X</span>
           </a>
+
           <a class="socialBtn" href="https://weibo.com/u/3786649467" target="_blank" rel="noreferrer">
             <span class="socialIcon"><img src="/assets/icons/social/weibo.svg" alt="Weibo"></span>
             <span class="socialName">Weibo</span>
@@ -455,27 +507,33 @@
           <div class="socialTitle">G-DRAGON OFFICIAL</div>
           <div class="socialDesc">공식 계정</div>
         </div>
+
         <div class="socialGrid">
           <a class="socialBtn" href="https://www.youtube.com/@xxxibgdrgn" target="_blank" rel="noreferrer">
             <span class="socialIcon"><img src="/assets/icons/social/youtube.svg" alt="YouTube"></span>
             <span class="socialName">YouTube</span>
           </a>
+
           <a class="socialBtn" href="https://www.instagram.com/8lo8lo8lowme" target="_blank" rel="noreferrer">
             <span class="socialIcon"><img src="/assets/icons/social/instagram.svg" alt="Instagram"></span>
             <span class="socialName">팔로미</span>
           </a>
+
           <a class="socialBtn" href="https://www.instagram.com/fanplusonedotcom" target="_blank" rel="noreferrer">
             <span class="socialIcon"><img src="/assets/icons/social/instagram.svg" alt="Instagram"></span>
             <span class="socialName">fanplusone</span>
           </a>
+
           <a class="socialBtn" href="https://x.com/FANPLUS1DOTCOM" target="_blank" rel="noreferrer">
             <span class="socialIcon"><img src="/assets/icons/social/x.svg" alt="X"></span>
             <span class="socialName">fanplusone</span>
           </a>
+
           <a class="socialBtn" href="https://www.tiktok.com/@fanplusonedotcom" target="_blank" rel="noreferrer">
             <span class="socialIcon"><img src="/assets/icons/social/tiktok.svg" alt="TikTok"></span>
             <span class="socialName">TikTok</span>
           </a>
+
           <a class="socialBtn" href="https://gdragon.ai/" target="_blank" rel="noreferrer">
             <span class="socialIcon"><img src="/assets/icons/social/bstage.svg" alt="b.stage"></span>
             <span class="socialName">b.stage</span>
@@ -488,19 +546,23 @@
           <div class="socialTitle">GDRAGON STREAM</div>
           <div class="socialDesc">음원총공팀 계정</div>
         </div>
+
         <div class="socialGrid">
           <a class="socialBtn" href="https://x.com/GDRAGON_STREAM" target="_blank" rel="noreferrer">
             <span class="socialIcon"><img src="/assets/icons/social/x.svg" alt="X"></span>
             <span class="socialName">X</span>
           </a>
+
           <a class="socialBtn" href="https://www.instagram.com/gdragon_stream/" target="_blank" rel="noreferrer">
             <span class="socialIcon"><img src="/assets/icons/social/instagram.svg" alt="Instagram"></span>
             <span class="socialName">Instagram</span>
           </a>
+
           <a class="socialBtn" href="https://www.threads.com/@gdragon_stream?xmt=AQF0-9Qrl0GaLacu6i-jscBusw1dgbuFYdABjjHnuAWiOaA" target="_blank" rel="noreferrer">
             <span class="socialIcon"><img src="/assets/icons/social/threads.svg" alt="Threads"></span>
             <span class="socialName">Threads</span>
           </a>
+
           <a class="socialBtn" href="https://gall.dcinside.com/mgallery/board/lists/?id=gdpeaceminusone" target="_blank" rel="noreferrer">
             <span class="socialIcon"><img src="/assets/icons/social/dcinside.svg" alt="디시인사이드"></span>
             <span class="socialName">디시인사이드</span>
@@ -508,7 +570,6 @@
         </div>
       </div>
     </section>
-
   </main>
 
   <div id="ocModal" class="ocModal" aria-hidden="true">
@@ -559,7 +620,7 @@
 
       <div class="collectModalBody">
         <div class="collectModalGrid">
-          <a class="collectModalBtn" href="guide/etc/collectid/index.html/">
+          <a class="collectModalBtn" href="/guide/etc/collectid/">
             가이드
           </a>
 
@@ -571,7 +632,7 @@
     </div>
   </div>
 
-    <footer class="footer">
+  <footer class="footer">
     <div class="container footerInner footerInner--logo">
       <a href="/" class="footerLogoLink" aria-label="지드래곤 음원총공팀 홈으로 이동">
         <img class="footerLogo" src="/assets/header/logo1.png" alt="지드래곤 음원총공팀 로고">
@@ -643,9 +704,5 @@
     window.addEventListener("resize", updateHeroColorEffect);
     window.addEventListener("load", updateHeroColorEffect);
   </script>
-
-
-
 </body>
-</html>
 </html>
