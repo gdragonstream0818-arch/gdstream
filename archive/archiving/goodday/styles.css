@@ -159,3 +159,20 @@
     padding: 24px 18px;
   }
 }
+
+/* 아카이브 본문 이미지 폭 맞춤 */
+.archiveFigure {
+  width: 100%;
+  margin: 0 0 34px;
+}
+
+.archiveImage,
+.archiveFigure img,
+.guideImg {
+  display: block;
+  width: 100%;
+  max-width: none;
+  height: auto;
+  margin: 0;
+  border-radius: 0;
+}
