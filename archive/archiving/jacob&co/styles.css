@@ -6,13 +6,15 @@ body {
   overflow-x: hidden;
 }
 
-/* 전체 상세 페이지 */
 .archiveDetail {
   padding-top: 24px;
   padding-bottom: 64px;
 }
 
-/* 글 영역만 따로 폭 제한 */
+.archiveArticle {
+  width: 100%;
+}
+
 .archiveTextWrap {
   max-width: 780px;
   margin: 0 auto;
@@ -20,7 +22,6 @@ body {
   padding-right: clamp(22px, 5vw, 40px);
 }
 
-/* 제목 영역 */
 .archiveArticleHead {
   margin-bottom: 26px;
 }
@@ -44,15 +45,6 @@ body {
   word-break: keep-all;
 }
 
-.archiveDate {
-  margin: 10px 0 0;
-  color: rgba(17, 17, 17, 0.45);
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 1.4;
-}
-
-/* 이미지: 화면 가로 전체 채우기 */
 .archiveFigure {
   width: 100%;
   margin: 26px 0 42px;
@@ -68,7 +60,6 @@ body {
   box-shadow: none;
 }
 
-/* 본문 */
 .archiveContent {
   color: rgba(17, 17, 17, 0.88);
   font-size: clamp(21px, 5.1vw, 25px);
@@ -100,7 +91,6 @@ body {
   line-height: 1.65;
 }
 
-/* 모바일 */
 @media (max-width: 480px) {
   .archiveDetail {
     padding-top: 22px;
