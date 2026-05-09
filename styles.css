@@ -695,6 +695,165 @@ img{max-width:100%;display:block}
   opacity:.9;
 }
 
+/* =========================
+   HOME: VIDEO / CONTENT SHELF
+   바로가기 아래 추천 콘텐츠 가로 카드
+   ========================= */
+
+.videoShelf{
+  margin-top:12px;
+  border-radius:var(--radius);
+  background:rgba(255,255,255,.92);
+  border:1px solid rgba(0,0,0,.08);
+  box-shadow:var(--shadow);
+  padding:16px;
+  overflow:hidden;
+}
+
+.videoShelfHead{
+  margin-bottom:14px;
+}
+
+.videoShelfKicker{
+  font-size:12px;
+  font-weight:900;
+  color:rgba(0,0,0,.45);
+  margin-bottom:6px;
+  text-transform:uppercase;
+  letter-spacing:.04em;
+}
+
+.videoShelfTitle{
+  margin:0;
+  font-size:22px;
+  font-weight:1000;
+  letter-spacing:-.04em;
+  color:#111;
+}
+
+.videoShelfSub{
+  margin:7px 0 0;
+  font-size:13px;
+  font-weight:700;
+  line-height:1.45;
+  color:rgba(0,0,0,.55);
+}
+
+.videoScroll{
+  display:flex;
+  gap:14px;
+  overflow-x:auto;
+  padding:2px 2px 14px;
+  scroll-snap-type:x mandatory;
+  -webkit-overflow-scrolling:touch;
+}
+
+.videoScroll::-webkit-scrollbar{
+  height:7px;
+}
+
+.videoScroll::-webkit-scrollbar-thumb{
+  background:rgba(0,0,0,.22);
+  border-radius:999px;
+}
+
+.videoCard{
+  flex:0 0 240px;
+  scroll-snap-align:start;
+  color:#111;
+  text-decoration:none;
+}
+
+.videoThumb{
+  position:relative;
+  width:100%;
+  aspect-ratio:16 / 9;
+  border-radius:18px;
+  overflow:hidden;
+  background:#f3f4f6;
+  border:1px solid rgba(0,0,0,.06);
+  box-shadow:0 10px 24px rgba(0,0,0,.08);
+}
+
+.videoThumb img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  transition:transform .35s ease, filter .35s ease;
+}
+
+.videoCard:hover .videoThumb img{
+  transform:scale(1.05);
+  filter:brightness(.88);
+}
+
+.videoPlay{
+  position:absolute;
+  top:16px;
+  right:18px;
+  width:0;
+  height:0;
+  border-top:14px solid transparent;
+  border-bottom:14px solid transparent;
+  border-left:22px solid #fff;
+  filter:drop-shadow(0 3px 8px rgba(0,0,0,.35));
+}
+
+.videoCardTitle{
+  margin-top:12px;
+  font-size:17px;
+  font-weight:1000;
+  line-height:1.3;
+  letter-spacing:-.03em;
+  word-break:keep-all;
+}
+
+.videoTags{
+  margin-top:6px;
+  font-size:13px;
+  font-weight:800;
+  color:rgba(0,0,0,.42);
+}
+
+@media (min-width:1024px){
+  .videoCard{
+    flex-basis:235px;
+  }
+}
+
+@media (max-width:768px){
+  .videoShelf{
+    padding:15px;
+  }
+
+  .videoShelfTitle{
+    font-size:20px;
+  }
+
+  .videoCard{
+    flex-basis:230px;
+  }
+
+  .videoCardTitle{
+    font-size:16px;
+  }
+}
+
+@media (max-width:420px){
+  .videoCard{
+    flex-basis:215px;
+  }
+
+  .videoThumb{
+    border-radius:16px;
+  }
+
+  .videoCardTitle{
+    font-size:15px;
+  }
+}
+
 @media (max-width:768px){
   .footerLogo{
     height:34px;
