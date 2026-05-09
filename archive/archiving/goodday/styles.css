@@ -1,14 +1,18 @@
 .archiveContainer {
+  width: 100%;
   max-width: 860px;
   margin: 0 auto;
   padding: 48px 20px 72px;
+  box-sizing: border-box;
 }
 
 .archiveArticle {
+  width: 100%;
   background: #fff;
   border-radius: 28px;
   padding: 34px;
   box-shadow: 0 18px 45px rgba(0, 0, 0, 0.08);
+  box-sizing: border-box;
 }
 
 .archiveHeader {
@@ -45,22 +49,29 @@
 }
 
 .archiveFigure {
+  width: 100%;
   margin: 0 0 34px;
+  padding: 0;
 }
 
 .archiveImage {
   display: block;
   width: 100%;
+  max-width: 100%;
+  height: auto;
+  margin: 0;
   border-radius: 22px;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
 }
 
 .archiveContent {
+  width: 100%;
   color: #222;
   font-size: 17px;
   line-height: 1.85;
   letter-spacing: -0.03em;
   word-break: keep-all;
+  box-sizing: border-box;
 }
 
 .archiveLead {
@@ -135,6 +146,14 @@
   font-weight: 700;
 }
 
+/* 혹시 기존 guideImg 스타일이 남아 있어도 아카이브 이미지가 줄어들지 않게 방지 */
+.archiveFigure .guideImg,
+.archiveFigure img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+
 @media (max-width: 640px) {
   .archiveContainer {
     padding: 32px 16px 56px;
@@ -143,6 +162,10 @@
   .archiveArticle {
     padding: 22px;
     border-radius: 22px;
+  }
+
+  .archiveImage {
+    border-radius: 18px;
   }
 
   .archiveContent {
@@ -154,25 +177,12 @@
     font-size: 20px;
   }
 
+  .archiveSection h2 {
+    font-size: 21px;
+  }
+
   .archiveClosing {
     font-size: 18px;
     padding: 24px 18px;
   }
-}
-
-/* 아카이브 본문 이미지 폭 맞춤 */
-.archiveFigure {
-  width: 100%;
-  margin: 0 0 34px;
-}
-
-.archiveImage,
-.archiveFigure img,
-.guideImg {
-  display: block;
-  width: 100%;
-  max-width: none;
-  height: auto;
-  margin: 0;
-  border-radius: 0;
 }
