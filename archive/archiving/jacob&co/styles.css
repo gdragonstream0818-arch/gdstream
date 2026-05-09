@@ -6,24 +6,29 @@ body {
   overflow-x: hidden;
 }
 
+/* 페이지 전체 */
 .archiveDetail {
+  width: 100%;
   padding-top: 24px;
   padding-bottom: 64px;
 }
 
 .archiveArticle {
   width: 100%;
+  margin: 0;
 }
 
+/* 제목/본문 글 영역: 여백 있음 */
 .archiveTextWrap {
   max-width: 780px;
   margin: 0 auto;
-  padding-left: clamp(22px, 5vw, 40px);
-  padding-right: clamp(22px, 5vw, 40px);
+  padding-left: clamp(22px, 5vw, 42px);
+  padding-right: clamp(22px, 5vw, 42px);
 }
 
+/* 제목 영역 */
 .archiveArticleHead {
-  margin-bottom: 26px;
+  margin-bottom: 24px;
 }
 
 .archiveKicker {
@@ -38,16 +43,18 @@ body {
 .archiveTitle {
   margin: 0;
   color: #111;
-  font-size: clamp(31px, 5vw, 42px);
+  font-size: clamp(30px, 5vw, 42px);
   font-weight: 900;
   line-height: 1.18;
   letter-spacing: -0.055em;
   word-break: keep-all;
 }
 
+/* 이미지: 여백 최소화, 화면 가로 채움 */
 .archiveFigure {
+  display: block;
   width: 100%;
-  margin: 26px 0 42px;
+  margin: 24px 0 42px;
   padding: 0;
 }
 
@@ -56,15 +63,17 @@ body {
   width: 100%;
   max-width: none;
   height: auto;
+  margin: 0;
   border-radius: 0;
   box-shadow: none;
 }
 
+/* 본문 */
 .archiveContent {
   color: rgba(17, 17, 17, 0.88);
-  font-size: clamp(21px, 5.1vw, 25px);
+  font-size: clamp(21px, 4.8vw, 25px);
   font-weight: 600;
-  line-height: 1.75;
+  line-height: 1.74;
   letter-spacing: -0.045em;
   word-break: keep-all;
 }
@@ -86,11 +95,12 @@ body {
 
 .archiveTags {
   color: rgba(17, 17, 17, 0.62);
-  font-size: clamp(18px, 4.3vw, 21px);
+  font-size: clamp(18px, 4.1vw, 21px);
   font-weight: 700;
   line-height: 1.65;
 }
 
+/* 모바일 */
 @media (max-width: 480px) {
   .archiveDetail {
     padding-top: 22px;
@@ -98,12 +108,12 @@ body {
   }
 
   .archiveArticleHead {
-    margin-bottom: 24px;
+    margin-bottom: 22px;
   }
 
   .archiveFigure {
-    margin-top: 24px;
-    margin-bottom: 40px;
+    margin-top: 22px;
+    margin-bottom: 38px;
   }
 
   .archiveContent {
@@ -115,6 +125,7 @@ body {
   }
 }
 
+/* 아주 작은 화면 */
 @media (max-width: 380px) {
   .archiveTextWrap {
     padding-left: 20px;
