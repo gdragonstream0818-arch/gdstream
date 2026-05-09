@@ -3,164 +3,164 @@
    ========================= */
 
 .archiveDetail {
-  padding-top: 28px;
-  padding-bottom: 56px;
+  padding-top: 26px;
+  padding-bottom: 64px;
 }
 
 .archiveArticle {
-  max-width: 720px;
+  width: 100%;
+  max-width: 780px;
   margin: 0 auto;
 }
 
 .archiveArticleHead {
-  margin-bottom: 22px;
+  margin-bottom: 24px;
 }
 
 .archiveKicker {
-  margin: 0 0 8px;
-  color: var(--accent);
-  font-size: 13px;
-  font-weight: 900;
-  letter-spacing: -0.02em;
+  margin: 0 0 10px;
+  color: rgba(17, 17, 17, 0.55);
+  font-size: 17px;
+  font-weight: 800;
+  line-height: 1.35;
+  letter-spacing: -0.03em;
 }
 
 .archiveTitle {
   margin: 0;
-  color: var(--text);
-  font-size: clamp(28px, 5vw, 38px);
+  color: #111;
+  font-size: 42px;
   font-weight: 900;
-  line-height: 1.15;
-  letter-spacing: -0.05em;
+  line-height: 1.18;
+  letter-spacing: -0.055em;
   word-break: keep-all;
 }
 
 .archiveDate {
-  margin: 10px 0 0;
-  color: var(--muted);
-  font-size: 14px;
+  margin: 12px 0 0;
+  color: rgba(17, 17, 17, 0.45);
+  font-size: 15px;
   font-weight: 700;
+  line-height: 1.4;
 }
 
 .archiveFigure {
-  margin: 26px 0 32px;
+  width: 100%;
+  margin: 30px 0 46px;
 }
 
 .archiveMainImg {
+  display: block;
   width: 100%;
   height: auto;
-  border-radius: 22px;
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.10);
+  border-radius: 0;
+  box-shadow: none;
 }
 
 .archiveContent {
-  color: rgba(17, 17, 17, 0.88);
-  font-size: 17px;
-  line-height: 1.85;
-  letter-spacing: -0.025em;
+  color: rgba(17, 17, 17, 0.86);
+  font-size: 25px;
+  font-weight: 600;
+  line-height: 1.82;
+  letter-spacing: -0.045em;
   word-break: keep-all;
 }
 
 .archiveContent p {
-  margin: 0 0 24px;
-}
-
-.archiveLead {
-  color: rgba(17, 17, 17, 0.96);
-  font-size: 19px;
-  font-weight: 900;
-  line-height: 1.65;
-  letter-spacing: -0.04em;
-}
-
-.archiveContent h2 {
-  margin: 34px 0 8px;
-  color: rgba(17, 17, 17, 0.96);
-  font-size: 18px;
-  font-weight: 900;
-  line-height: 1.4;
-  letter-spacing: -0.035em;
+  margin: 0 0 34px;
 }
 
 .archiveCredit {
-  margin-top: 36px;
-  padding-top: 22px;
-  border-top: 1px solid var(--line);
-  color: rgba(17, 17, 17, 0.72);
-  font-size: 15px;
-  font-weight: 800;
+  margin-top: 46px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(0, 0, 0, 0.10);
 }
 
 .archiveTags {
-  color: rgba(17, 17, 17, 0.62);
-  font-size: 14px;
-  font-weight: 800;
+  color: rgba(17, 17, 17, 0.58);
+  font-size: 21px;
   line-height: 1.65;
 }
 
-/* 모바일 */
+/* 태블릿 */
 @media (max-width: 768px) {
   .archiveDetail {
-    padding-top: 24px;
-    padding-bottom: 44px;
-  }
-
-  .archiveArticle {
-    max-width: 100%;
+    padding-top: 22px;
+    padding-bottom: 52px;
   }
 
   .archiveArticleHead {
-    margin-bottom: 20px;
+    margin-bottom: 22px;
+  }
+
+  .archiveKicker {
+    font-size: 15px;
   }
 
   .archiveTitle {
-    font-size: 30px;
+    font-size: 34px;
+    line-height: 1.16;
   }
 
-  /* 모바일에서 본문사진 가로 꽉 차게 */
-  .archiveFigure--fullMobile {
-    width: calc(100% + 28px);
-    margin-left: -14px;
-    margin-right: -14px;
-    margin-top: 22px;
-    margin-bottom: 30px;
+  .archiveDate {
+    font-size: 14px;
   }
 
-  .archiveFigure--fullMobile .archiveMainImg {
-    border-radius: 0;
-    box-shadow: none;
+  .archiveFigure {
+    margin: 26px 0 40px;
   }
 
   .archiveContent {
-    font-size: 16px;
+    font-size: 23px;
     line-height: 1.78;
   }
 
-  .archiveLead {
-    font-size: 18px;
-    line-height: 1.65;
-  }
-
-  .archiveContent h2 {
-    margin-top: 30px;
-    font-size: 17px;
-  }
-
   .archiveContent p {
-    margin-bottom: 22px;
+    margin-bottom: 32px;
+  }
+
+  .archiveTags {
+    font-size: 19px;
   }
 }
 
-@media (max-width: 420px) {
+/* 모바일 */
+@media (max-width: 480px) {
+  .archiveDetail {
+    padding-top: 20px;
+  }
+
   .archiveTitle {
-    font-size: 28px;
+    font-size: 31px;
+    letter-spacing: -0.06em;
+  }
+
+  .archiveFigure {
+    margin: 24px 0 38px;
   }
 
   .archiveContent {
-    font-size: 15.5px;
-    line-height: 1.75;
+    font-size: 22px;
+    line-height: 1.78;
+    letter-spacing: -0.05em;
   }
 
-  .archiveLead {
-    font-size: 17px;
+  .archiveContent p {
+    margin-bottom: 30px;
+  }
+
+  .archiveTags {
+    font-size: 18px;
+  }
+}
+
+/* 아주 작은 화면 */
+@media (max-width: 380px) {
+  .archiveTitle {
+    font-size: 29px;
+  }
+
+  .archiveContent {
+    font-size: 21px;
   }
 }
