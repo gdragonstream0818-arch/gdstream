@@ -706,85 +706,45 @@ img{max-width:100%;display:block}
 
 
 /* =========================
-   HOME: ARCHIVE SHELF
-   바로가기 아래 아카이빙 카드
+   HOME: ARCHIVE COVER CARDS
+   박스 없이 3:4 표지 카드
    ========================= */
 
-.archivePanel{
-  margin-top:12px;
-  border-radius:var(--radius);
-  background:linear-gradient(135deg, rgba(190,205,235,.35), rgba(245,195,190,.28));
-  border:1px solid rgba(0,0,0,.06);
-  box-shadow:var(--shadow);
-  padding:18px 16px 20px;
-  overflow:hidden;
-}
-
-.archiveHead{
-  margin-bottom:16px;
-}
-
-.archiveKicker{
-  font-size:12px;
-  font-weight:900;
-  color:rgba(0,0,0,.48);
-  margin-bottom:6px;
-  letter-spacing:.03em;
-}
-
-.archiveTitle{
-  margin:0;
-  font-size:24px;
-  font-weight:1000;
-  letter-spacing:-.04em;
-  color:#111;
-}
-
-.archiveSub{
-  margin:8px 0 0;
-  font-size:13px;
-  font-weight:700;
-  line-height:1.45;
-  color:rgba(0,0,0,.58);
-}
-
-.archiveScroll{
+.archiveCoverScroll{
   display:flex;
-  gap:14px;
+  gap:18px;
   overflow-x:auto;
-  padding:2px 2px 14px;
+  padding:4px 2px 16px;
   scroll-snap-type:x mandatory;
   -webkit-overflow-scrolling:touch;
 }
 
-.archiveScroll::-webkit-scrollbar{
+.archiveCoverScroll::-webkit-scrollbar{
   height:7px;
 }
 
-.archiveScroll::-webkit-scrollbar-thumb{
+.archiveCoverScroll::-webkit-scrollbar-thumb{
   background:rgba(0,0,0,.22);
   border-radius:999px;
 }
 
-.archiveCard{
-  flex:0 0 230px;
+.archiveCoverCard{
+  flex:0 0 190px;
   scroll-snap-align:start;
   color:#111;
   text-decoration:none;
 }
 
-.archiveThumb{
-  position:relative;
+.archiveCoverImgBox{
   width:100%;
-  aspect-ratio:16 / 10;
+  aspect-ratio:3 / 4;
   border-radius:18px;
   overflow:hidden;
   background:#f3f4f6;
-  border:1px solid rgba(0,0,0,.06);
-  box-shadow:0 10px 24px rgba(0,0,0,.08);
+  box-shadow:0 10px 24px rgba(0,0,0,.10);
 }
 
-.archiveThumb img{
+.archiveCoverImgBox img{
   width:100%;
   height:100%;
   object-fit:cover;
@@ -792,61 +752,57 @@ img{max-width:100%;display:block}
   transition:transform .35s ease, filter .35s ease;
 }
 
-.archiveCard:hover .archiveThumb img{
-  transform:scale(1.05);
-  filter:brightness(.9);
+.archiveCoverCard:hover .archiveCoverImgBox img{
+  transform:scale(1.04);
+  filter:brightness(.92);
 }
 
-.archiveCardTitle{
+.archiveCoverTitle{
   margin-top:12px;
-  font-size:17px;
+  font-size:18px;
+  line-height:1.28;
   font-weight:1000;
-  line-height:1.3;
   letter-spacing:-.03em;
   word-break:keep-all;
 }
 
-.archiveTags{
+.archiveCoverTags{
   margin-top:6px;
-  font-size:13px;
+  font-size:14px;
   font-weight:800;
-  color:rgba(0,0,0,.42);
+  color:rgba(0,0,0,.45);
 }
 
 @media (min-width:1024px){
-  .archiveCard{
-    flex-basis:225px;
+  .archiveCoverCard{
+    flex-basis:175px;
   }
 }
 
 @media (max-width:768px){
-  .archivePanel{
-    padding:16px 15px 18px;
+  .archiveCoverScroll{
+    gap:14px;
   }
 
-  .archiveTitle{
-    font-size:22px;
+  .archiveCoverCard{
+    flex-basis:155px;
   }
 
-  .archiveCard{
-    flex-basis:220px;
-  }
-
-  .archiveCardTitle{
+  .archiveCoverTitle{
     font-size:16px;
+  }
+
+  .archiveCoverTags{
+    font-size:13px;
   }
 }
 
 @media (max-width:420px){
-  .archiveCard{
-    flex-basis:210px;
+  .archiveCoverCard{
+    flex-basis:145px;
   }
 
-  .archiveThumb{
+  .archiveCoverImgBox{
     border-radius:16px;
-  }
-
-  .archiveCardTitle{
-    font-size:15px;
   }
 }
