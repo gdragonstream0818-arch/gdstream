@@ -146,14 +146,6 @@
   font-weight: 700;
 }
 
-/* 혹시 기존 guideImg 스타일이 남아 있어도 아카이브 이미지가 줄어들지 않게 방지 */
-.archiveFigure .guideImg,
-.archiveFigure img {
-  width: 100%;
-  max-width: 100%;
-  height: auto;
-}
-
 @media (max-width: 640px) {
   .archiveContainer {
     padding: 32px 16px 56px;
