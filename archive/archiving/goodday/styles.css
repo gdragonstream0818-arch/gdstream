@@ -1,6 +1,6 @@
 .archivePage {
   width: 100%;
-  padding: 48px 20px 72px;
+  padding: 24px 0 56px;
   box-sizing: border-box;
 }
 
@@ -10,58 +10,57 @@
 
 .archiveArticle {
   width: 100%;
-  max-width: 860px;
+  max-width: 780px;
   margin: 0 auto;
+  padding: 0;
   background: #fff;
-  border-radius: 28px;
-  padding: 34px;
-  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.08);
 }
 
+/* 제목 영역 */
 .archiveHeader {
-  text-align: center;
-  margin-bottom: 28px;
+  width: 100%;
+  padding: 0 20px;
+  margin: 0 auto 24px;
+  text-align: left;
 }
 
 .archiveCategory {
   display: inline-block;
-  margin: 0 0 12px;
-  padding: 7px 14px;
+  margin: 0 0 10px;
+  padding: 7px 13px;
   border-radius: 999px;
   background: #f5f1ea;
   color: #8a6f4d;
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: -0.02em;
+  font-size: 13px;
+  font-weight: 800;
 }
 
 .archiveTitle {
   margin: 0;
   color: #111;
-  font-size: clamp(30px, 6vw, 52px);
+  font-size: clamp(28px, 7vw, 44px);
   font-weight: 900;
-  line-height: 1.08;
+  line-height: 1.12;
   letter-spacing: -0.05em;
 }
 
 .archiveDate {
-  margin: 14px 0 0;
-  color: #999;
-  font-size: 15px;
-  font-weight: 500;
+  margin: 10px 0 0;
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 14px;
+  font-weight: 700;
 }
 
-/* 여기서 사진 폭과 글자 폭을 동일하게 고정 */
+/* 사진은 꽉 차게 */
 .archiveBody {
   width: 100%;
-  max-width: 720px;
   margin: 0 auto;
+  padding: 0;
 }
 
 .archiveFigure {
-  display: block;
   width: 100%;
-  margin: 0 0 34px;
+  margin: 0 0 32px;
   padding: 0;
 }
 
@@ -71,14 +70,16 @@
   max-width: 100%;
   height: auto;
   margin: 0;
-  border-radius: 22px;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+  border-radius: 0;
+  box-shadow: none;
 }
 
+/* 본문은 사진보다 살짝 안쪽 */
 .archiveContent {
   width: 100%;
   margin: 0;
-  color: #222;
+  padding: 0 20px;
+  color: #111;
   font-size: 17px;
   line-height: 1.85;
   letter-spacing: -0.03em;
@@ -86,56 +87,58 @@
 }
 
 .archiveContent p {
-  margin-left: 0;
-  margin-right: 0;
+  margin: 0 0 22px;
 }
 
 .archiveLead {
-  margin: 0 0 18px;
-  font-size: 22px;
+  margin: 0 0 22px;
+  font-size: 21px;
   font-weight: 800;
-  line-height: 1.55;
+  line-height: 1.6;
   color: #111;
 }
 
 .archiveSection {
-  margin-top: 34px;
-  padding-top: 26px;
-  border-top: 1px solid #eee;
+  margin-top: 38px;
+  padding-top: 0;
+  border-top: 0;
 }
 
 .archiveSection h2 {
-  margin: 0 0 14px;
-  font-size: 22px;
+  margin: 0 0 18px;
+  font-size: 30px;
   font-weight: 900;
+  line-height: 1.25;
+  letter-spacing: -0.05em;
   color: #111;
-  letter-spacing: -0.04em;
 }
 
 .archiveSection h3 {
-  margin: 22px 0 8px;
-  font-size: 18px;
-  font-weight: 800;
-  color: #333;
+  margin: 24px 0 10px;
+  font-size: 19px;
+  font-weight: 900;
+  color: #111;
 }
 
 .archiveSection ul {
   margin: 0;
-  padding-left: 20px;
+  padding-left: 24px;
 }
 
 .archiveSection li {
-  margin: 6px 0;
+  margin: 8px 0;
+  font-size: 17px;
+  line-height: 1.8;
 }
 
 .archiveClosing {
-  margin-top: 40px;
-  padding: 28px 22px;
-  border-radius: 22px;
+  margin-top: 42px;
+  padding: 24px 20px;
+  border-radius: 20px;
   background: linear-gradient(135deg, #fff7dc, #f7efe5);
   text-align: center;
-  color: #222;
-  font-size: 20px;
+  color: #111;
+  font-size: 19px;
   font-weight: 800;
   line-height: 1.7;
 }
@@ -159,42 +162,17 @@
   background: #f4f4f4;
   color: #555;
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 800;
 }
 
-@media (max-width: 640px) {
-  .archivePage {
-    padding: 32px 16px 56px;
-  }
-
-  .archiveArticle {
-    padding: 22px;
-    border-radius: 22px;
-  }
-
-  .archiveBody {
-    max-width: 100%;
-  }
-
-  .archiveImage {
-    border-radius: 18px;
-  }
-
+/* PC에서는 너무 넓어지지 않게 */
+@media (min-width: 769px) {
+  .archiveHeader,
   .archiveContent {
-    font-size: 16px;
-    line-height: 1.8;
-  }
-
-  .archiveLead {
-    font-size: 20px;
-  }
-
-  .archiveSection h2 {
-    font-size: 21px;
-  }
-
-  .archiveClosing {
-    font-size: 18px;
-    padding: 24px 18px;
+    max-width: 760px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 0;
+    padding-right: 0;
   }
 }
