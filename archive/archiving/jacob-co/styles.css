@@ -22,7 +22,6 @@
   background: #fff !important;
 }
 
-/* 제목 영역 */
 .archiveHeader {
   width: 100% !important;
   max-width: 760px !important;
@@ -60,14 +59,12 @@
   letter-spacing: 0.03em !important;
 }
 
-/* 본문 전체 */
 .archiveBody {
   width: 100% !important;
   margin: 0 auto !important;
   padding: 0 !important;
 }
 
-/* 사진은 꽉 차게 유지 */
 .archiveFigure {
   display: block !important;
   width: 100vw !important;
@@ -86,7 +83,6 @@
   box-shadow: none !important;
 }
 
-/* 커뮤글 느낌 본문 크기 */
 .archiveContent {
   width: 100% !important;
   max-width: 760px !important;
@@ -161,6 +157,14 @@
   margin: 0 !important;
 }
 
+.archiveCredit {
+  margin: 24px 0 0 !important;
+  color: rgba(0, 0, 0, 0.5) !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  text-align: center !important;
+}
+
 .archiveTags {
   display: flex !important;
   flex-wrap: wrap !important;
@@ -179,7 +183,6 @@
   font-weight: 700 !important;
 }
 
-/* PC에서는 사진이 너무 과하게 커지지 않게 */
 @media (min-width: 900px) {
   .archiveFigure {
     width: 780px !important;
@@ -194,7 +197,6 @@
   }
 }
 
-/* 모바일 */
 @media (max-width: 768px) {
   .archivePage {
     padding: 24px 0 56px !important;
