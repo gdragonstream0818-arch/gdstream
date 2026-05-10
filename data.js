@@ -136,4 +136,4 @@ window.SITE_DATA = {
   },
 
   footerText: "© 지드래곤 음원총공팀"
-};
+}; 
