@@ -16,15 +16,19 @@ window.SITE_DATA = {
       icon: "",
       oneclick: {
         android: [
-          { label: "원클릭1", url: "https://tinyurl.com/mwnm4wc4" },
-          { label: "원클릭2", url: "https://tinyurl.com/2dx5ucyk" }
+          { label: "원클릭1", url: "https://gdbb1.qaa.kr" },
+          { label: "원클릭2", url: "https://gdbb2.qaa.kr" },
+          { label: "원클릭3", url: "https://gdbb3.qaa.kr" },
+          { label: "원클릭4", url: "https://gdbb4.qaa.kr" }
         ],
         ios: [
-          { label: "원클릭", url: "https://tinyurl.com/4acue96k" }
+          { label: "원클릭", url: "https://gdbi.qaa.kr" }
         ],
         web: [
-          { label: "원클릭1", url: "https://tinyurl.com/yexaabyj" },
-          { label: "원클릭2", url: "https://tinyurl.com/yy2ewvkb" }
+          { label: "원클릭1", url: "https://gdbbpc1.enn.kr" },
+          { label: "원클릭1", url: "https://gdbbpc2.enn.kr" },
+          { label: "원클릭1", url: "https://gdbbpc3.enn.kr" },
+          { label: "원클릭2", url: "https://gdbbpc4.enn.kr" }
         ]
       }
     },
@@ -35,9 +39,9 @@ window.SITE_DATA = {
       icon: "",
       // ✅ 각 기기마다 링크 1개씩(나중에 url만 채우면 됨)
       oneclick: {
-        android: [{ label: "원클릭", url: "https://tinyurl.com/yc8x5v8s" }],
-        ios:     [{ label: "원클릭", url: "https://tinyurl.com/37ez7y2s" }],
-        web:     [{ label: "원클릭", url: "https://tinyurl.com/yrjn5vc7" }]
+        android: [{ label: "원클릭", url: "https://gdbbg.qaa.kr" }],
+        ios:     [{ label: "원클릭", url: "https://gdbbgi.qaa.kr" }],
+        web:     [{ label: "원클릭", url: "https://gdbbgp.qaa.kr" }]
       }
     },
 
@@ -47,9 +51,10 @@ window.SITE_DATA = {
       icon: "",
       // ✅ 통합 링크 1개(어떤 기기든 동일)
       oneclick: {
-        android: [{ label: "원클릭", url: "https://tinyurl.com/2ebrbez8" }],
-        ios:     [{ label: "원클릭", url: "https://tinyurl.com/2ebrbez8" }],
-        web:     [{ label: "원클릭", url: "https://tinyurl.com/mptw5b9n" }]
+        android: [{ label: "원클릭", url: "https://gdbbb.qaa.kr" }],
+        ios:     [{ label: "원클릭", url: "https://gdbbb.qaa.kr" }],
+        web:     [{ label: "원클릭", url: "https://gdbbbpc.enn.kr
+" }]
       }
     },
 
@@ -59,9 +64,9 @@ window.SITE_DATA = {
       icon: "",
       // ✅ 통합 링크 1개(어떤 기기든 동일)
       oneclick: {
-        android: [{ label: "원클릭", url: "https://tinyurl.com/yyjej2kz" }],
-        ios:     [{ label: "원클릭", url: "https://tinyurl.com/yyjej2kz" }],
-        web:     [{ label: "원클릭", url: "https://tinyurl.com/yyjej2kz" }]
+        android: [{ label: "원클릭", url: "https://gdbbf.qaa.kr" }],
+        ios:     [{ label: "원클릭", url: "https://gdbbf.qaa.kr" }],
+        web:     [{ label: "원클릭", url: "https://gdbbf.qaa.kr" }]
       }
     },
 
@@ -72,12 +77,16 @@ window.SITE_DATA = {
       // ✅ PC 미지원 / iOS & Android는 1~4번까지
       oneclick: {
         android: [
-          { label: "원클릭1", url: "https://tinyurl.com/4f9kjcvd" },
-          { label: "원클릭2", url: "https://tinyurl.com/2u966w5c" }
+          { label: "원클릭1", url: "https://gdbbv1.qaa.kr" },
+          { label: "원클릭2", url: "https://gdbbv2.qaa.kr" },
+          { label: "원클릭3", url: "https://gdbbv3.qaa.kr" },
+          { label: "원클릭4", url: "https://gdbbv4.qaa.kr" }
         ],
         ios: [
-          { label: "원클릭1", url: "https://tinyurl.com/4f9kjcvd" },
-          { label: "원클릭2", url: "https://tinyurl.com/2u966w5c" }
+          { label: "원클릭1", url: "https://gdbbv1.qaa.kr" },
+          { label: "원클릭2", url: "https://gdbbv2.qaa.kr" },
+          { label: "원클릭3", url: "https://gdbbv3.qaa.kr" },
+          { label: "원클릭4", url: "https://gdbbv4.qaa.kr" }
         ],
         web: [] // ✅ 빈 배열이면 "PC 미지원" 안내가 뜨게 script.js에서 처리
       },
@@ -92,9 +101,9 @@ window.SITE_DATA = {
       icon: "",
       // ✅ 통합 링크 1개(어떤 기기든 동일)
       oneclick: {
-        android: [{ label: "원클릭", url: "https://open.spotify.com/playlist/7n5QVj1yzrdpLWr4T90TAI?si=jnb0nxcQSG-9VNsb_oLZNA&pi=y3Vye19yRBOKN" }],
-        ios:     [{ label: "원클릭", url: "https://open.spotify.com/playlist/7n5QVj1yzrdpLWr4T90TAI?si=jnb0nxcQSG-9VNsb_oLZNA&pi=y3Vye19yRBOKN" }],
-        web:     [{ label: "원클릭", url: "https://open.spotify.com/playlist/7n5QVj1yzrdpLWr4T90TAI?si=jnb0nxcQSG-9VNsb_oLZNA&pi=y3Vye19yRBOKN" }]
+        android: [{ label: "원클릭", url: "https://open.spotify.com/playlist/1lx2d2werskeNpqe4W0hDu?si=8niP3OeXQoOtUyUbnyqCCQ" }],
+        ios:     [{ label: "원클릭", url: "https://open.spotify.com/playlist/1lx2d2werskeNpqe4W0hDu?si=8niP3OeXQoOtUyUbnyqCCQ" }],
+        web:     [{ label: "원클릭", url: "https://open.spotify.com/playlist/1lx2d2werskeNpqe4W0hDu?si=8niP3OeXQoOtUyUbnyqCCQ" }]
       }
     },
   ],
