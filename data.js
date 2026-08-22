@@ -53,8 +53,7 @@ window.SITE_DATA = {
       oneclick: {
         android: [{ label: "원클릭", url: "https://gdbbb.qaa.kr" }],
         ios:     [{ label: "원클릭", url: "https://gdbbb.qaa.kr" }],
-        web:     [{ label: "원클릭", url: "https://gdbbbpc.enn.kr
-" }]
+        web:     [{ label: "원클릭", url: "https://gdbbbpc.enn.kr" }]
       }
     },
 
