@@ -1,725 +1,1125 @@
-<!doctype html>
-<html lang="ko">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+:root {
+  /* Color */
+  --bg: #ffffff;
+  --text: #111111;
+  --muted: rgba(0, 0, 0, 0.55);
+  --line: rgba(0, 0, 0, 0.10);
+  --accent: #2563eb;
 
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="라디오 신청 | 지드래곤 음원총공팀">
-  <meta property="og:description" content="현재 방송 중인 라디오에 빅뱅의 BiiiG을 신청하세요.">
-  <meta property="og:url" content="https://www.gdstream.site/radio/">
+  /* Layout */
+  --pageMax: 980px;
+  --sidePadding: 16px;
 
-  <title>라디오 신청 | 지드래곤 음원총공팀</title>
+  /* Radius / Shadow */
+  --radius-sm: 12px;
+  --radius-md: 16px;
+  --radius-lg: 22px;
+  --radius-xl: 24px;
+  --shadow-sm: 0 8px 18px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 10px 28px rgba(0, 0, 0, 0.10);
+  --shadow-lg: 0 16px 34px rgba(0, 0, 0, 0.14);
 
-  <link rel="icon" href="/assets/meta/favicon.png" type="image/png" sizes="any">
-  <link rel="stylesheet" href="/styles.css">
-
-  <style>
-    :root {
-      --radio-bg: #ffffff;
-      --radio-line: rgba(0, 0, 0, .075);
-      --radio-muted: rgba(0, 0, 0, .50);
-      --radio-shadow: 0 10px 28px rgba(0, 0, 0, .055);
-      --radio-shadow-hover: 0 16px 34px rgba(0, 0, 0, .085);
-    }
-
-    body {
-      background: #fff;
-    }
-
-    .radioPage {
-      min-height: calc(100vh - 100px);
-      padding: 28px 0 58px;
-    }
-
-    .radioTop {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      margin-bottom: 20px;
-    }
-
-    .radioBack {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      color: rgba(0, 0, 0, .66);
-      font-size: 13px;
-      font-weight: 800;
-      text-decoration: none;
-    }
-
-    .radioBack:hover {
-      color: #111;
-    }
-
-    .radioClock {
-  color: rgba(0, 0, 0, .42);
-  font-size: 12px;
-  font-weight: 700;
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-  margin-bottom: 24px;
+  /* Typography */
+  --fs-xs: 12px;
+  --fs-sm: 13px;
+  --fs-base: 15px;
+  --fs-md: 16px;
+  --fs-lg: 18px;
+  --fs-xl: 22px;
+  --fs-h1: clamp(26px, 4vw, 32px);
+  --fs-card-title: clamp(22px, 4vw, 28px);
 }
 
-    /* 메인 페이지와 비슷한 가볍고 부드러운 인트로 */
-    .radioIntro {
-      margin-bottom: 18px;
-      padding: 22px 22px 20px;
-      border: 1px solid rgba(0, 0, 0, .055);
-      border-radius: 22px;
-      background:
-        linear-gradient(
-          135deg,
-          rgba(190, 205, 235, .32),
-          rgba(245, 195, 190, .24)
-        );
-      box-shadow: var(--radio-shadow);
-    }
-
-    .radioKicker {
-      margin-bottom: 7px;
-      color: rgba(0, 0, 0, .44);
-      font-size: 10px;
-      font-weight: 900;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-    }
-
-    .radioTitle {
-      margin: 0;
-      color: #111;
-      font-size: clamp(29px, 6vw, 40px);
-      font-weight: 950;
-      letter-spacing: -.055em;
-      line-height: 1.06;
-    }
-
-    .radioDescription {
-      margin: 11px 0 0;
-      color: rgba(0, 0, 0, .54);
-      font-size: 13px;
-      font-weight: 650;
-      line-height: 1.6;
-    }
-
-    .radioDescription strong {
-      color: #111;
-      font-weight: 900;
-    }
-
-    /* 현재 방송 표시 - 박스 느낌을 줄이고 가볍게 */
-    .radioNowBox {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin: 0 0 16px;
-      padding: 12px 14px;
-      border: 1px solid var(--radio-line);
-      border-radius: 15px;
-      background: #fff;
-      box-shadow: 0 7px 20px rgba(0, 0, 0, .035);
-    }
-
-    .radioNowLabel {
-      display: inline-flex;
-      flex: 0 0 auto;
-      align-items: center;
-      gap: 7px;
-      color: #111;
-      font-size: 11px;
-      font-weight: 900;
-      white-space: nowrap;
-    }
-
-    .radioLiveDot {
-      display: inline-block;
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: #ef4444;
-      box-shadow: 0 0 0 4px rgba(239, 68, 68, .10);
-    }
-
-    .radioNowText {
-      min-width: 0;
-      margin: 0;
-      overflow: hidden;
-      color: rgba(0, 0, 0, .62);
-      font-size: 12px;
-      font-weight: 750;
-      line-height: 1.45;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    /* PC에서는 기존처럼 방송사 3개를 한 번에 */
-    .radioGrid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-    }
-
-    .radioCard {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      min-height: 168px;
-      padding: 15px;
-      overflow: hidden;
-      border: 1px solid var(--radio-line);
-      border-radius: 19px;
-      background:
-        linear-gradient(
-          145deg,
-          rgba(255, 255, 255, .98),
-          rgba(245, 247, 251, .90)
-        );
-      color: #111;
-      box-shadow: var(--radio-shadow);
-      text-align: left;
-      font-family: inherit;
-      transition:
-        transform .16s ease,
-        box-shadow .16s ease,
-        border-color .16s ease;
-    }
-
-    button.radioCard {
-      width: 100%;
-      cursor: pointer;
-    }
-
-    .radioCard.is-active:hover {
-      transform: translateY(-2px);
-      border-color: rgba(0, 0, 0, .12);
-      box-shadow: var(--radio-shadow-hover);
-    }
-
-    .radioCard.is-disabled {
-      min-height: 112px;
-      background: #f7f7f8;
-      color: rgba(0, 0, 0, .34);
-      box-shadow: none;
-      cursor: not-allowed;
-    }
-
-    .radioStation {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      font-size: 14px;
-      font-weight: 950;
-      letter-spacing: -.02em;
-    }
-
-    .radioLiveBadge {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      padding: 5px 8px;
-      border-radius: 999px;
-      background: #111;
-      color: #fff;
-      font-size: 9px;
-      font-weight: 900;
-      letter-spacing: .06em;
-    }
-
-    .radioLiveBadge::before {
-      content: "";
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: #ff6368;
-    }
-
-    .radioProgram {
-      margin: auto 0 5px;
-      font-size: 20px;
-      font-weight: 950;
-      letter-spacing: -.05em;
-      line-height: 1.2;
-      word-break: keep-all;
-    }
-
-    .radioCard.is-disabled .radioProgram {
-      display: none;
-    }
-
-    .radioTime {
-      color: rgba(0, 0, 0, .44);
-      font-size: 11px;
-      font-weight: 700;
-      font-variant-numeric: tabular-nums;
-    }
-
-    .radioNumber {
-      display: inline-flex;
-      width: fit-content;
-      margin-top: 8px;
-      padding: 6px 8px;
-      border-radius: 8px;
-      background: rgba(0, 0, 0, .055);
-      color: rgba(0, 0, 0, .66);
-      font-size: 11px;
-      font-weight: 900;
-    }
-
-    .radioCard.is-disabled .radioNumber {
-      display: none;
-    }
-
-    .radioAction {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      margin-top: 9px;
-      padding-top: 9px;
-      border-top: 1px solid rgba(0, 0, 0, .065);
-      color: #111;
-      font-size: 11px;
-      font-weight: 900;
-    }
-
-    .radioActionArrow {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 25px;
-      height: 25px;
-      border-radius: 50%;
-      background: #111;
-      color: #fff;
-      font-size: 14px;
-      line-height: 1;
-    }
-
-    .radioCard.is-disabled .radioAction {
-      margin-top: auto;
-      padding-top: 0;
-      border-top: 0;
-      color: rgba(0, 0, 0, .32);
-    }
-
-    .radioCard.is-disabled .radioActionArrow {
-      display: none;
-    }
-
-    /* 신청 카드 바로 아래 시간표 */
-    .radioSchedule {
-      margin-top: 22px;
-    }
-
-    .radioScheduleHead {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 12px;
-      margin: 0 2px 10px;
-    }
-
-    .radioScheduleTitle {
-      color: #111;
-      font-size: 15px;
-      font-weight: 900;
-      letter-spacing: -.03em;
-    }
-
-    .radioScheduleDesc {
-      color: rgba(0, 0, 0, .38);
-      font-size: 10px;
-      font-weight: 700;
-    }
-
-    .radioScheduleImageWrap {
-      overflow: hidden;
-      border: 1px solid rgba(0, 0, 0, .07);
-      border-radius: 20px;
-      background: #fff;
-      box-shadow: var(--radio-shadow);
-    }
-
-    .radioScheduleImage {
-      display: block;
-      width: 100%;
-      height: auto;
-    }
-
-    .radioNotice {
-      margin: 15px 2px 0;
-      color: rgba(0, 0, 0, .38);
-      font-size: 10px;
-      font-weight: 650;
-      line-height: 1.7;
-    }
-
-    @media (max-width: 720px) {
-      .radioPage {
-        padding-top: 20px;
-      }
-
-      .radioTop {
-        margin-bottom: 14px;
-      }
-
-      .radioIntro {
-        padding: 19px 17px 18px;
-        border-radius: 19px;
-      }
-
-      .radioDescription {
-        font-size: 12px;
-      }
-
-      .radioNowBox {
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 5px;
-      }
-
-      .radioNowText {
-        white-space: normal;
-      }
-
-      .radioGrid {
-        grid-template-columns: 1fr;
-        gap: 8px;
-      }
-
-      .radioCard {
-        min-height: 0;
-        padding: 13px 14px;
-        border-radius: 16px;
-      }
-
-      .radioCard.is-disabled {
-        min-height: 0;
-        padding: 12px 14px;
-      }
-
-      .radioStation {
-        font-size: 13px;
-      }
-
-      .radioLiveBadge {
-        padding: 4px 7px;
-        font-size: 8px;
-      }
-
-      .radioProgram {
-        margin: 14px 0 3px;
-        font-size: 18px;
-        line-height: 1.18;
-      }
-
-      .radioTime {
-        display: inline;
-        font-size: 11px;
-      }
-
-      .radioNumber {
-        display: inline-flex;
-        margin: 0 0 0 7px;
-        padding: 4px 7px;
-        border-radius: 7px;
-        font-size: 10px;
-        vertical-align: middle;
-      }
-
-      .radioAction {
-        margin-top: 9px;
-        padding-top: 8px;
-        font-size: 10px;
-      }
-
-      .radioActionArrow {
-        width: 22px;
-        height: 22px;
-        font-size: 12px;
-      }
-
-      .radioCard.is-disabled .radioAction {
-        margin-top: 8px;
-      }
-
-      .radioSchedule {
-        margin-top: 16px;
-      }
-
-      .radioScheduleHead {
-        display: block;
-      }
-
-      .radioScheduleDesc {
-        display: block;
-        margin-top: 2px;
-      }
-
-      .radioScheduleImageWrap {
-        border-radius: 16px;
-      }
-    }
-  </style>
-</head>
-
-<body>
-  <header class="header header--simple">
-    <div class="headerBar headerBar--center">
-      <a class="brand" href="/" aria-label="지드래곤 음원총공팀 홈으로 이동">
-        <img class="brandImg" src="/assets/header/logo.svg" alt="지드래곤 음원총공팀 로고">
-      </a>
-    </div>
-  </header>
-
-  <main class="container radioPage">
-
-  <div id="radioClock" class="radioClock">한국 시간 확인 중</div>
-
-  <section class="radioIntro">
-    <h1 class="radioTitle">라디오 신청</h1>
-    <p class="radioDescription">
-      현재 방송 중인 라디오를 선택하면 문자 작성 화면으로 이동합니다.<br>
-      프로그램 성격과 어울리는 각자의 사연을 함께 작성해주세요!
-    </p>
-  </section>
-
-    <section class="radioNowBox" aria-live="polite">
-      <div class="radioNowLabel">
-        <span class="radioLiveDot"></span>
-        현재 방송 중
-      </div>
-      <p id="radioNowText" class="radioNowText">현재 방송 정보를 확인하고 있습니다.</p>
-    </section>
-
-    <section id="radioGrid" class="radioGrid" aria-label="라디오 방송사 선택"></section>
-
-    <section class="radioSchedule" aria-label="라디오 편성표">
-      <div class="radioScheduleHead">
-        <div class="radioScheduleTitle">라디오 편성표</div>
-        <div class="radioScheduleDesc">방송 시간 확인 후 신청해주세요.</div>
-      </div>
-      <div class="radioScheduleImageWrap">
-        <img
-          class="radioScheduleImage"
-          src="/assets/guides/radioschedule.jpg"
-          alt="KBS, MBC, SBS 라디오 편성표"
-          loading="lazy"
-        >
-      </div>
-    </section>
-
-    <p class="radioNotice">
-      ※ 정규 편성표 기준으로 표시됩니다. 특집 방송·스포츠 중계·결방 등의 경우 실제 방송과 다를 수 있습니다.<br>
-      ※ 문자 전송 시 방송사 정책 및 이용 중인 통신사 요금제가 적용될 수 있으며, 최종 전송은 문자 앱에서 직접 진행됩니다.
-    </p>
-  </main>
-
-  <footer class="footer">
-    <div class="container footerInner footerInner--logo">
-      <a href="/" class="footerLogoLink" aria-label="지드래곤 음원총공팀 홈으로 이동">
-        <img class="footerLogo" src="/assets/header/logo1.png" alt="지드래곤 음원총공팀 로고">
-      </a>
-    </div>
-  </footer>
-
-  <script>
-    const SMS_MESSAGE = "빅뱅의 BiiiG 신청합니다";
-
-    /*
-      days 값:
-      0 = 일요일 / 1 = 월요일 / 2 = 화요일 / 3 = 수요일
-      4 = 목요일 / 5 = 금요일 / 6 = 토요일
-    */
-    const radioStations = [
-      {
-        station: "KBS",
-        number: "#8910",
-        schedule: [
-          { start: "07:00", end: "09:00", title: "조정식의 FM 대행진", days: [0, 1, 2, 3, 4, 5, 6] },
-          { start: "09:00", end: "11:00", title: "이현우의 음악앨범", days: [0, 1, 2, 3, 4, 5, 6] },
-          { start: "11:00", end: "12:00", title: "박명수의 라디오쇼", days: [0, 1, 2, 3, 4, 5, 6] },
-          { start: "12:00", end: "14:00", title: "폴킴의 가요광장", days: [0, 1, 2, 3, 4, 5, 6] },
-          { start: "14:00", end: "16:00", title: "가비의 슈퍼라디오", days: [0, 1, 2, 3, 4, 5, 6] },
-          { start: "16:00", end: "18:00", title: "윤정수 남창희의 미스터 라디오", days: [0, 1, 2, 3, 4, 5, 6] },
-          { start: "18:00", end: "20:00", title: "사랑하기 좋은 날 이금희입니다", days: [0, 1, 2, 3, 4, 5, 6] },
-          { start: "20:00", end: "22:00", title: "오마이걸 효정의 볼륨을 높여요", days: [0, 1, 2, 3, 4, 5, 6] },
-          { start: "22:00", end: "24:00", title: "한해의 키스 더 라디오", days: [0, 1, 2, 3, 4, 5, 6] }
-        ]
-      },
-      {
-        station: "MBC",
-        number: "#8000",
-        schedule: [
-          { start: "06:00", end: "07:00", title: "세상을 여는 아침 이영은입니다", days: [0, 1, 2, 3, 4, 5, 6] },
-          { start: "07:00", end: "09:00", title: "굿모닝 FM 테이입니다", days: [0, 1, 2, 3, 4, 5, 6] },
-          { start: "09:00", end: "11:00", title: "오늘 아침 윤상입니다", days: [0, 1, 2, 3, 4, 5, 6] },
-          { start: "12:00", end: "14:00", title: "정오의 희망곡 김신영입니다", days: [0, 1, 2, 3, 4, 5, 6] },
-          { start: "14:00", end: "16:00", title: "두시의 데이트 안영미입니다", days: [0, 1, 2, 3, 4, 5, 6] },
-          { start: "16:00", end: "18:00", title: "완벽한 하루 이상순입니다", days: [0, 1, 2, 3, 4, 5, 6] },
-          { start: "20:00", end: "22:00", title: "김이나의 별이 빛나는 밤에", days: [0, 1, 2, 3, 4, 5, 6] },
-          { start: "22:00", end: "24:00", title: "친한친구 방송반", days: [1, 2, 3] },
-          { start: "22:00", end: "24:00", title: "아이돌 라디오", days: [4, 5] },
-          { start: "22:00", end: "24:00", title: "스포왕 고영배", days: [0, 6] }
-        ]
-      },
-      {
-        station: "SBS",
-        number: "#1077",
-        schedule: [
-          { start: "07:00", end: "09:00", title: "김영철의 파워FM", days: [0, 1, 2, 3, 4, 5, 6] },
-          { start: "09:00", end: "11:00", title: "아름다운 이 아침, 봉태규입니다", days: [0, 1, 2, 3, 4, 5, 6] },
-          { start: "12:00", end: "14:00", title: "12시엔 주현영", days: [0, 1, 2, 3, 4, 5, 6] },
-          { start: "14:00", end: "16:00", title: "두시탈출 컬투쇼", days: [0, 1, 2, 3, 4, 5, 6] },
-          { start: "16:00", end: "18:00", title: "황제성의 황제파워", days: [0, 1, 2, 3, 4, 5, 6] },
-          { start: "18:00", end: "20:00", title: "박소현의 러브게임", days: [0, 1, 2, 3, 4, 5, 6] },
-          { start: "20:00", end: "22:00", title: "웬디의 영스트리트", days: [0, 1, 2, 3, 4, 5, 6] },
-          { start: "22:00", end: "23:00", title: "배성재의 밤", days: [0, 1, 2, 3, 4, 5, 6] },
-          { start: "23:00", end: "01:00", title: "딘딘의 뮤직하이", days: [0, 1, 2, 3, 4, 5, 6] }
-        ]
-      }
-    ];
-
-    function getKoreanNow() {
-      const parts = new Intl.DateTimeFormat("en-US", {
-        timeZone: "Asia/Seoul",
-        weekday: "short",
-        hour: "2-digit",
-        minute: "2-digit",
-        hourCycle: "h23"
-      }).formatToParts(new Date());
-
-      const getPart = (type) => parts.find(part => part.type === type)?.value;
-
-      const weekdayMap = {
-        Sun: 0,
-        Mon: 1,
-        Tue: 2,
-        Wed: 3,
-        Thu: 4,
-        Fri: 5,
-        Sat: 6
-      };
-
-      return {
-        weekday: weekdayMap[getPart("weekday")],
-        hour: Number(getPart("hour")),
-        minute: Number(getPart("minute"))
-      };
-    }
-
-    function toMinutes(time) {
-      const [hour, minute] = time.split(":").map(Number);
-      return hour * 60 + minute;
-    }
-
-    function isOnAir(program, now) {
-      const currentTime = now.hour * 60 + now.minute;
-      const startTime = toMinutes(program.start);
-      const endTime = toMinutes(program.end);
-
-      const isCorrectDay = program.days.includes(now.weekday);
-
-      if (!isCorrectDay) {
-        return false;
-      }
-
-      if (endTime <= startTime) {
-        return currentTime >= startTime || currentTime < endTime;
-      }
-
-      return currentTime >= startTime && currentTime < endTime;
-    }
-
-    function getCurrentProgram(station, now) {
-      return station.schedule.find(program => isOnAir(program, now)) || null;
-    }
-
-    function formatKoreanClock() {
-      return new Intl.DateTimeFormat("ko-KR", {
-        timeZone: "Asia/Seoul",
-        weekday: "long",
-        hour: "numeric",
-        minute: "2-digit",
-        hour12: false
-      }).format(new Date());
-    }
-
-    function sendSms(number) {
-      const smsUrl = `sms:${encodeURIComponent(number)}?body=${encodeURIComponent(SMS_MESSAGE)}`;
-      window.location.href = smsUrl;
-    }
-
-    function renderRadioPage() {
-      const now = getKoreanNow();
-      const grid = document.getElementById("radioGrid");
-      const clock = document.getElementById("radioClock");
-      const nowText = document.getElementById("radioNowText");
-
-      clock.textContent = `한국 시간 · ${formatKoreanClock()}`;
-
-      const activePrograms = [];
-
-      grid.innerHTML = radioStations.map(station => {
-        const currentProgram = getCurrentProgram(station, now);
-
-        if (currentProgram) {
-          activePrograms.push(`${station.station} ${currentProgram.title}`);
-
-          return `
-            <button
-              type="button"
-              class="radioCard is-active"
-              onclick="sendSms('${station.number}')"
-              aria-label="${station.station} ${currentProgram.title}에 문자 신청하기"
-            >
-              <div class="radioStation">
-                <span>${station.station}</span>
-                <span class="radioLiveBadge">ON AIR</span>
-              </div>
-
-              <div class="radioProgram">${currentProgram.title}</div>
-              <div class="radioTime">${currentProgram.start} ~ ${currentProgram.end}</div>
-              <div class="radioNumber">${station.number}</div>
-
-              <div class="radioAction">
-                <span>문자로 BiiiG 신청하기</span>
-                <span class="radioActionArrow">→</span>
-              </div>
-            </button>
-          `;
-        }
-
-        return `
-          <button
-            type="button"
-            class="radioCard is-disabled"
-            disabled
-            aria-label="${station.station} 현재 진행 중인 프로그램 없음"
-          >
-            <div class="radioStation">
-              <span>${station.station}</span>
-            </div>
-
-            <div class="radioAction">
-              <span>현재 진행 중인 프로그램이 없습니다</span>
-            </div>
-          </button>
-        `;
-      }).join("");
-
-      if (activePrograms.length === 0) {
-        nowText.textContent = "현재 등록된 정규 편성 프로그램이 없습니다.";
-      } else {
-        nowText.textContent = activePrograms.join(" · ");
-      }
-    }
-
-    renderRadioPage();
-    setInterval(renderRadioPage, 60 * 1000);
-  </script>
-</body>
-</html>
+/* 큰 PC에서 페이지 폭 축소 */
+@media (min-width: 1024px) {
+  :root {
+    --pageMax: 780px;
+  }
+}
+
+/* =========================
+   BASE
+   ========================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: var(--fs-base);
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  word-break: keep-all;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+select {
+  font: inherit;
+}
+
+.container {
+  max-width: var(--pageMax);
+  margin: 0 auto;
+  padding: 0 var(--sidePadding);
+}
+
+/* =========================
+   HEADER
+   ========================= */
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.92);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.headerBar {
+  max-width: var(--pageMax);
+  height: 64px;
+  margin: 0 auto;
+  padding: 12px 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.headerBar--center {
+  justify-content: center;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.brandImg {
+  width: auto;
+  height: 46px;
+  max-width: 260px;
+  object-fit: contain;
+}
+
+/* =========================
+   HERO
+   ========================= */
+
+.hero {
+  width: 100%;
+  margin: 0;
+  padding: 16px 0 12px;
+}
+
+.heroInner {
+  max-width: var(--pageMax);
+  margin: 0 auto;
+  padding: 0 var(--sidePadding);
+}
+
+.heroLink {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background: #000;
+  box-shadow: var(--shadow-md);
+}
+
+.heroImg {
+  width: 100%;
+  height: auto;
+}
+
+.playBadge {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 72px;
+  height: 72px;
+  border-radius: 999px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  font-size: 28px;
+  line-height: 1;
+
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.heroLink:hover .playBadge {
+  background: rgba(0, 0, 0, 0.70);
+}
+
+/* =========================
+   SECTION
+   ========================= */
+
+.section {
+  margin: 20px 0;
+}
+
+.sectionTitle,
+main.container > .section > .sectionTitle {
+  margin: 12px 0;
+  font-size: var(--fs-lg);
+  font-weight: 900;
+  line-height: 1.25;
+  letter-spacing: -0.03em;
+}
+
+/* =========================
+   BUTTON LIST
+   ========================= */
+
+.btnList {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: #f6f6f6;
+
+  transition: transform 0.08s ease, background 0.12s ease;
+}
+
+.btn:hover {
+  background: #eeeeee;
+  transform: translateY(-1px);
+}
+
+.btnTitle {
+  font-size: var(--fs-base);
+  font-weight: 900;
+  line-height: 1.25;
+}
+
+.btnDesc {
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: var(--fs-xs);
+}
+
+/* =========================
+   ONECLICK
+   ========================= */
+
+.oneclickPanel {
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, rgba(190, 205, 235, 0.45), rgba(245, 195, 190, 0.35));
+  box-shadow: var(--shadow-md);
+}
+
+.oneclickHead {
+  padding: 16px 16px 8px;
+}
+
+.oneclickKicker {
+  margin-bottom: 6px;
+  color: rgba(0, 0, 0, 0.55);
+  font-size: var(--fs-xs);
+  font-weight: 900;
+}
+
+.oneclickTitle {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 900;
+  line-height: 1.25;
+  letter-spacing: -0.03em;
+}
+
+.oneclickSub {
+  margin: 8px 0 0;
+  color: rgba(0, 0, 0, 0.55);
+  font-size: var(--fs-xs);
+  line-height: 1.5;
+}
+
+.oneclickGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  padding: 14px 16px 18px;
+}
+
+.ocBtn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 14px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+
+  transition: transform 0.08s ease, background 0.12s ease;
+}
+
+.ocBtn:hover {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.ocIcon {
+  flex: 0 0 38px;
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: var(--radius-sm);
+}
+
+.ocIcon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ocText {
+  min-width: 0;
+}
+
+.ocName {
+  font-size: var(--fs-base);
+  font-weight: 900;
+  line-height: 1.25;
+}
+
+.ocSub {
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: var(--fs-xs);
+}
+
+.ocArrow {
+  margin-left: auto;
+  font-weight: 900;
+  opacity: 0.6;
+}
+
+/* =========================
+   HOME CTA
+   ========================= */
+
+.ctaGuide {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  padding: 18px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(190, 205, 235, 0.35), rgba(245, 195, 190, 0.30));
+  box-shadow: var(--shadow-md);
+
+  transition: transform 0.10s ease, box-shadow 0.15s ease, filter 0.15s ease;
+}
+
+.ctaGuide:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  filter: saturate(1.05);
+}
+
+.ctaGuideTitle {
+  font-size: var(--fs-lg);
+  font-weight: 900;
+  line-height: 1.25;
+  letter-spacing: -0.03em;
+}
+
+.ctaGuideDesc {
+  margin-top: 6px;
+  color: rgba(0, 0, 0, 0.60);
+  font-size: var(--fs-sm);
+  font-weight: 700;
+}
+
+.ctaGuideArrow {
+  font-size: var(--fs-lg);
+  font-weight: 900;
+  opacity: 0.75;
+}
+
+.ctaGuide--collect {
+  margin-bottom: 0;
+}
+
+/* 바로가기 카드 간격 통일 */
+.section > .ctaGuide + .ctaGuide {
+  margin-top: 12px;
+}
+
+/* =========================
+   HOME SOCIAL
+   ========================= */
+
+.socialCard {
+  margin-top: 12px;
+  padding: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: var(--shadow-md);
+}
+
+.socialHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.socialTitle {
+  font-size: var(--fs-lg);
+  font-weight: 900;
+  line-height: 1.25;
+  letter-spacing: -0.03em;
+}
+
+.socialDesc {
+  color: rgba(0, 0, 0, 0.55);
+  font-size: var(--fs-sm);
+  font-weight: 700;
+}
+
+.socialGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.socialBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 10px 12px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: var(--radius-md);
+  background: #fff;
+  box-shadow: var(--shadow-sm);
+
+  transition: transform 0.10s ease, background 0.12s ease, box-shadow 0.12s ease;
+}
+
+.socialBtn:hover {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.10);
+}
+
+.socialIcon {
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: var(--radius-sm);
+  background: rgba(0, 0, 0, 0.03);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.socialIcon img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.socialName {
+  color: #111;
+  font-size: var(--fs-sm);
+  font-weight: 900;
+}
+
+/* =========================
+   GUIDE PAGE
+   ========================= */
+
+.guideTop {
+  padding-top: 8px;
+}
+
+.h1 {
+  margin: 18px 0 6px;
+  font-size: var(--fs-h1);
+  font-weight: 900;
+  line-height: 1.2;
+  letter-spacing: -0.04em;
+}
+
+.guideLead {
+  margin: 0 0 12px;
+  color: rgba(0, 0, 0, 0.55);
+  font-size: var(--fs-sm);
+  line-height: 1.5;
+}
+
+/* Select 백업용 */
+.guideFilter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 8px 0 16px;
+}
+
+.guideSelect {
+  width: 100%;
+  max-width: 260px;
+  padding: 12px 40px 12px 14px;
+
+  appearance: none;
+  -webkit-appearance: none;
+
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 999px;
+  background-color: rgba(255, 255, 255, 0.90);
+  background-image:
+    linear-gradient(45deg, transparent 50%, rgba(0, 0, 0, 0.55) 50%),
+    linear-gradient(135deg, rgba(0, 0, 0, 0.55) 50%, transparent 50%);
+  background-position:
+    calc(100% - 22px) calc(50% - 3px),
+    calc(100% - 16px) calc(50% - 3px);
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
+
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+  font-weight: 900;
+  cursor: pointer;
+}
+
+/* Guide tabs */
+.guideTabsLine {
+  position: relative;
+
+  display: flex;
+  gap: 22px;
+  overflow-x: auto;
+
+  margin-top: 14px;
+  padding: 0 2px;
+  border-bottom: 1px solid rgba(17, 17, 17, 0.10);
+
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.guideTabsLine::-webkit-scrollbar {
+  display: none;
+}
+
+.gLineTab {
+  padding: 12px 6px 14px;
+  border: 0;
+  background: transparent;
+
+  color: rgba(17, 17, 17, 0.55);
+  font-size: var(--fs-base);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.gLineTab.isActive {
+  color: rgba(17, 17, 17, 0.92);
+}
+
+.gLineTab:focus-visible {
+  border-radius: 10px;
+  outline: 3px solid rgba(0, 0, 0, 0.18);
+  outline-offset: 3px;
+}
+
+.gLineIndicator {
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+
+  width: 0;
+  height: 3px;
+  border-radius: 999px;
+  background: var(--accent);
+
+  transform: translateX(0);
+  transition: transform 0.22s ease, width 0.22s ease;
+}
+
+/* Guide panel */
+.guidePanel {
+  overflow: hidden;
+  margin-top: 12px;
+  padding: 14px;
+
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(180deg, rgba(235, 240, 250, 0.65), rgba(250, 235, 235, 0.65));
+  box-shadow: var(--shadow-md);
+}
+
+.guideGrid,
+.guideGrid--list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Guide card */
+.gCard {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+
+  overflow: hidden;
+  padding: 16px 18px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: var(--radius-xl);
+  background: var(--card-fill, #fff);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.07);
+
+  transition: transform 0.10s ease, box-shadow 0.15s ease;
+}
+
+.gCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.10);
+}
+
+.gCard::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  pointer-events: none;
+  opacity: 0.85;
+  background:
+    radial-gradient(900px 240px at 12% 0%, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0) 58%),
+    radial-gradient(800px 260px at 100% 35%, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0) 55%);
+}
+
+.gThumb {
+  position: relative;
+  z-index: 1;
+
+  flex: 0 0 92px;
+  width: 92px;
+  height: 92px;
+
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.10);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.55);
+  box-shadow: var(--shadow-sm);
+}
+
+.gThumbImg {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  object-fit: cover;
+  background: transparent;
+}
+
+.gThumb--empty {
+  border: 1px dashed rgba(0, 0, 0, 0.18);
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.02));
+  box-shadow: none;
+}
+
+.gCardText {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  min-width: 0;
+}
+
+.gCardTop {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.gBrand {
+  color: rgba(17, 17, 17, 0.78);
+  font-size: var(--fs-lg);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+.gTitle {
+  overflow: hidden;
+  color: rgba(17, 17, 17, 0.96);
+  font-size: var(--fs-card-title);
+  font-weight: 900;
+  line-height: 1.12;
+  letter-spacing: -0.04em;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.gSub {
+  margin-top: 8px;
+  color: rgba(17, 17, 17, 0.62);
+  font-size: var(--fs-md);
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.gArrow {
+  position: relative;
+  z-index: 1;
+
+  margin-left: auto;
+  color: rgba(17, 17, 17, 0.35);
+  font-size: var(--fs-xl);
+  font-weight: 900;
+
+  transition: color 0.12s ease;
+}
+
+.gCard:hover .gArrow {
+  color: rgba(17, 17, 17, 0.60);
+}
+
+/* Platform card colors */
+.gCard--melon {
+  --card-fill: linear-gradient(135deg, rgba(34, 197, 94, 0.22) 0%, rgba(34, 197, 94, 0.08) 38%, rgba(255, 255, 255, 0.96) 82%, #fff 100%);
+}
+
+.gCard--genie {
+  --card-fill: linear-gradient(135deg, rgba(59, 130, 246, 0.22) 0%, rgba(59, 130, 246, 0.08) 38%, rgba(255, 255, 255, 0.96) 82%, #fff 100%);
+}
+
+.gCard--bugs {
+  --card-fill: linear-gradient(135deg, rgba(249, 115, 22, 0.22) 0%, rgba(249, 115, 22, 0.08) 38%, rgba(255, 255, 255, 0.96) 82%, #fff 100%);
+}
+
+.gCard--flo {
+  --card-fill: linear-gradient(135deg, rgba(99, 102, 241, 0.24) 0%, rgba(99, 102, 241, 0.09) 38%, rgba(255, 255, 255, 0.96) 82%, #fff 100%);
+}
+
+.gCard--vibe,
+.gCard--soundassist {
+  --card-fill: linear-gradient(135deg, rgba(168, 85, 247, 0.24) 0%, rgba(168, 85, 247, 0.09) 38%, rgba(255, 255, 255, 0.96) 82%, #fff 100%);
+}
+
+.gCard--spotify {
+  --card-fill: linear-gradient(135deg, rgba(34, 197, 94, 0.18) 0%, rgba(34, 197, 94, 0.07) 38%, rgba(255, 255, 255, 0.96) 82%, #fff 100%);
+}
+
+.gCard--applemusic {
+  --card-fill: linear-gradient(135deg, rgba(239, 68, 68, 0.22) 0%, rgba(239, 68, 68, 0.08) 38%, rgba(255, 255, 255, 0.96) 82%, #fff 100%);
+}
+
+/* =========================
+   GUIDE LIST IMAGE
+   ========================= */
+
+.listBox {
+  overflow: hidden;
+  padding: 0;
+  border: 0;
+  border-radius: 18px;
+  background: transparent;
+  box-shadow: none;
+}
+
+.listImg {
+  width: 100%;
+  border: 0;
+  border-radius: 18px;
+  box-shadow: none;
+}
+
+/* =========================
+   MODAL / ETC
+   ========================= */
+
+#ocActionNotice.ocActionNotice {
+  margin-top: 10px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+
+  color: #fff;
+  font-size: var(--fs-sm);
+  font-weight: 900;
+  line-height: 1.35;
+  text-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.ocModalBtn.is-wide {
+  grid-column: 1 / -1;
+}
+
+.ocModalEmpty {
+  grid-column: 1 / -1;
+  padding: 14px;
+
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 14px;
+  background: #fafafa;
+
+  color: rgba(0, 0, 0, 0.75);
+  font-weight: 800;
+  line-height: 1.5;
+  text-align: center;
+}
+
+/* =========================
+   ARCHIVE COVER CARDS
+   ========================= */
+
+.archiveCoverScroll {
+  display: flex;
+  gap: 18px;
+  overflow-x: auto;
+
+  padding: 4px 2px 16px;
+
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.archiveCoverScroll::-webkit-scrollbar {
+  height: 7px;
+}
+
+.archiveCoverScroll::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.22);
+}
+
+.archiveCoverCard {
+  flex: 0 0 190px;
+  scroll-snap-align: start;
+  color: #111;
+}
+
+.archiveCoverImgBox {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+
+  overflow: hidden;
+  border-radius: 18px;
+  background: #f3f4f6;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.10);
+}
+
+.archiveCoverImgBox img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  transition: transform 0.35s ease, filter 0.35s ease;
+}
+
+.archiveCoverCard:hover .archiveCoverImgBox img {
+  transform: scale(1.04);
+  filter: brightness(0.92);
+}
+
+.archiveCoverTitle {
+  margin-top: 12px;
+  font-size: var(--fs-lg);
+  font-weight: 900;
+  line-height: 1.28;
+  letter-spacing: -0.03em;
+}
+
+.archiveCoverTags {
+  margin-top: 6px;
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 14px;
+  font-weight: 800;
+}
+
+/* =========================
+   FOOTER
+   ========================= */
+
+.footer {
+  margin-top: 28px;
+  border-top: 1px solid var(--line);
+}
+
+.footerInner {
+  padding: 18px 0;
+  color: var(--muted);
+  font-size: var(--fs-xs);
+}
+
+.footerInner--logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 24px 0 28px;
+  font-size: 0;
+}
+
+.footerLogoLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footerLogo {
+  width: auto;
+  height: 38px;
+  max-width: 220px;
+  object-fit: contain;
+  opacity: 0.9;
+}
+
+/* =========================
+   A11Y
+   ========================= */
+
+.srOnly {
+  position: absolute !important;
+
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 768px) {
+  :root {
+    --sidePadding: 14px;
+  }
+
+  .headerBar {
+    height: 60px;
+    padding: 10px 14px;
+  }
+
+  .brandImg {
+    height: 40px;
+    max-width: 220px;
+  }
+
+  .oneclickTitle {
+    font-size: var(--fs-lg);
+  }
+
+  .oneclickGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .socialHead {
+    display: block;
+  }
+
+  .socialDesc {
+    margin-top: 4px;
+  }
+
+  .archiveCoverScroll {
+    gap: 14px;
+  }
+
+  .archiveCoverCard {
+    flex-basis: 155px;
+  }
+
+  .archiveCoverTitle {
+    font-size: var(--fs-md);
+  }
+
+  .archiveCoverTags {
+    font-size: var(--fs-sm);
+  }
+
+  .footerLogo {
+    height: 34px;
+    max-width: 200px;
+  }
+}
+
+@media (max-width: 520px) {
+  .gCard {
+    align-items: center;
+    gap: 14px;
+    padding: 14px;
+    border-radius: 20px;
+  }
+
+  .gCardTop {
+    display: block;
+  }
+
+  .gBrand {
+    display: block;
+    margin-bottom: 4px;
+    font-size: var(--fs-base);
+    white-space: normal;
+  }
+
+  .gTitle {
+    display: block;
+    overflow: visible;
+    font-size: 23px;
+    line-height: 1.12;
+    white-space: normal;
+    text-overflow: clip;
+  }
+
+  .gSub {
+    margin-top: 6px;
+    font-size: var(--fs-sm);
+  }
+
+  .gArrow {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 420px) {
+  .playBadge {
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+  }
+
+  .oneclickGrid {
+    gap: 10px;
+  }
+
+  .ocBtn {
+    padding: 12px;
+  }
+
+  .gThumb {
+    flex-basis: 78px;
+    width: 78px;
+    height: 78px;
+    border-radius: 18px;
+  }
+
+  .archiveCoverCard {
+    flex-basis: 145px;
+  }
+
+  .archiveCoverImgBox {
+    border-radius: 16px;
+  }
+}
+
+
+
+/* =========================
+   MUSIC CHART HERO IMAGE
+   ========================= */
+
+/* 음원 차트 현황 헤더 배경을 이미지로 변경 */
+.musicChartHead {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.68) 0%,
+      rgba(0, 0, 0, 0.46) 48%,
+      rgba(0, 0, 0, 0.20) 100%
+    ),
+    url("/assets/header/gdbiiig.png") center 38% / cover no-repeat;
+}
+
+/* 기존 큰 G 장식 제거 */
+.musicChartHead::after {
+  display: none;
+}
+
+/* 배경 사진 위 텍스트 가독성 보강 */
+.musicChartTitle,
+.musicChartKicker,
+.musicChartUpdated,
+.musicChartStatLabel,
+.musicChartStatValue {
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.45);
+}
+
+main.container.radioPage {
+  width: 100% !important;
+  max-width: var(--pageMax) !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: var(--sidePadding) !important;
+  padding-right: var(--sidePadding) !important;
+}
