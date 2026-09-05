@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-05 21:55:12 KST",
+  "updatedAt": "2026-09-05 21:56:10 KST",
   "melonDailyDate": "2026-09-05",
   "artists": [
     "G-DRAGON",
@@ -11,7 +11,7 @@
       "name": "멜론 TOP100",
       "type": "realtime",
       "status": "ok",
-      "updatedAt": "2026-09-05 21:55:12 KST",
+      "updatedAt": "2026-09-05 21:56:10 KST",
       "songs": [
         {
           "rank": 2,
@@ -19,9 +19,9 @@
           "artist": "BIGBANG (빅뱅)",
           "artistGroup": "BIGBANG",
           "change": {
-            "type": "new",
-            "value": null,
-            "label": "NEW"
+            "type": "same",
+            "value": 0,
+            "label": "—"
           }
         },
         {
@@ -30,9 +30,9 @@
           "artist": "G-DRAGON",
           "artistGroup": "G-DRAGON",
           "change": {
-            "type": "new",
-            "value": null,
-            "label": "NEW"
+            "type": "same",
+            "value": 0,
+            "label": "—"
           }
         },
         {
@@ -41,9 +41,9 @@
           "artist": "BIGBANG (빅뱅)",
           "artistGroup": "BIGBANG",
           "change": {
-            "type": "new",
-            "value": null,
-            "label": "NEW"
+            "type": "same",
+            "value": 0,
+            "label": "—"
           }
         }
       ]
@@ -53,7 +53,7 @@
       "name": "멜론 일간",
       "type": "daily",
       "status": "ok",
-      "updatedAt": "2026-09-05 21:55:12 KST",
+      "updatedAt": "2026-09-05 21:56:10 KST",
       "songs": [
         {
           "rank": 3,
@@ -61,9 +61,9 @@
           "artist": "BIGBANG (빅뱅)",
           "artistGroup": "BIGBANG",
           "change": {
-            "type": "new",
-            "value": null,
-            "label": "NEW"
+            "type": "same",
+            "value": 0,
+            "label": "—"
           }
         },
         {
@@ -72,9 +72,9 @@
           "artist": "G-DRAGON",
           "artistGroup": "G-DRAGON",
           "change": {
-            "type": "new",
-            "value": null,
-            "label": "NEW"
+            "type": "same",
+            "value": 0,
+            "label": "—"
           }
         },
         {
@@ -83,9 +83,9 @@
           "artist": "BIGBANG (빅뱅)",
           "artistGroup": "BIGBANG",
           "change": {
-            "type": "new",
-            "value": null,
-            "label": "NEW"
+            "type": "same",
+            "value": 0,
+            "label": "—"
           }
         }
       ]
@@ -95,7 +95,7 @@
       "name": "지니 TOP200",
       "type": "realtime",
       "status": "ok",
-      "updatedAt": "2026-09-05 21:55:12 KST",
+      "updatedAt": "2026-09-05 21:56:10 KST",
       "songs": [
         {
           "rank": 4,
@@ -103,9 +103,9 @@
           "artist": "BIGBANG (빅뱅)",
           "artistGroup": "BIGBANG",
           "change": {
-            "type": "new",
-            "value": null,
-            "label": "NEW"
+            "type": "same",
+            "value": 0,
+            "label": "—"
           }
         },
         {
@@ -114,9 +114,9 @@
           "artist": "G-DRAGON",
           "artistGroup": "G-DRAGON",
           "change": {
-            "type": "new",
-            "value": null,
-            "label": "NEW"
+            "type": "same",
+            "value": 0,
+            "label": "—"
           }
         },
         {
@@ -125,9 +125,9 @@
           "artist": "BIGBANG (빅뱅)",
           "artistGroup": "BIGBANG",
           "change": {
-            "type": "new",
-            "value": null,
-            "label": "NEW"
+            "type": "same",
+            "value": 0,
+            "label": "—"
           }
         }
       ]
@@ -137,7 +137,7 @@
       "name": "벅스 실시간",
       "type": "realtime",
       "status": "ok",
-      "updatedAt": "2026-09-05 21:55:12 KST",
+      "updatedAt": "2026-09-05 21:56:10 KST",
       "songs": [
         {
           "rank": 7,
@@ -145,9 +145,9 @@
           "artist": "BIGBANG (빅뱅)",
           "artistGroup": "BIGBANG",
           "change": {
-            "type": "new",
-            "value": null,
-            "label": "NEW"
+            "type": "same",
+            "value": 0,
+            "label": "—"
           }
         },
         {
@@ -156,9 +156,9 @@
           "artist": "G-DRAGON",
           "artistGroup": "G-DRAGON",
           "change": {
-            "type": "new",
-            "value": null,
-            "label": "NEW"
+            "type": "same",
+            "value": 0,
+            "label": "—"
           }
         }
       ]
