@@ -1,313 +1,731 @@
 <!doctype html>
 <html lang="ko">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>라디오 신청 | 지드래곤 음원총공팀</title>
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="라디오 신청 | 지드래곤 음원총공팀">
+  <meta property="og:description" content="현재 방송 중인 라디오에 빅뱅의 BiiiG을 신청하세요.">
+  <meta property="og:url" content="https://www.gdstream.site/radio/">
 
-<link rel="stylesheet" href="/styles.css">
+  <title>라디오 신청 | 지드래곤 음원총공팀</title>
 
-<style>
+  <link rel="icon" href="/assets/meta/favicon.png" type="image/png" sizes="any">
+  <link rel="stylesheet" href="/styles.css">
 
-body {
-  background:#fff;
+  <style>
+    :root {
+      --radio-bg: #ffffff;
+      --radio-line: rgba(0, 0, 0, .075);
+      --radio-muted: rgba(0, 0, 0, .50);
+      --radio-shadow: 0 10px 28px rgba(0, 0, 0, .055);
+      --radio-shadow-hover: 0 16px 34px rgba(0, 0, 0, .085);
+    }
+
+    body {
+      background: #fff;
+    }
+
+    .radioPage {
+      min-height: calc(100vh - 100px);
+      padding: 28px 0 58px;
+    }
+
+    .radioTop {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .radioBack {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: rgba(0, 0, 0, .66);
+      font-size: 13px;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .radioBack:hover {
+      color: #111;
+    }
+
+    .radioClock {
+  color: rgba(0, 0, 0, .42);
+  font-size: 12px;
+  font-weight: 700;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  margin-bottom: 24px;
 }
 
-.radioPage{
-  padding:25px 0 0;
-}
+    /* 메인 페이지와 비슷한 가볍고 부드러운 인트로 */
+    .radioIntro {
+      margin-bottom: 18px;
+      padding: 22px 22px 20px;
+      border: 1px solid rgba(0, 0, 0, .055);
+      border-radius: 22px;
+      background:
+        linear-gradient(
+          135deg,
+          rgba(190, 205, 235, .32),
+          rgba(245, 195, 190, .24)
+        );
+      box-shadow: var(--radio-shadow);
+    }
 
-.radioClock{
-  text-align:right;
-  color:rgba(0,0,0,.4);
-  font-size:12px;
-  margin-bottom:18px;
-}
+    .radioKicker {
+      margin-bottom: 7px;
+      color: rgba(0, 0, 0, .44);
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
 
-/* 소개 */
-.radioIntro{
-  margin-bottom:16px;
-}
+    .radioTitle {
+      margin: 0;
+      color: #111;
+      font-size: clamp(29px, 6vw, 40px);
+      font-weight: 950;
+      letter-spacing: -.055em;
+      line-height: 1.06;
+    }
 
-.radioTitle{
-  margin:0;
-  font-size:34px;
-  font-weight:950;
-  letter-spacing:-.05em;
-}
+    .radioDescription {
+      margin: 11px 0 0;
+      color: rgba(0, 0, 0, .54);
+      font-size: 13px;
+      font-weight: 650;
+      line-height: 1.6;
+    }
 
-.radioDescription{
-  margin-top:10px;
-  color:rgba(0,0,0,.55);
-  font-size:13px;
-  line-height:1.6;
-}
+    .radioDescription strong {
+      color: #111;
+      font-weight: 900;
+    }
 
+    /* 현재 방송 표시 - 박스 느낌을 줄이고 가볍게 */
+    .radioNowBox {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0 0 16px;
+      padding: 12px 14px;
+      border: 1px solid var(--radio-line);
+      border-radius: 15px;
+      background: #fff;
+      box-shadow: 0 7px 20px rgba(0, 0, 0, .035);
+    }
 
-/* 방송 카드 */
-.radioGrid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:10px;
-}
+    .radioNowLabel {
+      display: inline-flex;
+      flex: 0 0 auto;
+      align-items: center;
+      gap: 7px;
+      color: #111;
+      font-size: 11px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
 
+    .radioLiveDot {
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #ef4444;
+      box-shadow: 0 0 0 4px rgba(239, 68, 68, .10);
+    }
 
-.radioCard{
-  display:flex;
-  flex-direction:column;
-  min-height:115px;
-  padding:13px;
-  border-radius:16px;
-  border:1px solid rgba(0,0,0,.08);
-  background:#fff;
-  box-shadow:0 8px 20px rgba(0,0,0,.04);
-  cursor:pointer;
-  text-align:left;
-}
+    .radioNowText {
+      min-width: 0;
+      margin: 0;
+      overflow: hidden;
+      color: rgba(0, 0, 0, .62);
+      font-size: 12px;
+      font-weight: 750;
+      line-height: 1.45;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
 
+    /* PC에서는 기존처럼 방송사 3개를 한 번에 */
+    .radioGrid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
 
-.radioStation{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  font-size:13px;
-  font-weight:900;
-}
+    .radioCard {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-height: 168px;
+      padding: 15px;
+      overflow: hidden;
+      border: 1px solid var(--radio-line);
+      border-radius: 19px;
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255, 255, 255, .98),
+          rgba(245, 247, 251, .90)
+        );
+      color: #111;
+      box-shadow: var(--radio-shadow);
+      text-align: left;
+      font-family: inherit;
+      transition:
+        transform .16s ease,
+        box-shadow .16s ease,
+        border-color .16s ease;
+    }
 
+    button.radioCard {
+      width: 100%;
+      cursor: pointer;
+    }
 
-.radioLiveBadge{
-  padding:3px 7px;
-  border-radius:20px;
-  background:#111;
-  color:white;
-  font-size:8px;
-}
+    .radioCard.is-active:hover {
+      transform: translateY(-2px);
+      border-color: rgba(0, 0, 0, .12);
+      box-shadow: var(--radio-shadow-hover);
+    }
 
+    .radioCard.is-disabled {
+      min-height: 112px;
+      background: #f7f7f8;
+      color: rgba(0, 0, 0, .34);
+      box-shadow: none;
+      cursor: not-allowed;
+    }
 
-.radioLiveBadge::before{
-  content:"";
-  display:inline-block;
-  width:5px;
-  height:5px;
-  background:#ff4444;
-  border-radius:50%;
-  margin-right:4px;
-}
+    .radioStation {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 14px;
+      font-weight: 950;
+      letter-spacing: -.02em;
+    }
 
+    .radioLiveBadge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 8px;
+      border-radius: 999px;
+      background: #111;
+      color: #fff;
+      font-size: 9px;
+      font-weight: 900;
+      letter-spacing: .06em;
+    }
 
-.radioProgram{
-  margin-top:auto;
-  font-size:17px;
-  font-weight:900;
-  letter-spacing:-.04em;
-}
+    .radioLiveBadge::before {
+      content: "";
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #ff6368;
+    }
 
+    .radioProgram {
+      margin: auto 0 5px;
+      font-size: 20px;
+      font-weight: 950;
+      letter-spacing: -.05em;
+      line-height: 1.2;
+      word-break: keep-all;
+    }
 
-.radioTime{
-  margin-top:5px;
-  color:rgba(0,0,0,.45);
-  font-size:11px;
-}
+    .radioCard.is-disabled .radioProgram {
+      display: none;
+    }
 
+    .radioTime {
+      color: rgba(0, 0, 0, .44);
+      font-size: 11px;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+    }
 
-.radioNumber{
-  margin-top:6px;
-  font-size:11px;
-  color:rgba(0,0,0,.55);
-}
+    .radioNumber {
+      display: inline-flex;
+      width: fit-content;
+      margin-top: 8px;
+      padding: 6px 8px;
+      border-radius: 8px;
+      background: rgba(0, 0, 0, .055);
+      color: rgba(0, 0, 0, .66);
+      font-size: 11px;
+      font-weight: 900;
+    }
 
+    .radioCard.is-disabled .radioNumber {
+      display: none;
+    }
 
-/* 모바일 */
-@media(max-width:720px){
+    .radioAction {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 9px;
+      padding-top: 9px;
+      border-top: 1px solid rgba(0, 0, 0, .065);
+      color: #111;
+      font-size: 11px;
+      font-weight: 900;
+    }
 
-.radioGrid{
- grid-template-columns:1fr;
-}
+    .radioActionArrow {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      background: #111;
+      color: #fff;
+      font-size: 14px;
+      line-height: 1;
+    }
 
-.radioTitle{
- font-size:30px;
-}
+    .radioCard.is-disabled .radioAction {
+      margin-top: auto;
+      padding-top: 0;
+      border-top: 0;
+      color: rgba(0, 0, 0, .32);
+    }
 
-.radioCard{
- min-height:95px;
-}
+    .radioCard.is-disabled .radioActionArrow {
+      display: none;
+    }
 
-}
+    /* 신청 카드 바로 아래 시간표 */
+    .radioSchedule {
+      margin-top: 22px;
+    }
 
+    .radioScheduleHead {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 0 2px 10px;
+    }
 
-</style>
+    .radioScheduleTitle {
+      color: #111;
+      font-size: 15px;
+      font-weight: 900;
+      letter-spacing: -.03em;
+    }
 
+    .radioScheduleDesc {
+      color: rgba(0, 0, 0, .38);
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .radioScheduleImageWrap {
+      overflow: hidden;
+      border: 1px solid rgba(0, 0, 0, .07);
+      border-radius: 20px;
+      background: #fff;
+      box-shadow: var(--radio-shadow);
+    }
+
+    .radioScheduleImage {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .radioNotice {
+      margin: 15px 2px 0 !important;
+      margin-bottom: 0 !important;
+      padding-bottom: 0 !important;
+      color: rgba(0, 0, 0, .38);
+      font-size: 10px;
+      font-weight: 650;
+      line-height: 1.5;
+    }
+
+    .radioPage > .radioNotice {
+      margin-bottom: 0 !important;
+    }
+
+    @media (max-width: 720px) {
+      .radioPage {
+        padding-top: 20px;
+      }
+
+      .radioTop {
+        margin-bottom: 14px;
+      }
+
+      .radioIntro {
+        padding: 19px 17px 18px;
+        border-radius: 19px;
+      }
+
+      .radioDescription {
+        font-size: 12px;
+      }
+
+      .radioNowBox {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 5px;
+      }
+
+      .radioNowText {
+        white-space: normal;
+      }
+
+      .radioGrid {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .radioCard {
+        min-height: 0;
+        padding: 13px 14px;
+        border-radius: 16px;
+      }
+
+      .radioCard.is-disabled {
+        min-height: 0;
+        padding: 12px 14px;
+      }
+
+      .radioStation {
+        font-size: 13px;
+      }
+
+      .radioLiveBadge {
+        padding: 4px 7px;
+        font-size: 8px;
+      }
+
+      .radioProgram {
+        margin: 14px 0 3px;
+        font-size: 18px;
+        line-height: 1.18;
+      }
+
+      .radioTime {
+        display: inline;
+        font-size: 11px;
+      }
+
+      .radioNumber {
+        display: inline-flex;
+        margin: 0 0 0 7px;
+        padding: 4px 7px;
+        border-radius: 7px;
+        font-size: 10px;
+        vertical-align: middle;
+      }
+
+      .radioAction {
+        margin-top: 9px;
+        padding-top: 8px;
+        font-size: 10px;
+      }
+
+      .radioActionArrow {
+        width: 22px;
+        height: 22px;
+        font-size: 12px;
+      }
+
+      .radioCard.is-disabled .radioAction {
+        margin-top: 8px;
+      }
+
+      .radioSchedule {
+        margin-top: 16px;
+      }
+
+      .radioScheduleHead {
+        display: block;
+      }
+
+      .radioScheduleDesc {
+        display: block;
+        margin-top: 2px;
+      }
+
+      .radioScheduleImageWrap {
+        border-radius: 16px;
+      }
+    }
+
+    /* 하단 안내문과 로고 사이 공백 제거 */
+    .radioPage {
+      padding-bottom: 0 !important;
+    }
+
+    .radioNotice {
+      margin-bottom: 0 !important;
+    }
+
+  </style>
 </head>
 
-
 <body>
-
-
-<main class="container radioPage">
-
-
-<div id="radioClock" class="radioClock">
-한국 시간 확인 중
-</div>
-
-
-<section class="radioIntro">
-
-<h1 class="radioTitle">
-라디오 신청
-</h1>
-
-
-<p class="radioDescription">
-
-라디오는 음악방송 방송점수에 큰 도움이 됩니다.<br>
-
-KBS 뮤직뱅크 20% · MBC 뮤직뱅크 10% · SBS 인기가요 10% 반영
-
-<br><br>
-
-방송 프로그램 성격에 맞는 사연과 함께 신청해주세요!
-
-</p>
-
-
-</section>
-
-
-
-<section id="radioGrid" class="radioGrid"></section>
-
-
-
-</main>
-
-
-
-<script>
-
-
-const SMS_MESSAGE =
-"빅뱅의 BiiiG 신청합니다";
-
-
-
-const radioStations=[
-
-
-{
-station:"KBS",
-number:"#8910",
-program:"KBS 라디오",
-time:"현재 방송 신청"
-},
-
-
-{
-station:"MBC",
-number:"#8000",
-program:"MBC 라디오",
-time:"현재 방송 신청"
-},
-
-
-{
-station:"SBS",
-number:"#1077",
-program:"SBS 라디오",
-time:"현재 방송 신청"
-}
-
-
-];
-
-
-
-function sendSms(number){
-
-location.href =
-`sms:${encodeURIComponent(number)}?body=${encodeURIComponent(SMS_MESSAGE)}`;
-
-}
-
-
-
-function renderRadio(){
-
-
-const grid=document.getElementById("radioGrid");
-
-
-grid.innerHTML=
-radioStations.map(r=>`
-
-<button class="radioCard"
-onclick="sendSms('${r.number}')">
-
-
-<div class="radioStation">
-
-<span>${r.station}</span>
-
-<span class="radioLiveBadge">
-ON AIR
-</span>
-
-</div>
-
-
-<div class="radioProgram">
-${r.program}
-</div>
-
-
-<div class="radioTime">
-${r.time}
-</div>
-
-
-<div class="radioNumber">
-${r.number}
-</div>
-
-
-</button>
-
-
-`).join("");
-
-}
-
-
-
-function clock(){
-
-document.getElementById("radioClock").innerHTML=
-"한국 시간 · "+
-new Intl.DateTimeFormat(
-"ko-KR",
-{
-timeZone:"Asia/Seoul",
-hour:"2-digit",
-minute:"2-digit",
-hour12:false
-}
-).format(new Date());
-
-}
-
-
-
-renderRadio();
-
-clock();
-
-setInterval(clock,60000);
-
-
-
-</script>
-
-
+  <header class="header header--simple">
+    <div class="headerBar headerBar--center">
+      <a class="brand" href="/" aria-label="지드래곤 음원총공팀 홈으로 이동">
+        <img class="brandImg" src="/assets/header/logo.svg" alt="지드래곤 음원총공팀 로고">
+      </a>
+    </div>
+  </header>
+
+  <main class="container radioPage">
+
+  <div id="radioClock" class="radioClock">한국 시간 확인 중</div>
+
+  <section class="radioIntro">
+    <h1 class="radioTitle">라디오 신청</h1>
+    <p class="radioDescription">
+      라디오는 음악방송 방송점수에 큰 도움이 됩니다.<br>
+      KBS 뮤직뱅크 20% · MBC 뮤직뱅크 10% · SBS 인기가요 10% 반영<br><br>
+      프로그램 성격에 맞는 사연과 함께 신청해주세요!
+    </p>
+  </section>
+
+    <section id="radioGrid" class="radioGrid" aria-label="라디오 방송사 선택"></section>
+
+    <section class="radioSchedule" aria-label="라디오 편성표">
+      <div class="radioScheduleHead">
+        <div class="radioScheduleTitle">라디오 편성표</div>
+        <div class="radioScheduleDesc">방송 시간 확인 후 신청해주세요.</div>
+      </div>
+      <div class="radioScheduleImageWrap">
+        <img
+          class="radioScheduleImage"
+          src="/assets/guides/radioschedule.jpg"
+          alt="KBS, MBC, SBS 라디오 편성표"
+          loading="lazy"
+        >
+      </div>
+    </section>
+
+    <p class="radioNotice">
+      ※ 정규 편성표 기준으로 표시됩니다. 특집 방송·스포츠 중계·결방 등의 경우 실제 방송과 다를 수 있습니다.<br>
+      ※ 문자 전송 시 방송사 정책 및 이용 중인 통신사 요금제가 적용될 수 있으며, 최종 전송은 문자 앱에서 직접 진행됩니다.
+    </p>
+  </main>
+
+  <footer class="footer">
+    <div class="container footerInner footerInner--logo">
+      <a href="/" class="footerLogoLink" aria-label="지드래곤 음원총공팀 홈으로 이동">
+        <img class="footerLogo" src="/assets/header/logo1.png" alt="지드래곤 음원총공팀 로고">
+      </a>
+    </div>
+  </footer>
+
+  <script>
+    const SMS_MESSAGE = "빅뱅의 BiiiG 신청합니다";
+
+    /*
+      days 값:
+      0 = 일요일 / 1 = 월요일 / 2 = 화요일 / 3 = 수요일
+      4 = 목요일 / 5 = 금요일 / 6 = 토요일
+    */
+    const radioStations = [
+      {
+        station: "KBS",
+        number: "#8910",
+        schedule: [
+          { start: "07:00", end: "09:00", title: "조정식의 FM 대행진", days: [0, 1, 2, 3, 4, 5, 6] },
+          { start: "09:00", end: "11:00", title: "이현우의 음악앨범", days: [0, 1, 2, 3, 4, 5, 6] },
+          { start: "11:00", end: "12:00", title: "박명수의 라디오쇼", days: [0, 1, 2, 3, 4, 5, 6] },
+          { start: "12:00", end: "14:00", title: "폴킴의 가요광장", days: [0, 1, 2, 3, 4, 5, 6] },
+          { start: "14:00", end: "16:00", title: "가비의 슈퍼라디오", days: [0, 1, 2, 3, 4, 5, 6] },
+          { start: "16:00", end: "18:00", title: "윤정수 남창희의 미스터 라디오", days: [0, 1, 2, 3, 4, 5, 6] },
+          { start: "18:00", end: "20:00", title: "사랑하기 좋은 날 이금희입니다", days: [0, 1, 2, 3, 4, 5, 6] },
+          { start: "20:00", end: "22:00", title: "오마이걸 효정의 볼륨을 높여요", days: [0, 1, 2, 3, 4, 5, 6] },
+          { start: "22:00", end: "24:00", title: "한해의 키스 더 라디오", days: [0, 1, 2, 3, 4, 5, 6] }
+        ]
+      },
+      {
+        station: "MBC",
+        number: "#8000",
+        schedule: [
+          { start: "06:00", end: "07:00", title: "세상을 여는 아침 이영은입니다", days: [0, 1, 2, 3, 4, 5, 6] },
+          { start: "07:00", end: "09:00", title: "굿모닝 FM 테이입니다", days: [0, 1, 2, 3, 4, 5, 6] },
+          { start: "09:00", end: "11:00", title: "오늘 아침 윤상입니다", days: [0, 1, 2, 3, 4, 5, 6] },
+          { start: "12:00", end: "14:00", title: "정오의 희망곡 김신영입니다", days: [0, 1, 2, 3, 4, 5, 6] },
+          { start: "14:00", end: "16:00", title: "두시의 데이트 안영미입니다", days: [0, 1, 2, 3, 4, 5, 6] },
+          { start: "16:00", end: "18:00", title: "완벽한 하루 이상순입니다", days: [0, 1, 2, 3, 4, 5, 6] },
+          { start: "20:00", end: "22:00", title: "김이나의 별이 빛나는 밤에", days: [0, 1, 2, 3, 4, 5, 6] },
+          { start: "22:00", end: "24:00", title: "친한친구 방송반", days: [1, 2, 3] },
+          { start: "22:00", end: "24:00", title: "아이돌 라디오", days: [4, 5] },
+          { start: "22:00", end: "24:00", title: "스포왕 고영배", days: [0, 6] }
+        ]
+      },
+      {
+        station: "SBS",
+        number: "#1077",
+        schedule: [
+          { start: "07:00", end: "09:00", title: "김영철의 파워FM", days: [0, 1, 2, 3, 4, 5, 6] },
+          { start: "09:00", end: "11:00", title: "아름다운 이 아침, 봉태규입니다", days: [0, 1, 2, 3, 4, 5, 6] },
+          { start: "12:00", end: "14:00", title: "12시엔 주현영", days: [0, 1, 2, 3, 4, 5, 6] },
+          { start: "14:00", end: "16:00", title: "두시탈출 컬투쇼", days: [0, 1, 2, 3, 4, 5, 6] },
+          { start: "16:00", end: "18:00", title: "황제성의 황제파워", days: [0, 1, 2, 3, 4, 5, 6] },
+          { start: "18:00", end: "20:00", title: "박소현의 러브게임", days: [0, 1, 2, 3, 4, 5, 6] },
+          { start: "20:00", end: "22:00", title: "웬디의 영스트리트", days: [0, 1, 2, 3, 4, 5, 6] },
+          { start: "22:00", end: "23:00", title: "배성재의 밤", days: [0, 1, 2, 3, 4, 5, 6] },
+          { start: "23:00", end: "01:00", title: "딘딘의 뮤직하이", days: [0, 1, 2, 3, 4, 5, 6] }
+        ]
+      }
+    ];
+
+    function getKoreanNow() {
+      const parts = new Intl.DateTimeFormat("en-US", {
+        timeZone: "Asia/Seoul",
+        weekday: "short",
+        hour: "2-digit",
+        minute: "2-digit",
+        hourCycle: "h23"
+      }).formatToParts(new Date());
+
+      const getPart = (type) => parts.find(part => part.type === type)?.value;
+
+      const weekdayMap = {
+        Sun: 0,
+        Mon: 1,
+        Tue: 2,
+        Wed: 3,
+        Thu: 4,
+        Fri: 5,
+        Sat: 6
+      };
+
+      return {
+        weekday: weekdayMap[getPart("weekday")],
+        hour: Number(getPart("hour")),
+        minute: Number(getPart("minute"))
+      };
+    }
+
+    function toMinutes(time) {
+      const [hour, minute] = time.split(":").map(Number);
+      return hour * 60 + minute;
+    }
+
+    function isOnAir(program, now) {
+      const currentTime = now.hour * 60 + now.minute;
+      const startTime = toMinutes(program.start);
+      const endTime = toMinutes(program.end);
+
+      const isCorrectDay = program.days.includes(now.weekday);
+
+      if (!isCorrectDay) {
+        return false;
+      }
+
+      if (endTime <= startTime) {
+        return currentTime >= startTime || currentTime < endTime;
+      }
+
+      return currentTime >= startTime && currentTime < endTime;
+    }
+
+    function getCurrentProgram(station, now) {
+      return station.schedule.find(program => isOnAir(program, now)) || null;
+    }
+
+    function formatKoreanClock() {
+      return new Intl.DateTimeFormat("ko-KR", {
+        timeZone: "Asia/Seoul",
+        weekday: "long",
+        hour: "numeric",
+        minute: "2-digit",
+        hour12: false
+      }).format(new Date());
+    }
+
+    function sendSms(number) {
+      const smsUrl = `sms:${encodeURIComponent(number)}?body=${encodeURIComponent(SMS_MESSAGE)}`;
+      window.location.href = smsUrl;
+    }
+
+    function renderRadioPage() {
+      const now = getKoreanNow();
+      const grid = document.getElementById("radioGrid");
+      const clock = document.getElementById("radioClock");
+      const nowText = document.getElementById("radioNowText");
+
+      clock.textContent = `한국 시간 · ${formatKoreanClock()}`;
+
+      const activePrograms = [];
+
+      grid.innerHTML = radioStations.map(station => {
+        const currentProgram = getCurrentProgram(station, now);
+
+        if (currentProgram) {
+          activePrograms.push(`${station.station} ${currentProgram.title}`);
+
+          return `
+            <button
+              type="button"
+              class="radioCard is-active"
+              onclick="sendSms('${station.number}')"
+              aria-label="${station.station} ${currentProgram.title}에 문자 신청하기"
+            >
+              <div class="radioStation">
+                <span>${station.station}</span>
+                <span class="radioLiveBadge">ON AIR</span>
+              </div>
+
+              <div class="radioProgram">${currentProgram.title}</div>
+              <div class="radioTime">${currentProgram.start} ~ ${currentProgram.end}</div>
+              <div class="radioNumber">${station.number}</div>
+
+
+            </button>
+          `;
+        }
+
+        return `
+          <button
+            type="button"
+            class="radioCard is-disabled"
+            disabled
+            aria-label="${station.station} 현재 진행 중인 프로그램 없음"
+          >
+            <div class="radioStation">
+              <span>${station.station}</span>
+            </div>
+
+            <div class="radioAction">
+              <span>현재 진행 중인 프로그램이 없습니다</span>
+            </div>
+          </button>
+        `;
+      }).join("");
+
+      if (activePrograms.length === 0) {
+        nowText.textContent = "현재 등록된 정규 편성 프로그램이 없습니다.";
+      } else {
+        nowText.textContent = activePrograms.join(" · ");
+      }
+    }
+
+    renderRadioPage();
+    setInterval(renderRadioPage, 60 * 1000);
+  </script>
 </body>
 </html>
