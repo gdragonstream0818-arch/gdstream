@@ -1082,3 +1082,35 @@ main.container > .section > .sectionTitle {
     border-radius: 16px;
   }
 }
+
+
+
+/* =========================
+   MUSIC CHART HERO IMAGE
+   ========================= */
+
+/* 음원 차트 현황 헤더 배경을 이미지로 변경 */
+.musicChartHead {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.68) 0%,
+      rgba(0, 0, 0, 0.46) 48%,
+      rgba(0, 0, 0, 0.20) 100%
+    ),
+    url("/assets/header/gdbiiig.png") center 38% / cover no-repeat;
+}
+
+/* 기존 큰 G 장식 제거 */
+.musicChartHead::after {
+  display: none;
+}
+
+/* 배경 사진 위 텍스트 가독성 보강 */
+.musicChartTitle,
+.musicChartKicker,
+.musicChartUpdated,
+.musicChartStatLabel,
+.musicChartStatValue {
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.45);
+}
