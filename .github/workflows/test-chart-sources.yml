@@ -22,5 +22,5 @@ jobs:
       - name: 차트 분석 도구 설치
         run: npm install
 
-      - name: 차트 순위 추출 테스트
-        run: node scripts/test-chart-sources.js
+      - name: 차트 순위 생성 테스트
+        run: node scripts/update-charts.js
