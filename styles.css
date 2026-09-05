@@ -1116,10 +1116,9 @@ main.container > .section > .sectionTitle {
 }
 
 /* =========================
-   RADIO FINAL SIZE FIX
+   RADIO FINAL OVERRIDE
    ========================= */
 
-/* 라디오 페이지 폭 */
 main.container.radioPage {
   width: 100% !important;
   max-width: 980px !important;
@@ -1129,8 +1128,6 @@ main.container.radioPage {
   padding-right: 20px !important;
 }
 
-
-/* 현재 방송 */
 .radioNowLabel {
   font-size: 13px !important;
 }
@@ -1139,8 +1136,6 @@ main.container.radioPage {
   font-size: 14px !important;
 }
 
-
-/* 방송 카드 */
 .radioStation {
   font-size: 18px !important;
 }
@@ -1161,8 +1156,6 @@ main.container.radioPage {
   font-size: 14px !important;
 }
 
-
-/* 편성표 */
 .radioScheduleTitle {
   font-size: 17px !important;
 }
@@ -1171,28 +1164,15 @@ main.container.radioPage {
   font-size: 13px !important;
 }
 
-
-/* 하단 안내문 */
 .radioNotice {
   font-size: 12px !important;
   line-height: 1.8 !important;
 }
 
-
-/* 모바일 */
 @media (max-width:720px) {
-
   main.container.radioPage {
     padding-left: 14px !important;
     padding-right: 14px !important;
-  }
-
-  .radioNowLabel {
-    font-size: 13px !important;
-  }
-
-  .radioNowText {
-    font-size: 13px !important;
   }
 
   .radioStation {
