@@ -63,8 +63,26 @@
     /* 음원 차트 현황 */
     .musicChartSection { margin-top:6px; }
     .musicChartPanel { overflow:hidden; border:1px solid rgba(0,0,0,.08); border-radius:20px; background:#fff; box-shadow:0 14px 38px rgba(0,0,0,.05); }
-    .musicChartHead { position:relative; overflow:hidden; padding:22px 22px 19px; border-bottom:1px solid rgba(0,0,0,.08); background:radial-gradient(circle at 93% 18%,rgba(58,95,208,.16),transparent 28%),linear-gradient(135deg,#101114 0%,#1f2f66 100%); color:#fff; }
-    .musicChartHead::after { content:"G"; position:absolute; right:5px; bottom:-68px; color:rgba(255,255,255,.08); font-size:205px; font-style:italic; font-weight:900; letter-spacing:-.18em; line-height:1; pointer-events:none; }
+    .musicChartHead {
+  position:relative;
+  overflow:hidden;
+  padding:22px 22px 19px;
+  border-bottom:1px solid rgba(0,0,0,.08);
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0,0,0,.65) 0%,
+      rgba(0,0,0,.42) 50%,
+      rgba(0,0,0,.18) 100%
+    ),
+    url("/assets/header/gdbiiig.png") center 38% / cover no-repeat;
+
+  color:#fff;
+}
+    .musicChartHead::after {
+  display:none;
+}
     .musicChartKicker { position:relative; z-index:1; display:flex; align-items:center; gap:7px; color:rgba(255,255,255,.7); font-size:11px; font-weight:900; letter-spacing:.1em; }
     .musicChartKicker::before { content:""; width:7px; height:7px; border-radius:50%; background:#ff5c5c; box-shadow:0 0 0 4px rgba(255,92,92,.16); }
     .musicChartTitleRow { position:relative; z-index:1; display:flex; align-items:flex-end; justify-content:space-between; gap:15px; margin-top:11px; }
