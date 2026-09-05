@@ -1,23 +1,24 @@
 <!DOCTYPE html>
+
 <html lang="ko">
- <head>
-  <link href="/assets/meta/favicon.png" rel="icon" sizes="any" type="image/png"/>
-  <meta content="website" property="og:type"/>
-  <meta content="https://i.ibb.co/JgfVvDn/ogw.png" property="og:image"/>
-  <meta content="지드래곤 음원총공팀" property="og:title"/>
-  <meta content="FAM을 위한 음원서포트 정보" property="og:description"/>
-  <meta content="https://gdstream.site/" property="og:url"/>
-  <meta content="summary_large_image" name="twitter:card"/>
-  <meta content="지드래곤 음원총공팀" name="twitter:title"/>
-  <meta content="FAM을 위한 음원서포트 정보" name="twitter:description"/>
-  <meta content="https://i.ibb.co/JgfVvDn/ogw.png" name="twitter:image"/>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1" name="viewport"/>
-  <title>
+<head>
+<link href="/assets/meta/favicon.png" rel="icon" sizes="any" type="image/png"/>
+<meta content="website" property="og:type"/>
+<meta content="https://i.ibb.co/JgfVvDn/ogw.png" property="og:image"/>
+<meta content="지드래곤 음원총공팀" property="og:title"/>
+<meta content="FAM을 위한 음원서포트 정보" property="og:description"/>
+<meta content="https://gdstream.site/" property="og:url"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="지드래곤 음원총공팀" name="twitter:title"/>
+<meta content="FAM을 위한 음원서포트 정보" name="twitter:description"/>
+<meta content="https://i.ibb.co/JgfVvDn/ogw.png" name="twitter:image"/>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>
    지드래곤 음원총공팀
   </title>
-  <link href="/styles.css" rel="stylesheet"/>
-  <style>
+<link href="/styles.css" rel="stylesheet"/>
+<style>
    .heroImg { filter: none; }
     @media (max-width: 768px) {
       .heroImg { filter: grayscale(40%); transition: filter .8s ease; }
@@ -50,9 +51,14 @@
     .collectModalTitle { margin:0; }
     .collectNotice { margin-top:4px; padding:0; border:0; background:none; font-size:13px; font-weight:700; line-height:1.35; }
 
-    /* 바로가기: 세 카드 모두 동일한 간격 */
-    .ctaGuide--collect { margin-top:0; }
-    .section > .ctaGuide + .ctaGuide { margin-top:12px; }
+    /* 바로가기: 세 카드의 간격을 동일하게 유지 */
+    .shortcutList {
+      display: grid;
+      gap: 12px;
+    }
+    .shortcutList > .ctaGuide {
+      margin-top: 0 !important;
+    }
 
     /* 음원 차트 현황 */
     .musicChartSection { margin-top:6px; }
@@ -118,532 +124,532 @@
       .musicSongTitle { font-size:16px; }
     }
   </style>
- </head>
- <body>
-  <header class="header header--simple">
-   <div class="headerBar headerBar--center">
-    <a aria-label="지드래곤 음원총공팀" class="brand" href="/">
-     <img alt="지드래곤 음원총공팀 로고" class="brandImg" src="/assets/header/logo.svg"/>
-    </a>
-   </div>
-  </header>
-  <section class="hero">
-   <div class="heroInner">
-    <a class="heroLink" href="https://youtu.be/o9DhvbqYzns?si=7uozTe90cIU0ZY27" rel="noreferrer" target="_blank">
-     <picture>
-      <source media="(max-width: 768px)" srcset="/assets/header/header-m.jpg"/>
-      <img alt="G-DRAGON - TOO BAD (MV)" class="heroImg" src="/assets/header/header-pc.jpg"/>
-     </picture>
-    </a>
-   </div>
-  </section>
-  <main class="container">
-   <section class="section">
-    <div class="oneclickPanel">
-     <div class="oneclickHead">
-      <div class="oneclickKicker">
+</head>
+<body>
+<header class="header header--simple">
+<div class="headerBar headerBar--center">
+<a aria-label="지드래곤 음원총공팀" class="brand" href="/">
+<img alt="지드래곤 음원총공팀 로고" class="brandImg" src="/assets/header/logo.svg"/>
+</a>
+</div>
+</header>
+<section class="hero">
+<div class="heroInner">
+<a class="heroLink" href="https://youtu.be/o9DhvbqYzns?si=7uozTe90cIU0ZY27" rel="noreferrer" target="_blank">
+<picture>
+<source media="(max-width: 768px)" srcset="/assets/header/header-m.jpg"/>
+<img alt="G-DRAGON - TOO BAD (MV)" class="heroImg" src="/assets/header/header-pc.jpg"/>
+</picture>
+</a>
+</div>
+</section>
+<main class="container">
+<section class="section">
+<div class="oneclickPanel">
+<div class="oneclickHead">
+<div class="oneclickKicker">
        only for FAM
       </div>
-      <h2 class="oneclickTitle">
+<h2 class="oneclickTitle">
        원클릭 스트리밍
       </h2>
-      <p class="oneclickSub">
+<p class="oneclickSub">
        플랫폼을 선택하면 바로 스트리밍을 시작할 수 있어요.
       </p>
-     </div>
-     <div class="oneclickGrid">
-      <a aria-label="멜론 원클릭" class="ocBtn" data-platform="melon" href="#">
-       <div class="ocIcon">
-        <img alt="멜론" src="/assets/icons/platform/melon.svg"/>
-       </div>
-       <div class="ocText">
-        <div class="ocName">
+</div>
+<div class="oneclickGrid">
+<a aria-label="멜론 원클릭" class="ocBtn" data-platform="melon" href="#">
+<div class="ocIcon">
+<img alt="멜론" src="/assets/icons/platform/melon.svg"/>
+</div>
+<div class="ocText">
+<div class="ocName">
          멜론
         </div>
-       </div>
-       <div class="ocArrow">
+</div>
+<div class="ocArrow">
         →
        </div>
-      </a>
-      <a aria-label="지니 원클릭" class="ocBtn" data-platform="genie" href="#">
-       <div class="ocIcon">
-        <img alt="지니" src="/assets/icons/platform/genie.png"/>
-       </div>
-       <div class="ocText">
-        <div class="ocName">
+</a>
+<a aria-label="지니 원클릭" class="ocBtn" data-platform="genie" href="#">
+<div class="ocIcon">
+<img alt="지니" src="/assets/icons/platform/genie.png"/>
+</div>
+<div class="ocText">
+<div class="ocName">
          지니
         </div>
-       </div>
-       <div class="ocArrow">
+</div>
+<div class="ocArrow">
         →
        </div>
-      </a>
-      <a aria-label="벅스 원클릭" class="ocBtn" data-platform="bugs" href="#">
-       <div class="ocIcon">
-        <img alt="벅스" src="/assets/icons/platform/bugs.jpg"/>
-       </div>
-       <div class="ocText">
-        <div class="ocName">
+</a>
+<a aria-label="벅스 원클릭" class="ocBtn" data-platform="bugs" href="#">
+<div class="ocIcon">
+<img alt="벅스" src="/assets/icons/platform/bugs.jpg"/>
+</div>
+<div class="ocText">
+<div class="ocName">
          벅스
         </div>
-       </div>
-       <div class="ocArrow">
+</div>
+<div class="ocArrow">
         →
        </div>
-      </a>
-      <a aria-label="플로 원클릭" class="ocBtn" data-platform="flo" href="#">
-       <div class="ocIcon">
-        <img alt="플로" src="/assets/icons/platform/flo.jpg"/>
-       </div>
-       <div class="ocText">
-        <div class="ocName">
+</a>
+<a aria-label="플로 원클릭" class="ocBtn" data-platform="flo" href="#">
+<div class="ocIcon">
+<img alt="플로" src="/assets/icons/platform/flo.jpg"/>
+</div>
+<div class="ocText">
+<div class="ocName">
          플로
         </div>
-       </div>
-       <div class="ocArrow">
+</div>
+<div class="ocArrow">
         →
        </div>
-      </a>
-      <a aria-label="바이브 원클릭" class="ocBtn" data-platform="vibe" href="#">
-       <div class="ocIcon">
-        <img alt="바이브" src="/assets/icons/platform/vibe.jpg"/>
-       </div>
-       <div class="ocText">
-        <div class="ocName">
+</a>
+<a aria-label="바이브 원클릭" class="ocBtn" data-platform="vibe" href="#">
+<div class="ocIcon">
+<img alt="바이브" src="/assets/icons/platform/vibe.jpg"/>
+</div>
+<div class="ocText">
+<div class="ocName">
          바이브
         </div>
-       </div>
-       <div class="ocArrow">
+</div>
+<div class="ocArrow">
         →
        </div>
-      </a>
-      <a aria-label="스포티파이 원클릭" class="ocBtn" data-platform="spotify" href="#">
-       <div class="ocIcon">
-        <img alt="스포티파이" src="/assets/icons/platform/spotify.png"/>
-       </div>
-       <div class="ocText">
-        <div class="ocName">
+</a>
+<a aria-label="스포티파이 원클릭" class="ocBtn" data-platform="spotify" href="#">
+<div class="ocIcon">
+<img alt="스포티파이" src="/assets/icons/platform/spotify.png"/>
+</div>
+<div class="ocText">
+<div class="ocName">
          스포티파이
         </div>
-       </div>
-       <div class="ocArrow">
+</div>
+<div class="ocArrow">
         →
        </div>
-      </a>
-     </div>
+</a>
+</div>
+</div>
+</section>
+<section class="section">
+<div class="sectionTitle">
+     바로가기
     </div>
-   </section>
-   <section class="section musicChartSection">
-    <div class="musicChartPanel">
-     <div class="musicChartHead">
-      <div class="musicChartKicker">
+
+
+
+<div class="shortcutList"><a class="ctaGuide" href="/guide/">
+<div class="ctaGuideText">
+<div class="ctaGuideTitle">
+       가이드
+      </div>
+<div class="ctaGuideDesc">
+       스트리밍 / 다운로드 / 기타 / 스트리밍리스트
+      </div>
+</div>
+<div class="ctaGuideArrow">
+      →
+     </div>
+</a><a class="ctaGuide ctaGuide--collect" href="#" id="openCollectModal">
+<div class="ctaGuideText">
+<div class="ctaGuideTitle">
+       아이디 기부
+      </div>
+<div class="ctaGuideDesc">
+       가이드 확인 후 아이디 제출하기
+      </div>
+</div>
+<div class="ctaGuideArrow">
+      →
+     </div>
+</a><a class="ctaGuide ctaGuide--collect" href="/radio/">
+<div class="ctaGuideText">
+<div class="ctaGuideTitle">
+       라디오 신청
+      </div>
+<div class="ctaGuideDesc">
+       현재 방송 중인 라디오에 BiiiG 신청하기
+      </div>
+</div>
+<div class="ctaGuideArrow">
+      →
+     </div>
+</a></div></section><section class="section musicChartSection">
+<div class="musicChartPanel">
+<div class="musicChartHead">
+<div class="musicChartKicker">
        LIVE CHART UPDATE
       </div>
-      <div class="musicChartTitleRow">
-       <h2 class="musicChartTitle">
+<div class="musicChartTitleRow">
+<h2 class="musicChartTitle">
         G-DRAGON &amp; BIGBANG
         <br/>
         음원 차트 현황
        </h2>
-       <div class="musicChartUpdated" id="musicChartUpdated">
+<div class="musicChartUpdated" id="musicChartUpdated">
         차트 데이터 불러오는 중
        </div>
-      </div>
-      <div aria-label="차트인 곡 수" class="musicChartSummary">
-       <div class="musicChartStat">
-        <div class="musicChartStatLabel">
+</div>
+<div aria-label="차트인 곡 수" class="musicChartSummary">
+<div class="musicChartStat">
+<div class="musicChartStatLabel">
          TOTAL
         </div>
-        <div class="musicChartStatValue" id="musicChartTotal">
+<div class="musicChartStatValue" id="musicChartTotal">
          —
         </div>
-       </div>
-       <div class="musicChartStat">
-        <div class="musicChartStatLabel">
+</div>
+<div class="musicChartStat">
+<div class="musicChartStatLabel">
          G-DRAGON
         </div>
-        <div class="musicChartStatValue" id="musicChartGD">
+<div class="musicChartStatValue" id="musicChartGD">
          —
         </div>
-       </div>
-       <div class="musicChartStat">
-        <div class="musicChartStatLabel">
+</div>
+<div class="musicChartStat">
+<div class="musicChartStatLabel">
          BIGBANG
         </div>
-        <div class="musicChartStatValue" id="musicChartBIGBANG">
+<div class="musicChartStatValue" id="musicChartBIGBANG">
          —
         </div>
-       </div>
-      </div>
-     </div>
-     <div class="musicChartBody">
-      <div class="musicChartControlRow">
-       <div class="musicChartSubTitle">
+</div>
+</div>
+</div>
+<div class="musicChartBody">
+<div class="musicChartControlRow">
+<div class="musicChartSubTitle">
         현재 차트인 음원
        </div>
-       <div aria-label="아티스트 필터" class="musicChartFilters">
-        <button class="musicChartFilter is-active" data-chart-filter="ALL" type="button">
+<div aria-label="아티스트 필터" class="musicChartFilters">
+<button class="musicChartFilter is-active" data-chart-filter="ALL" type="button">
          전체
         </button>
-        <button class="musicChartFilter" data-chart-filter="G-DRAGON" type="button">
+<button class="musicChartFilter" data-chart-filter="G-DRAGON" type="button">
          G-DRAGON
         </button>
-        <button class="musicChartFilter" data-chart-filter="BIGBANG" type="button">
+<button class="musicChartFilter" data-chart-filter="BIGBANG" type="button">
          BIGBANG
         </button>
-       </div>
-      </div>
-      <div aria-live="polite" class="musicChartList" id="musicChartList">
-       <div class="musicChartEmpty">
+</div>
+</div>
+<div aria-live="polite" class="musicChartList" id="musicChartList">
+<div class="musicChartEmpty">
         차트 데이터를 불러오는 중입니다.
        </div>
-      </div>
-      <p class="musicChartNotice">
+</div>
+<p class="musicChartNotice">
        ※ 멜론 TOP100 · 멜론 일간 · 지니 TOP200 · 벅스 실시간 기준
        <br/>
        ※ 차트 순위는 자동 갱신되며, 플랫폼 집계 시점에 따라 실제 순위와 차이가 있을 수 있습니다.
       </p>
-     </div>
-    </div>
-   </section>
-   <section class="section">
-    <div class="sectionTitle">
-     바로가기
-    </div>
-    <a class="ctaGuide" href="/guide/">
-     <div class="ctaGuideText">
-      <div class="ctaGuideTitle">
-       가이드
-      </div>
-      <div class="ctaGuideDesc">
-       스트리밍 / 다운로드 / 기타 / 스트리밍리스트
-      </div>
-     </div>
-     <div class="ctaGuideArrow">
-      →
-     </div>
-    </a>
-    <a class="ctaGuide ctaGuide--collect" href="#" id="openCollectModal">
-     <div class="ctaGuideText">
-      <div class="ctaGuideTitle">
-       아이디 기부
-      </div>
-      <div class="ctaGuideDesc">
-       가이드 확인 후 아이디 제출하기
-      </div>
-     </div>
-     <div class="ctaGuideArrow">
-      →
-     </div>
-    </a>
-    <a class="ctaGuide ctaGuide--collect" href="/radio/">
-     <div class="ctaGuideText">
-      <div class="ctaGuideTitle">
-       라디오 신청
-      </div>
-      <div class="ctaGuideDesc">
-       현재 방송 중인 라디오에 BiiiG 신청하기
-      </div>
-     </div>
-     <div class="ctaGuideArrow">
-      →
-     </div>
-    </a>
-   </section>
-   <section class="section archiveSection">
-    <div class="sectionTitle">
+</div>
+</div>
+</section>
+
+<section class="section archiveSection">
+<div class="sectionTitle">
      아카이빙
     </div>
-    <div class="archiveCoverScroll">
-     <a class="archiveCoverCard" href="/archive/archiving/jacob-co/">
-      <div class="archiveCoverImgBox">
-       <img alt="제이콥앤코" src="/assets/archive/archive1.jpg"/>
-      </div>
-      <div class="archiveCoverTitle">
+<div class="archiveCoverScroll">
+<a class="archiveCoverCard" href="/archive/archiving/jacob-co/">
+<div class="archiveCoverImgBox">
+<img alt="제이콥앤코" src="/assets/archive/archive1.jpg"/>
+</div>
+<div class="archiveCoverTitle">
        JACOB&amp;CO
       </div>
-      <div class="archiveCoverTags">
+<div class="archiveCoverTags">
        #제이콥앤코
       </div>
-     </a>
-     <a class="archiveCoverCard" href="/archive/archiving/yellowcoin/">
-      <div class="archiveCoverImgBox">
-       <img alt="노란동전" src="/assets/archive/archive2.jpg"/>
-      </div>
-      <div class="archiveCoverTitle">
+</a>
+<a class="archiveCoverCard" href="/archive/archiving/yellowcoin/">
+<div class="archiveCoverImgBox">
+<img alt="노란동전" src="/assets/archive/archive2.jpg"/>
+</div>
+<div class="archiveCoverTitle">
        노란 동전 자선 행사
       </div>
-      <div class="archiveCoverTags">
+<div class="archiveCoverTags">
        #2년연속 #프랑스영부인초청
       </div>
-     </a>
-     <a class="archiveCoverCard" href="/archive/archiving/fanplusone/">
-      <div class="archiveCoverImgBox">
-       <img alt="FANPLUSONE" src="/assets/archive/archive3.jpg"/>
-      </div>
-      <div class="archiveCoverTitle">
+</a>
+<a class="archiveCoverCard" href="/archive/archiving/fanplusone/">
+<div class="archiveCoverImgBox">
+<img alt="FANPLUSONE" src="/assets/archive/archive3.jpg"/>
+</div>
+<div class="archiveCoverTitle">
        FANPLUSONE
       </div>
-      <div class="archiveCoverTags">
+<div class="archiveCoverTags">
        #팬사랑 #가족
       </div>
-     </a>
-     <a class="archiveCoverCard" href="/archive/archiving/exhibition/">
-      <div class="archiveCoverImgBox">
-       <img alt="EXHIBITION" src="/assets/archive/archive4.jpg"/>
-      </div>
-      <div class="archiveCoverTitle">
+</a>
+<a class="archiveCoverCard" href="/archive/archiving/exhibition/">
+<div class="archiveCoverImgBox">
+<img alt="EXHIBITION" src="/assets/archive/archive4.jpg"/>
+</div>
+<div class="archiveCoverTitle">
        EXHIBITION
       </div>
-      <div class="archiveCoverTags">
+<div class="archiveCoverTags">
        #위버맨쉬 #전시회
       </div>
-     </a>
-     <a class="archiveCoverCard" href="/archive/archiving/goodday/">
-      <div class="archiveCoverImgBox">
-       <img alt="굿데이" src="/assets/archive/archive5.jpg"/>
-      </div>
-      <div class="archiveCoverTitle">
+</a>
+<a class="archiveCoverCard" href="/archive/archiving/goodday/">
+<div class="archiveCoverImgBox">
+<img alt="굿데이" src="/assets/archive/archive5.jpg"/>
+</div>
+<div class="archiveCoverTitle">
        굿데이
       </div>
-      <div class="archiveCoverTags">
+<div class="archiveCoverTags">
        #지디 #좋은날
       </div>
-     </a>
-     <a class="archiveCoverCard" href="/archive/archiving/nike/">
-      <div class="archiveCoverImgBox">
-       <img alt="나이키" src="/assets/archive/archive6.jpg"/>
-      </div>
-      <div class="archiveCoverTitle">
+</a>
+<a class="archiveCoverCard" href="/archive/archiving/nike/">
+<div class="archiveCoverImgBox">
+<img alt="나이키" src="/assets/archive/archive6.jpg"/>
+</div>
+<div class="archiveCoverTitle">
        NIKE
       </div>
-      <div class="archiveCoverTags">
+<div class="archiveCoverTags">
        #파라노이즈 #권도
       </div>
-     </a>
-    </div>
-   </section>
-   <section class="section">
-    <div class="sectionTitle">
+</a>
+</div>
+</section>
+<section class="section">
+<div class="sectionTitle">
      계정 모아보기
     </div>
-    <div class="socialCard">
-     <div class="socialHead">
-      <div class="socialTitle">
+<div class="socialCard">
+<div class="socialHead">
+<div class="socialTitle">
        G-DRAGON INDIVIDUAL
       </div>
-      <div class="socialDesc">
+<div class="socialDesc">
        지드래곤 개인 계정
       </div>
-     </div>
-     <div class="socialGrid">
-      <a class="socialBtn" href="https://www.instagram.com/xxxibgdrgn" rel="noreferrer" target="_blank">
-       <span class="socialIcon">
-        <img alt="Instagram" src="/assets/icons/social/instagram.svg"/>
-       </span>
-       <span class="socialName">
+</div>
+<div class="socialGrid">
+<a class="socialBtn" href="https://www.instagram.com/xxxibgdrgn" rel="noreferrer" target="_blank">
+<span class="socialIcon">
+<img alt="Instagram" src="/assets/icons/social/instagram.svg"/>
+</span>
+<span class="socialName">
         Instagram
        </span>
-      </a>
-      <a class="socialBtn" href="https://x.com/ibgdrgn" rel="noreferrer" target="_blank">
-       <span class="socialIcon">
-        <img alt="X" src="/assets/icons/social/x.svg"/>
-       </span>
-       <span class="socialName">
+</a>
+<a class="socialBtn" href="https://x.com/ibgdrgn" rel="noreferrer" target="_blank">
+<span class="socialIcon">
+<img alt="X" src="/assets/icons/social/x.svg"/>
+</span>
+<span class="socialName">
         X
        </span>
-      </a>
-      <a class="socialBtn" href="https://weibo.com/u/3786649467" rel="noreferrer" target="_blank">
-       <span class="socialIcon">
-        <img alt="Weibo" src="/assets/icons/social/weibo.svg"/>
-       </span>
-       <span class="socialName">
+</a>
+<a class="socialBtn" href="https://weibo.com/u/3786649467" rel="noreferrer" target="_blank">
+<span class="socialIcon">
+<img alt="Weibo" src="/assets/icons/social/weibo.svg"/>
+</span>
+<span class="socialName">
         Weibo
        </span>
-      </a>
-     </div>
-    </div>
-    <div class="socialCard">
-     <div class="socialHead">
-      <div class="socialTitle">
+</a>
+</div>
+</div>
+<div class="socialCard">
+<div class="socialHead">
+<div class="socialTitle">
        G-DRAGON OFFICIAL
       </div>
-      <div class="socialDesc">
+<div class="socialDesc">
        공식 계정
       </div>
-     </div>
-     <div class="socialGrid">
-      <a class="socialBtn" href="https://www.youtube.com/@xxxibgdrgn" rel="noreferrer" target="_blank">
-       <span class="socialIcon">
-        <img alt="YouTube" src="/assets/icons/social/youtube.svg"/>
-       </span>
-       <span class="socialName">
+</div>
+<div class="socialGrid">
+<a class="socialBtn" href="https://www.youtube.com/@xxxibgdrgn" rel="noreferrer" target="_blank">
+<span class="socialIcon">
+<img alt="YouTube" src="/assets/icons/social/youtube.svg"/>
+</span>
+<span class="socialName">
         YouTube
        </span>
-      </a>
-      <a class="socialBtn" href="https://www.instagram.com/8lo8lo8lowme" rel="noreferrer" target="_blank">
-       <span class="socialIcon">
-        <img alt="Instagram" src="/assets/icons/social/instagram.svg"/>
-       </span>
-       <span class="socialName">
+</a>
+<a class="socialBtn" href="https://www.instagram.com/8lo8lo8lowme" rel="noreferrer" target="_blank">
+<span class="socialIcon">
+<img alt="Instagram" src="/assets/icons/social/instagram.svg"/>
+</span>
+<span class="socialName">
         팔로미
        </span>
-      </a>
-      <a class="socialBtn" href="https://www.instagram.com/fanplusonedotcom" rel="noreferrer" target="_blank">
-       <span class="socialIcon">
-        <img alt="Instagram" src="/assets/icons/social/instagram.svg"/>
-       </span>
-       <span class="socialName">
+</a>
+<a class="socialBtn" href="https://www.instagram.com/fanplusonedotcom" rel="noreferrer" target="_blank">
+<span class="socialIcon">
+<img alt="Instagram" src="/assets/icons/social/instagram.svg"/>
+</span>
+<span class="socialName">
         fanplusone
        </span>
-      </a>
-      <a class="socialBtn" href="https://x.com/FANPLUS1DOTCOM" rel="noreferrer" target="_blank">
-       <span class="socialIcon">
-        <img alt="X" src="/assets/icons/social/x.svg"/>
-       </span>
-       <span class="socialName">
+</a>
+<a class="socialBtn" href="https://x.com/FANPLUS1DOTCOM" rel="noreferrer" target="_blank">
+<span class="socialIcon">
+<img alt="X" src="/assets/icons/social/x.svg"/>
+</span>
+<span class="socialName">
         fanplusone
        </span>
-      </a>
-      <a class="socialBtn" href="https://www.tiktok.com/@fanplusonedotcom" rel="noreferrer" target="_blank">
-       <span class="socialIcon">
-        <img alt="TikTok" src="/assets/icons/social/tiktok.svg"/>
-       </span>
-       <span class="socialName">
+</a>
+<a class="socialBtn" href="https://www.tiktok.com/@fanplusonedotcom" rel="noreferrer" target="_blank">
+<span class="socialIcon">
+<img alt="TikTok" src="/assets/icons/social/tiktok.svg"/>
+</span>
+<span class="socialName">
         TikTok
        </span>
-      </a>
-      <a class="socialBtn" href="https://gdragon.ai/" rel="noreferrer" target="_blank">
-       <span class="socialIcon">
-        <img alt="b.stage" src="/assets/icons/social/bstage.svg"/>
-       </span>
-       <span class="socialName">
+</a>
+<a class="socialBtn" href="https://gdragon.ai/" rel="noreferrer" target="_blank">
+<span class="socialIcon">
+<img alt="b.stage" src="/assets/icons/social/bstage.svg"/>
+</span>
+<span class="socialName">
         b.stage
        </span>
-      </a>
-     </div>
-    </div>
-    <div class="socialCard">
-     <div class="socialHead">
-      <div class="socialTitle">
+</a>
+</div>
+</div>
+<div class="socialCard">
+<div class="socialHead">
+<div class="socialTitle">
        GDRAGON STREAM
       </div>
-      <div class="socialDesc">
+<div class="socialDesc">
        음원총공팀 계정
       </div>
-     </div>
-     <div class="socialGrid">
-      <a class="socialBtn" href="https://x.com/GDRAGON_STREAM" rel="noreferrer" target="_blank">
-       <span class="socialIcon">
-        <img alt="X" src="/assets/icons/social/x.svg"/>
-       </span>
-       <span class="socialName">
+</div>
+<div class="socialGrid">
+<a class="socialBtn" href="https://x.com/GDRAGON_STREAM" rel="noreferrer" target="_blank">
+<span class="socialIcon">
+<img alt="X" src="/assets/icons/social/x.svg"/>
+</span>
+<span class="socialName">
         X
        </span>
-      </a>
-      <a class="socialBtn" href="https://www.instagram.com/gdragon_stream/" rel="noreferrer" target="_blank">
-       <span class="socialIcon">
-        <img alt="Instagram" src="/assets/icons/social/instagram.svg"/>
-       </span>
-       <span class="socialName">
+</a>
+<a class="socialBtn" href="https://www.instagram.com/gdragon_stream/" rel="noreferrer" target="_blank">
+<span class="socialIcon">
+<img alt="Instagram" src="/assets/icons/social/instagram.svg"/>
+</span>
+<span class="socialName">
         Instagram
        </span>
-      </a>
-      <a class="socialBtn" href="https://www.threads.com/@gdragon_stream?xmt=AQF0-9Qrl0GaLacu6i-jscBusw1dgbuFYdABjjHnuAWiOaA" rel="noreferrer" target="_blank">
-       <span class="socialIcon">
-        <img alt="Threads" src="/assets/icons/social/threads.svg"/>
-       </span>
-       <span class="socialName">
+</a>
+<a class="socialBtn" href="https://www.threads.com/@gdragon_stream?xmt=AQF0-9Qrl0GaLacu6i-jscBusw1dgbuFYdABjjHnuAWiOaA" rel="noreferrer" target="_blank">
+<span class="socialIcon">
+<img alt="Threads" src="/assets/icons/social/threads.svg"/>
+</span>
+<span class="socialName">
         Threads
        </span>
-      </a>
-      <a class="socialBtn" href="https://gall.dcinside.com/mgallery/board/lists/?id=gdpeaceminusone" rel="noreferrer" target="_blank">
-       <span class="socialIcon">
-        <img alt="디시인사이드" src="/assets/icons/social/dcinside.svg"/>
-       </span>
-       <span class="socialName">
+</a>
+<a class="socialBtn" href="https://gall.dcinside.com/mgallery/board/lists/?id=gdpeaceminusone" rel="noreferrer" target="_blank">
+<span class="socialIcon">
+<img alt="디시인사이드" src="/assets/icons/social/dcinside.svg"/>
+</span>
+<span class="socialName">
         디시인사이드
        </span>
-      </a>
-     </div>
-    </div>
-   </section>
-  </main>
-  <div aria-hidden="true" class="ocModal" id="ocModal">
-   <div class="ocModalOverlay" id="ocOverlay">
-   </div>
-   <div aria-labelledby="ocModalTitle" aria-modal="true" class="ocModalPanel" role="dialog">
-    <div class="ocHero">
-     <img alt="" class="ocHeroImg" id="ocHeroImg" src="/assets/header/default.jpg"/>
-     <div class="ocHeroShade">
-     </div>
-     <button aria-label="닫기" class="ocModalClose" id="ocClose" type="button">
+</a>
+</div>
+</div>
+</section>
+</main>
+<div aria-hidden="true" class="ocModal" id="ocModal">
+<div class="ocModalOverlay" id="ocOverlay">
+</div>
+<div aria-labelledby="ocModalTitle" aria-modal="true" class="ocModalPanel" role="dialog">
+<div class="ocHero">
+<img alt="" class="ocHeroImg" id="ocHeroImg" src="/assets/header/default.jpg"/>
+<div class="ocHeroShade">
+</div>
+<button aria-label="닫기" class="ocModalClose" id="ocClose" type="button">
       ✕
      </button>
-     <div class="ocHeroText">
-      <h3 class="ocModalTitle" id="ocModalTitle">
+<div class="ocHeroText">
+<h3 class="ocModalTitle" id="ocModalTitle">
        원클릭 링크
       </h3>
-      <div class="ocActionNotice" id="ocActionNotice">
+<div class="ocActionNotice" id="ocActionNotice">
        중복곡 허용 후 이용해주세요!
       </div>
-     </div>
-    </div>
-    <div class="ocModalBody">
-     <div class="ocDeviceBar">
-      <div class="ocDeviceLabel" id="ocDeviceLabel">
+</div>
+</div>
+<div class="ocModalBody">
+<div class="ocDeviceBar">
+<div class="ocDeviceLabel" id="ocDeviceLabel">
        PC
       </div>
-      <div class="ocDeviceHint" id="ocDeviceHint">
-      </div>
-     </div>
-     <div class="ocModalGrid" id="ocModalGrid">
-     </div>
-    </div>
-   </div>
-  </div>
-  <div aria-hidden="true" class="collectModal" id="collectModal">
-   <div class="collectModalOverlay" id="collectOverlay">
-   </div>
-   <div aria-labelledby="collectModalTitle" aria-modal="true" class="collectModalPanel" role="dialog">
-    <div class="collectHero">
-     <img alt="아이디 수집 안내 이미지" class="collectHeroImg" src="/assets/header/default4.jpg"/>
-     <button aria-label="닫기" class="collectModalClose" id="collectClose" type="button">
+<div class="ocDeviceHint" id="ocDeviceHint">
+</div>
+</div>
+<div class="ocModalGrid" id="ocModalGrid">
+</div>
+</div>
+</div>
+</div>
+<div aria-hidden="true" class="collectModal" id="collectModal">
+<div class="collectModalOverlay" id="collectOverlay">
+</div>
+<div aria-labelledby="collectModalTitle" aria-modal="true" class="collectModalPanel" role="dialog">
+<div class="collectHero">
+<img alt="아이디 수집 안내 이미지" class="collectHeroImg" src="/assets/header/default4.jpg"/>
+<button aria-label="닫기" class="collectModalClose" id="collectClose" type="button">
       ✕
      </button>
-     <div class="collectHeroText">
-      <h3 class="collectModalTitle" id="collectModalTitle">
+<div class="collectHeroText">
+<h3 class="collectModalTitle" id="collectModalTitle">
        지니 아이디 기부
       </h3>
-      <div class="collectNotice">
+<div class="collectNotice">
        가이드를 먼저 확인한 뒤 아이디를 제출해주세요!
       </div>
-     </div>
-    </div>
-    <div class="collectModalBody">
-     <div class="collectModalGrid">
-      <a class="collectModalBtn" href="/guide/etc/collectid/">
+</div>
+</div>
+<div class="collectModalBody">
+<div class="collectModalGrid">
+<a class="collectModalBtn" href="/guide/etc/collectid/">
        가이드
       </a>
-      <a class="collectModalBtn" href="https://naver.me/FNti54TO" rel="noreferrer" target="_blank">
+<a class="collectModalBtn" href="https://naver.me/FNti54TO" rel="noreferrer" target="_blank">
        아이디 제출하기
       </a>
-     </div>
-    </div>
-   </div>
-  </div>
-  <footer class="footer">
-   <div class="container footerInner footerInner--logo">
-    <a aria-label="지드래곤 음원총공팀 홈으로 이동" class="footerLogoLink" href="/">
-     <img alt="지드래곤 음원총공팀 로고" class="footerLogo" src="/assets/header/logo1.png"/>
-    </a>
-   </div>
-  </footer>
-  <script src="/data.js">
-  </script>
-  <script src="/script.js">
-  </script>
-  <script>
+</div>
+</div>
+</div>
+</div>
+<footer class="footer">
+<div class="container footerInner footerInner--logo">
+<a aria-label="지드래곤 음원총공팀 홈으로 이동" class="footerLogoLink" href="/">
+<img alt="지드래곤 음원총공팀 로고" class="footerLogo" src="/assets/header/logo1.png"/>
+</a>
+</div>
+</footer>
+<script src="/data.js">
+</script>
+<script src="/script.js">
+</script>
+<script>
    const openCollectModal = document.getElementById('openCollectModal');
     const collectModal = document.getElementById('collectModal');
     const collectOverlay = document.getElementById('collectOverlay');
@@ -672,5 +678,5 @@
     document.querySelectorAll('.musicChartFilter').forEach(button=>button.addEventListener('click',function(){ musicChartFilter=this.dataset.chartFilter; document.querySelectorAll('.musicChartFilter').forEach(x=>x.classList.toggle('is-active',x===this)); renderMainChartSongs(); }));
     loadMainChartData();
   </script>
- </body>
+</body>
 </html>
