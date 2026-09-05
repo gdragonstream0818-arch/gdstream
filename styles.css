@@ -1123,3 +1123,11 @@ main.container.radioPage {
   padding-left: var(--sidePadding) !important;
   padding-right: var(--sidePadding) !important;
 }
+.radioProgram {
+  font-size:50px !important;
+  color:red !important;
+}
+
+.radioAction {
+  font-size:30px !important;
+}
