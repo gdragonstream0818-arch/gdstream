@@ -1114,3 +1114,12 @@ main.container > .section > .sectionTitle {
 .musicChartStatValue {
   text-shadow: 0 2px 12px rgba(0, 0, 0, 0.45);
 }
+
+main.container.radioPage {
+  width: 100% !important;
+  max-width: var(--pageMax) !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: var(--sidePadding) !important;
+  padding-right: var(--sidePadding) !important;
+}
