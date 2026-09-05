@@ -55,12 +55,13 @@
     }
 
     .radioClock {
-      color: rgba(0, 0, 0, .42);
-      font-size: 12px;
-      font-weight: 700;
-      text-align: right;
-      font-variant-numeric: tabular-nums;
-    }
+  color: rgba(0, 0, 0, .42);
+  font-size: 12px;
+  font-weight: 700;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  margin-bottom: 24px;
+}
 
     /* 메인 페이지와 비슷한 가볍고 부드러운 인트로 */
     .radioIntro {
@@ -164,8 +165,8 @@
       position: relative;
       display: flex;
       flex-direction: column;
-      min-height: 198px;
-      padding: 17px;
+      min-height: 168px;
+      padding: 15px;
       overflow: hidden;
       border: 1px solid var(--radio-line);
       border-radius: 19px;
@@ -258,7 +259,7 @@
     .radioNumber {
       display: inline-flex;
       width: fit-content;
-      margin-top: 12px;
+      margin-top: 8px;
       padding: 6px 8px;
       border-radius: 8px;
       background: rgba(0, 0, 0, .055);
@@ -276,8 +277,8 @@
       align-items: center;
       justify-content: space-between;
       gap: 10px;
-      margin-top: 13px;
-      padding-top: 12px;
+      margin-top: 9px;
+      padding-top: 9px;
       border-top: 1px solid rgba(0, 0, 0, .065);
       color: #111;
       font-size: 11px;
@@ -349,7 +350,7 @@
     }
 
     .radioNotice {
-      margin: 10px 2px 0;
+      margin: 15px 2px 0;
       color: rgba(0, 0, 0, .38);
       font-size: 10px;
       font-weight: 650;
@@ -386,24 +387,67 @@
 
       .radioGrid {
         grid-template-columns: 1fr;
-        gap: 10px;
+        gap: 8px;
       }
 
       .radioCard {
-        min-height: 168px;
-        padding: 16px;
+        min-height: 0;
+        padding: 13px 14px;
+        border-radius: 16px;
       }
 
       .radioCard.is-disabled {
-        min-height: 92px;
+        min-height: 0;
+        padding: 12px 14px;
+      }
+
+      .radioStation {
+        font-size: 13px;
+      }
+
+      .radioLiveBadge {
+        padding: 4px 7px;
+        font-size: 8px;
       }
 
       .radioProgram {
-        margin-top: 27px;
+        margin: 14px 0 3px;
+        font-size: 18px;
+        line-height: 1.18;
+      }
+
+      .radioTime {
+        display: inline;
+        font-size: 11px;
+      }
+
+      .radioNumber {
+        display: inline-flex;
+        margin: 0 0 0 7px;
+        padding: 4px 7px;
+        border-radius: 7px;
+        font-size: 10px;
+        vertical-align: middle;
+      }
+
+      .radioAction {
+        margin-top: 9px;
+        padding-top: 8px;
+        font-size: 10px;
+      }
+
+      .radioActionArrow {
+        width: 22px;
+        height: 22px;
+        font-size: 12px;
+      }
+
+      .radioCard.is-disabled .radioAction {
+        margin-top: 8px;
       }
 
       .radioSchedule {
-        margin-top: 18px;
+        margin-top: 16px;
       }
 
       .radioScheduleHead {
@@ -432,23 +476,16 @@
   </header>
 
   <main class="container radioPage">
-    <div class="radioTop">
-      <a class="radioBack" href="/">
-        <span aria-hidden="true">←</span>
-        홈으로
-      </a>
 
-      <div id="radioClock" class="radioClock">한국 시간 확인 중</div>
-    </div>
+  <div id="radioClock" class="radioClock">한국 시간 확인 중</div>
 
-    <section class="radioIntro">
-      <div class="radioKicker">G-DRAGON STREAM</div>
-      <h1 class="radioTitle">라디오 신청</h1>
-      <p class="radioDescription">
-        현재 방송 중인 라디오를 선택하면 문자 작성 화면으로 이동합니다.<br>
-        <strong>빅뱅의 BiiiG 신청합니다</strong> 문구가 자동으로 입력됩니다.
-      </p>
-    </section>
+  <section class="radioIntro">
+    <h1 class="radioTitle">라디오 신청</h1>
+    <p class="radioDescription">
+      현재 방송 중인 라디오를 선택하면 문자 작성 화면으로 이동합니다.<br>
+      프로그램 성격과 어울리는 각자의 사연을 함께 작성해주세요!
+    </p>
+  </section>
 
     <section class="radioNowBox" aria-live="polite">
       <div class="radioNowLabel">
