@@ -1117,11 +1117,62 @@ main.container > .section > .sectionTitle {
 
 main.container.radioPage {
   width: 100% !important;
-  max-width: var(--pageMax) !important;
+  max-width: 980px !important;
   margin-left: auto !important;
   margin-right: auto !important;
-  padding-left: var(--sidePadding) !important;
-  padding-right: var(--sidePadding) !important;
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+}
+
+/* RADIO PAGE FONT FIX */
+.radioNowText {
+  font-size: 14px !important;
+}
+
+.radioStation {
+  font-size: 19px !important;
+}
+
+.radioProgram {
+  font-size: 27px !important;
+}
+
+.radioTime {
+  font-size: 17px !important;
+}
+
+.radioAction {
+  font-size: 15px !important;
+}
+
+.radioScheduleTitle {
+  font-size: 17px !important;
+}
+
+.radioScheduleDesc {
+  font-size: 12px !important;
+}
+
+.radioNotice {
+  font-size: 12px !important;
+}
+
+@media (max-width: 720px) {
+  .radioStation {
+    font-size: 16px !important;
+  }
+
+  .radioProgram {
+    font-size: 25px !important;
+  }
+
+  .radioTime {
+    font-size: 15px !important;
+  }
+
+  .radioAction {
+    font-size: 14px !important;
+  }
 }
 .radioProgram {
   font-size:50px !important;
