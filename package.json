@@ -1,8 +1,0 @@
-{
-  "name": "gdstream-chart-tools",
-  "private": true,
-  "type": "commonjs",
-  "dependencies": {
-    "cheerio": "^1.0.0"
-  }
-}
