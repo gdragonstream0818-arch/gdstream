@@ -389,7 +389,12 @@ main.container > .section > .sectionTitle {
 }
 
 .ctaGuide--collect {
-  margin-bottom: 50px;
+  margin-bottom: 0;
+}
+
+/* 바로가기 카드 간격 통일 */
+.section > .ctaGuide + .ctaGuide {
+  margin-top: 12px;
 }
 
 /* =========================
@@ -1077,5 +1082,3 @@ main.container > .section > .sectionTitle {
     border-radius: 16px;
   }
 }
-
-
