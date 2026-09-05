@@ -1,25 +1,23 @@
-<!DOCTYPE html>
-
+<!doctype html>
 <html lang="ko">
 <head>
-<link href="/assets/meta/favicon.png" rel="icon" sizes="any" type="image/png"/>
-<meta content="website" property="og:type"/>
-<meta content="https://i.ibb.co/JgfVvDn/ogw.png" property="og:image"/>
-<meta content="지드래곤 음원총공팀" property="og:title"/>
-<meta content="FAM을 위한 음원서포트 정보" property="og:description"/>
-<meta content="https://gdstream.site/" property="og:url"/>
-<meta content="summary_large_image" name="twitter:card"/>
-<meta content="지드래곤 음원총공팀" name="twitter:title"/>
-<meta content="FAM을 위한 음원서포트 정보" name="twitter:description"/>
-<meta content="https://i.ibb.co/JgfVvDn/ogw.png" name="twitter:image"/>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>
-   지드래곤 음원총공팀
-  </title>
-<link href="/styles.css" rel="stylesheet"/>
-<style>
-   .heroImg { filter: none; }
+  <link rel="icon" href="/assets/meta/favicon.png" type="image/png" sizes="any">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://i.ibb.co/JgfVvDn/ogw.png">
+  <meta property="og:title" content="지드래곤 음원총공팀">
+  <meta property="og:description" content="FAM을 위한 음원서포트 정보">
+  <meta property="og:url" content="https://gdstream.site/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="지드래곤 음원총공팀">
+  <meta name="twitter:description" content="FAM을 위한 음원서포트 정보">
+  <meta name="twitter:image" content="https://i.ibb.co/JgfVvDn/ogw.png">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>지드래곤 음원총공팀</title>
+  <link rel="stylesheet" href="/styles.css">
+
+  <style>
+    .heroImg { filter: none; }
     @media (max-width: 768px) {
       .heroImg { filter: grayscale(40%); transition: filter .8s ease; }
       .heroImg.is-color { filter: grayscale(0%); }
@@ -51,38 +49,15 @@
     .collectModalTitle { margin:0; }
     .collectNotice { margin-top:4px; padding:0; border:0; background:none; font-size:13px; font-weight:700; line-height:1.35; }
 
-    /* 바로가기: 세 카드의 간격을 동일하게 유지 */
-    .shortcutList {
-      display: grid;
-      gap: 12px;
-    }
-    .shortcutList > .ctaGuide {
-      margin-top: 0 !important;
-    }
+    /* 바로가기: 세 카드 모두 동일한 간격 */
+    .ctaGuide--collect { margin-top:0; }
+    .section > .ctaGuide + .ctaGuide { margin-top:12px; }
 
     /* 음원 차트 현황 */
     .musicChartSection { margin-top:6px; }
     .musicChartPanel { overflow:hidden; border:1px solid rgba(0,0,0,.08); border-radius:20px; background:#fff; box-shadow:0 14px 38px rgba(0,0,0,.05); }
-    .musicChartHead {
-  position:relative;
-  overflow:hidden;
-  padding:22px 22px 19px;
-  border-bottom:1px solid rgba(0,0,0,.08);
-
-  background:
-    linear-gradient(
-      90deg,
-      rgba(0,0,0,.65) 0%,
-      rgba(0,0,0,.42) 50%,
-      rgba(0,0,0,.18) 100%
-    ),
-    url("/assets/header/gdbiiig.png") center 38% / cover no-repeat;
-
-  color:#fff;
-}
-    .musicChartHead::after {
-  display:none;
-}
+    .musicChartHead { position:relative; overflow:hidden; padding:22px 22px 19px; border-bottom:1px solid rgba(0,0,0,.08); background:radial-gradient(circle at 93% 18%,rgba(58,95,208,.16),transparent 28%),linear-gradient(135deg,#101114 0%,#1f2f66 100%); color:#fff; }
+    .musicChartHead::after { content:"G"; position:absolute; right:5px; bottom:-68px; color:rgba(255,255,255,.08); font-size:205px; font-style:italic; font-weight:900; letter-spacing:-.18em; line-height:1; pointer-events:none; }
     .musicChartKicker { position:relative; z-index:1; display:flex; align-items:center; gap:7px; color:rgba(255,255,255,.7); font-size:11px; font-weight:900; letter-spacing:.1em; }
     .musicChartKicker::before { content:""; width:7px; height:7px; border-radius:50%; background:#ff5c5c; box-shadow:0 0 0 4px rgba(255,92,92,.16); }
     .musicChartTitleRow { position:relative; z-index:1; display:flex; align-items:flex-end; justify-content:space-between; gap:15px; margin-top:11px; }
@@ -144,531 +119,75 @@
   </style>
 </head>
 <body>
-<header class="header header--simple">
-<div class="headerBar headerBar--center">
-<a aria-label="지드래곤 음원총공팀" class="brand" href="/">
-<img alt="지드래곤 음원총공팀 로고" class="brandImg" src="/assets/header/logo.svg"/>
-</a>
-</div>
-</header>
-<section class="hero">
-<div class="heroInner">
-<a class="heroLink" href="https://youtu.be/o9DhvbqYzns?si=7uozTe90cIU0ZY27" rel="noreferrer" target="_blank">
-<picture>
-<source media="(max-width: 768px)" srcset="/assets/header/header-m.jpg"/>
-<img alt="G-DRAGON - TOO BAD (MV)" class="heroImg" src="/assets/header/header-pc.jpg"/>
-</picture>
-</a>
-</div>
-</section>
-<main class="container">
-<section class="section">
-<div class="oneclickPanel">
-<div class="oneclickHead">
-<div class="oneclickKicker">
-       only for FAM
-      </div>
-<h2 class="oneclickTitle">
-       원클릭 스트리밍
-      </h2>
-<p class="oneclickSub">
-       플랫폼을 선택하면 바로 스트리밍을 시작할 수 있어요.
-      </p>
-</div>
-<div class="oneclickGrid">
-<a aria-label="멜론 원클릭" class="ocBtn" data-platform="melon" href="#">
-<div class="ocIcon">
-<img alt="멜론" src="/assets/icons/platform/melon.svg"/>
-</div>
-<div class="ocText">
-<div class="ocName">
-         멜론
-        </div>
-</div>
-<div class="ocArrow">
-        →
-       </div>
-</a>
-<a aria-label="지니 원클릭" class="ocBtn" data-platform="genie" href="#">
-<div class="ocIcon">
-<img alt="지니" src="/assets/icons/platform/genie.png"/>
-</div>
-<div class="ocText">
-<div class="ocName">
-         지니
-        </div>
-</div>
-<div class="ocArrow">
-        →
-       </div>
-</a>
-<a aria-label="벅스 원클릭" class="ocBtn" data-platform="bugs" href="#">
-<div class="ocIcon">
-<img alt="벅스" src="/assets/icons/platform/bugs.jpg"/>
-</div>
-<div class="ocText">
-<div class="ocName">
-         벅스
-        </div>
-</div>
-<div class="ocArrow">
-        →
-       </div>
-</a>
-<a aria-label="플로 원클릭" class="ocBtn" data-platform="flo" href="#">
-<div class="ocIcon">
-<img alt="플로" src="/assets/icons/platform/flo.jpg"/>
-</div>
-<div class="ocText">
-<div class="ocName">
-         플로
-        </div>
-</div>
-<div class="ocArrow">
-        →
-       </div>
-</a>
-<a aria-label="바이브 원클릭" class="ocBtn" data-platform="vibe" href="#">
-<div class="ocIcon">
-<img alt="바이브" src="/assets/icons/platform/vibe.jpg"/>
-</div>
-<div class="ocText">
-<div class="ocName">
-         바이브
-        </div>
-</div>
-<div class="ocArrow">
-        →
-       </div>
-</a>
-<a aria-label="스포티파이 원클릭" class="ocBtn" data-platform="spotify" href="#">
-<div class="ocIcon">
-<img alt="스포티파이" src="/assets/icons/platform/spotify.png"/>
-</div>
-<div class="ocText">
-<div class="ocName">
-         스포티파이
-        </div>
-</div>
-<div class="ocArrow">
-        →
-       </div>
-</a>
-</div>
-</div>
-</section>
-<section class="section">
-<div class="sectionTitle">
-     바로가기
-    </div>
+  <header class="header header--simple"><div class="headerBar headerBar--center"><a class="brand" href="/" aria-label="지드래곤 음원총공팀"><img class="brandImg" src="/assets/header/logo.svg" alt="지드래곤 음원총공팀 로고"></a></div></header>
 
+  <section class="hero"><div class="heroInner"><a class="heroLink" href="https://youtu.be/o9DhvbqYzns?si=7uozTe90cIU0ZY27" target="_blank" rel="noreferrer"><picture><source media="(max-width: 768px)" srcset="/assets/header/header-m.jpg"><img class="heroImg" src="/assets/header/header-pc.jpg" alt="G-DRAGON - TOO BAD (MV)"></picture></a></div></section>
 
+  <main class="container">
+    <section class="section"><div class="oneclickPanel"><div class="oneclickHead"><div class="oneclickKicker">only for FAM</div><h2 class="oneclickTitle">원클릭 스트리밍</h2><p class="oneclickSub">플랫폼을 선택하면 바로 스트리밍을 시작할 수 있어요.</p></div><div class="oneclickGrid">
+      <a class="ocBtn" href="#" data-platform="melon" aria-label="멜론 원클릭"><div class="ocIcon"><img src="/assets/icons/platform/melon.svg" alt="멜론"></div><div class="ocText"><div class="ocName">멜론</div></div><div class="ocArrow">→</div></a>
+      <a class="ocBtn" href="#" data-platform="genie" aria-label="지니 원클릭"><div class="ocIcon"><img src="/assets/icons/platform/genie.png" alt="지니"></div><div class="ocText"><div class="ocName">지니</div></div><div class="ocArrow">→</div></a>
+      <a class="ocBtn" href="#" data-platform="bugs" aria-label="벅스 원클릭"><div class="ocIcon"><img src="/assets/icons/platform/bugs.jpg" alt="벅스"></div><div class="ocText"><div class="ocName">벅스</div></div><div class="ocArrow">→</div></a>
+      <a class="ocBtn" href="#" data-platform="flo" aria-label="플로 원클릭"><div class="ocIcon"><img src="/assets/icons/platform/flo.jpg" alt="플로"></div><div class="ocText"><div class="ocName">플로</div></div><div class="ocArrow">→</div></a>
+      <a class="ocBtn" href="#" data-platform="vibe" aria-label="바이브 원클릭"><div class="ocIcon"><img src="/assets/icons/platform/vibe.jpg" alt="바이브"></div><div class="ocText"><div class="ocName">바이브</div></div><div class="ocArrow">→</div></a>
+      <a class="ocBtn" href="#" data-platform="spotify" aria-label="스포티파이 원클릭"><div class="ocIcon"><img src="/assets/icons/platform/spotify.png" alt="스포티파이"></div><div class="ocText"><div class="ocName">스포티파이</div></div><div class="ocArrow">→</div></a>
+    </div></div></section>
 
-<div class="shortcutList"><a class="ctaGuide" href="/guide/">
-<div class="ctaGuideText">
-<div class="ctaGuideTitle">
-       가이드
+    <section class="section musicChartSection">
+      <div class="musicChartPanel">
+        <div class="musicChartHead"><div class="musicChartKicker">LIVE CHART UPDATE</div><div class="musicChartTitleRow"><h2 class="musicChartTitle">G-DRAGON &amp; BIGBANG<br>음원 차트 현황</h2><div id="musicChartUpdated" class="musicChartUpdated">차트 데이터 불러오는 중</div></div><div class="musicChartSummary" aria-label="차트인 곡 수"><div class="musicChartStat"><div class="musicChartStatLabel">TOTAL</div><div id="musicChartTotal" class="musicChartStatValue">—</div></div><div class="musicChartStat"><div class="musicChartStatLabel">G-DRAGON</div><div id="musicChartGD" class="musicChartStatValue">—</div></div><div class="musicChartStat"><div class="musicChartStatLabel">BIGBANG</div><div id="musicChartBIGBANG" class="musicChartStatValue">—</div></div></div></div>
+        <div class="musicChartBody"><div class="musicChartControlRow"><div class="musicChartSubTitle">현재 차트인 음원</div><div class="musicChartFilters" aria-label="아티스트 필터"><button type="button" class="musicChartFilter is-active" data-chart-filter="ALL">전체</button><button type="button" class="musicChartFilter" data-chart-filter="G-DRAGON">G-DRAGON</button><button type="button" class="musicChartFilter" data-chart-filter="BIGBANG">BIGBANG</button></div></div><div id="musicChartList" class="musicChartList" aria-live="polite"><div class="musicChartEmpty">차트 데이터를 불러오는 중입니다.</div></div><p class="musicChartNotice">※ 멜론 TOP100 · 멜론 일간 · 지니 TOP200 · 벅스 실시간 기준<br>※ 차트 순위는 자동 갱신되며, 플랫폼 집계 시점에 따라 실제 순위와 차이가 있을 수 있습니다.</p></div>
       </div>
-<div class="ctaGuideDesc">
-       스트리밍 / 다운로드 / 기타 / 스트리밍리스트
-      </div>
-</div>
-<div class="ctaGuideArrow">
-      →
-     </div>
-</a><a class="ctaGuide ctaGuide--collect" href="#" id="openCollectModal">
-<div class="ctaGuideText">
-<div class="ctaGuideTitle">
-       아이디 기부
-      </div>
-<div class="ctaGuideDesc">
-       가이드 확인 후 아이디 제출하기
-      </div>
-</div>
-<div class="ctaGuideArrow">
-      →
-     </div>
-</a><a class="ctaGuide ctaGuide--collect" href="/radio/">
-<div class="ctaGuideText">
-<div class="ctaGuideTitle">
-       라디오 신청
-      </div>
-<div class="ctaGuideDesc">
-       현재 방송 중인 라디오에 BiiiG 신청하기
-      </div>
-</div>
-<div class="ctaGuideArrow">
-      →
-     </div>
-</a></div></section><section class="section musicChartSection">
-<div class="musicChartPanel">
-<div class="musicChartHead">
-<div class="musicChartKicker">
-       LIVE CHART UPDATE
-      </div>
-<div class="musicChartTitleRow">
-<h2 class="musicChartTitle">
-        G-DRAGON &amp; BIGBANG
-        <br/>
-        음원 차트 현황
-       </h2>
-<div class="musicChartUpdated" id="musicChartUpdated">
-        차트 데이터 불러오는 중
-       </div>
-</div>
-<div aria-label="차트인 곡 수" class="musicChartSummary">
-<div class="musicChartStat">
-<div class="musicChartStatLabel">
-         TOTAL
-        </div>
-<div class="musicChartStatValue" id="musicChartTotal">
-         —
-        </div>
-</div>
-<div class="musicChartStat">
-<div class="musicChartStatLabel">
-         G-DRAGON
-        </div>
-<div class="musicChartStatValue" id="musicChartGD">
-         —
-        </div>
-</div>
-<div class="musicChartStat">
-<div class="musicChartStatLabel">
-         BIGBANG
-        </div>
-<div class="musicChartStatValue" id="musicChartBIGBANG">
-         —
-        </div>
-</div>
-</div>
-</div>
-<div class="musicChartBody">
-<div class="musicChartControlRow">
-<div class="musicChartSubTitle">
-        현재 차트인 음원
-       </div>
-<div aria-label="아티스트 필터" class="musicChartFilters">
-<button class="musicChartFilter is-active" data-chart-filter="ALL" type="button">
-         전체
-        </button>
-<button class="musicChartFilter" data-chart-filter="G-DRAGON" type="button">
-         G-DRAGON
-        </button>
-<button class="musicChartFilter" data-chart-filter="BIGBANG" type="button">
-         BIGBANG
-        </button>
-</div>
-</div>
-<div aria-live="polite" class="musicChartList" id="musicChartList">
-<div class="musicChartEmpty">
-        차트 데이터를 불러오는 중입니다.
-       </div>
-</div>
-<p class="musicChartNotice">
-       ※ 멜론 TOP100 · 멜론 일간 · 지니 TOP200 · 벅스 실시간 기준
-       <br/>
-       ※ 차트 순위는 자동 갱신되며, 플랫폼 집계 시점에 따라 실제 순위와 차이가 있을 수 있습니다.
-      </p>
-</div>
-</div>
-</section>
+    </section>
 
-<section class="section archiveSection">
-<div class="sectionTitle">
-     아카이빙
-    </div>
-<div class="archiveCoverScroll">
-<a class="archiveCoverCard" href="/archive/archiving/jacob-co/">
-<div class="archiveCoverImgBox">
-<img alt="제이콥앤코" src="/assets/archive/archive1.jpg"/>
-</div>
-<div class="archiveCoverTitle">
-       JACOB&amp;CO
-      </div>
-<div class="archiveCoverTags">
-       #제이콥앤코
-      </div>
-</a>
-<a class="archiveCoverCard" href="/archive/archiving/yellowcoin/">
-<div class="archiveCoverImgBox">
-<img alt="노란동전" src="/assets/archive/archive2.jpg"/>
-</div>
-<div class="archiveCoverTitle">
-       노란 동전 자선 행사
-      </div>
-<div class="archiveCoverTags">
-       #2년연속 #프랑스영부인초청
-      </div>
-</a>
-<a class="archiveCoverCard" href="/archive/archiving/fanplusone/">
-<div class="archiveCoverImgBox">
-<img alt="FANPLUSONE" src="/assets/archive/archive3.jpg"/>
-</div>
-<div class="archiveCoverTitle">
-       FANPLUSONE
-      </div>
-<div class="archiveCoverTags">
-       #팬사랑 #가족
-      </div>
-</a>
-<a class="archiveCoverCard" href="/archive/archiving/exhibition/">
-<div class="archiveCoverImgBox">
-<img alt="EXHIBITION" src="/assets/archive/archive4.jpg"/>
-</div>
-<div class="archiveCoverTitle">
-       EXHIBITION
-      </div>
-<div class="archiveCoverTags">
-       #위버맨쉬 #전시회
-      </div>
-</a>
-<a class="archiveCoverCard" href="/archive/archiving/goodday/">
-<div class="archiveCoverImgBox">
-<img alt="굿데이" src="/assets/archive/archive5.jpg"/>
-</div>
-<div class="archiveCoverTitle">
-       굿데이
-      </div>
-<div class="archiveCoverTags">
-       #지디 #좋은날
-      </div>
-</a>
-<a class="archiveCoverCard" href="/archive/archiving/nike/">
-<div class="archiveCoverImgBox">
-<img alt="나이키" src="/assets/archive/archive6.jpg"/>
-</div>
-<div class="archiveCoverTitle">
-       NIKE
-      </div>
-<div class="archiveCoverTags">
-       #파라노이즈 #권도
-      </div>
-</a>
-</div>
-</section>
-<section class="section">
-<div class="sectionTitle">
-     계정 모아보기
-    </div>
-<div class="socialCard">
-<div class="socialHead">
-<div class="socialTitle">
-       G-DRAGON INDIVIDUAL
-      </div>
-<div class="socialDesc">
-       지드래곤 개인 계정
-      </div>
-</div>
-<div class="socialGrid">
-<a class="socialBtn" href="https://www.instagram.com/xxxibgdrgn" rel="noreferrer" target="_blank">
-<span class="socialIcon">
-<img alt="Instagram" src="/assets/icons/social/instagram.svg"/>
-</span>
-<span class="socialName">
-        Instagram
-       </span>
-</a>
-<a class="socialBtn" href="https://x.com/ibgdrgn" rel="noreferrer" target="_blank">
-<span class="socialIcon">
-<img alt="X" src="/assets/icons/social/x.svg"/>
-</span>
-<span class="socialName">
-        X
-       </span>
-</a>
-<a class="socialBtn" href="https://weibo.com/u/3786649467" rel="noreferrer" target="_blank">
-<span class="socialIcon">
-<img alt="Weibo" src="/assets/icons/social/weibo.svg"/>
-</span>
-<span class="socialName">
-        Weibo
-       </span>
-</a>
-</div>
-</div>
-<div class="socialCard">
-<div class="socialHead">
-<div class="socialTitle">
-       G-DRAGON OFFICIAL
-      </div>
-<div class="socialDesc">
-       공식 계정
-      </div>
-</div>
-<div class="socialGrid">
-<a class="socialBtn" href="https://www.youtube.com/@xxxibgdrgn" rel="noreferrer" target="_blank">
-<span class="socialIcon">
-<img alt="YouTube" src="/assets/icons/social/youtube.svg"/>
-</span>
-<span class="socialName">
-        YouTube
-       </span>
-</a>
-<a class="socialBtn" href="https://www.instagram.com/8lo8lo8lowme" rel="noreferrer" target="_blank">
-<span class="socialIcon">
-<img alt="Instagram" src="/assets/icons/social/instagram.svg"/>
-</span>
-<span class="socialName">
-        팔로미
-       </span>
-</a>
-<a class="socialBtn" href="https://www.instagram.com/fanplusonedotcom" rel="noreferrer" target="_blank">
-<span class="socialIcon">
-<img alt="Instagram" src="/assets/icons/social/instagram.svg"/>
-</span>
-<span class="socialName">
-        fanplusone
-       </span>
-</a>
-<a class="socialBtn" href="https://x.com/FANPLUS1DOTCOM" rel="noreferrer" target="_blank">
-<span class="socialIcon">
-<img alt="X" src="/assets/icons/social/x.svg"/>
-</span>
-<span class="socialName">
-        fanplusone
-       </span>
-</a>
-<a class="socialBtn" href="https://www.tiktok.com/@fanplusonedotcom" rel="noreferrer" target="_blank">
-<span class="socialIcon">
-<img alt="TikTok" src="/assets/icons/social/tiktok.svg"/>
-</span>
-<span class="socialName">
-        TikTok
-       </span>
-</a>
-<a class="socialBtn" href="https://gdragon.ai/" rel="noreferrer" target="_blank">
-<span class="socialIcon">
-<img alt="b.stage" src="/assets/icons/social/bstage.svg"/>
-</span>
-<span class="socialName">
-        b.stage
-       </span>
-</a>
-</div>
-</div>
-<div class="socialCard">
-<div class="socialHead">
-<div class="socialTitle">
-       GDRAGON STREAM
-      </div>
-<div class="socialDesc">
-       음원총공팀 계정
-      </div>
-</div>
-<div class="socialGrid">
-<a class="socialBtn" href="https://x.com/GDRAGON_STREAM" rel="noreferrer" target="_blank">
-<span class="socialIcon">
-<img alt="X" src="/assets/icons/social/x.svg"/>
-</span>
-<span class="socialName">
-        X
-       </span>
-</a>
-<a class="socialBtn" href="https://www.instagram.com/gdragon_stream/" rel="noreferrer" target="_blank">
-<span class="socialIcon">
-<img alt="Instagram" src="/assets/icons/social/instagram.svg"/>
-</span>
-<span class="socialName">
-        Instagram
-       </span>
-</a>
-<a class="socialBtn" href="https://www.threads.com/@gdragon_stream?xmt=AQF0-9Qrl0GaLacu6i-jscBusw1dgbuFYdABjjHnuAWiOaA" rel="noreferrer" target="_blank">
-<span class="socialIcon">
-<img alt="Threads" src="/assets/icons/social/threads.svg"/>
-</span>
-<span class="socialName">
-        Threads
-       </span>
-</a>
-<a class="socialBtn" href="https://gall.dcinside.com/mgallery/board/lists/?id=gdpeaceminusone" rel="noreferrer" target="_blank">
-<span class="socialIcon">
-<img alt="디시인사이드" src="/assets/icons/social/dcinside.svg"/>
-</span>
-<span class="socialName">
-        디시인사이드
-       </span>
-</a>
-</div>
-</div>
-</section>
-</main>
-<div aria-hidden="true" class="ocModal" id="ocModal">
-<div class="ocModalOverlay" id="ocOverlay">
-</div>
-<div aria-labelledby="ocModalTitle" aria-modal="true" class="ocModalPanel" role="dialog">
-<div class="ocHero">
-<img alt="" class="ocHeroImg" id="ocHeroImg" src="/assets/header/default.jpg"/>
-<div class="ocHeroShade">
-</div>
-<button aria-label="닫기" class="ocModalClose" id="ocClose" type="button">
-      ✕
-     </button>
-<div class="ocHeroText">
-<h3 class="ocModalTitle" id="ocModalTitle">
-       원클릭 링크
-      </h3>
-<div class="ocActionNotice" id="ocActionNotice">
-       중복곡 허용 후 이용해주세요!
-      </div>
-</div>
-</div>
-<div class="ocModalBody">
-<div class="ocDeviceBar">
-<div class="ocDeviceLabel" id="ocDeviceLabel">
-       PC
-      </div>
-<div class="ocDeviceHint" id="ocDeviceHint">
-</div>
-</div>
-<div class="ocModalGrid" id="ocModalGrid">
-</div>
-</div>
-</div>
-</div>
-<div aria-hidden="true" class="collectModal" id="collectModal">
-<div class="collectModalOverlay" id="collectOverlay">
-</div>
-<div aria-labelledby="collectModalTitle" aria-modal="true" class="collectModalPanel" role="dialog">
-<div class="collectHero">
-<img alt="아이디 수집 안내 이미지" class="collectHeroImg" src="/assets/header/default4.jpg"/>
-<button aria-label="닫기" class="collectModalClose" id="collectClose" type="button">
-      ✕
-     </button>
-<div class="collectHeroText">
-<h3 class="collectModalTitle" id="collectModalTitle">
-       지니 아이디 기부
-      </h3>
-<div class="collectNotice">
-       가이드를 먼저 확인한 뒤 아이디를 제출해주세요!
-      </div>
-</div>
-</div>
-<div class="collectModalBody">
-<div class="collectModalGrid">
-<a class="collectModalBtn" href="/guide/etc/collectid/">
-       가이드
-      </a>
-<a class="collectModalBtn" href="https://naver.me/FNti54TO" rel="noreferrer" target="_blank">
-       아이디 제출하기
-      </a>
-</div>
-</div>
-</div>
-</div>
-<footer class="footer">
-<div class="container footerInner footerInner--logo">
-<a aria-label="지드래곤 음원총공팀 홈으로 이동" class="footerLogoLink" href="/">
-<img alt="지드래곤 음원총공팀 로고" class="footerLogo" src="/assets/header/logo1.png"/>
-</a>
-</div>
-</footer>
-<script src="/data.js">
-</script>
-<script src="/script.js">
-</script>
-<script>
-   const openCollectModal = document.getElementById('openCollectModal');
+    <section class="section"><div class="sectionTitle">바로가기</div>
+      <a class="ctaGuide" href="/guide/"><div class="ctaGuideText"><div class="ctaGuideTitle">가이드</div><div class="ctaGuideDesc">스트리밍 / 다운로드 / 기타 / 스트리밍리스트</div></div><div class="ctaGuideArrow">→</div></a>
+      <a class="ctaGuide ctaGuide--collect" href="#" id="openCollectModal"><div class="ctaGuideText"><div class="ctaGuideTitle">아이디 기부</div><div class="ctaGuideDesc">가이드 확인 후 아이디 제출하기</div></div><div class="ctaGuideArrow">→</div></a>
+      <a class="ctaGuide ctaGuide--collect" href="/radio/"><div class="ctaGuideText"><div class="ctaGuideTitle">라디오 신청</div><div class="ctaGuideDesc">현재 방송 중인 라디오에 BiiiG 신청하기</div></div><div class="ctaGuideArrow">→</div></a>
+    </section>
+
+    <section class="section archiveSection"><div class="sectionTitle">아카이빙</div><div class="archiveCoverScroll">
+      <a class="archiveCoverCard" href="/archive/archiving/jacob-co/"><div class="archiveCoverImgBox"><img src="/assets/archive/archive1.jpg" alt="제이콥앤코"></div><div class="archiveCoverTitle">JACOB&CO</div><div class="archiveCoverTags">#제이콥앤코</div></a>
+      <a class="archiveCoverCard" href="/archive/archiving/yellowcoin/"><div class="archiveCoverImgBox"><img src="/assets/archive/archive2.jpg" alt="노란동전"></div><div class="archiveCoverTitle">노란 동전 자선 행사</div><div class="archiveCoverTags">#2년연속 #프랑스영부인초청</div></a>
+      <a class="archiveCoverCard" href="/archive/archiving/fanplusone/"><div class="archiveCoverImgBox"><img src="/assets/archive/archive3.jpg" alt="FANPLUSONE"></div><div class="archiveCoverTitle">FANPLUSONE</div><div class="archiveCoverTags">#팬사랑 #가족</div></a>
+      <a class="archiveCoverCard" href="/archive/archiving/exhibition/"><div class="archiveCoverImgBox"><img src="/assets/archive/archive4.jpg" alt="EXHIBITION"></div><div class="archiveCoverTitle">EXHIBITION</div><div class="archiveCoverTags">#위버맨쉬 #전시회</div></a>
+      <a class="archiveCoverCard" href="/archive/archiving/goodday/"><div class="archiveCoverImgBox"><img src="/assets/archive/archive5.jpg" alt="굿데이"></div><div class="archiveCoverTitle">굿데이</div><div class="archiveCoverTags">#지디 #좋은날</div></a>
+      <a class="archiveCoverCard" href="/archive/archiving/nike/"><div class="archiveCoverImgBox"><img src="/assets/archive/archive6.jpg" alt="나이키"></div><div class="archiveCoverTitle">NIKE</div><div class="archiveCoverTags">#파라노이즈 #권도</div></a>
+    </div></section>
+
+    <section class="section"><div class="sectionTitle">계정 모아보기</div>
+      <div class="socialCard"><div class="socialHead"><div class="socialTitle">G-DRAGON INDIVIDUAL</div><div class="socialDesc">지드래곤 개인 계정</div></div><div class="socialGrid">
+        <a class="socialBtn" href="https://www.instagram.com/xxxibgdrgn" target="_blank" rel="noreferrer"><span class="socialIcon"><img src="/assets/icons/social/instagram.svg" alt="Instagram"></span><span class="socialName">Instagram</span></a>
+        <a class="socialBtn" href="https://x.com/ibgdrgn" target="_blank" rel="noreferrer"><span class="socialIcon"><img src="/assets/icons/social/x.svg" alt="X"></span><span class="socialName">X</span></a>
+        <a class="socialBtn" href="https://weibo.com/u/3786649467" target="_blank" rel="noreferrer"><span class="socialIcon"><img src="/assets/icons/social/weibo.svg" alt="Weibo"></span><span class="socialName">Weibo</span></a>
+      </div></div>
+      <div class="socialCard"><div class="socialHead"><div class="socialTitle">G-DRAGON OFFICIAL</div><div class="socialDesc">공식 계정</div></div><div class="socialGrid">
+        <a class="socialBtn" href="https://www.youtube.com/@xxxibgdrgn" target="_blank" rel="noreferrer"><span class="socialIcon"><img src="/assets/icons/social/youtube.svg" alt="YouTube"></span><span class="socialName">YouTube</span></a>
+        <a class="socialBtn" href="https://www.instagram.com/8lo8lo8lowme" target="_blank" rel="noreferrer"><span class="socialIcon"><img src="/assets/icons/social/instagram.svg" alt="Instagram"></span><span class="socialName">팔로미</span></a>
+        <a class="socialBtn" href="https://www.instagram.com/fanplusonedotcom" target="_blank" rel="noreferrer"><span class="socialIcon"><img src="/assets/icons/social/instagram.svg" alt="Instagram"></span><span class="socialName">fanplusone</span></a>
+        <a class="socialBtn" href="https://x.com/FANPLUS1DOTCOM" target="_blank" rel="noreferrer"><span class="socialIcon"><img src="/assets/icons/social/x.svg" alt="X"></span><span class="socialName">fanplusone</span></a>
+        <a class="socialBtn" href="https://www.tiktok.com/@fanplusonedotcom" target="_blank" rel="noreferrer"><span class="socialIcon"><img src="/assets/icons/social/tiktok.svg" alt="TikTok"></span><span class="socialName">TikTok</span></a>
+        <a class="socialBtn" href="https://gdragon.ai/" target="_blank" rel="noreferrer"><span class="socialIcon"><img src="/assets/icons/social/bstage.svg" alt="b.stage"></span><span class="socialName">b.stage</span></a>
+      </div></div>
+      <div class="socialCard"><div class="socialHead"><div class="socialTitle">GDRAGON STREAM</div><div class="socialDesc">음원총공팀 계정</div></div><div class="socialGrid">
+        <a class="socialBtn" href="https://x.com/GDRAGON_STREAM" target="_blank" rel="noreferrer"><span class="socialIcon"><img src="/assets/icons/social/x.svg" alt="X"></span><span class="socialName">X</span></a>
+        <a class="socialBtn" href="https://www.instagram.com/gdragon_stream/" target="_blank" rel="noreferrer"><span class="socialIcon"><img src="/assets/icons/social/instagram.svg" alt="Instagram"></span><span class="socialName">Instagram</span></a>
+        <a class="socialBtn" href="https://www.threads.com/@gdragon_stream?xmt=AQF0-9Qrl0GaLacu6i-jscBusw1dgbuFYdABjjHnuAWiOaA" target="_blank" rel="noreferrer"><span class="socialIcon"><img src="/assets/icons/social/threads.svg" alt="Threads"></span><span class="socialName">Threads</span></a>
+        <a class="socialBtn" href="https://gall.dcinside.com/mgallery/board/lists/?id=gdpeaceminusone" target="_blank" rel="noreferrer"><span class="socialIcon"><img src="/assets/icons/social/dcinside.svg" alt="디시인사이드"></span><span class="socialName">디시인사이드</span></a>
+      </div></div>
+    </section>
+  </main>
+
+  <div id="ocModal" class="ocModal" aria-hidden="true"><div id="ocOverlay" class="ocModalOverlay"></div><div class="ocModalPanel" role="dialog" aria-modal="true" aria-labelledby="ocModalTitle"><div class="ocHero"><img id="ocHeroImg" class="ocHeroImg" src="/assets/header/default.jpg" alt=""><div class="ocHeroShade"></div><button id="ocClose" type="button" class="ocModalClose" aria-label="닫기">✕</button><div class="ocHeroText"><h3 id="ocModalTitle" class="ocModalTitle">원클릭 링크</h3><div id="ocActionNotice" class="ocActionNotice">중복곡 허용 후 이용해주세요!</div></div></div><div class="ocModalBody"><div class="ocDeviceBar"><div id="ocDeviceLabel" class="ocDeviceLabel">PC</div><div id="ocDeviceHint" class="ocDeviceHint"></div></div><div id="ocModalGrid" class="ocModalGrid"></div></div></div></div>
+
+  <div id="collectModal" class="collectModal" aria-hidden="true"><div id="collectOverlay" class="collectModalOverlay"></div><div class="collectModalPanel" role="dialog" aria-modal="true" aria-labelledby="collectModalTitle"><div class="collectHero"><img class="collectHeroImg" src="/assets/header/default4.jpg" alt="아이디 수집 안내 이미지"><button id="collectClose" type="button" class="collectModalClose" aria-label="닫기">✕</button><div class="collectHeroText"><h3 id="collectModalTitle" class="collectModalTitle">지니 아이디 기부</h3><div class="collectNotice">가이드를 먼저 확인한 뒤 아이디를 제출해주세요!</div></div></div><div class="collectModalBody"><div class="collectModalGrid"><a class="collectModalBtn" href="/guide/etc/collectid/">가이드</a><a class="collectModalBtn" href="https://naver.me/FNti54TO" target="_blank" rel="noreferrer">아이디 제출하기</a></div></div></div></div>
+
+  <footer class="footer"><div class="container footerInner footerInner--logo"><a href="/" class="footerLogoLink" aria-label="지드래곤 음원총공팀 홈으로 이동"><img class="footerLogo" src="/assets/header/logo1.png" alt="지드래곤 음원총공팀 로고"></a></div></footer>
+
+  <script src="/data.js"></script>
+  <script src="/script.js"></script>
+  <script>
+    const openCollectModal = document.getElementById('openCollectModal');
     const collectModal = document.getElementById('collectModal');
     const collectOverlay = document.getElementById('collectOverlay');
     const collectClose = document.getElementById('collectClose');
@@ -694,7 +213,22 @@
     function renderMainChartSongs(){ const list=document.getElementById('musicChartList'); const songs=musicChartFilter==='ALL'?musicChartSongs:musicChartSongs.filter(x=>x.artistGroup===musicChartFilter); if(!songs.length){ list.innerHTML='<div class="musicChartEmpty">현재 조건에 해당하는 차트인 음원이 없습니다.</div>'; return; } list.innerHTML=songs.map(song=>{ const ranks=MUSIC_CHART_ORDER.map(id=>{ const info=song.ranks[id]; if(!info) return `<div class="musicRankItem"><div class="musicRankPlatform">${MUSIC_CHART_LABELS[id]}</div><div class="musicRankValueRow"><div class="musicRankValue">—</div></div><div class="musicRankChange musicRankChange--same">미진입</div></div>`; return `<div class="musicRankItem"><div class="musicRankPlatform">${MUSIC_CHART_LABELS[id]}</div><div class="musicRankValueRow"><div class="musicRankValue">${escapeChartHtml(info.rank)}</div><div class="musicRankUnit">위</div></div><div class="musicRankChange ${getMainChartChangeClass(info.change)}">${escapeChartHtml(info.change?.label||'—')}</div></div>`; }).join(''); return `<article class="musicSongCard"><div class="musicSongHead"><div class="musicSongInfo"><div class="musicSongArtist">${escapeChartHtml(song.artistGroup)}</div><div class="musicSongTitle" title="${escapeChartHtml(song.title)}">${escapeChartHtml(song.title)}</div></div><div class="musicSongCount">${Object.keys(song.ranks).length}개 차트인</div></div><div class="musicRankGrid">${ranks}</div></article>`; }).join(''); }
     async function loadMainChartData(){ const list=document.getElementById('musicChartList'); try{ const response=await fetch(`/chart-data.json?v=${Date.now()}`,{cache:'no-store'}); if(!response.ok) throw new Error(`HTTP ${response.status}`); const data=await response.json(); musicChartSongs=aggregateMainChartSongs(data); document.getElementById('musicChartUpdated').innerHTML=`실시간 차트 · ${escapeChartHtml(data.updatedAt||'확인 중')}<br>멜론 일간 · ${escapeChartHtml(data.melonDailyDate||'—')}`; updateMainChartSummary(musicChartSongs); renderMainChartSongs(); }catch(error){ console.error(error); document.getElementById('musicChartUpdated').textContent='차트 데이터 확인 필요'; list.innerHTML='<div class="musicChartError">차트 데이터를 불러오지 못했습니다.<br>잠시 후 다시 시도해 주세요.</div>'; } }
     document.querySelectorAll('.musicChartFilter').forEach(button=>button.addEventListener('click',function(){ musicChartFilter=this.dataset.chartFilter; document.querySelectorAll('.musicChartFilter').forEach(x=>x.classList.toggle('is-active',x===this)); renderMainChartSongs(); }));
+    // 페이지 진입 시 즉시 최신 차트 불러오기
     loadMainChartData();
+
+    // 1분마다 최신 chart-data.json 다시 확인
+    const MUSIC_CHART_REFRESH_MS = 60 * 1000;
+    setInterval(loadMainChartData, MUSIC_CHART_REFRESH_MS);
+
+    // 다른 탭에 갔다가 다시 돌아왔을 때도 즉시 최신화
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden) {
+        loadMainChartData();
+      }
+    });
+
+    // 창이 다시 활성화될 때도 즉시 최신화
+    window.addEventListener('focus', loadMainChartData);
   </script>
 </body>
 </html>
