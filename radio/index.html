@@ -16,20 +16,20 @@
 
   <style>
     :root {
-      --radio-blue: #315fc7;
-      --radio-blue-dark: #173779;
-      --radio-bg: #f5f7fb;
-      --radio-line: rgba(0, 0, 0, .09);
-      --radio-muted: rgba(0, 0, 0, .48);
+      --radio-bg: #ffffff;
+      --radio-line: rgba(0, 0, 0, .075);
+      --radio-muted: rgba(0, 0, 0, .50);
+      --radio-shadow: 0 10px 28px rgba(0, 0, 0, .055);
+      --radio-shadow-hover: 0 16px 34px rgba(0, 0, 0, .085);
     }
 
     body {
-      background: var(--radio-bg);
+      background: #fff;
     }
 
     .radioPage {
       min-height: calc(100vh - 100px);
-      padding: 42px 0 64px;
+      padding: 28px 0 58px;
     }
 
     .radioTop {
@@ -37,113 +37,152 @@
       align-items: center;
       justify-content: space-between;
       gap: 16px;
-      margin-bottom: 28px;
+      margin-bottom: 20px;
     }
 
     .radioBack {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      color: #111;
-      font-size: 14px;
+      gap: 7px;
+      color: rgba(0, 0, 0, .66);
+      font-size: 13px;
       font-weight: 800;
       text-decoration: none;
     }
 
     .radioBack:hover {
-      opacity: .6;
+      color: #111;
     }
 
     .radioClock {
-      color: var(--radio-muted);
-      font-size: 13px;
+      color: rgba(0, 0, 0, .42);
+      font-size: 12px;
       font-weight: 700;
       text-align: right;
+      font-variant-numeric: tabular-nums;
     }
 
+    /* 메인 페이지와 비슷한 가볍고 부드러운 인트로 */
     .radioIntro {
-      margin-bottom: 22px;
+      margin-bottom: 18px;
+      padding: 22px 22px 20px;
+      border: 1px solid rgba(0, 0, 0, .055);
+      border-radius: 22px;
+      background:
+        linear-gradient(
+          135deg,
+          rgba(190, 205, 235, .32),
+          rgba(245, 195, 190, .24)
+        );
+      box-shadow: var(--radio-shadow);
     }
 
     .radioKicker {
-      margin-bottom: 9px;
-      color: var(--radio-blue);
-      font-size: 12px;
+      margin-bottom: 7px;
+      color: rgba(0, 0, 0, .44);
+      font-size: 10px;
       font-weight: 900;
-      letter-spacing: .08em;
+      letter-spacing: .12em;
       text-transform: uppercase;
     }
 
     .radioTitle {
       margin: 0;
       color: #111;
-      font-size: clamp(30px, 7vw, 42px);
-      font-weight: 900;
+      font-size: clamp(29px, 6vw, 40px);
+      font-weight: 950;
       letter-spacing: -.055em;
-      line-height: 1.1;
+      line-height: 1.06;
     }
 
     .radioDescription {
-      margin: 12px 0 0;
-      color: var(--radio-muted);
-      font-size: 15px;
-      font-weight: 600;
+      margin: 11px 0 0;
+      color: rgba(0, 0, 0, .54);
+      font-size: 13px;
+      font-weight: 650;
       line-height: 1.6;
     }
 
+    .radioDescription strong {
+      color: #111;
+      font-weight: 900;
+    }
+
+    /* 현재 방송 표시 - 박스 느낌을 줄이고 가볍게 */
     .radioNowBox {
-      margin: 26px 0 14px;
-      padding: 15px 17px;
-      border: 1px solid rgba(49, 95, 199, .16);
-      border-radius: 16px;
-      background: rgba(49, 95, 199, .07);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0 0 16px;
+      padding: 12px 14px;
+      border: 1px solid var(--radio-line);
+      border-radius: 15px;
+      background: #fff;
+      box-shadow: 0 7px 20px rgba(0, 0, 0, .035);
     }
 
     .radioNowLabel {
-      display: flex;
+      display: inline-flex;
+      flex: 0 0 auto;
       align-items: center;
       gap: 7px;
-      color: var(--radio-blue-dark);
-      font-size: 13px;
+      color: #111;
+      font-size: 11px;
       font-weight: 900;
+      white-space: nowrap;
     }
 
     .radioLiveDot {
       display: inline-block;
-      width: 8px;
-      height: 8px;
+      width: 7px;
+      height: 7px;
       border-radius: 50%;
-      background: #e44a3b;
-      box-shadow: 0 0 0 4px rgba(228, 74, 59, .12);
+      background: #ef4444;
+      box-shadow: 0 0 0 4px rgba(239, 68, 68, .10);
     }
 
     .radioNowText {
-      margin: 8px 0 0;
-      color: #111;
-      font-size: 15px;
-      font-weight: 800;
+      min-width: 0;
+      margin: 0;
+      overflow: hidden;
+      color: rgba(0, 0, 0, .62);
+      font-size: 12px;
+      font-weight: 750;
       line-height: 1.45;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
+    /* PC에서는 기존처럼 방송사 3개를 한 번에 */
     .radioGrid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 13px;
+      gap: 12px;
     }
 
     .radioCard {
       position: relative;
       display: flex;
       flex-direction: column;
-      min-height: 238px;
-      padding: 20px;
+      min-height: 168px;
+      padding: 15px;
+      overflow: hidden;
       border: 1px solid var(--radio-line);
-      border-radius: 18px;
-      background: #fff;
+      border-radius: 19px;
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255, 255, 255, .98),
+          rgba(245, 247, 251, .90)
+        );
       color: #111;
+      box-shadow: var(--radio-shadow);
       text-align: left;
       font-family: inherit;
-      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+      transition:
+        transform .16s ease,
+        box-shadow .16s ease,
+        border-color .16s ease;
     }
 
     button.radioCard {
@@ -152,14 +191,16 @@
     }
 
     .radioCard.is-active:hover {
-      transform: translateY(-3px);
-      border-color: rgba(49, 95, 199, .5);
-      box-shadow: 0 14px 30px rgba(24, 51, 111, .14);
+      transform: translateY(-2px);
+      border-color: rgba(0, 0, 0, .12);
+      box-shadow: var(--radio-shadow-hover);
     }
 
     .radioCard.is-disabled {
-      background: #f0f1f4;
-      color: rgba(0, 0, 0, .35);
+      min-height: 112px;
+      background: #f7f7f8;
+      color: rgba(0, 0, 0, .34);
+      box-shadow: none;
       cursor: not-allowed;
     }
 
@@ -168,8 +209,8 @@
       align-items: center;
       justify-content: space-between;
       gap: 10px;
-      font-size: 15px;
-      font-weight: 900;
+      font-size: 14px;
+      font-weight: 950;
       letter-spacing: -.02em;
     }
 
@@ -179,27 +220,27 @@
       gap: 5px;
       padding: 5px 8px;
       border-radius: 999px;
-      background: rgba(49, 95, 199, .1);
-      color: var(--radio-blue);
-      font-size: 10px;
+      background: #111;
+      color: #fff;
+      font-size: 9px;
       font-weight: 900;
-      letter-spacing: .04em;
+      letter-spacing: .06em;
     }
 
     .radioLiveBadge::before {
       content: "";
-      width: 6px;
-      height: 6px;
+      width: 5px;
+      height: 5px;
       border-radius: 50%;
-      background: #e44a3b;
+      background: #ff6368;
     }
 
     .radioProgram {
-      margin: auto 0 8px;
-      font-size: 21px;
-      font-weight: 900;
-      letter-spacing: -.055em;
-      line-height: 1.28;
+      margin: auto 0 5px;
+      font-size: 20px;
+      font-weight: 950;
+      letter-spacing: -.05em;
+      line-height: 1.2;
       word-break: keep-all;
     }
 
@@ -208,20 +249,21 @@
     }
 
     .radioTime {
-      color: var(--radio-muted);
-      font-size: 13px;
+      color: rgba(0, 0, 0, .44);
+      font-size: 11px;
       font-weight: 700;
+      font-variant-numeric: tabular-nums;
     }
 
     .radioNumber {
       display: inline-flex;
       width: fit-content;
-      margin-top: 17px;
-      padding: 8px 10px;
-      border-radius: 9px;
-      background: #111;
-      color: #fff;
-      font-size: 13px;
+      margin-top: 8px;
+      padding: 6px 8px;
+      border-radius: 8px;
+      background: rgba(0, 0, 0, .055);
+      color: rgba(0, 0, 0, .66);
+      font-size: 11px;
       font-weight: 900;
     }
 
@@ -234,47 +276,190 @@
       align-items: center;
       justify-content: space-between;
       gap: 10px;
-      margin-top: 19px;
-      padding-top: 15px;
-      border-top: 1px solid var(--radio-line);
-      color: var(--radio-blue);
-      font-size: 13px;
+      margin-top: 9px;
+      padding-top: 9px;
+      border-top: 1px solid rgba(0, 0, 0, .065);
+      color: #111;
+      font-size: 11px;
       font-weight: 900;
     }
 
     .radioActionArrow {
-      font-size: 18px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      background: #111;
+      color: #fff;
+      font-size: 14px;
       line-height: 1;
     }
 
     .radioCard.is-disabled .radioAction {
       margin-top: auto;
-      color: rgba(0, 0, 0, .35);
+      padding-top: 0;
+      border-top: 0;
+      color: rgba(0, 0, 0, .32);
+    }
+
+    .radioCard.is-disabled .radioActionArrow {
+      display: none;
+    }
+
+    /* 신청 카드 바로 아래 시간표 */
+    .radioSchedule {
+      margin-top: 22px;
+    }
+
+    .radioScheduleHead {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 0 2px 10px;
+    }
+
+    .radioScheduleTitle {
+      color: #111;
+      font-size: 15px;
+      font-weight: 900;
+      letter-spacing: -.03em;
+    }
+
+    .radioScheduleDesc {
+      color: rgba(0, 0, 0, .38);
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .radioScheduleImageWrap {
+      overflow: hidden;
+      border: 1px solid rgba(0, 0, 0, .07);
+      border-radius: 20px;
+      background: #fff;
+      box-shadow: var(--radio-shadow);
+    }
+
+    .radioScheduleImage {
+      display: block;
+      width: 100%;
+      height: auto;
     }
 
     .radioNotice {
-      margin: 18px 0 0;
-      color: var(--radio-muted);
-      font-size: 12px;
-      font-weight: 600;
-      line-height: 1.65;
+      margin: 15px 2px 0;
+      color: rgba(0, 0, 0, .38);
+      font-size: 10px;
+      font-weight: 650;
+      line-height: 1.7;
     }
 
     @media (max-width: 720px) {
       .radioPage {
-        padding-top: 28px;
+        padding-top: 20px;
+      }
+
+      .radioTop {
+        margin-bottom: 14px;
+      }
+
+      .radioIntro {
+        padding: 19px 17px 18px;
+        border-radius: 19px;
+      }
+
+      .radioDescription {
+        font-size: 12px;
+      }
+
+      .radioNowBox {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 5px;
+      }
+
+      .radioNowText {
+        white-space: normal;
       }
 
       .radioGrid {
         grid-template-columns: 1fr;
+        gap: 8px;
       }
 
       .radioCard {
-        min-height: 180px;
+        min-height: 0;
+        padding: 13px 14px;
+        border-radius: 16px;
+      }
+
+      .radioCard.is-disabled {
+        min-height: 0;
+        padding: 12px 14px;
+      }
+
+      .radioStation {
+        font-size: 13px;
+      }
+
+      .radioLiveBadge {
+        padding: 4px 7px;
+        font-size: 8px;
       }
 
       .radioProgram {
-        margin-top: 38px;
+        margin: 14px 0 3px;
+        font-size: 18px;
+        line-height: 1.18;
+      }
+
+      .radioTime {
+        display: inline;
+        font-size: 11px;
+      }
+
+      .radioNumber {
+        display: inline-flex;
+        margin: 0 0 0 7px;
+        padding: 4px 7px;
+        border-radius: 7px;
+        font-size: 10px;
+        vertical-align: middle;
+      }
+
+      .radioAction {
+        margin-top: 9px;
+        padding-top: 8px;
+        font-size: 10px;
+      }
+
+      .radioActionArrow {
+        width: 22px;
+        height: 22px;
+        font-size: 12px;
+      }
+
+      .radioCard.is-disabled .radioAction {
+        margin-top: 8px;
+      }
+
+      .radioSchedule {
+        margin-top: 16px;
+      }
+
+      .radioScheduleHead {
+        display: block;
+      }
+
+      .radioScheduleDesc {
+        display: block;
+        margin-top: 2px;
+      }
+
+      .radioScheduleImageWrap {
+        border-radius: 16px;
       }
     }
   </style>
@@ -317,6 +502,21 @@
     </section>
 
     <section id="radioGrid" class="radioGrid" aria-label="라디오 방송사 선택"></section>
+
+    <section class="radioSchedule" aria-label="라디오 편성표">
+      <div class="radioScheduleHead">
+        <div class="radioScheduleTitle">라디오 편성표</div>
+        <div class="radioScheduleDesc">방송 시간 확인 후 신청해주세요.</div>
+      </div>
+      <div class="radioScheduleImageWrap">
+        <img
+          class="radioScheduleImage"
+          src="/assets/guides/radioschedule.jpg"
+          alt="KBS, MBC, SBS 라디오 편성표"
+          loading="lazy"
+        >
+      </div>
+    </section>
 
     <p class="radioNotice">
       ※ 정규 편성표 기준으로 표시됩니다. 특집 방송·스포츠 중계·결방 등의 경우 실제 방송과 다를 수 있습니다.<br>
