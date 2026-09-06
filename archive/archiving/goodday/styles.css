@@ -161,23 +161,6 @@
   margin: 0 !important;
 }
 
-.archiveTags {
-  display: flex !important;
-  flex-wrap: wrap !important;
-  gap: 8px !important;
-  margin-top: 26px !important;
-}
-
-.archiveTags span {
-  display: inline-flex !important;
-  align-items: center !important;
-  padding: 7px 11px !important;
-  border-radius: 999px !important;
-  background: #f4f4f4 !important;
-  color: #555 !important;
-  font-size: 13px !important;
-  font-weight: 700 !important;
-}
 
 /* PC에서는 사진이 너무 과하게 커지지 않게 */
 @media (min-width: 900px) {
