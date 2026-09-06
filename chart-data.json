@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-07 05:30:30 KST",
+  "updatedAt": "2026-09-07 06:00:39 KST",
   "melonDailyDate": "2026-09-07",
   "artists": [
     "G-DRAGON",
@@ -11,7 +11,7 @@
       "name": "멜론 TOP100",
       "type": "realtime",
       "status": "ok",
-      "updatedAt": "2026-09-07 05:30:30 KST",
+      "updatedAt": "2026-09-07 06:00:39 KST",
       "songs": [
         {
           "rank": 4,
@@ -53,7 +53,7 @@
       "name": "멜론 일간",
       "type": "daily",
       "status": "ok",
-      "updatedAt": "2026-09-07 05:30:30 KST",
+      "updatedAt": "2026-09-07 06:00:39 KST",
       "songs": [
         {
           "rank": 4,
@@ -95,7 +95,7 @@
       "name": "지니 TOP200",
       "type": "realtime",
       "status": "ok",
-      "updatedAt": "2026-09-07 05:30:30 KST",
+      "updatedAt": "2026-09-07 06:00:39 KST",
       "songs": [
         {
           "rank": 18,
@@ -115,7 +115,7 @@
       "name": "벅스 실시간",
       "type": "realtime",
       "status": "ok",
-      "updatedAt": "2026-09-07 05:30:30 KST",
+      "updatedAt": "2026-09-07 06:00:39 KST",
       "songs": [
         {
           "rank": 5,
