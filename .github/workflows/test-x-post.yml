@@ -1,0 +1,42 @@
+name: Test X Post
+
+on:
+  workflow_dispatch:
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install tweepy
+
+      - name: Post test tweet
+        env:
+          X_API_KEY: ${{ secrets.X_API_KEY }}
+          X_API_SECRET: ${{ secrets.X_API_SECRET }}
+          X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
+          X_ACCESS_TOKEN_SECRET: ${{ secrets.X_ACCESS_TOKEN_SECRET }}
+        run: |
+          python - <<'PY'
+          import os
+          import tweepy
+
+          client = tweepy.Client(
+              consumer_key=os.environ["X_API_KEY"],
+              consumer_secret=os.environ["X_API_SECRET"],
+              access_token=os.environ["X_ACCESS_TOKEN"],
+              access_token_secret=os.environ["X_ACCESS_TOKEN_SECRET"],
+          )
+
+          response = client.create_tweet(
+              text="G-DRAGON 차트봇 API 연결 테스트입니다."
+          )
+
+          print("Tweet created:", response.data)
+          PY
