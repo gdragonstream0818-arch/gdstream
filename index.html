@@ -1,4 +1,4 @@
-<!doctype html>
+
 <html lang="ko">
 <head>
   <link rel="icon" href="/assets/meta/favicon.png" type="image/png" sizes="any">
@@ -213,17 +213,41 @@
     function aggregateMainChartSongs(data){ const grouped=new Map(); MUSIC_CHART_ORDER.forEach(chartId=>{ const chart=data.charts?.[chartId]; if(!chart||chart.status!=='ok') return; (chart.songs||[]).forEach(song=>{ const key=makeMainChartSongKey(song); if(!grouped.has(key)) grouped.set(key,{key,title:song.title,artist:song.artist,artistGroup:normalizeChartArtist(song.artistGroup||song.artist),ranks:{}}); const item=grouped.get(key); if(chartId==='melonTop100'||chartId==='melonDaily'){ item.title=song.title; item.artist=song.artist; } item.ranks[chartId]={rank:song.rank,change:song.change}; }); }); return [...grouped.values()].sort((a,b)=>Math.min(...Object.values(a.ranks).map(x=>x.rank))-Math.min(...Object.values(b.ranks).map(x=>x.rank))); }
     function updateMainChartSummary(songs){ document.getElementById('musicChartTotal').textContent=songs.length; document.getElementById('musicChartGD').textContent=songs.filter(x=>x.artistGroup==='G-DRAGON').length; document.getElementById('musicChartBIGBANG').textContent=songs.filter(x=>x.artistGroup==='BIGBANG').length; }
     function renderMainChartSongs(){ const list=document.getElementById('musicChartList'); const songs=musicChartFilter==='ALL'?musicChartSongs:musicChartSongs.filter(x=>x.artistGroup===musicChartFilter); if(!songs.length){ list.innerHTML='<div class="musicChartEmpty">현재 조건에 해당하는 차트인 음원이 없습니다.</div>'; return; } list.innerHTML=songs.map(song=>{ const ranks=MUSIC_CHART_ORDER.map(id=>{ const info=song.ranks[id]; if(!info) return `<div class="musicRankItem"><div class="musicRankPlatform">${MUSIC_CHART_LABELS[id]}</div><div class="musicRankValueRow"><div class="musicRankValue">—</div></div><div class="musicRankChange musicRankChange--same">미진입</div></div>`; return `<div class="musicRankItem"><div class="musicRankPlatform">${MUSIC_CHART_LABELS[id]}</div><div class="musicRankValueRow"><div class="musicRankValue">${escapeChartHtml(info.rank)}</div><div class="musicRankUnit">위</div></div><div class="musicRankChange ${getMainChartChangeClass(info.change)}">${escapeChartHtml(info.change?.label||'—')}</div></div>`; }).join(''); return `<article class="musicSongCard"><div class="musicSongHead"><div class="musicSongInfo"><div class="musicSongArtist">${escapeChartHtml(song.artistGroup)}</div><div class="musicSongTitle" title="${escapeChartHtml(song.title)}">${escapeChartHtml(song.title)}</div></div><div class="musicSongCount">${Object.keys(song.ranks).length}개 차트인</div></div><div class="musicRankGrid">${ranks}</div></article>`; }).join(''); }
-    async function loadMainChartData(){ const list=document.getElementById('musicChartList'); try{ const response=await fetch(`/chart-data.json?v=${Date.now()}`,{cache:'no-store'}); if(!response.ok) throw new Error(`HTTP ${response.status}`); const data=await response.json(); musicChartSongs=aggregateMainChartSongs(data); const updatedParts = new Intl.DateTimeFormat('en-US', {
-        timeZone: 'Asia/Seoul',
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-        hour: '2-digit',
-        hourCycle: 'h23'
-      }).formatToParts(new Date());
-      const getUpdatedPart = type => updatedParts.find(part => part.type === type)?.value;
-      const updatedNow = `${getUpdatedPart('year')}.${getUpdatedPart('month')}.${getUpdatedPart('day')} ${getUpdatedPart('hour')}:00 KST`;
-      document.getElementById('musicChartUpdated').textContent = updatedNow; updateMainChartSummary(musicChartSongs); renderMainChartSongs(); }catch(error){ console.error(error); document.getElementById('musicChartUpdated').textContent='차트 데이터 확인 필요'; list.innerHTML='<div class="musicChartError">현재 차트 업데이트를 준비 중입니다.<br>잠시 후 다시 확인해 주세요.</div>'; } }
+    function formatMainChartUpdatedAt(updatedAt){
+      const raw=String(updatedAt||'').trim();
+      if(!raw) return '업데이트 시간 확인 필요';
+
+      // chart-data.json 예: "2026-09-06 09:48:20 KST"
+      const match=raw.match(/^(\d{4})-(\d{2})-(\d{2})[ T](\d{2}):(\d{2})(?::\d{2})?\s*(KST)?$/i);
+      if(match){
+        const [,year,month,day,hour,minute]=match;
+        return `${year}.${month}.${day} ${hour}:${minute} KST`;
+      }
+
+      // 형식이 달라져도 JSON에 기록된 원본 업데이트 시각을 그대로 표시
+      return raw;
+    }
+
+    async function loadMainChartData(){
+      const list=document.getElementById('musicChartList');
+      try{
+        const response=await fetch(`/chart-data.json?v=${Date.now()}`,{cache:'no-store'});
+        if(!response.ok) throw new Error(`HTTP ${response.status}`);
+
+        const data=await response.json();
+        musicChartSongs=aggregateMainChartSongs(data);
+
+        // 현재 시간이 아니라 chart-data.json의 최상위 updatedAt 기준으로 표시
+        document.getElementById('musicChartUpdated').textContent=formatMainChartUpdatedAt(data.updatedAt);
+
+        updateMainChartSummary(musicChartSongs);
+        renderMainChartSongs();
+      }catch(error){
+        console.error(error);
+        document.getElementById('musicChartUpdated').textContent='차트 데이터 확인 필요';
+        list.innerHTML='<div class="musicChartError">현재 차트 업데이트를 준비 중입니다.<br>잠시 후 다시 확인해 주세요.</div>';
+      }
+    }
     document.querySelectorAll('.musicChartFilter').forEach(button=>button.addEventListener('click',function(){ musicChartFilter=this.dataset.chartFilter; document.querySelectorAll('.musicChartFilter').forEach(x=>x.classList.toggle('is-active',x===this)); renderMainChartSongs(); }));
     // 페이지 진입 시 즉시 최신 차트 불러오기
     loadMainChartData();
