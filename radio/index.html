@@ -166,7 +166,7 @@
       display: flex;
       flex-direction: column;
       min-height: 168px;
-      padding: 15px;
+      padding: 15px 52px 15px 15px;
       overflow: hidden;
       border: 1px solid var(--radio-line);
       border-radius: 19px;
@@ -287,16 +287,18 @@
     }
 
     .radioActionArrow {
+      position: absolute;
+      right: 18px;
+      top: 50%;
+      transform: translateY(-50%);
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 25px;
-      height: 25px;
-      border-radius: 50%;
-      background: #111;
-      color: #fff;
-      font-size: 14px;
+      color: rgba(0, 0, 0, .48);
+      font-size: 21px;
+      font-weight: 700;
       line-height: 1;
+      pointer-events: none;
     }
 
     .radioCard.is-disabled .radioAction {
@@ -407,7 +409,7 @@
 
       .radioCard {
         min-height: 0;
-        padding: 13px 14px;
+        padding: 13px 46px 13px 14px;
         border-radius: 16px;
       }
 
@@ -452,9 +454,8 @@
       }
 
       .radioActionArrow {
-        width: 22px;
-        height: 22px;
-        font-size: 12px;
+        right: 16px;
+        font-size: 20px;
       }
 
       .radioCard.is-disabled .radioAction {
@@ -678,18 +679,12 @@
       const now = getKoreanNow();
       const grid = document.getElementById("radioGrid");
       const clock = document.getElementById("radioClock");
-      const nowText = document.getElementById("radioNowText");
-
       clock.textContent = `한국 시간 · ${formatKoreanClock()}`;
-
-      const activePrograms = [];
 
       grid.innerHTML = radioStations.map(station => {
         const currentProgram = getCurrentProgram(station, now);
 
         if (currentProgram) {
-          activePrograms.push(`${station.station} ${currentProgram.title}`);
-
           return `
             <button
               type="button"
@@ -705,7 +700,7 @@
               <div class="radioProgram">${currentProgram.title}</div>
               <div class="radioTime">${currentProgram.start} ~ ${currentProgram.end}</div>
               <div class="radioNumber">${station.number}</div>
-
+              <span class="radioActionArrow" aria-hidden="true">→</span>
 
             </button>
           `;
@@ -729,11 +724,6 @@
         `;
       }).join("");
 
-      if (activePrograms.length === 0) {
-        nowText.textContent = "현재 등록된 정규 편성 프로그램이 없습니다.";
-      } else {
-        nowText.textContent = activePrograms.join(" · ");
-      }
     }
 
     renderRadioPage();
