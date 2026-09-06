@@ -164,16 +164,6 @@
   margin-top: 26px !important;
 }
 
-.archiveTags span {
-  display: inline-flex !important;
-  align-items: center !important;
-  padding: 7px 11px !important;
-  border-radius: 999px !important;
-  background: #f4f4f4 !important;
-  color: #555 !important;
-  font-size: 13px !important;
-  font-weight: 700 !important;
-}
 
 @media (min-width: 900px) {
   .archiveFigure {
