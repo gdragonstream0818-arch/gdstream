@@ -157,13 +157,6 @@
   margin: 0 !important;
 }
 
-.archiveTags {
-  display: flex !important;
-  flex-wrap: wrap !important;
-  gap: 8px !important;
-  margin-top: 26px !important;
-}
-
 
 @media (min-width: 900px) {
   .archiveFigure {
