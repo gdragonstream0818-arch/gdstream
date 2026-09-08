@@ -1,10 +1,10 @@
-
+import hashlib
 import json
 import re
 import time
 from datetime import datetime
 from pathlib import Path
-from urllib.parse import unquote, urljoin
+from urllib.parse import quote, urljoin
 from zoneinfo import ZoneInfo
 
 import requests
@@ -20,6 +20,37 @@ TARGET_ARTISTS = {
     "BIGBANG",
 }
 
+SOURCES = [
+    {
+        "id": "melonTop100",
+        "name": "멜론 TOP100",
+        "type": "realtime",
+        "url": "https://www.melon.com/chart/index.htm",
+        "parser": "melon",
+    },
+    {
+        "id": "melonDaily",
+        "name": "멜론 일간",
+        "type": "daily",
+        "url": "https://www.melon.com/chart/day/index.htm",
+        "parser": "melon",
+    },
+    {
+        "id": "genieTop200",
+        "name": "지니 TOP200",
+        "type": "realtime",
+        "url": "https://www.genie.co.kr/chart/top200",
+        "parser": "genie",
+    },
+    {
+        "id": "bugsRealtime",
+        "name": "벅스 실시간",
+        "type": "realtime",
+        "url": "https://music.bugs.co.kr/chart/track/realtime/total",
+        "parser": "bugs",
+    },
+]
+
 DEFAULT_HEADERS = {
     "User-Agent": (
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
@@ -27,6 +58,10 @@ DEFAULT_HEADERS = {
         "Chrome/126.0.0.0 Safari/537.36"
     ),
     "Accept-Language": "ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7",
+    "Accept": (
+        "text/html,application/xhtml+xml,application/xml;q=0.9,"
+        "image/avif,image/webp,*/*;q=0.8"
+    ),
     "Cache-Control": "no-cache",
     "Pragma": "no-cache",
 }
@@ -39,23 +74,6 @@ SITE_REFERERS = {
 
 SESSION = requests.Session()
 SESSION.headers.update(DEFAULT_HEADERS)
-
-# 멜론 공식 모바일 차트 API
-MELON_APP_VERSION = "6.5.8.1"
-MELON_CP_ID = "AS40"
-MELON_TOP100_API = (
-    "https://m2.melon.com/m6/chart/ent/songChartList.json"
-    f"?cpId={MELON_CP_ID}&cpKey=14LNC3&appVer={MELON_APP_VERSION}"
-)
-MELON_MOBILE_HEADERS = {
-    "User-Agent": f"{MELON_CP_ID}; Android 13; {MELON_APP_VERSION}; sdk_gphone64_arm64"
-}
-
-# 지니 공식 앱 차트 API
-GENIE_REALTIME_API = "https://app.genie.co.kr/chart/j_RealTimeRankSongList.json"
-
-# 벅스 공식 모바일 차트 API
-BUGS_REALTIME_API = "https://m.bugs.co.kr/api/getChartTrack"
 
 
 def clean_text(value):
@@ -90,29 +108,16 @@ def create_song_key(song):
     return f"{artist}|||{title}"
 
 
-def official_change(current_rank, previous_rank=None, is_new=False):
+def get_change(current_rank, previous_rank, official_change=None):
     """
-    우리 사이트 직전 수집값이 아니라 각 플랫폼이 제공하는 이전 순위를 기준으로 계산.
+    공식 사이트 HTML에서 등락을 읽었으면 그 값을 최우선으로 사용합니다.
+    사이트 구조 변경 등으로 공식 등락 파싱이 실패한 경우에만
+    기존 chart-data.json의 직전 순위 비교 방식으로 자동 폴백합니다.
     """
-    if is_new:
-        return {
-            "type": "new",
-            "value": None,
-            "label": "NEW",
-        }
+    if official_change is not None:
+        return official_change
 
-    try:
-        current_rank = int(current_rank)
-        previous_rank = int(previous_rank)
-    except (TypeError, ValueError):
-        return {
-            "type": "same",
-            "value": 0,
-            "label": "—",
-        }
-
-    # 플랫폼에서 이전 순위가 0으로 오는 경우 신규/비교불가로 처리
-    if previous_rank <= 0:
+    if previous_rank is None:
         return {
             "type": "new",
             "value": None,
@@ -142,46 +147,26 @@ def official_change(current_rank, previous_rank=None, is_new=False):
     }
 
 
-def melon_html_change(row):
-    """
-    멜론 일간 페이지가 직접 표시하는 '순위등락' 영역을 읽음.
-    """
-    rank_wrap = row.select_one(".rank_wrap")
-    if not rank_wrap:
-        return {
-            "type": "same",
-            "value": 0,
-            "label": "—",
-        }
-
-    text = clean_text(rank_wrap.get_text(" ", strip=True))
-    class_text = " ".join(
-        " ".join(el.get("class", []))
-        for el in rank_wrap.find_all(True)
-    ).lower()
-
-    if "new" in text.lower() or "rank_new" in class_text:
-        return {
-            "type": "new",
-            "value": None,
-            "label": "NEW",
-        }
-
-    number_match = re.search(r"\d+", text)
-    value = int(number_match.group()) if number_match else 0
-
-    if "상승" in text or "rank_up" in class_text:
+def make_change(change_type, value=0):
+    if change_type == "up":
         return {
             "type": "up",
             "value": value,
             "label": f"▲ {value}",
         }
 
-    if "하락" in text or "rank_down" in class_text:
+    if change_type == "down":
         return {
             "type": "down",
             "value": value,
             "label": f"▼ {value}",
+        }
+
+    if change_type == "new":
+        return {
+            "type": "new",
+            "value": None,
+            "label": "NEW",
         }
 
     return {
@@ -191,9 +176,137 @@ def melon_html_change(row):
     }
 
 
-def normalize_image_url(raw_url, base_url=""):
+def parse_melon_official_change(row):
+    """
+    실제 멜론 TOP100 / 일간 HTML에서 확인한 구조:
+      .rank_wrap .rank_up   + .up
+      .rank_wrap .rank_down + .down
+      .rank_wrap .rank_static
+    """
+    wrap = row.select_one(".rank_wrap")
+    if not wrap:
+        return None
+
+    if wrap.select_one(".rank_up"):
+        value_el = wrap.select_one(".up")
+        match = re.search(
+            r"\d+",
+            clean_text(value_el.get_text(" ", strip=True) if value_el else ""),
+        )
+        if match:
+            return make_change("up", int(match.group()))
+
+    if wrap.select_one(".rank_down"):
+        value_el = wrap.select_one(".down")
+        match = re.search(
+            r"\d+",
+            clean_text(value_el.get_text(" ", strip=True) if value_el else ""),
+        )
+        if match:
+            return make_change("down", int(match.group()))
+
+    if wrap.select_one(".rank_static"):
+        return make_change("same")
+
+    # NEW 구조는 이번 실제 소스에서 확인되지 않았으므로 추측하지 않음
+    return None
+
+
+def parse_genie_official_change(row):
+    """
+    실제 지니 TOP200 HTML에서 확인한 구조:
+      td.number .rank-up
+      td.number .rank-down
+      td.number .rank-none
+    """
+    up_el = row.select_one("td.number .rank-up")
+    if up_el:
+        match = re.search(r"\d+", clean_text(up_el.get_text(" ", strip=True)))
+        if match:
+            return make_change("up", int(match.group()))
+
+    down_el = row.select_one("td.number .rank-down")
+    if down_el:
+        match = re.search(r"\d+", clean_text(down_el.get_text(" ", strip=True)))
+        if match:
+            return make_change("down", int(match.group()))
+
+    if row.select_one("td.number .rank-none"):
+        return make_change("same")
+
+    # NEW 구조는 이번 실제 소스에서 확인되지 않았으므로 추측하지 않음
+    return None
+
+
+def parse_bugs_official_change(row):
+    """
+    실제 벅스 실시간 HTML에서 확인한 구조:
+      .ranking p.change.up   > em
+      .ranking p.change.down > em
+      .ranking p.change.none
+    """
+    change_el = row.select_one(".ranking p.change")
+    if not change_el:
+        return None
+
+    classes = set(change_el.get("class", []))
+
+    if "up" in classes:
+        value_el = change_el.select_one("em")
+        match = re.search(
+            r"\d+",
+            clean_text(value_el.get_text(" ", strip=True) if value_el else ""),
+        )
+        if match:
+            return make_change("up", int(match.group()))
+
+    if "down" in classes:
+        value_el = change_el.select_one("em")
+        match = re.search(
+            r"\d+",
+            clean_text(value_el.get_text(" ", strip=True) if value_el else ""),
+        )
+        if match:
+            return make_change("down", int(match.group()))
+
+    if "none" in classes:
+        return make_change("same")
+
+    # NEW 구조는 이번 실제 소스에서 확인되지 않았으므로 추측하지 않음
+    return None
+
+
+def unique_songs(songs):
+    seen = set()
+    result = []
+
+    for song in songs:
+        key = create_song_key(song)
+        if key in seen:
+            continue
+        seen.add(key)
+        result.append(song)
+
+    return result
+
+
+def normalize_image_url(raw_url, base_url):
     raw_url = clean_text(raw_url)
+
     if not raw_url or raw_url.lower().startswith("data:"):
+        return ""
+
+    lower = raw_url.lower()
+    if any(
+        token in lower
+        for token in (
+            "blank.gif",
+            "spacer.gif",
+            "transparent.",
+            "noimage",
+            "no_image",
+        )
+    ):
         return ""
 
     if raw_url.startswith("//"):
@@ -202,7 +315,10 @@ def normalize_image_url(raw_url, base_url=""):
     return urljoin(base_url, raw_url)
 
 
-def extract_album_image(row, base_url):
+def extract_album_image(row, base_url, selectors):
+    """
+    사이트마다 lazy-load 속성명이 달라도 찾을 수 있게 여러 속성을 확인합니다.
+    """
     attrs = (
         "data-src",
         "data-original",
@@ -213,15 +329,7 @@ def extract_album_image(row, base_url):
         "src",
     )
 
-    selectors = (
-        ".image_typeAll img",
-        "a.cover img",
-        ".cover img",
-        "a.thumbnail img",
-        ".thumbnail img",
-        "td img",
-        "img",
-    )
+    candidates = []
 
     for selector in selectors:
         image = row.select_one(selector)
@@ -230,22 +338,40 @@ def extract_album_image(row, base_url):
 
         for attr in attrs:
             url = normalize_image_url(image.get(attr), base_url)
-            if not url:
-                continue
+            if url:
+                candidates.append(url)
 
-            lower = url.lower()
-            if any(x in lower for x in ("blank.gif", "spacer.gif", "transparent.", "noimage", "no_image")):
-                continue
+    # 앨범 CDN처럼 보이는 후보를 먼저 사용
+    preferred_tokens = (
+        "cdnimg.melon.co.kr",
+        "image.genie.co.kr",
+        "image.bugsm.co.kr",
+        "album",
+    )
 
+    for url in candidates:
+        if any(token in url.lower() for token in preferred_tokens):
             return url
 
-    return ""
+    return candidates[0] if candidates else ""
 
 
 def album_cache_stem(song):
-    return hashlib.sha1(
-        create_song_key(song).encode("utf-8")
-    ).hexdigest()[:20]
+    key = create_song_key(song)
+    return hashlib.sha1(key.encode("utf-8")).hexdigest()[:20]
+
+
+def content_type_to_ext(content_type):
+    content_type = (content_type or "").lower()
+
+    if "png" in content_type:
+        return ".png"
+    if "webp" in content_type:
+        return ".webp"
+    if "gif" in content_type:
+        return ".gif"
+
+    return ".jpg"
 
 
 def find_existing_album_file(stem):
@@ -256,124 +382,66 @@ def find_existing_album_file(stem):
     return None
 
 
-def content_type_to_ext(content_type):
-    content_type = (content_type or "").lower()
-    if "png" in content_type:
-        return ".png"
-    if "webp" in content_type:
-        return ".webp"
-    if "gif" in content_type:
-        return ".gif"
-    return ".jpg"
-
-
-def cache_album_image(song, remote_url, site):
-    remote_url = clean_text(remote_url)
-    if not remote_url:
-        return ""
-
-    stem = album_cache_stem(song)
-    existing = find_existing_album_file(stem)
-    if existing:
-        return f"/assets/albums/{existing.name}"
-
+def download_image(url, site):
     headers = {
         "User-Agent": DEFAULT_HEADERS["User-Agent"],
         "Accept": "image/avif,image/webp,image/apng,image/*,*/*;q=0.8",
         "Referer": SITE_REFERERS.get(site, ""),
     }
 
-    try:
-        response = SESSION.get(
-            remote_url,
-            headers=headers,
-            timeout=20,
-        )
-        response.raise_for_status()
+    response = SESSION.get(url, headers=headers, timeout=20)
+    response.raise_for_status()
 
-        content_type = response.headers.get("Content-Type", "")
-        if "image/" not in content_type.lower():
-            raise RuntimeError(f"이미지 응답이 아님: {content_type}")
+    content_type = response.headers.get("Content-Type", "")
+    if "image/" not in content_type.lower():
+        raise RuntimeError(f"이미지 응답이 아님: {content_type or 'unknown'}")
 
-        if len(response.content) <= 1024:
-            raise RuntimeError(f"이미지 파일이 너무 작음: {len(response.content)} bytes")
+    if len(response.content) <= 1024:
+        raise RuntimeError(f"이미지 파일이 너무 작음: {len(response.content)} bytes")
 
-        ext = content_type_to_ext(content_type)
-        target = ALBUM_DIR / f"{stem}{ext}"
-        target.write_bytes(response.content)
+    return response.content, content_type
 
-        print(f"  앨범 이미지 저장: {target}")
-        return f"/assets/albums/{target.name}"
 
-    except Exception as exc:
-        print(f"  앨범 이미지 실패 [{site}] {song.get('title')}: {exc}")
+def cache_album_image(song, remote_url, site):
+    """
+    원본 CDN → 직접 다운로드를 먼저 시도.
+    실패하면 wsrv.nl 프록시를 통해 한 번 더 시도.
+    성공하면 chart-data.json에는 우리 사이트 로컬 경로를 저장합니다.
+    """
+    remote_url = clean_text(remote_url)
+    if not remote_url:
         return ""
 
+    stem = album_cache_stem(song)
+    existing = find_existing_album_file(stem)
 
-def fetch_melon_top100():
-    """
-    멜론 공식 모바일 데이터의 CURRANK / PASTRANK / RANKTYPE 사용.
-    """
-    response = SESSION.get(
-        MELON_TOP100_API,
-        headers=MELON_MOBILE_HEADERS,
-        timeout=20,
-    )
-    response.raise_for_status()
-    data = response.json()
+    if existing:
+        return f"/assets/albums/{existing.name}"
 
-    songs = []
+    attempts = [
+        remote_url,
+        f"https://wsrv.nl/?url={quote(remote_url, safe='')}&w=500&h=500&fit=cover&output=jpg&q=90",
+    ]
 
-    for item in data.get("response", {}).get("SONGLIST", []):
-        title = clean_text(item.get("SONGNAME"))
-        artists = item.get("ARTISTLIST") or []
-        artist = clean_text(
-            artists[0].get("ARTISTNAME") if artists else ""
-        )
+    last_error = None
 
-        if not title or not artist or not is_target_artist(artist):
-            continue
+    for index, url in enumerate(attempts, start=1):
+        try:
+            content, content_type = download_image(url, site if index == 1 else "")
+            ext = content_type_to_ext(content_type)
+            target = ALBUM_DIR / f"{stem}{ext}"
+            target.write_bytes(content)
+            print(f"  앨범 이미지 저장: {target}")
+            return f"/assets/albums/{target.name}"
+        except Exception as exc:
+            last_error = exc
 
-        rank = int(item.get("CURRANK") or 0)
-        previous_rank = int(item.get("PASTRANK") or 0)
-        rank_type = clean_text(item.get("RANKTYPE")).upper()
-        album_image_url = clean_text(item.get("ALBUMIMG"))
-
-        song = {
-            "rank": rank,
-            "title": title,
-            "artist": artist,
-            "artistGroup": get_artist_group(artist),
-            "change": official_change(
-                rank,
-                previous_rank,
-                is_new=(rank_type == "NEW"),
-            ),
-        }
-        song["albumImage"] = cache_album_image(
-            song,
-            album_image_url,
-            "melon",
-        )
-        songs.append(song)
-
-    return songs
+    print(f"  앨범 이미지 실패 [{site}] {song.get('title')}: {last_error}")
+    return ""
 
 
-def fetch_melon_daily():
-    """
-    멜론 일간 페이지가 직접 표시하는 순위등락을 사용.
-    """
-    response = SESSION.get(
-        "https://www.melon.com/chart/day/index.htm",
-        timeout=20,
-    )
-    response.raise_for_status()
-
-    if not response.encoding or response.encoding.lower() == "iso-8859-1":
-        response.encoding = response.apparent_encoding
-
-    soup = BeautifulSoup(response.text, "html.parser")
+def parse_melon(html):
+    soup = BeautifulSoup(html, "html.parser")
     songs = []
 
     for row in soup.select("tr.lst50, tr.lst100"):
@@ -381,201 +449,150 @@ def fetch_melon_daily():
         title_el = row.select_one(".rank01 a")
         artist_el = row.select_one(".rank02 a")
 
-        rank_text = clean_text(
-            rank_el.get_text(" ", strip=True) if rank_el else ""
-        )
-        title = clean_text(
-            title_el.get_text(" ", strip=True) if title_el else ""
-        )
-        artist = clean_text(
-            artist_el.get_text(" ", strip=True) if artist_el else ""
+        rank_text = clean_text(rank_el.get_text(" ", strip=True) if rank_el else "")
+        title = clean_text(title_el.get_text(" ", strip=True) if title_el else "")
+        artist = clean_text(artist_el.get_text(" ", strip=True) if artist_el else "")
+
+        image_url = extract_album_image(
+            row,
+            "https://www.melon.com",
+            [
+                ".image_typeAll img",
+                ".wrap img",
+                "td img",
+                "img",
+            ],
         )
 
         match = re.search(r"\d+", rank_text)
         rank = int(match.group()) if match else None
 
-        if not rank or not title or not artist or not is_target_artist(artist):
-            continue
+        if rank and title and artist and is_target_artist(artist):
+            song = {
+                "rank": rank,
+                "title": title,
+                "artist": artist,
+                "artistGroup": get_artist_group(artist),
+                "officialChange": parse_melon_official_change(row),
+            }
+            song["albumImage"] = cache_album_image(song, image_url, "melon")
+            songs.append(song)
+
+    return unique_songs(songs)
+
+
+def parse_genie(html):
+    soup = BeautifulSoup(html, "html.parser")
+    songs = []
+
+    for row in soup.select("table.list-wrap tbody tr"):
+        rank_el = row.select_one("td.number")
+        title_el = row.select_one("a.title.ellipsis")
+        artist_el = row.select_one("a.artist.ellipsis")
+
+        rank_text = clean_text(rank_el.get_text(" ", strip=True) if rank_el else "")
+        title = clean_text(title_el.get_text(" ", strip=True) if title_el else "")
+        artist = clean_text(artist_el.get_text(" ", strip=True) if artist_el else "")
 
         image_url = extract_album_image(
             row,
-            "https://www.melon.com",
-        )
-
-        song = {
-            "rank": rank,
-            "title": title,
-            "artist": artist,
-            "artistGroup": get_artist_group(artist),
-            "change": melon_html_change(row),
-        }
-        song["albumImage"] = cache_album_image(
-            song,
-            image_url,
-            "melon",
-        )
-        songs.append(song)
-
-    return songs
-
-
-def fetch_genie_top200():
-    """
-    지니 공식 앱 실시간 차트 API의 RANK_NO / PRE_RANK_NO 사용.
-    """
-    response = SESSION.post(
-        GENIE_REALTIME_API,
-        headers={
-            "Content-Type": "application/x-www-form-urlencoded",
-            "User-Agent": DEFAULT_HEADERS["User-Agent"],
-        },
-        data={"pgSize": "200"},
-        timeout=20,
-    )
-    response.raise_for_status()
-    data = response.json()
-
-    result = data.get("Result", {})
-    if int(result.get("RetCode") or 0) > 0:
-        raise RuntimeError(
-            f"Genie API error: {result.get('RetMsg')}"
-        )
-
-    songs = []
-
-    for item in data.get("DataSet", {}).get("DATA", []):
-        title = clean_text(unquote(str(item.get("SONG_NAME") or "")))
-        artist = clean_text(unquote(str(item.get("ARTIST_NAME") or "")))
-
-        if not title or not artist or not is_target_artist(artist):
-            continue
-
-        rank = int(item.get("RANK_NO") or 0)
-        previous_rank = int(item.get("PRE_RANK_NO") or 0)
-        album_image_url = normalize_image_url(
-            unquote(str(item.get("ALBUM_IMG_PATH") or "")),
             "https://www.genie.co.kr",
+            [
+                "a.cover img",
+                ".cover img",
+                "td.info img",
+                "td img",
+                "img",
+            ],
         )
 
-        song = {
-            "rank": rank,
-            "title": title,
-            "artist": artist,
-            "artistGroup": get_artist_group(artist),
-            "change": official_change(
-                rank,
-                previous_rank,
-            ),
-        }
-        song["albumImage"] = cache_album_image(
-            song,
-            album_image_url,
-            "genie",
-        )
-        songs.append(song)
+        match = re.search(r"\d+", rank_text)
+        rank = int(match.group()) if match else None
 
-    return songs
+        if rank and title and artist and is_target_artist(artist):
+            song = {
+                "rank": rank,
+                "title": title,
+                "artist": artist,
+                "artistGroup": get_artist_group(artist),
+                "officialChange": parse_genie_official_change(row),
+            }
+            song["albumImage"] = cache_album_image(song, image_url, "genie")
+            songs.append(song)
+
+    return unique_songs(songs)
 
 
-def fetch_bugs_realtime():
-    """
-    벅스 공식 모바일 차트 API의 rank / rank_last 사용.
-    """
-    response = SESSION.post(
-        BUGS_REALTIME_API,
-        headers={
-            "User-Agent": (
-                "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) "
-                "AppleWebKit/537.36 (KHTML, like Gecko) "
-                "Chrome/112.0.0.0 Mobile Safari/537.36"
-            )
-        },
-        data={
-            "period_tp": "realtime",
-            "svc_type": 20151,
-            "size": 100,
-        },
-        timeout=20,
-    )
-    response.raise_for_status()
-    data = response.json()
-
-    if int(data.get("ret_code") or 0) > 0:
-        raise RuntimeError(
-            f"Bugs API error: {data.get('ret_msg')}"
-        )
-
+def parse_bugs(html):
+    soup = BeautifulSoup(html, "html.parser")
     songs = []
 
-    for item in data.get("list", []):
-        title = clean_text(item.get("track_title"))
-        artists = item.get("artists") or []
-        artist = clean_text(
-            artists[0].get("artist_nm") if artists else ""
+    for row in soup.select("tr"):
+        rank_el = row.select_one(".ranking strong")
+        title_el = row.select_one("th p.title a")
+        artist_el = row.select_one("p.artist a")
+
+        rank_text = clean_text(rank_el.get_text(" ", strip=True) if rank_el else "")
+        title = clean_text(title_el.get_text(" ", strip=True) if title_el else "")
+        artist = clean_text(artist_el.get_text(" ", strip=True) if artist_el else "")
+
+        image_url = extract_album_image(
+            row,
+            "https://music.bugs.co.kr",
+            [
+                "a.thumbnail img",
+                ".thumbnail img",
+                "td.thumbnail img",
+                "td img",
+                "img",
+            ],
         )
 
-        if not title or not artist or not is_target_artist(artist):
-            continue
+        match = re.search(r"\d+", rank_text)
+        rank = int(match.group()) if match else None
 
-        list_attr = item.get("list_attr") or {}
-        rank = int(list_attr.get("rank") or 0)
-        previous_rank = int(list_attr.get("rank_last") or 0)
+        if rank and title and artist and is_target_artist(artist):
+            song = {
+                "rank": rank,
+                "title": title,
+                "artist": artist,
+                "artistGroup": get_artist_group(artist),
+                "officialChange": parse_bugs_official_change(row),
+            }
+            song["albumImage"] = cache_album_image(song, image_url, "bugs")
+            songs.append(song)
 
-        image_path = (
-            ((item.get("album") or {}).get("image") or {}).get("path")
-            or ""
-        )
-        album_image_url = (
-            f"https://image.bugsm.co.kr/album/images/256{image_path}"
-            if image_path else ""
-        )
-
-        song = {
-            "rank": rank,
-            "title": title,
-            "artist": artist,
-            "artistGroup": get_artist_group(artist),
-            "change": official_change(
-                rank,
-                previous_rank,
-            ),
-        }
-        song["albumImage"] = cache_album_image(
-            song,
-            album_image_url,
-            "bugs",
-        )
-        songs.append(song)
-
-    return songs
+    return unique_songs(songs)
 
 
-SOURCES = [
-    {
-        "id": "melonTop100",
-        "name": "멜론 TOP100",
-        "type": "realtime",
-        "fetcher": fetch_melon_top100,
-    },
-    {
-        "id": "melonDaily",
-        "name": "멜론 일간",
-        "type": "daily",
-        "fetcher": fetch_melon_daily,
-    },
-    {
-        "id": "genieTop200",
-        "name": "지니 TOP200",
-        "type": "realtime",
-        "fetcher": fetch_genie_top200,
-    },
-    {
-        "id": "bugsRealtime",
-        "name": "벅스 실시간",
-        "type": "realtime",
-        "fetcher": fetch_bugs_realtime,
-    },
-]
+PARSERS = {
+    "melon": parse_melon,
+    "genie": parse_genie,
+    "bugs": parse_bugs,
+}
+
+
+def fetch_html(url, retries=3, timeout=20):
+    last_error = None
+
+    for attempt in range(1, retries + 1):
+        try:
+            response = SESSION.get(url, timeout=timeout)
+            response.raise_for_status()
+
+            if not response.encoding or response.encoding.lower() == "iso-8859-1":
+                response.encoding = response.apparent_encoding
+
+            return response.text
+
+        except requests.RequestException as exc:
+            last_error = exc
+            print(f"  요청 실패 {attempt}/{retries}: {exc}")
+
+            if attempt < retries:
+                time.sleep(3 * attempt)
+
+    raise RuntimeError(str(last_error))
 
 
 def load_previous_data():
@@ -583,9 +600,7 @@ def load_previous_data():
         return {"charts": {}}
 
     try:
-        return json.loads(
-            OUTPUT_FILE.read_text(encoding="utf-8")
-        )
+        return json.loads(OUTPUT_FILE.read_text(encoding="utf-8"))
     except Exception as exc:
         print(f"이전 chart-data.json 읽기 실패: {exc}")
         return {"charts": {}}
@@ -599,13 +614,11 @@ def main():
         "updatedAt": korean_time["dateTime"],
         "melonDailyDate": korean_time["date"],
         "artists": ["G-DRAGON", "BIGBANG"],
-        "changeBasis": "platform",
         "charts": {},
     }
 
     print("차트 데이터 자동 갱신 시작")
     print(f"기준 시각: {output['updatedAt']}")
-    print("등락 기준: 각 플랫폼 공식 제공값")
 
     success_count = 0
 
@@ -613,13 +626,39 @@ def main():
         print()
         print(f"[{source['name']}] 수집 중...")
 
-        previous_chart = (
-            previous_data.get("charts", {})
-            .get(source["id"])
-        )
+        previous_chart = previous_data.get("charts", {}).get(source["id"])
+        previous_songs = (previous_chart or {}).get("songs", [])
+
+        previous_ranks = {
+            create_song_key(song): song.get("rank")
+            for song in previous_songs
+        }
 
         try:
-            songs = source["fetcher"]()
+            html = fetch_html(source["url"])
+            parser = PARSERS[source["parser"]]
+            parsed_songs = parser(html)
+
+            songs = []
+
+            for song in parsed_songs:
+                official_change = song.get("officialChange")
+
+                song_without_internal_fields = {
+                    key: value
+                    for key, value in song.items()
+                    if key != "officialChange"
+                }
+
+                song_with_change = {
+                    **song_without_internal_fields,
+                    "change": get_change(
+                        song["rank"],
+                        previous_ranks.get(create_song_key(song)),
+                        official_change,
+                    ),
+                }
+                songs.append(song_with_change)
 
             output["charts"][source["id"]] = {
                 "id": source["id"],
@@ -627,7 +666,6 @@ def main():
                 "type": source["type"],
                 "status": "ok",
                 "updatedAt": korean_time["dateTime"],
-                "changeBasis": "platform",
                 "songs": songs,
             }
 
@@ -657,7 +695,6 @@ def main():
                     "type": source["type"],
                     "status": "error",
                     "updatedAt": None,
-                    "changeBasis": "platform",
                     "songs": [],
                     "error": str(exc),
                 }
@@ -665,16 +702,10 @@ def main():
     if success_count == 0:
         print()
         print("모든 차트 수집 실패 → 기존 chart-data.json을 유지합니다.")
-        raise RuntimeError(
-            "모든 차트 수집에 실패했습니다."
-        )
+        raise RuntimeError("모든 차트 수집에 실패했습니다.")
 
     OUTPUT_FILE.write_text(
-        json.dumps(
-            output,
-            ensure_ascii=False,
-            indent=2,
-        ) + "\n",
+        json.dumps(output, ensure_ascii=False, indent=2) + "\n",
         encoding="utf-8",
     )
 
