@@ -1,8 +1,10 @@
+import hashlib
 import json
 import re
 import time
 from datetime import datetime
 from pathlib import Path
+from urllib.parse import quote, urljoin
 from zoneinfo import ZoneInfo
 
 import requests
@@ -10,6 +12,8 @@ from bs4 import BeautifulSoup
 
 
 OUTPUT_FILE = Path.cwd() / "chart-data.json"
+ALBUM_DIR = Path.cwd() / "assets" / "albums"
+ALBUM_DIR.mkdir(parents=True, exist_ok=True)
 
 TARGET_ARTISTS = {
     "G-DRAGON",
@@ -54,10 +58,18 @@ DEFAULT_HEADERS = {
         "Chrome/126.0.0.0 Safari/537.36"
     ),
     "Accept-Language": "ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7",
-    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,"
-              "image/webp,*/*;q=0.8",
+    "Accept": (
+        "text/html,application/xhtml+xml,application/xml;q=0.9,"
+        "image/avif,image/webp,*/*;q=0.8"
+    ),
     "Cache-Control": "no-cache",
     "Pragma": "no-cache",
+}
+
+SITE_REFERERS = {
+    "melon": "https://www.melon.com/",
+    "genie": "https://www.genie.co.kr/",
+    "bugs": "https://music.bugs.co.kr/",
 }
 
 SESSION = requests.Session()
@@ -141,6 +153,156 @@ def unique_songs(songs):
     return result
 
 
+def normalize_image_url(raw_url, base_url):
+    raw_url = clean_text(raw_url)
+
+    if not raw_url or raw_url.lower().startswith("data:"):
+        return ""
+
+    lower = raw_url.lower()
+    if any(
+        token in lower
+        for token in (
+            "blank.gif",
+            "spacer.gif",
+            "transparent.",
+            "noimage",
+            "no_image",
+        )
+    ):
+        return ""
+
+    if raw_url.startswith("//"):
+        return "https:" + raw_url
+
+    return urljoin(base_url, raw_url)
+
+
+def extract_album_image(row, base_url, selectors):
+    """
+    사이트마다 lazy-load 속성명이 달라도 찾을 수 있게 여러 속성을 확인합니다.
+    """
+    attrs = (
+        "data-src",
+        "data-original",
+        "data-lazy-src",
+        "data-lazy",
+        "lazy-src",
+        "data-img",
+        "src",
+    )
+
+    candidates = []
+
+    for selector in selectors:
+        image = row.select_one(selector)
+        if not image:
+            continue
+
+        for attr in attrs:
+            url = normalize_image_url(image.get(attr), base_url)
+            if url:
+                candidates.append(url)
+
+    # 앨범 CDN처럼 보이는 후보를 먼저 사용
+    preferred_tokens = (
+        "cdnimg.melon.co.kr",
+        "image.genie.co.kr",
+        "image.bugsm.co.kr",
+        "album",
+    )
+
+    for url in candidates:
+        if any(token in url.lower() for token in preferred_tokens):
+            return url
+
+    return candidates[0] if candidates else ""
+
+
+def album_cache_stem(song):
+    key = create_song_key(song)
+    return hashlib.sha1(key.encode("utf-8")).hexdigest()[:20]
+
+
+def content_type_to_ext(content_type):
+    content_type = (content_type or "").lower()
+
+    if "png" in content_type:
+        return ".png"
+    if "webp" in content_type:
+        return ".webp"
+    if "gif" in content_type:
+        return ".gif"
+
+    return ".jpg"
+
+
+def find_existing_album_file(stem):
+    for ext in (".jpg", ".jpeg", ".png", ".webp", ".gif"):
+        path = ALBUM_DIR / f"{stem}{ext}"
+        if path.exists() and path.stat().st_size > 1024:
+            return path
+    return None
+
+
+def download_image(url, site):
+    headers = {
+        "User-Agent": DEFAULT_HEADERS["User-Agent"],
+        "Accept": "image/avif,image/webp,image/apng,image/*,*/*;q=0.8",
+        "Referer": SITE_REFERERS.get(site, ""),
+    }
+
+    response = SESSION.get(url, headers=headers, timeout=20)
+    response.raise_for_status()
+
+    content_type = response.headers.get("Content-Type", "")
+    if "image/" not in content_type.lower():
+        raise RuntimeError(f"이미지 응답이 아님: {content_type or 'unknown'}")
+
+    if len(response.content) <= 1024:
+        raise RuntimeError(f"이미지 파일이 너무 작음: {len(response.content)} bytes")
+
+    return response.content, content_type
+
+
+def cache_album_image(song, remote_url, site):
+    """
+    원본 CDN → 직접 다운로드를 먼저 시도.
+    실패하면 wsrv.nl 프록시를 통해 한 번 더 시도.
+    성공하면 chart-data.json에는 우리 사이트 로컬 경로를 저장합니다.
+    """
+    remote_url = clean_text(remote_url)
+    if not remote_url:
+        return ""
+
+    stem = album_cache_stem(song)
+    existing = find_existing_album_file(stem)
+
+    if existing:
+        return f"/assets/albums/{existing.name}"
+
+    attempts = [
+        remote_url,
+        f"https://wsrv.nl/?url={quote(remote_url, safe='')}&w=500&h=500&fit=cover&output=jpg&q=90",
+    ]
+
+    last_error = None
+
+    for index, url in enumerate(attempts, start=1):
+        try:
+            content, content_type = download_image(url, site if index == 1 else "")
+            ext = content_type_to_ext(content_type)
+            target = ALBUM_DIR / f"{stem}{ext}"
+            target.write_bytes(content)
+            print(f"  앨범 이미지 저장: {target}")
+            return f"/assets/albums/{target.name}"
+        except Exception as exc:
+            last_error = exc
+
+    print(f"  앨범 이미지 실패 [{site}] {song.get('title')}: {last_error}")
+    return ""
+
+
 def parse_melon(html):
     soup = BeautifulSoup(html, "html.parser")
     songs = []
@@ -154,16 +316,29 @@ def parse_melon(html):
         title = clean_text(title_el.get_text(" ", strip=True) if title_el else "")
         artist = clean_text(artist_el.get_text(" ", strip=True) if artist_el else "")
 
+        image_url = extract_album_image(
+            row,
+            "https://www.melon.com",
+            [
+                ".image_typeAll img",
+                ".wrap img",
+                "td img",
+                "img",
+            ],
+        )
+
         match = re.search(r"\d+", rank_text)
         rank = int(match.group()) if match else None
 
         if rank and title and artist and is_target_artist(artist):
-            songs.append({
+            song = {
                 "rank": rank,
                 "title": title,
                 "artist": artist,
                 "artistGroup": get_artist_group(artist),
-            })
+            }
+            song["albumImage"] = cache_album_image(song, image_url, "melon")
+            songs.append(song)
 
     return unique_songs(songs)
 
@@ -181,16 +356,30 @@ def parse_genie(html):
         title = clean_text(title_el.get_text(" ", strip=True) if title_el else "")
         artist = clean_text(artist_el.get_text(" ", strip=True) if artist_el else "")
 
+        image_url = extract_album_image(
+            row,
+            "https://www.genie.co.kr",
+            [
+                "a.cover img",
+                ".cover img",
+                "td.info img",
+                "td img",
+                "img",
+            ],
+        )
+
         match = re.search(r"\d+", rank_text)
         rank = int(match.group()) if match else None
 
         if rank and title and artist and is_target_artist(artist):
-            songs.append({
+            song = {
                 "rank": rank,
                 "title": title,
                 "artist": artist,
                 "artistGroup": get_artist_group(artist),
-            })
+            }
+            song["albumImage"] = cache_album_image(song, image_url, "genie")
+            songs.append(song)
 
     return unique_songs(songs)
 
@@ -208,16 +397,30 @@ def parse_bugs(html):
         title = clean_text(title_el.get_text(" ", strip=True) if title_el else "")
         artist = clean_text(artist_el.get_text(" ", strip=True) if artist_el else "")
 
+        image_url = extract_album_image(
+            row,
+            "https://music.bugs.co.kr",
+            [
+                "a.thumbnail img",
+                ".thumbnail img",
+                "td.thumbnail img",
+                "td img",
+                "img",
+            ],
+        )
+
         match = re.search(r"\d+", rank_text)
         rank = int(match.group()) if match else None
 
         if rank and title and artist and is_target_artist(artist):
-            songs.append({
+            song = {
                 "rank": rank,
                 "title": title,
                 "artist": artist,
                 "artistGroup": get_artist_group(artist),
-            })
+            }
+            song["albumImage"] = cache_album_image(song, image_url, "bugs")
+            songs.append(song)
 
     return unique_songs(songs)
 
@@ -237,7 +440,6 @@ def fetch_html(url, retries=3, timeout=20):
             response = SESSION.get(url, timeout=timeout)
             response.raise_for_status()
 
-            # 한국 음원 사이트에서 인코딩 판별이 흔들리는 경우 대비
             if not response.encoding or response.encoding.lower() == "iso-8859-1":
                 response.encoding = response.apparent_encoding
 
@@ -298,6 +500,7 @@ def main():
             parsed_songs = parser(html)
 
             songs = []
+
             for song in parsed_songs:
                 song_with_change = {
                     **song,
@@ -323,7 +526,8 @@ def main():
             for song in songs:
                 print(
                     f"{song['rank']}위 {song['change']['label']} | "
-                    f"{song['title']} | {song['artist']}"
+                    f"{song['title']} | {song['artist']} | "
+                    f"cover={'OK' if song.get('albumImage') else 'NONE'}"
                 )
 
         except Exception as exc:
@@ -346,7 +550,6 @@ def main():
                     "error": str(exc),
                 }
 
-    # 모든 플랫폼이 실패한 경우 파일 전체 시각을 최신처럼 보이게 만들지 않음
     if success_count == 0:
         print()
         print("모든 차트 수집 실패 → 기존 chart-data.json을 유지합니다.")
