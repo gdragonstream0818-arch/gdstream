@@ -1,4 +1,3 @@
-
 <html lang="ko">
 <head>
   <link rel="icon" href="/assets/meta/favicon.png" type="image/png" sizes="any">
@@ -36,7 +35,7 @@
     .ocModalClose, .collectModalClose { position:absolute; top:12px; right:14px; z-index:2; display:flex; align-items:center; justify-content:center; width:40px; height:40px; border:1px solid rgba(255,255,255,.35); border-radius:999px; background:rgba(0,0,0,.35); color:#fff; cursor:pointer; font-size:18px; backdrop-filter:blur(6px); }
     .ocModalClose:hover, .collectModalClose:hover { background:rgba(0,0,0,.5); }
     .ocHeroText, .collectHeroText { position:absolute; right:18px; bottom:16px; left:18px; color:#fff; }
-    .ocModalTitle { margin:0; font-size:26px; line-height:1.1; letter-spacing:-.02em; text-shadow:0 6px 22px rgba(0,0,0,.55); }
+    .ocModalTitle, .collectModalTitle { margin:0; font-size:26px; line-height:1.1; letter-spacing:-.02em; text-shadow:0 6px 22px rgba(0,0,0,.55); }
     .ocActionNotice { margin-top:12px; padding:10px 12px; border:1px solid rgba(255,255,255,.16); border-radius:14px; background:rgba(0,0,0,.38); font-size:13px; font-weight:700; line-height:1.35; backdrop-filter:blur(8px); }
     .ocModalBody, .collectModalBody { padding:18px; background:#fff; }
     .ocDeviceBar { display:flex; align-items:baseline; justify-content:space-between; gap:12px; padding:2px 2px 14px; }
@@ -46,77 +45,63 @@
     .ocModalBtn, .collectModalBtn { display:flex; align-items:center; justify-content:center; padding:16px 14px; border:1px solid rgba(0,0,0,.06); border-radius:16px; background:#f3f4f6; color:#111; box-shadow:0 10px 22px rgba(0,0,0,.06); font-weight:800; letter-spacing:-.01em; text-align:center; text-decoration:none; }
     .ocModalBtn:hover, .collectModalBtn:hover { background:#eceff3; }
     .ocHeroImg.is-hidden { display:none; }
-    .collectModalTitle { margin:0; }
     .collectNotice { margin-top:4px; padding:0; border:0; background:none; font-size:13px; font-weight:700; line-height:1.35; }
 
-    /* 바로가기: 세 카드 모두 동일한 간격 */
+    /* 바로가기: 카드 간 동일한 간격 */
     .ctaGuide--collect { margin-top:0; }
     .section > .ctaGuide + .ctaGuide { margin-top:12px; }
 
-    /* 음원 차트 현황 */
+    /* 섹션 타이틀 + 전체보기 버튼 공통 */
+    .sectionTitleRow { display:flex; align-items:center; justify-content:space-between; gap:12px; }
+    .viewAllBtn { flex:0 0 auto; color:#315fc7; font-size:13px; font-weight:900; letter-spacing:-.02em; text-decoration:none; white-space:nowrap; }
+    .viewAllBtn:hover { text-decoration:underline; }
+
+    /* 음원 차트 현황 - 메인 초간소화 */
     .musicChartSection { margin-top:6px; }
-    .musicChartPanel { overflow:hidden; border:1px solid rgba(0,0,0,.08); border-radius:20px; background:#fff; box-shadow:0 14px 38px rgba(0,0,0,.05); }
-    .musicChartHead { position:relative; overflow:hidden; padding:22px 22px 19px; border-bottom:1px solid rgba(0,0,0,.08); background:
-      linear-gradient(90deg, rgba(0,0,0,.65) 0%, rgba(0,0,0,.42) 50%, rgba(0,0,0,.18) 100%),
-      url("/assets/header/gdbiiig.png") center 38% / cover no-repeat; color:#fff; }
-    .musicChartHead::after { display:none; }
-    .musicChartKicker { position:relative; z-index:1; display:flex; align-items:center; gap:7px; color:rgba(255,255,255,.7); font-size:11px; font-weight:900; letter-spacing:.1em; }
-    .musicChartKicker::before { content:""; width:7px; height:7px; border-radius:50%; background:#ff5c5c; box-shadow:0 0 0 4px rgba(255,92,92,.16); }
-    .musicChartTitleRow { position:relative; z-index:1; display:flex; align-items:flex-end; justify-content:space-between; gap:15px; margin-top:11px; }
-    .musicChartTitle { margin:0; color:#fff; font-size:clamp(24px,5vw,31px); font-weight:900; letter-spacing:-.055em; line-height:1.1; }
-    .musicChartUpdated { flex:0 0 auto; color:rgba(255,255,255,.62); font-size:11px; font-weight:700; line-height:1.45; text-align:right; font-variant-numeric:tabular-nums; }
-    .musicChartSummary { position:relative; z-index:1; display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:19px; }
-    .musicChartStat { padding:11px 12px; border:1px solid rgba(255,255,255,.14); border-radius:12px; background:rgba(255,255,255,.09); backdrop-filter:blur(8px); }
-    .musicChartStatLabel { color:rgba(255,255,255,.62); font-size:10px; font-weight:850; letter-spacing:.03em; }
-    .musicChartStatValue { margin-top:5px; color:#fff; font-size:23px; font-weight:900; letter-spacing:-.055em; line-height:1; font-variant-numeric:tabular-nums; }
-    .musicChartBody { padding:16px; background:#f7f8fb; }
-    .musicChartControlRow { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:13px; }
-    .musicChartSubTitle { color:#111; font-size:14px; font-weight:900; letter-spacing:-.03em; }
-    .musicChartFilters { display:flex; gap:5px; padding:3px; border:1px solid rgba(0,0,0,.08); border-radius:10px; background:#fff; }
-    .musicChartFilter { padding:7px 9px; border:0; border-radius:7px; background:transparent; color:rgba(0,0,0,.45); cursor:pointer; font-family:inherit; font-size:11px; font-weight:850; letter-spacing:-.02em; transition:background .16s ease,color .16s ease; }
-    .musicChartFilter:hover { color:#111; }
-    .musicChartFilter.is-active { background:#111; color:#fff; }
-    .musicChartList { display:grid; gap:10px; }
-    .musicSongCard { overflow:hidden; border:1px solid rgba(0,0,0,.08); border-radius:15px; background:#fff; }
-    .musicSongHead { display:flex; align-items:center; justify-content:space-between; gap:13px; padding:14px 15px 13px; border-bottom:1px solid rgba(0,0,0,.075); }
-    .musicSongInfo { min-width:0; }
-    .musicSongArtist { margin-bottom:4px; color:#315fc7; font-size:10px; font-weight:900; letter-spacing:.065em; }
-    .musicSongTitle { overflow:hidden; color:#111; font-size:18px; font-weight:900; letter-spacing:-.045em; line-height:1.2; text-overflow:ellipsis; white-space:nowrap; }
-    .musicSongCount { flex:0 0 auto; padding:7px 8px; border-radius:8px; background:#eef3ff; color:#315fc7; font-size:10px; font-weight:900; white-space:nowrap; }
-    .musicRankGrid { display:grid; grid-template-columns:repeat(4,1fr); }
-    .musicRankItem { min-width:0; padding:12px 10px 13px; border-right:1px solid rgba(0,0,0,.075); }
-    .musicRankItem:last-child { border-right:0; }
-    .musicRankPlatform { overflow:hidden; color:rgba(0,0,0,.43); font-size:9px; font-weight:850; letter-spacing:-.025em; text-overflow:ellipsis; white-space:nowrap; }
-    .musicRankValueRow { display:flex; align-items:baseline; gap:3px; margin-top:6px; }
-    .musicRankValue { color:#111; font-size:21px; font-weight:900; letter-spacing:-.06em; line-height:1; font-variant-numeric:tabular-nums; }
-    .musicRankUnit { color:rgba(0,0,0,.45); font-size:10px; font-weight:800; }
-    .musicRankChange { display:inline-flex; align-items:center; min-height:16px; margin-top:7px; padding:2px 5px; border-radius:5px; font-size:9px; font-weight:900; line-height:1.15; font-variant-numeric:tabular-nums; }
-    .musicRankChange--up { background:#fff0f0; color:#e34040; }
-    .musicRankChange--down { background:#edf4ff; color:#3574dc; }
-    .musicRankChange--same { background:#f0f1f3; color:#80848d; }
-    .musicRankChange--new { background:#eaf8f0; color:#138356; }
-    .musicChartEmpty,.musicChartError { padding:34px 16px; border:1px solid rgba(0,0,0,.08); border-radius:15px; background:#fff; color:rgba(0,0,0,.5); font-size:13px; font-weight:700; line-height:1.6; text-align:center; }
-    .musicChartError { color:#c34444; }
-    .musicChartNotice { margin:12px 2px 1px; color:rgba(0,0,0,.43); font-size:10px; font-weight:650; line-height:1.65; letter-spacing:-.01em; }
+    .musicChartUpdatedLine { margin-top:4px; color:rgba(0,0,0,.42); font-size:10px; font-weight:700; font-variant-numeric:tabular-nums; }
+    .musicChartCompact { overflow:hidden; margin-top:11px; border:1px solid rgba(0,0,0,.08); border-radius:15px; background:#fff; }
+    .chartPlatformRow { display:grid; grid-template-columns:118px minmax(0,1fr); border-top:1px solid rgba(0,0,0,.065); }
+    .chartPlatformRow:first-child { border-top:0; }
+    .chartPlatformName { display:flex; align-items:center; padding:10px 11px; background:#f7f8fb; color:#111; font-size:11px; font-weight:900; letter-spacing:-.025em; }
+    .chartSummaryList { min-width:0; }
+    .chartSummaryRow { display:grid; grid-template-columns:minmax(0,1fr) auto auto; align-items:center; gap:7px; min-height:34px; padding:7px 10px; border-top:1px solid rgba(0,0,0,.05); }
+    .chartSummaryRow:first-child { border-top:0; }
+    .chartSummarySong { overflow:hidden; color:#111; font-size:11px; font-weight:780; letter-spacing:-.02em; text-overflow:ellipsis; white-space:nowrap; }
+    .chartSummaryRank { min-width:32px; color:#315fc7; font-size:11px; font-weight:900; text-align:right; white-space:nowrap; font-variant-numeric:tabular-nums; }
+    .chartSummaryChange { min-width:28px; padding:2px 4px; border-radius:5px; font-size:8px; font-weight:900; line-height:1.25; text-align:center; white-space:nowrap; }
+    .chartSummaryChange.up { background:#fff0f0; color:#e34040; }
+    .chartSummaryChange.down { background:#edf4ff; color:#3574dc; }
+    .chartSummaryChange.same { background:#f0f1f3; color:#80848d; }
+    .chartSummaryChange.new { background:#eaf8f0; color:#138356; }
+    .chartSummaryEmpty { padding:10px; color:rgba(0,0,0,.38); font-size:10px; font-weight:700; }
+    .musicChartNotice { margin:7px 2px 0; color:rgba(0,0,0,.38); font-size:9px; font-weight:650; line-height:1.5; letter-spacing:-.01em; }
+
+    /* 아카이빙 프리뷰 */
+    .archiveSection .sectionTitleRow { margin-bottom:2px; }
+
+    /* 계정 모아보기 - 메인 안에서만 compact */
+    .socialCompactList { display:flex; flex-direction:column; gap:8px; }
+    .socialCompactRow { display:flex; align-items:center; gap:10px; min-height:52px; padding:9px 11px 9px 13px; border:1px solid rgba(0,0,0,.08); border-radius:14px; background:#fff; }
+    .socialCompactInfo { flex:1 1 auto; min-width:0; }
+    .socialCompactTitle { overflow:hidden; color:#111; font-size:12px; font-weight:900; letter-spacing:-.025em; text-overflow:ellipsis; white-space:nowrap; }
+    .socialCompactDesc { margin-top:2px; color:rgba(0,0,0,.4); font-size:9px; font-weight:700; }
+    .socialCompactIcons { flex:0 1 auto; display:flex; align-items:center; justify-content:flex-end; flex-wrap:wrap; gap:5px; }
+    .socialCompactLink { display:flex; align-items:center; justify-content:center; width:28px; height:28px; border:1px solid rgba(0,0,0,.07); border-radius:8px; background:#f7f8fb; text-decoration:none; transition:transform .15s ease, background .15s ease; }
+    .socialCompactLink:hover { background:#eef1f5; transform:translateY(-1px); }
+    .socialCompactLink img { width:15px; height:15px; object-fit:contain; }
+
     @media (max-width:520px) {
       .ocModalGrid,.collectModalGrid { grid-template-columns:1fr; }
-      .musicChartHead { padding:20px 17px 17px; }
-      .musicChartTitleRow,.musicChartControlRow { align-items:flex-start; flex-direction:column; }
-      .musicChartUpdated { text-align:left; }
-      .musicChartSummary { margin-top:15px; }
-      .musicChartStat { padding:10px 9px; }
-      .musicChartStatValue { font-size:20px; }
-      .musicChartBody { padding:12px; }
-      .musicRankGrid { grid-template-columns:repeat(2,1fr); }
-      .musicRankItem { border-bottom:1px solid rgba(0,0,0,.075); }
-      .musicRankItem:nth-child(2n) { border-right:0; }
-      .musicRankItem:nth-last-child(-n + 2) { border-bottom:0; }
-    }
-    @media (max-width:370px) {
-      .musicChartFilters { width:100%; }
-      .musicChartFilter { flex:1; padding-right:5px; padding-left:5px; }
-      .musicSongHead { padding-right:12px; padding-left:12px; }
-      .musicSongTitle { font-size:16px; }
+      .chartPlatformRow { grid-template-columns:94px minmax(0,1fr); }
+      .chartPlatformName { padding:9px 8px; font-size:10px; }
+      .chartSummaryRow { gap:5px; padding:7px 8px; }
+      .chartSummarySong,.chartSummaryRank { font-size:10px; }
+      .chartSummaryChange { min-width:25px; font-size:8px; }
+      .socialCompactRow { gap:7px; padding:8px 9px 8px 11px; }
+      .socialCompactTitle { font-size:11px; }
+      .socialCompactDesc { font-size:8px; }
+      .socialCompactLink { width:26px; height:26px; }
+      .socialCompactLink img { width:14px; height:14px; }
     }
   </style>
 </head>
@@ -137,52 +122,100 @@
       <a class="ctaGuide" href="/guide/"><div class="ctaGuideText"><div class="ctaGuideTitle">가이드</div><div class="ctaGuideDesc">스트리밍 / 다운로드 / 기타 / 스트리밍리스트</div></div><div class="ctaGuideArrow">→</div></a>
       <a class="ctaGuide ctaGuide--collect" href="#" id="openCollectModal"><div class="ctaGuideText"><div class="ctaGuideTitle">아이디 기부</div><div class="ctaGuideDesc">가이드 확인 후 아이디 제출하기</div></div><div class="ctaGuideArrow">→</div></a>
       <a class="ctaGuide ctaGuide--collect" href="/radio/"><div class="ctaGuideText"><div class="ctaGuideTitle">라디오 신청</div><div class="ctaGuideDesc">현재 방송 중인 라디오에 BiiiG 신청하기</div></div><div class="ctaGuideArrow">→</div></a>
+      <a class="ctaGuide ctaGuide--collect" href="#" id="openSueModal"><div class="ctaGuideText"><div class="ctaGuideTitle">고소</div><div class="ctaGuideDesc">악성 게시물 신고 / 고소 안내</div></div><div class="ctaGuideArrow">→</div></a>
     </section>
 
-    
-
     <section class="section musicChartSection">
-      <div class="musicChartPanel">
-        <div class="musicChartHead"><div class="musicChartKicker">LIVE CHART UPDATE</div><div class="musicChartTitleRow"><h2 class="musicChartTitle">G-DRAGON &amp; BIGBANG<br>음원 차트 현황</h2><div id="musicChartUpdated" class="musicChartUpdated">업데이트 준비 중</div></div><div class="musicChartSummary" aria-label="차트인 곡 수"><div class="musicChartStat"><div class="musicChartStatLabel">TOTAL</div><div id="musicChartTotal" class="musicChartStatValue">—</div></div><div class="musicChartStat"><div class="musicChartStatLabel">G-DRAGON</div><div id="musicChartGD" class="musicChartStatValue">—</div></div><div class="musicChartStat"><div class="musicChartStatLabel">BIGBANG</div><div id="musicChartBIGBANG" class="musicChartStatValue">—</div></div></div></div>
-        <div class="musicChartBody"><div class="musicChartControlRow"><div class="musicChartSubTitle">현재 차트인 음원</div><div class="musicChartFilters" aria-label="아티스트 필터"><button type="button" class="musicChartFilter is-active" data-chart-filter="ALL">전체</button><button type="button" class="musicChartFilter" data-chart-filter="G-DRAGON">G-DRAGON</button><button type="button" class="musicChartFilter" data-chart-filter="BIGBANG">BIGBANG</button></div></div><div id="musicChartList" class="musicChartList" aria-live="polite"><div class="musicChartEmpty">지드래곤 활동 재개 시 음원 차트 현황을 제공합니다.</div></div><p class="musicChartNotice">※ 멜론 TOP100 · 멜론 일간 · 지니 TOP200 · 벅스 실시간 기준<br>※ 차트 순위는 자동 갱신되며, 플랫폼 집계 시점에 따라 실제 순위와 차이가 있을 수 있습니다.</p></div>
+      <div class="sectionTitleRow">
+        <div class="sectionTitle">음원 차트 현황</div>
+        <a class="viewAllBtn" href="/chart/">전체보기 →</a>
+      </div>
+      <div class="musicChartUpdatedLine">업데이트 <span id="musicChartUpdated">준비 중</span></div>
+
+      <div class="musicChartCompact">
+        <div class="chartPlatformRow" data-chart-id="melonTop100">
+          <div class="chartPlatformName">멜론 TOP100</div>
+          <div class="chartSummaryList"><div class="chartSummaryEmpty">불러오는 중</div></div>
+        </div>
+        <div class="chartPlatformRow" data-chart-id="melonDaily">
+          <div class="chartPlatformName">멜론 일간</div>
+          <div class="chartSummaryList"><div class="chartSummaryEmpty">불러오는 중</div></div>
+        </div>
+        <div class="chartPlatformRow" data-chart-id="genieTop200">
+          <div class="chartPlatformName">지니 TOP200</div>
+          <div class="chartSummaryList"><div class="chartSummaryEmpty">불러오는 중</div></div>
+        </div>
+        <div class="chartPlatformRow" data-chart-id="bugsRealtime">
+          <div class="chartPlatformName">벅스 실시간</div>
+          <div class="chartSummaryList"><div class="chartSummaryEmpty">불러오는 중</div></div>
+        </div>
+      </div>
+
+      <p class="musicChartNotice">※ 자동 갱신 · 플랫폼 집계 시점에 따라 실제 순위와 차이가 있을 수 있습니다.</p>
+    </section>
+
+    <section class="section archiveSection">
+      <div class="sectionTitleRow"><div class="sectionTitle">아카이빙</div><a class="viewAllBtn" href="/archive/">전체보기 →</a></div>
+      <div class="archiveCoverScroll">
+        <a class="archiveCoverCard" href="/archive/archiving/jacob-co/"><div class="archiveCoverImgBox"><img src="/assets/archive/archive1.jpg" alt="제이콥앤코"></div><div class="archiveCoverTitle">JACOB&CO</div><div class="archiveCoverTags">#1</div></a>
+        <a class="archiveCoverCard" href="/archive/archiving/yellowcoin/"><div class="archiveCoverImgBox"><img src="/assets/archive/archive2.jpg" alt="노란동전"></div><div class="archiveCoverTitle">노란 동전 자선 행사</div><div class="archiveCoverTags">#2</div></a>
+        <a class="archiveCoverCard" href="/archive/archiving/fanplusone/"><div class="archiveCoverImgBox"><img src="/assets/archive/archive3.jpg" alt="FANPLUSONE"></div><div class="archiveCoverTitle">FANPLUSONE</div><div class="archiveCoverTags">#3</div></a>
+        <a class="archiveCoverCard" href="/archive/archiving/exhibition/"><div class="archiveCoverImgBox"><img src="/assets/archive/archive4.jpg" alt="EXHIBITION"></div><div class="archiveCoverTitle">EXHIBITION</div><div class="archiveCoverTags">#4</div></a>
       </div>
     </section>
 
-    <section class="section archiveSection"><div class="sectionTitle">아카이빙</div><div class="archiveCoverScroll">
-      <a class="archiveCoverCard" href="/archive/archiving/jacob-co/"><div class="archiveCoverImgBox"><img src="/assets/archive/archive1.jpg" alt="제이콥앤코"></div><div class="archiveCoverTitle">JACOB&CO</div><div class="archiveCoverTags">#1</div></a>
-      <a class="archiveCoverCard" href="/archive/archiving/yellowcoin/"><div class="archiveCoverImgBox"><img src="/assets/archive/archive2.jpg" alt="노란동전"></div><div class="archiveCoverTitle">노란 동전 자선 행사</div><div class="archiveCoverTags">#2</div></a>
-      <a class="archiveCoverCard" href="/archive/archiving/fanplusone/"><div class="archiveCoverImgBox"><img src="/assets/archive/archive3.jpg" alt="FANPLUSONE"></div><div class="archiveCoverTitle">FANPLUSONE</div><div class="archiveCoverTags">#3</div></a>
-      <a class="archiveCoverCard" href="/archive/archiving/exhibition/"><div class="archiveCoverImgBox"><img src="/assets/archive/archive4.jpg" alt="EXHIBITION"></div><div class="archiveCoverTitle">EXHIBITION</div><div class="archiveCoverTags">#4</div></a>
-      <a class="archiveCoverCard" href="/archive/archiving/goodday/"><div class="archiveCoverImgBox"><img src="/assets/archive/archive5.jpg" alt="굿데이"></div><div class="archiveCoverTitle">굿데이</div><div class="archiveCoverTags">#5</div></a>
-      <a class="archiveCoverCard" href="/archive/archiving/nike/"><div class="archiveCoverImgBox"><img src="/assets/archive/archive6.jpg" alt="나이키"></div><div class="archiveCoverTitle">NIKE</div><div class="archiveCoverTags">#6</div></a>
-    </div></section>
+    <section class="section">
+      <div class="sectionTitle">계정 모아보기</div>
+      <div class="socialCompactList">
+        <div class="socialCompactRow">
+          <div class="socialCompactInfo">
+            <div class="socialCompactTitle">G-DRAGON INDIVIDUAL</div>
+            <div class="socialCompactDesc">지드래곤 개인 계정</div>
+          </div>
+          <div class="socialCompactIcons">
+            <a class="socialCompactLink" href="https://www.instagram.com/xxxibgdrgn" target="_blank" rel="noreferrer" aria-label="G-DRAGON Instagram" title="Instagram"><img src="/assets/icons/social/instagram.svg" alt=""></a>
+            <a class="socialCompactLink" href="https://x.com/ibgdrgn" target="_blank" rel="noreferrer" aria-label="G-DRAGON X" title="X"><img src="/assets/icons/social/x.svg" alt=""></a>
+            <a class="socialCompactLink" href="https://weibo.com/u/3786649467" target="_blank" rel="noreferrer" aria-label="G-DRAGON Weibo" title="Weibo"><img src="/assets/icons/social/weibo.svg" alt=""></a>
+          </div>
+        </div>
 
-    <section class="section"><div class="sectionTitle">계정 모아보기</div>
-      <div class="socialCard"><div class="socialHead"><div class="socialTitle">G-DRAGON INDIVIDUAL</div><div class="socialDesc">지드래곤 개인 계정</div></div><div class="socialGrid">
-        <a class="socialBtn" href="https://www.instagram.com/xxxibgdrgn" target="_blank" rel="noreferrer"><span class="socialIcon"><img src="/assets/icons/social/instagram.svg" alt="Instagram"></span><span class="socialName">Instagram</span></a>
-        <a class="socialBtn" href="https://x.com/ibgdrgn" target="_blank" rel="noreferrer"><span class="socialIcon"><img src="/assets/icons/social/x.svg" alt="X"></span><span class="socialName">X</span></a>
-        <a class="socialBtn" href="https://weibo.com/u/3786649467" target="_blank" rel="noreferrer"><span class="socialIcon"><img src="/assets/icons/social/weibo.svg" alt="Weibo"></span><span class="socialName">Weibo</span></a>
-      </div></div>
-      <div class="socialCard"><div class="socialHead"><div class="socialTitle">G-DRAGON OFFICIAL</div><div class="socialDesc">공식 계정</div></div><div class="socialGrid">
-        <a class="socialBtn" href="https://www.youtube.com/@xxxibgdrgn" target="_blank" rel="noreferrer"><span class="socialIcon"><img src="/assets/icons/social/youtube.svg" alt="YouTube"></span><span class="socialName">YouTube</span></a>
-        <a class="socialBtn" href="https://www.instagram.com/8lo8lo8lowme" target="_blank" rel="noreferrer"><span class="socialIcon"><img src="/assets/icons/social/instagram.svg" alt="Instagram"></span><span class="socialName">팔로미</span></a>
-        <a class="socialBtn" href="https://www.instagram.com/fanplusonedotcom" target="_blank" rel="noreferrer"><span class="socialIcon"><img src="/assets/icons/social/instagram.svg" alt="Instagram"></span><span class="socialName">fanplusone</span></a>
-        <a class="socialBtn" href="https://x.com/FANPLUS1DOTCOM" target="_blank" rel="noreferrer"><span class="socialIcon"><img src="/assets/icons/social/x.svg" alt="X"></span><span class="socialName">fanplusone</span></a>
-        <a class="socialBtn" href="https://www.tiktok.com/@fanplusonedotcom" target="_blank" rel="noreferrer"><span class="socialIcon"><img src="/assets/icons/social/tiktok.svg" alt="TikTok"></span><span class="socialName">TikTok</span></a>
-        <a class="socialBtn" href="https://gdragon.ai/" target="_blank" rel="noreferrer"><span class="socialIcon"><img src="/assets/icons/social/bstage.svg" alt="b.stage"></span><span class="socialName">b.stage</span></a>
-      </div></div>
-      <div class="socialCard"><div class="socialHead"><div class="socialTitle">GDRAGON STREAM</div><div class="socialDesc">음원총공팀 계정</div></div><div class="socialGrid">
-        <a class="socialBtn" href="https://x.com/GDRAGON_STREAM" target="_blank" rel="noreferrer"><span class="socialIcon"><img src="/assets/icons/social/x.svg" alt="X"></span><span class="socialName">X</span></a>
-        <a class="socialBtn" href="https://www.instagram.com/gdragon_stream/" target="_blank" rel="noreferrer"><span class="socialIcon"><img src="/assets/icons/social/instagram.svg" alt="Instagram"></span><span class="socialName">Instagram</span></a>
-        <a class="socialBtn" href="https://www.threads.com/@gdragon_stream?xmt=AQF0-9Qrl0GaLacu6i-jscBusw1dgbuFYdABjjHnuAWiOaA" target="_blank" rel="noreferrer"><span class="socialIcon"><img src="/assets/icons/social/threads.svg" alt="Threads"></span><span class="socialName">Threads</span></a>
-        <a class="socialBtn" href="https://gall.dcinside.com/mgallery/board/lists/?id=gdpeaceminusone" target="_blank" rel="noreferrer"><span class="socialIcon"><img src="/assets/icons/social/dcinside.svg" alt="디시인사이드"></span><span class="socialName">디시인사이드</span></a>
-      </div></div>
+        <div class="socialCompactRow">
+          <div class="socialCompactInfo">
+            <div class="socialCompactTitle">G-DRAGON OFFICIAL</div>
+            <div class="socialCompactDesc">공식 계정</div>
+          </div>
+          <div class="socialCompactIcons">
+            <a class="socialCompactLink" href="https://www.youtube.com/@xxxibgdrgn" target="_blank" rel="noreferrer" aria-label="G-DRAGON YouTube" title="YouTube"><img src="/assets/icons/social/youtube.svg" alt=""></a>
+            <a class="socialCompactLink" href="https://www.instagram.com/8lo8lo8lowme" target="_blank" rel="noreferrer" aria-label="8lo8lo8lowme Instagram" title="팔로미"><img src="/assets/icons/social/instagram.svg" alt=""></a>
+            <a class="socialCompactLink" href="https://www.instagram.com/fanplusonedotcom" target="_blank" rel="noreferrer" aria-label="fanplusone Instagram" title="fanplusone Instagram"><img src="/assets/icons/social/instagram.svg" alt=""></a>
+            <a class="socialCompactLink" href="https://x.com/FANPLUS1DOTCOM" target="_blank" rel="noreferrer" aria-label="fanplusone X" title="fanplusone X"><img src="/assets/icons/social/x.svg" alt=""></a>
+            <a class="socialCompactLink" href="https://www.tiktok.com/@fanplusonedotcom" target="_blank" rel="noreferrer" aria-label="fanplusone TikTok" title="TikTok"><img src="/assets/icons/social/tiktok.svg" alt=""></a>
+            <a class="socialCompactLink" href="https://gdragon.ai/" target="_blank" rel="noreferrer" aria-label="G-DRAGON b.stage" title="b.stage"><img src="/assets/icons/social/bstage.svg" alt=""></a>
+          </div>
+        </div>
+
+        <div class="socialCompactRow">
+          <div class="socialCompactInfo">
+            <div class="socialCompactTitle">GDRAGON STREAM</div>
+            <div class="socialCompactDesc">음원총공팀 계정</div>
+          </div>
+          <div class="socialCompactIcons">
+            <a class="socialCompactLink" href="https://x.com/GDRAGON_STREAM" target="_blank" rel="noreferrer" aria-label="GDRAGON STREAM X" title="X"><img src="/assets/icons/social/x.svg" alt=""></a>
+            <a class="socialCompactLink" href="https://www.instagram.com/gdragon_stream/" target="_blank" rel="noreferrer" aria-label="GDRAGON STREAM Instagram" title="Instagram"><img src="/assets/icons/social/instagram.svg" alt=""></a>
+            <a class="socialCompactLink" href="https://www.threads.com/@gdragon_stream?xmt=AQF0-9Qrl0GaLacu6i-jscBusw1dgbuFYdABjjHnuAWiOaA" target="_blank" rel="noreferrer" aria-label="GDRAGON STREAM Threads" title="Threads"><img src="/assets/icons/social/threads.svg" alt=""></a>
+            <a class="socialCompactLink" href="https://gall.dcinside.com/mgallery/board/lists/?id=gdpeaceminusone" target="_blank" rel="noreferrer" aria-label="GDRAGON STREAM 디시인사이드" title="디시인사이드"><img src="/assets/icons/social/dcinside.svg" alt=""></a>
+          </div>
+        </div>
+      </div>
     </section>
   </main>
 
   <div id="ocModal" class="ocModal" aria-hidden="true"><div id="ocOverlay" class="ocModalOverlay"></div><div class="ocModalPanel" role="dialog" aria-modal="true" aria-labelledby="ocModalTitle"><div class="ocHero"><img id="ocHeroImg" class="ocHeroImg" src="/assets/header/default.jpg" alt=""><div class="ocHeroShade"></div><button id="ocClose" type="button" class="ocModalClose" aria-label="닫기">✕</button><div class="ocHeroText"><h3 id="ocModalTitle" class="ocModalTitle">원클릭 링크</h3><div id="ocActionNotice" class="ocActionNotice">중복곡 허용 후 이용해주세요!</div></div></div><div class="ocModalBody"><div class="ocDeviceBar"><div id="ocDeviceLabel" class="ocDeviceLabel">PC</div><div id="ocDeviceHint" class="ocDeviceHint"></div></div><div id="ocModalGrid" class="ocModalGrid"></div></div></div></div>
 
   <div id="collectModal" class="collectModal" aria-hidden="true"><div id="collectOverlay" class="collectModalOverlay"></div><div class="collectModalPanel" role="dialog" aria-modal="true" aria-labelledby="collectModalTitle"><div class="collectHero"><img class="collectHeroImg" src="/assets/header/default4.jpg" alt="아이디 수집 안내 이미지"><button id="collectClose" type="button" class="collectModalClose" aria-label="닫기">✕</button><div class="collectHeroText"><h3 id="collectModalTitle" class="collectModalTitle">지니 아이디 기부</h3><div class="collectNotice">가이드를 먼저 확인한 뒤 아이디를 제출해주세요!</div></div></div><div class="collectModalBody"><div class="collectModalGrid"><a class="collectModalBtn" href="/guide/etc/collectid/">가이드</a><a class="collectModalBtn" href="https://naver.me/FNti54TO" target="_blank" rel="noreferrer">아이디 제출하기</a></div></div></div></div>
+
+  <!-- 고소 모달: 아이디 기부 모달과 동일한 구조/톤. 실제 가이드·사이트 링크는 아래 href만 교체하면 됩니다. -->
+  <div id="sueModal" class="collectModal" aria-hidden="true"><div id="sueOverlay" class="collectModalOverlay"></div><div class="collectModalPanel" role="dialog" aria-modal="true" aria-labelledby="sueModalTitle"><div class="collectHero"><img class="collectHeroImg" src="/assets/header/default4.jpg" alt="악성 게시물 신고 안내 이미지"><button id="sueClose" type="button" class="collectModalClose" aria-label="닫기">✕</button><div class="collectHeroText"><h3 id="sueModalTitle" class="collectModalTitle">악성 게시물 신고 / 고소</h3><div class="collectNotice">가이드를 먼저 확인한 뒤 진행해주세요.</div></div></div><div class="collectModalBody"><div class="collectModalGrid"><a class="collectModalBtn" href="/guide/etc/sue/">가이드 보기</a><a class="collectModalBtn" href="#" target="_blank" rel="noreferrer">고소 사이트 바로가기</a></div></div></div></div>
 
   <footer class="footer"><div class="container footerInner footerInner--logo"><a href="/" class="footerLogoLink" aria-label="지드래곤 음원총공팀 홈으로 이동"><img class="footerLogo" src="/assets/header/logo1.png" alt="지드래곤 음원총공팀 로고"></a></div></footer>
 
@@ -198,73 +231,67 @@
     if(openCollectModal) openCollectModal.addEventListener('click',e=>{ e.preventDefault(); openCollect(); });
     if(collectOverlay) collectOverlay.addEventListener('click',closeCollect);
     if(collectClose) collectClose.addEventListener('click',closeCollect);
-    document.addEventListener('keydown',e=>{ if(e.key==='Escape' && collectModal.classList.contains('is-open')) closeCollect(); });
+
+    const openSueModal = document.getElementById('openSueModal');
+    const sueModal = document.getElementById('sueModal');
+    const sueOverlay = document.getElementById('sueOverlay');
+    const sueClose = document.getElementById('sueClose');
+    function openSue(){ sueModal.classList.add('is-open'); sueModal.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; }
+    function closeSue(){ sueModal.classList.remove('is-open'); sueModal.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
+    if(openSueModal) openSueModal.addEventListener('click',e=>{ e.preventDefault(); openSue(); });
+    if(sueOverlay) sueOverlay.addEventListener('click',closeSue);
+    if(sueClose) sueClose.addEventListener('click',closeSue);
+
+    document.addEventListener('keydown',e=>{
+      if(e.key!=='Escape') return;
+      if(collectModal.classList.contains('is-open')) closeCollect();
+      if(sueModal.classList.contains('is-open')) closeSue();
+    });
+
     function updateHeroColorEffect(){ const heroImg=document.querySelector('.heroImg'); const isMobile=window.matchMedia('(max-width: 768px)').matches; if(!heroImg) return; heroImg.classList.toggle('is-color',isMobile && window.scrollY>30); }
     window.addEventListener('scroll',updateHeroColorEffect); window.addEventListener('resize',updateHeroColorEffect); window.addEventListener('load',updateHeroColorEffect);
 
+    /* ===== 음원 차트 현황 - 메인 요약 (chart-data.json 그대로 재사용) ===== */
     const MUSIC_CHART_ORDER=['melonTop100','melonDaily','genieTop200','bugsRealtime'];
-    const MUSIC_CHART_LABELS={melonTop100:'멜론 TOP100',melonDaily:'멜론 일간',genieTop200:'지니 TOP200',bugsRealtime:'벅스 실시간'};
-    let musicChartSongs=[]; let musicChartFilter='ALL';
     function escapeChartHtml(value){ return String(value??'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#39;'); }
-    function normalizeChartArtist(artist){ return String(artist||'').toUpperCase().replace(/\([^)]*\)/g,'').trim(); }
-    function normalizeChartTitle(title){ return String(title||'').toLowerCase().replace(/\(feat\.[^)]*\)/gi,'').replace(/\(feat[^)]*\)/gi,'').replace(/[^a-z0-9가-힣]/gi,'').trim(); }
-    function makeMainChartSongKey(song){ return `${normalizeChartArtist(song.artistGroup||song.artist)}|||${normalizeChartTitle(song.title)}`; }
-    function getMainChartChangeClass(change){ return change?.type==='up'?'musicRankChange--up':change?.type==='down'?'musicRankChange--down':change?.type==='new'?'musicRankChange--new':'musicRankChange--same'; }
-    function aggregateMainChartSongs(data){ const grouped=new Map(); MUSIC_CHART_ORDER.forEach(chartId=>{ const chart=data.charts?.[chartId]; if(!chart||chart.status!=='ok') return; (chart.songs||[]).forEach(song=>{ const key=makeMainChartSongKey(song); if(!grouped.has(key)) grouped.set(key,{key,title:song.title,artist:song.artist,artistGroup:normalizeChartArtist(song.artistGroup||song.artist),ranks:{}}); const item=grouped.get(key); if(chartId==='melonTop100'||chartId==='melonDaily'){ item.title=song.title; item.artist=song.artist; } item.ranks[chartId]={rank:song.rank,change:song.change}; }); }); return [...grouped.values()].sort((a,b)=>Math.min(...Object.values(a.ranks).map(x=>x.rank))-Math.min(...Object.values(b.ranks).map(x=>x.rank))); }
-    function updateMainChartSummary(songs){ document.getElementById('musicChartTotal').textContent=songs.length; document.getElementById('musicChartGD').textContent=songs.filter(x=>x.artistGroup==='G-DRAGON').length; document.getElementById('musicChartBIGBANG').textContent=songs.filter(x=>x.artistGroup==='BIGBANG').length; }
-    function renderMainChartSongs(){ const list=document.getElementById('musicChartList'); const songs=musicChartFilter==='ALL'?musicChartSongs:musicChartSongs.filter(x=>x.artistGroup===musicChartFilter); if(!songs.length){ list.innerHTML='<div class="musicChartEmpty">현재 조건에 해당하는 차트인 음원이 없습니다.</div>'; return; } list.innerHTML=songs.map(song=>{ const ranks=MUSIC_CHART_ORDER.map(id=>{ const info=song.ranks[id]; if(!info) return `<div class="musicRankItem"><div class="musicRankPlatform">${MUSIC_CHART_LABELS[id]}</div><div class="musicRankValueRow"><div class="musicRankValue">—</div></div><div class="musicRankChange musicRankChange--same">미진입</div></div>`; return `<div class="musicRankItem"><div class="musicRankPlatform">${MUSIC_CHART_LABELS[id]}</div><div class="musicRankValueRow"><div class="musicRankValue">${escapeChartHtml(info.rank)}</div><div class="musicRankUnit">위</div></div><div class="musicRankChange ${getMainChartChangeClass(info.change)}">${escapeChartHtml(info.change?.label||'—')}</div></div>`; }).join(''); return `<article class="musicSongCard"><div class="musicSongHead"><div class="musicSongInfo"><div class="musicSongArtist">${escapeChartHtml(song.artistGroup)}</div><div class="musicSongTitle" title="${escapeChartHtml(song.title)}">${escapeChartHtml(song.title)}</div></div><div class="musicSongCount">${Object.keys(song.ranks).length}개 차트인</div></div><div class="musicRankGrid">${ranks}</div></article>`; }).join(''); }
+    function getMainChartChangeClass(change){ return change?.type==='up'?'up':change?.type==='down'?'down':change?.type==='new'?'new':'same'; }
     function formatMainChartUpdatedAt(updatedAt){
       const raw=String(updatedAt||'').trim();
       if(!raw) return '업데이트 시간 확인 필요';
-
-      // chart-data.json 예: "2026-09-06 09:48:20 KST"
       const match=raw.match(/^(\d{4})-(\d{2})-(\d{2})[ T](\d{2}):(\d{2})(?::\d{2})?\s*(KST)?$/i);
-      if(match){
-        const [,year,month,day,hour,minute]=match;
-        return `${year}.${month}.${day} ${hour}:${minute} KST`;
-      }
-
-      // 형식이 달라져도 JSON에 기록된 원본 업데이트 시각을 그대로 표시
+      if(match){ const [,year,month,day,hour,minute]=match; return `${year}.${month}.${day} ${hour}:${minute} KST`; }
       return raw;
     }
-
-    async function loadMainChartData(){
-      const list=document.getElementById('musicChartList');
+    function renderChartSummaryCard(chartId, chart){
+      const container=document.querySelector(`[data-chart-id="${chartId}"] .chartSummaryList`);
+      if(!container) return;
+      if(!chart || chart.status!=='ok' || !(chart.songs||[]).length){
+        container.innerHTML='<div class="chartSummaryEmpty">현재 차트인 곡 없음</div>';
+        return;
+      }
+      container.innerHTML=chart.songs.map(song=>`<div class="chartSummaryRow"><span class="chartSummarySong" title="${escapeChartHtml(song.title)}">${escapeChartHtml(song.title)}</span><span class="chartSummaryRank">${escapeChartHtml(song.rank)}위</span><span class="chartSummaryChange ${getMainChartChangeClass(song.change)}">${escapeChartHtml(song.change?.label||'-')}</span></div>`).join('');
+    }
+    async function loadMainChartSummary(){
       try{
         const response=await fetch(`/chart-data.json?v=${Date.now()}`,{cache:'no-store'});
         if(!response.ok) throw new Error(`HTTP ${response.status}`);
-
         const data=await response.json();
-        musicChartSongs=aggregateMainChartSongs(data);
-
-        // 현재 시간이 아니라 chart-data.json의 최상위 updatedAt 기준으로 표시
         document.getElementById('musicChartUpdated').textContent=formatMainChartUpdatedAt(data.updatedAt);
-
-        updateMainChartSummary(musicChartSongs);
-        renderMainChartSongs();
+        MUSIC_CHART_ORDER.forEach(chartId=>renderChartSummaryCard(chartId, data.charts?.[chartId]));
       }catch(error){
         console.error(error);
         document.getElementById('musicChartUpdated').textContent='차트 데이터 확인 필요';
-        list.innerHTML='<div class="musicChartError">현재 차트 업데이트를 준비 중입니다.<br>잠시 후 다시 확인해 주세요.</div>';
+        MUSIC_CHART_ORDER.forEach(chartId=>{
+          const container=document.querySelector(`[data-chart-id="${chartId}"] .chartSummaryList`);
+          if(container) container.innerHTML='<div class="chartSummaryEmpty">불러오기 실패</div>';
+        });
       }
     }
-    document.querySelectorAll('.musicChartFilter').forEach(button=>button.addEventListener('click',function(){ musicChartFilter=this.dataset.chartFilter; document.querySelectorAll('.musicChartFilter').forEach(x=>x.classList.toggle('is-active',x===this)); renderMainChartSongs(); }));
-    // 페이지 진입 시 즉시 최신 차트 불러오기
-    loadMainChartData();
-
-    // 1분마다 최신 chart-data.json 다시 확인
+    loadMainChartSummary();
     const MUSIC_CHART_REFRESH_MS = 60 * 1000;
-    setInterval(loadMainChartData, MUSIC_CHART_REFRESH_MS);
-
-    // 다른 탭에 갔다가 다시 돌아왔을 때도 즉시 최신화
-    document.addEventListener('visibilitychange', () => {
-      if (!document.hidden) {
-        loadMainChartData();
-      }
-    });
-
-    // 창이 다시 활성화될 때도 즉시 최신화
-    window.addEventListener('focus', loadMainChartData);
+    setInterval(loadMainChartSummary, MUSIC_CHART_REFRESH_MS);
+    document.addEventListener('visibilitychange', () => { if (!document.hidden) loadMainChartSummary(); });
+    window.addEventListener('focus', loadMainChartSummary);
   </script>
 </body>
 </html>
