@@ -2,9 +2,6 @@ name: Update chart data
 
 on:
   workflow_dispatch:
-  schedule:
-    # 매시간 07분 / 37분 실행 (UTC 기준이지만 분은 동일)
-    - cron: "7,37 * * * *"
 
 permissions:
   contents: write
