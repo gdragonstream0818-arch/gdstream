@@ -49,15 +49,15 @@
 
     /* 바로가기: 4개 버튼을 compact 2x2로 배치 */
     .quickLinkGrid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; margin-top:10px; }
-    .quickLinkGrid .ctaGuide { min-width:0; margin:0; padding:13px 14px; border-radius:14px; }
+    .quickLinkGrid .ctaGuide { min-width:0; margin:0; padding:15px 16px; border-radius:14px; }
     .quickLinkGrid .ctaGuideText { min-width:0; }
-    .quickLinkGrid .ctaGuideTitle { font-size:14px; }
-    .quickLinkGrid .ctaGuideDesc { margin-top:3px; font-size:10px; line-height:1.35; }
-    .quickLinkGrid .ctaGuideArrow { margin-left:8px; font-size:15px; }
+    .quickLinkGrid .ctaGuideTitle { font-size:16px; font-weight:900; }
+    .quickLinkGrid .ctaGuideDesc { margin-top:4px; font-size:12px; line-height:1.45; font-weight:700; }
+    .quickLinkGrid .ctaGuideArrow { margin-left:10px; font-size:17px; }
 
     /* 섹션 타이틀 + 전체보기 버튼 공통 */
     .sectionTitleRow { display:flex; align-items:center; justify-content:space-between; gap:12px; }
-    .viewAllBtn { flex:0 0 auto; color:#315fc7; font-size:13px; font-weight:900; letter-spacing:-.02em; text-decoration:none; white-space:nowrap; }
+    .viewAllBtn { flex:0 0 auto; color:#111; font-size:13px; font-weight:900; letter-spacing:-.02em; text-decoration:none; white-space:nowrap; }
     .viewAllBtn:hover { text-decoration:underline; }
 
     /* 음원 차트 현황 - 메인 초간소화 */
@@ -93,10 +93,13 @@
     .socialCompactTitle { overflow:hidden; color:#111; font-size:15px; font-weight:900; letter-spacing:-.025em; text-overflow:ellipsis; white-space:nowrap; }
     .socialCompactDesc { margin-top:3px; color:rgba(0,0,0,.48); font-size:11px; font-weight:750; }
     .socialCompactIcons { flex:0 1 auto; display:flex; align-items:center; justify-content:flex-end; flex-wrap:wrap; gap:8px; }
+    .socialCompactRow--official { align-items:flex-start; padding-top:11px; padding-bottom:16px; }
+    .socialCompactRow--official .socialCompactIcons { padding-top:2px; }
     .socialCompactLink { display:flex; align-items:center; justify-content:center; min-width:22px; min-height:22px; padding:0; border:0; border-radius:0; background:transparent; color:#111; text-decoration:none; transition:transform .15s ease, opacity .15s ease; }
     .socialCompactLink:hover { background:transparent; opacity:.72; transform:translateY(-1px); }
     .socialCompactLink img { width:21px; height:21px; object-fit:contain; }
-    .socialCompactLink--labeled { flex-direction:column; gap:2px; min-width:34px; }
+    .socialCompactLink--labeled { position:relative; min-width:22px; min-height:22px; }
+    .socialCompactLink--labeled .socialIconLabel { position:absolute; top:100%; left:50%; transform:translateX(-50%); margin-top:3px; }
     .socialIconLabel { color:#555; font-size:8px; font-weight:800; line-height:1; letter-spacing:-.02em; white-space:nowrap; }
 
     @media (max-width:520px) {
@@ -110,12 +113,17 @@
       .chartSummaryRankNum { font-size:14px; }
       .chartSummaryRankUnit { font-size:10px; }
       .chartSummaryChange { min-width:25px; font-size:8px; }
+      .quickLinkGrid .ctaGuide { padding:14px 14px; }
+      .quickLinkGrid .ctaGuideTitle { font-size:15px; }
+      .quickLinkGrid .ctaGuideDesc { font-size:11px; line-height:1.4; }
+      .quickLinkGrid .ctaGuideArrow { font-size:16px; }
       .socialCompactRow { gap:7px; padding:8px 9px 8px 11px; }
+      .socialCompactRow--official { padding-top:10px; padding-bottom:15px; }
       .socialCompactTitle { font-size:14px; }
       .socialCompactDesc { font-size:10px; }
       .socialCompactLink { min-width:21px; min-height:21px; }
       .socialCompactLink img { width:20px; height:20px; }
-      .socialCompactLink--labeled { min-width:32px; }
+      .socialCompactLink--labeled { min-width:21px; min-height:21px; }
       .socialIconLabel { font-size:8px; }
     }
   </style>
@@ -151,19 +159,19 @@
 
       <div class="musicChartCompact">
         <div class="chartPlatformRow" data-chart-id="melonTop100">
-          <div class="chartPlatformName"><img class="chartPlatformIcon" src="/assets/icons/platform/melon.svg" alt="">멜론 TOP100</div>
+          <div class="chartPlatformName"><img class="chartPlatformIcon" src="/assets/icons/platform/melon.svg" alt="">TOP100</div>
           <div class="chartSummaryList"><div class="chartSummaryEmpty">불러오는 중</div></div>
         </div>
         <div class="chartPlatformRow" data-chart-id="melonDaily">
-          <div class="chartPlatformName"><img class="chartPlatformIcon" src="/assets/icons/platform/melon.svg" alt="">멜론 일간</div>
+          <div class="chartPlatformName"><img class="chartPlatformIcon" src="/assets/icons/platform/melon.svg" alt="">일간</div>
           <div class="chartSummaryList"><div class="chartSummaryEmpty">불러오는 중</div></div>
         </div>
         <div class="chartPlatformRow" data-chart-id="genieTop200">
-          <div class="chartPlatformName"><img class="chartPlatformIcon" src="/assets/icons/platform/genie.png" alt="">지니 TOP200</div>
+          <div class="chartPlatformName"><img class="chartPlatformIcon" src="/assets/icons/platform/genie.png" alt="">TOP200</div>
           <div class="chartSummaryList"><div class="chartSummaryEmpty">불러오는 중</div></div>
         </div>
         <div class="chartPlatformRow" data-chart-id="bugsRealtime">
-          <div class="chartPlatformName"><img class="chartPlatformIcon" src="/assets/icons/platform/bugs.jpg" alt="">벅스 실시간</div>
+          <div class="chartPlatformName"><img class="chartPlatformIcon" src="/assets/icons/platform/bugs.jpg" alt="">실시간</div>
           <div class="chartSummaryList"><div class="chartSummaryEmpty">불러오는 중</div></div>
         </div>
       </div>
@@ -196,7 +204,7 @@
           </div>
         </div>
 
-        <div class="socialCompactRow">
+        <div class="socialCompactRow socialCompactRow--official">
           <div class="socialCompactInfo">
             <div class="socialCompactTitle">G-DRAGON OFFICIAL</div>
             <div class="socialCompactDesc">공식 계정</div>
