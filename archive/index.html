@@ -4,60 +4,425 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <!-- 파비콘 -->
+  <link rel="icon" href="/assets/meta/favicon.png" type="image/png" sizes="any">
+
+  <!-- OG -->
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://i.ibb.co/JgfVvDn/ogw.png">
-  <meta property="og:title" content="라디오 신청 | 지드래곤 음원총공팀">
-  <meta property="og:description" content="현재 방송 중인 라디오에 빅뱅의 BiiiG을 신청하세요.">
-  <meta property="og:url" content="https://www.gdstream.site/radio/">
+  <meta property="og:title" content="아카이빙 | 지드래곤 음원총공팀">
+  <meta property="og:description" content="G-DRAGON 관련 아카이빙 콘텐츠를 모아봅니다.">
+  <meta property="og:url" content="https://www.gdstream.site/archive/">
+
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="라디오 신청 | 지드래곤 음원총공팀">
-  <meta name="twitter:description" content="현재 방송 중인 라디오에 빅뱅의 BiiiG을 신청하세요.">
+  <meta name="twitter:title" content="아카이빙 | 지드래곤 음원총공팀">
+  <meta name="twitter:description" content="G-DRAGON 관련 아카이빙 콘텐츠를 모아봅니다.">
   <meta name="twitter:image" content="https://i.ibb.co/JgfVvDn/ogw.png">
-  
-  <title>아카이빙 전체보기 | 지드래곤 음원총공팀</title>
+
+  <title>아카이빙 | 지드래곤 음원총공팀</title>
+
   <link rel="stylesheet" href="/styles.css">
+
   <style>
-    .subPage { padding-top:18px; padding-bottom:42px; }
-    .subTopBar { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:14px; }
-    .subBack { color:rgba(0,0,0,.55); font-size:13px; font-weight:800; text-decoration:none; }
-    .subBack:hover { color:#111; }
-    .subTitle { margin:0; color:#111; font-size:clamp(24px,5vw,34px); font-weight:950; letter-spacing:-.055em; }
-    .subDesc { margin:7px 0 0; color:rgba(0,0,0,.48); font-size:12px; font-weight:700; line-height:1.6; }
-    @media (max-width:520px) {
-      .subPage { padding-top:12px; }
+    .subHeader {
+      display: flex;
+      align-items: center;
+      padding: 14px 0 4px;
     }
-  
-    .archiveAllGrid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; }
-    .archiveAllCard { display:block; overflow:hidden; border:1px solid rgba(0,0,0,.08); border-radius:16px; background:#fff; color:#111; text-decoration:none; box-shadow:0 10px 28px rgba(0,0,0,.04); }
-    .archiveAllImgBox { aspect-ratio:3/4; overflow:hidden; background:#f2f3f5; }
-    .archiveAllImgBox img { width:100%; height:100%; object-fit:cover; transition:transform .2s ease; }
-    .archiveAllCard:hover .archiveAllImgBox img { transform:scale(1.025); }
-    .archiveAllBody { padding:12px 13px 13px; }
-    .archiveAllTitle { color:#111; font-size:14px; font-weight:900; letter-spacing:-.03em; }
-    .archiveAllTag { margin-top:4px; color:rgba(0,0,0,.38); font-size:10px; font-weight:800; }
-    @media (max-width:700px) { .archiveAllGrid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; } }
+
+    .backLink {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: rgba(0, 0, 0, .5);
+      font-size: 13px;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .backLink:hover {
+      color: #111;
+    }
+
+    .archiveSection {
+      margin-top: 6px;
+      margin-bottom: 18px;
+    }
+
+    .archiveHead {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+
+    .archiveTitle {
+      margin: 0;
+      color: #111;
+      font-size: clamp(24px, 5vw, 30px);
+      font-weight: 900;
+      letter-spacing: -.055em;
+      line-height: 1.1;
+    }
+
+    .archiveCount {
+      flex: 0 0 auto;
+      padding-bottom: 2px;
+      color: rgba(0, 0, 0, .36);
+      font-size: 10px;
+      font-weight: 850;
+      letter-spacing: .04em;
+      white-space: nowrap;
+    }
+
+    .archiveGrid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px 12px;
+    }
+
+    .archiveCard {
+      min-width: 0;
+      color: #111;
+      text-decoration: none;
+    }
+
+    .archiveCover {
+      position: relative;
+      overflow: hidden;
+
+      /* 원본 겉표지 3:4 */
+      aspect-ratio: 3 / 4;
+
+      border: 1px solid rgba(0, 0, 0, .07);
+      border-radius: 14px;
+      background: #f3f4f6;
+    }
+
+    .archiveCover img {
+      display: block;
+      width: 100%;
+      height: 100%;
+
+      /* 3:4 기준으로 꽉 채움 */
+      object-fit: cover;
+
+      transition: transform .2s ease;
+    }
+
+    .archiveCard:hover .archiveCover img {
+      transform: scale(1.018);
+    }
+
+    .archiveMeta {
+      padding: 8px 2px 0;
+    }
+
+    .archiveName {
+      overflow: hidden;
+      color: #111;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: -.035em;
+      line-height: 1.25;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .archiveNo {
+      margin-top: 3px;
+      color: rgba(0, 0, 0, .34);
+      font-size: 9px;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    /* 하단 공백 최소화 */
+    .footer {
+      margin-top: 0 !important;
+    }
+
+    .footerInner {
+      padding-top: 18px !important;
+      padding-bottom: 18px !important;
+    }
+
+    @media (max-width: 700px) {
+      .archiveGrid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px 10px;
+      }
+
+      .archiveHead {
+        margin-bottom: 12px;
+      }
+
+      .archiveMeta {
+        padding-top: 7px;
+      }
+
+      .archiveName {
+        font-size: 12px;
+      }
+    }
+
+    @media (max-width: 370px) {
+      .archiveGrid {
+        gap: 10px 8px;
+      }
+
+      .archiveCover {
+        border-radius: 12px;
+      }
+    }
   </style>
 </head>
+
 <body>
-  <header class="header header--simple"><div class="headerBar headerBar--center"><a class="brand" href="/" aria-label="지드래곤 음원총공팀"><img class="brandImg" src="/assets/header/logo.svg" alt="지드래곤 음원총공팀 로고"></a></div></header>
 
-  <main class="container subPage">
-    <div class="subTopBar"><a class="subBack" href="/">← 메인으로</a></div>
-    <h1 class="subTitle">아카이빙 전체보기</h1>
-    <p class="subDesc">지금까지 모아둔 아카이빙 콘텐츠를 한곳에서 볼 수 있어요.</p>
+  <header class="header header--simple">
+    <div class="headerBar headerBar--center">
+      <a
+        class="brand"
+        href="/"
+        aria-label="지드래곤 음원총공팀"
+      >
+        <img
+          class="brandImg"
+          src="/assets/header/logo.svg"
+          alt="지드래곤 음원총공팀 로고"
+        >
+      </a>
+    </div>
+  </header>
 
-    <section class="archiveAllGrid">
-      <a class="archiveAllCard" href="/archive/archiving/jacob-co/"><div class="archiveAllImgBox"><img src="/assets/archive/archive1.jpg" alt="제이콥앤코"></div><div class="archiveAllBody"><div class="archiveAllTitle">JACOB&amp;CO</div><div class="archiveAllTag">#1</div></div></a>
-      <a class="archiveAllCard" href="/archive/archiving/yellowcoin/"><div class="archiveAllImgBox"><img src="/assets/archive/archive2.jpg" alt="노란동전"></div><div class="archiveAllBody"><div class="archiveAllTitle">노란 동전 자선 행사</div><div class="archiveAllTag">#2</div></div></a>
-      <a class="archiveAllCard" href="/archive/archiving/fanplusone/"><div class="archiveAllImgBox"><img src="/assets/archive/archive3.jpg" alt="FANPLUSONE"></div><div class="archiveAllBody"><div class="archiveAllTitle">FANPLUSONE</div><div class="archiveAllTag">#3</div></div></a>
-      <a class="archiveAllCard" href="/archive/archiving/exhibition/"><div class="archiveAllImgBox"><img src="/assets/archive/archive4.jpg" alt="EXHIBITION"></div><div class="archiveAllBody"><div class="archiveAllTitle">EXHIBITION</div><div class="archiveAllTag">#4</div></div></a>
-      <a class="archiveAllCard" href="/archive/archiving/goodday/"><div class="archiveAllImgBox"><img src="/assets/archive/archive5.jpg" alt="굿데이"></div><div class="archiveAllBody"><div class="archiveAllTitle">굿데이</div><div class="archiveAllTag">#5</div></div></a>
-      <a class="archiveAllCard" href="/archive/archiving/nike/"><div class="archiveAllImgBox"><img src="/assets/archive/archive6.jpg" alt="나이키"></div><div class="archiveAllBody"><div class="archiveAllTitle">NIKE</div><div class="archiveAllTag">#6</div></div></a>
+
+  <main class="container">
+
+    <div class="subHeader">
+      <a class="backLink" href="/">← 메인으로</a>
+    </div>
+
+
+    <section class="section archiveSection">
+
+      <div class="archiveHead">
+
+        <h1 class="archiveTitle">
+          아카이빙
+        </h1>
+
+        <div class="archiveCount">
+          6 ARCHIVES
+        </div>
+
+      </div>
+
+
+      <div class="archiveGrid">
+
+
+        <!-- 01 -->
+        <a
+          class="archiveCard"
+          href="/archive/archiving/jacob-co/"
+        >
+
+          <div class="archiveCover">
+            <img
+              src="/assets/archive/archive1.jpg"
+              alt="JACOB&CO"
+            >
+          </div>
+
+          <div class="archiveMeta">
+
+            <div class="archiveName">
+              JACOB&amp;CO
+            </div>
+
+            <div class="archiveNo">
+              #01
+            </div>
+
+          </div>
+
+        </a>
+
+
+        <!-- 02 -->
+        <a
+          class="archiveCard"
+          href="/archive/archiving/yellowcoin/"
+        >
+
+          <div class="archiveCover">
+            <img
+              src="/assets/archive/archive2.jpg"
+              alt="노란 동전 자선 행사"
+            >
+          </div>
+
+          <div class="archiveMeta">
+
+            <div class="archiveName">
+              노란 동전 자선 행사
+            </div>
+
+            <div class="archiveNo">
+              #02
+            </div>
+
+          </div>
+
+        </a>
+
+
+        <!-- 03 -->
+        <a
+          class="archiveCard"
+          href="/archive/archiving/fanplusone/"
+        >
+
+          <div class="archiveCover">
+            <img
+              src="/assets/archive/archive3.jpg"
+              alt="FANPLUSONE"
+            >
+          </div>
+
+          <div class="archiveMeta">
+
+            <div class="archiveName">
+              FANPLUSONE
+            </div>
+
+            <div class="archiveNo">
+              #03
+            </div>
+
+          </div>
+
+        </a>
+
+
+        <!-- 04 -->
+        <a
+          class="archiveCard"
+          href="/archive/archiving/exhibition/"
+        >
+
+          <div class="archiveCover">
+            <img
+              src="/assets/archive/archive4.jpg"
+              alt="EXHIBITION"
+            >
+          </div>
+
+          <div class="archiveMeta">
+
+            <div class="archiveName">
+              EXHIBITION
+            </div>
+
+            <div class="archiveNo">
+              #04
+            </div>
+
+          </div>
+
+        </a>
+
+
+        <!-- 05 -->
+        <a
+          class="archiveCard"
+          href="/archive/archiving/goodday/"
+        >
+
+          <div class="archiveCover">
+            <img
+              src="/assets/archive/archive5.jpg"
+              alt="굿데이"
+            >
+          </div>
+
+          <div class="archiveMeta">
+
+            <div class="archiveName">
+              굿데이
+            </div>
+
+            <div class="archiveNo">
+              #05
+            </div>
+
+          </div>
+
+        </a>
+
+
+        <!-- 06 -->
+        <a
+          class="archiveCard"
+          href="/archive/archiving/nike/"
+        >
+
+          <div class="archiveCover">
+            <img
+              src="/assets/archive/archive6.jpg"
+              alt="NIKE"
+            >
+          </div>
+
+          <div class="archiveMeta">
+
+            <div class="archiveName">
+              NIKE
+            </div>
+
+            <div class="archiveNo">
+              #06
+            </div>
+
+          </div>
+
+        </a>
+
+
+      </div>
+
     </section>
+
   </main>
 
-  <footer class="footer"><div class="container footerInner footerInner--logo"><a href="/" class="footerLogoLink" aria-label="지드래곤 음원총공팀 홈으로 이동"><img class="footerLogo" src="/assets/header/logo1.png" alt="지드래곤 음원총공팀 로고"></a></div></footer>
+
+  <footer class="footer">
+
+    <div class="container footerInner footerInner--logo">
+
+      <a
+        href="/"
+        class="footerLogoLink"
+        aria-label="지드래곤 음원총공팀 홈으로 이동"
+      >
+
+        <img
+          class="footerLogo"
+          src="/assets/header/logo1.png"
+          alt="지드래곤 음원총공팀 로고"
+        >
+
+      </a>
+
+    </div>
+
+  </footer>
+
+
   <script src="/data.js"></script>
   <script src="/script.js"></script>
+
 </body>
 </html>
