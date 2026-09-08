@@ -47,9 +47,13 @@
     .ocHeroImg.is-hidden { display:none; }
     .collectNotice { margin-top:4px; padding:0; border:0; background:none; font-size:13px; font-weight:700; line-height:1.35; }
 
-    /* 바로가기: 카드 간 동일한 간격 */
-    .ctaGuide--collect { margin-top:0; }
-    .section > .ctaGuide + .ctaGuide { margin-top:12px; }
+    /* 바로가기: 4개 버튼을 compact 2x2로 배치 */
+    .quickLinkGrid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; margin-top:10px; }
+    .quickLinkGrid .ctaGuide { min-width:0; margin:0; padding:13px 14px; border-radius:14px; }
+    .quickLinkGrid .ctaGuideText { min-width:0; }
+    .quickLinkGrid .ctaGuideTitle { font-size:14px; }
+    .quickLinkGrid .ctaGuideDesc { margin-top:3px; font-size:10px; line-height:1.35; }
+    .quickLinkGrid .ctaGuideArrow { margin-left:8px; font-size:15px; }
 
     /* 섹션 타이틀 + 전체보기 버튼 공통 */
     .sectionTitleRow { display:flex; align-items:center; justify-content:space-between; gap:12px; }
@@ -62,12 +66,15 @@
     .musicChartCompact { overflow:hidden; margin-top:11px; border:1px solid rgba(0,0,0,.08); border-radius:15px; background:#fff; }
     .chartPlatformRow { display:grid; grid-template-columns:118px minmax(0,1fr); border-top:1px solid rgba(0,0,0,.065); }
     .chartPlatformRow:first-child { border-top:0; }
-    .chartPlatformName { display:flex; align-items:center; padding:10px 11px; background:#f7f8fb; color:#111; font-size:11px; font-weight:900; letter-spacing:-.025em; }
+    .chartPlatformName { display:flex; align-items:center; gap:7px; padding:10px 11px; background:#f7f8fb; color:#111; font-size:13px; font-weight:900; letter-spacing:-.025em; white-space:nowrap; }
+    .chartPlatformIcon { flex:0 0 auto; width:20px; height:20px; object-fit:contain; border-radius:5px; }
     .chartSummaryList { min-width:0; }
     .chartSummaryRow { display:grid; grid-template-columns:minmax(0,1fr) auto auto; align-items:center; gap:7px; min-height:34px; padding:7px 10px; border-top:1px solid rgba(0,0,0,.05); }
     .chartSummaryRow:first-child { border-top:0; }
-    .chartSummarySong { overflow:hidden; color:#111; font-size:11px; font-weight:780; letter-spacing:-.02em; text-overflow:ellipsis; white-space:nowrap; }
-    .chartSummaryRank { min-width:32px; color:#315fc7; font-size:11px; font-weight:900; text-align:right; white-space:nowrap; font-variant-numeric:tabular-nums; }
+    .chartSummarySong { overflow:hidden; color:#111; font-size:13px; font-weight:800; letter-spacing:-.02em; text-overflow:ellipsis; white-space:nowrap; }
+    .chartSummaryRank { min-width:36px; color:#111; font-size:11px; font-weight:800; text-align:right; white-space:nowrap; font-variant-numeric:tabular-nums; }
+    .chartSummaryRankNum { display:inline-block; margin-right:1px; font-size:15px; font-weight:950; line-height:1; }
+    .chartSummaryRankUnit { font-size:11px; font-weight:850; }
     .chartSummaryChange { min-width:28px; padding:2px 4px; border-radius:5px; font-size:8px; font-weight:900; line-height:1.25; text-align:center; white-space:nowrap; }
     .chartSummaryChange.up { background:#fff0f0; color:#e34040; }
     .chartSummaryChange.down { background:#edf4ff; color:#3574dc; }
@@ -83,25 +90,33 @@
     .socialCompactList { display:flex; flex-direction:column; gap:8px; }
     .socialCompactRow { display:flex; align-items:center; gap:10px; min-height:52px; padding:9px 11px 9px 13px; border:1px solid rgba(0,0,0,.08); border-radius:14px; background:#fff; }
     .socialCompactInfo { flex:1 1 auto; min-width:0; }
-    .socialCompactTitle { overflow:hidden; color:#111; font-size:12px; font-weight:900; letter-spacing:-.025em; text-overflow:ellipsis; white-space:nowrap; }
-    .socialCompactDesc { margin-top:2px; color:rgba(0,0,0,.4); font-size:9px; font-weight:700; }
-    .socialCompactIcons { flex:0 1 auto; display:flex; align-items:center; justify-content:flex-end; flex-wrap:wrap; gap:5px; }
-    .socialCompactLink { display:flex; align-items:center; justify-content:center; width:28px; height:28px; border:1px solid rgba(0,0,0,.07); border-radius:8px; background:#f7f8fb; text-decoration:none; transition:transform .15s ease, background .15s ease; }
-    .socialCompactLink:hover { background:#eef1f5; transform:translateY(-1px); }
-    .socialCompactLink img { width:15px; height:15px; object-fit:contain; }
+    .socialCompactTitle { overflow:hidden; color:#111; font-size:15px; font-weight:900; letter-spacing:-.025em; text-overflow:ellipsis; white-space:nowrap; }
+    .socialCompactDesc { margin-top:3px; color:rgba(0,0,0,.48); font-size:11px; font-weight:750; }
+    .socialCompactIcons { flex:0 1 auto; display:flex; align-items:center; justify-content:flex-end; flex-wrap:wrap; gap:8px; }
+    .socialCompactLink { display:flex; align-items:center; justify-content:center; min-width:22px; min-height:22px; padding:0; border:0; border-radius:0; background:transparent; color:#111; text-decoration:none; transition:transform .15s ease, opacity .15s ease; }
+    .socialCompactLink:hover { background:transparent; opacity:.72; transform:translateY(-1px); }
+    .socialCompactLink img { width:21px; height:21px; object-fit:contain; }
+    .socialCompactLink--labeled { flex-direction:column; gap:2px; min-width:34px; }
+    .socialIconLabel { color:#555; font-size:8px; font-weight:800; line-height:1; letter-spacing:-.02em; white-space:nowrap; }
 
     @media (max-width:520px) {
       .ocModalGrid,.collectModalGrid { grid-template-columns:1fr; }
       .chartPlatformRow { grid-template-columns:94px minmax(0,1fr); }
-      .chartPlatformName { padding:9px 8px; font-size:10px; }
+      .chartPlatformName { gap:5px; padding:9px 8px; font-size:12px; }
+      .chartPlatformIcon { width:18px; height:18px; }
       .chartSummaryRow { gap:5px; padding:7px 8px; }
-      .chartSummarySong,.chartSummaryRank { font-size:10px; }
+      .chartSummarySong { font-size:12px; }
+      .chartSummaryRank { font-size:10px; }
+      .chartSummaryRankNum { font-size:14px; }
+      .chartSummaryRankUnit { font-size:10px; }
       .chartSummaryChange { min-width:25px; font-size:8px; }
       .socialCompactRow { gap:7px; padding:8px 9px 8px 11px; }
-      .socialCompactTitle { font-size:11px; }
-      .socialCompactDesc { font-size:8px; }
-      .socialCompactLink { width:26px; height:26px; }
-      .socialCompactLink img { width:14px; height:14px; }
+      .socialCompactTitle { font-size:14px; }
+      .socialCompactDesc { font-size:10px; }
+      .socialCompactLink { min-width:21px; min-height:21px; }
+      .socialCompactLink img { width:20px; height:20px; }
+      .socialCompactLink--labeled { min-width:32px; }
+      .socialIconLabel { font-size:8px; }
     }
   </style>
 </head>
@@ -119,10 +134,12 @@
       <a class="ocBtn" href="#" data-platform="vibe" aria-label="바이브 원클릭"><div class="ocIcon"><img src="/assets/icons/platform/vibe.jpg" alt="바이브"></div><div class="ocText"><div class="ocName">바이브</div></div><div class="ocArrow">→</div></a>
       <a class="ocBtn" href="#" data-platform="spotify" aria-label="스포티파이 원클릭"><div class="ocIcon"><img src="/assets/icons/platform/spotify.png" alt="스포티파이"></div><div class="ocText"><div class="ocName">스포티파이</div></div><div class="ocArrow">→</div></a>
     </div></div></section><section class="section"><div class="sectionTitle">바로가기</div>
-      <a class="ctaGuide" href="/guide/"><div class="ctaGuideText"><div class="ctaGuideTitle">가이드</div><div class="ctaGuideDesc">스트리밍 / 다운로드 / 기타 / 스트리밍리스트</div></div><div class="ctaGuideArrow">→</div></a>
-      <a class="ctaGuide ctaGuide--collect" href="#" id="openCollectModal"><div class="ctaGuideText"><div class="ctaGuideTitle">아이디 기부</div><div class="ctaGuideDesc">가이드 확인 후 아이디 제출하기</div></div><div class="ctaGuideArrow">→</div></a>
-      <a class="ctaGuide ctaGuide--collect" href="/radio/"><div class="ctaGuideText"><div class="ctaGuideTitle">라디오 신청</div><div class="ctaGuideDesc">현재 방송 중인 라디오에 BiiiG 신청하기</div></div><div class="ctaGuideArrow">→</div></a>
-      <a class="ctaGuide ctaGuide--collect" href="#" id="openSueModal"><div class="ctaGuideText"><div class="ctaGuideTitle">고소</div><div class="ctaGuideDesc">악성 게시물 신고 / 고소 안내</div></div><div class="ctaGuideArrow">→</div></a>
+      <div class="quickLinkGrid">
+        <a class="ctaGuide" href="/guide/"><div class="ctaGuideText"><div class="ctaGuideTitle">가이드</div><div class="ctaGuideDesc">스트리밍 / 다운로드 / 기타 / 스트리밍리스트</div></div><div class="ctaGuideArrow">→</div></a>
+        <a class="ctaGuide ctaGuide--collect" href="#" id="openCollectModal"><div class="ctaGuideText"><div class="ctaGuideTitle">아이디 기부</div><div class="ctaGuideDesc">가이드 확인 후 아이디 제출하기</div></div><div class="ctaGuideArrow">→</div></a>
+        <a class="ctaGuide ctaGuide--collect" href="/radio/"><div class="ctaGuideText"><div class="ctaGuideTitle">라디오 신청</div><div class="ctaGuideDesc">현재 방송 중인 라디오에 BiiiG 신청하기</div></div><div class="ctaGuideArrow">→</div></a>
+        <a class="ctaGuide ctaGuide--collect" href="#" id="openSueModal"><div class="ctaGuideText"><div class="ctaGuideTitle">고소</div><div class="ctaGuideDesc">악성 게시물 신고 / 고소 안내</div></div><div class="ctaGuideArrow">→</div></a>
+      </div>
     </section>
 
     <section class="section musicChartSection">
@@ -134,19 +151,19 @@
 
       <div class="musicChartCompact">
         <div class="chartPlatformRow" data-chart-id="melonTop100">
-          <div class="chartPlatformName">멜론 TOP100</div>
+          <div class="chartPlatformName"><img class="chartPlatformIcon" src="/assets/icons/platform/melon.svg" alt="">멜론 TOP100</div>
           <div class="chartSummaryList"><div class="chartSummaryEmpty">불러오는 중</div></div>
         </div>
         <div class="chartPlatformRow" data-chart-id="melonDaily">
-          <div class="chartPlatformName">멜론 일간</div>
+          <div class="chartPlatformName"><img class="chartPlatformIcon" src="/assets/icons/platform/melon.svg" alt="">멜론 일간</div>
           <div class="chartSummaryList"><div class="chartSummaryEmpty">불러오는 중</div></div>
         </div>
         <div class="chartPlatformRow" data-chart-id="genieTop200">
-          <div class="chartPlatformName">지니 TOP200</div>
+          <div class="chartPlatformName"><img class="chartPlatformIcon" src="/assets/icons/platform/genie.png" alt="">지니 TOP200</div>
           <div class="chartSummaryList"><div class="chartSummaryEmpty">불러오는 중</div></div>
         </div>
         <div class="chartPlatformRow" data-chart-id="bugsRealtime">
-          <div class="chartPlatformName">벅스 실시간</div>
+          <div class="chartPlatformName"><img class="chartPlatformIcon" src="/assets/icons/platform/bugs.jpg" alt="">벅스 실시간</div>
           <div class="chartSummaryList"><div class="chartSummaryEmpty">불러오는 중</div></div>
         </div>
       </div>
@@ -186,8 +203,8 @@
           </div>
           <div class="socialCompactIcons">
             <a class="socialCompactLink" href="https://www.youtube.com/@xxxibgdrgn" target="_blank" rel="noreferrer" aria-label="G-DRAGON YouTube" title="YouTube"><img src="/assets/icons/social/youtube.svg" alt=""></a>
-            <a class="socialCompactLink" href="https://www.instagram.com/8lo8lo8lowme" target="_blank" rel="noreferrer" aria-label="8lo8lo8lowme Instagram" title="팔로미"><img src="/assets/icons/social/instagram.svg" alt=""></a>
-            <a class="socialCompactLink" href="https://www.instagram.com/fanplusonedotcom" target="_blank" rel="noreferrer" aria-label="fanplusone Instagram" title="fanplusone Instagram"><img src="/assets/icons/social/instagram.svg" alt=""></a>
+            <a class="socialCompactLink socialCompactLink--labeled" href="https://www.instagram.com/8lo8lo8lowme" target="_blank" rel="noreferrer" aria-label="팔로미 Instagram" title="팔로미"><img src="/assets/icons/social/instagram.svg" alt=""><span class="socialIconLabel">팔로미</span></a>
+            <a class="socialCompactLink socialCompactLink--labeled" href="https://www.instagram.com/fanplusonedotcom" target="_blank" rel="noreferrer" aria-label="팬플원 Instagram" title="팬플원"><img src="/assets/icons/social/instagram.svg" alt=""><span class="socialIconLabel">팬플원</span></a>
             <a class="socialCompactLink" href="https://x.com/FANPLUS1DOTCOM" target="_blank" rel="noreferrer" aria-label="fanplusone X" title="fanplusone X"><img src="/assets/icons/social/x.svg" alt=""></a>
             <a class="socialCompactLink" href="https://www.tiktok.com/@fanplusonedotcom" target="_blank" rel="noreferrer" aria-label="fanplusone TikTok" title="TikTok"><img src="/assets/icons/social/tiktok.svg" alt=""></a>
             <a class="socialCompactLink" href="https://gdragon.ai/" target="_blank" rel="noreferrer" aria-label="G-DRAGON b.stage" title="b.stage"><img src="/assets/icons/social/bstage.svg" alt=""></a>
@@ -269,7 +286,7 @@
         container.innerHTML='<div class="chartSummaryEmpty">현재 차트인 곡 없음</div>';
         return;
       }
-      container.innerHTML=chart.songs.map(song=>`<div class="chartSummaryRow"><span class="chartSummarySong" title="${escapeChartHtml(song.title)}">${escapeChartHtml(song.title)}</span><span class="chartSummaryRank">${escapeChartHtml(song.rank)}위</span><span class="chartSummaryChange ${getMainChartChangeClass(song.change)}">${escapeChartHtml(song.change?.label||'-')}</span></div>`).join('');
+      container.innerHTML=chart.songs.map(song=>`<div class="chartSummaryRow"><span class="chartSummarySong" title="${escapeChartHtml(song.title)}">${escapeChartHtml(song.title)}</span><span class="chartSummaryRank"><span class="chartSummaryRankNum">${escapeChartHtml(song.rank)}</span><span class="chartSummaryRankUnit">위</span></span><span class="chartSummaryChange ${getMainChartChangeClass(song.change)}">${escapeChartHtml(song.change?.label||'-')}</span></div>`).join('');
     }
     async function loadMainChartSummary(){
       try{
