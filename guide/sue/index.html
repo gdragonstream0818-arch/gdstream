@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PDF 수집 가이드 | 지드래곤 음원총공팀</title>
+  <link rel="icon" href="/assets/meta/favicon.png" type="image/png" sizes="any">
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    html { scroll-behavior:smooth; }
+    body { color:#111; background:#fff; }
+
+    .pdfGuideWrap { padding-top:34px; padding-bottom:72px; }
+    .pdfGuideHero { margin-bottom:22px; padding:24px 22px; border:1px solid rgba(0,0,0,.06); border-radius:22px; background:linear-gradient(135deg,rgba(190,205,235,.34),rgba(245,195,190,.34)); box-shadow:0 10px 28px rgba(0,0,0,.08); }
+    .pdfGuideTitle { margin:0; font-size:34px; line-height:1.15; font-weight:950; letter-spacing:-.045em; }
+    .pdfGuideIntro { margin:12px 0 0; max-width:720px; color:rgba(0,0,0,.62); font-size:15px; font-weight:700; line-height:1.75; letter-spacing:-.02em; }
+
+    .pdfQuickNav { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; max-width:520px; margin:24px 0 36px; }
+    .pdfQuickNav a { display:flex; align-items:center; justify-content:center; min-height:52px; padding:12px 10px; border:1px solid rgba(0,0,0,.08); border-radius:14px; background:#fff; color:#111; font-size:14px; font-weight:900; text-decoration:none; box-shadow:0 7px 20px rgba(0,0,0,.035); }
+    .pdfQuickNav a:hover { background:#f6f7f9; }
+
+    .pdfMainTabs { display:flex; gap:10px; width:100%; margin:0 0 34px; padding:0; border:0; background:transparent; }
+    .pdfMainTabBtn { flex:1 1 0; display:inline-flex; align-items:center; justify-content:center; min-width:0; min-height:44px; padding:10px 16px; border:1px solid #fff; border-radius:12px; background:#fff; color:#111; font-size:14px; font-weight:900; letter-spacing:-.02em; cursor:pointer; transition:background .15s ease,color .15s ease,transform .15s ease,border-color .15s ease; }
+    .pdfMainTabBtn:hover { transform:translateY(-1px); background:#fff7f8; border-color:#fff7f8; }
+    .pdfMainTabBtn.is-active { background:#fdecef; color:#111; border-color:#fdecef; box-shadow:none; }
+    .pdfMainPanel { display:none; }
+    .pdfMainPanel.is-active { display:block; }
+
+    .pdfGuideGroup { scroll-margin-top:24px; margin-top:56px; }
+    .pdfGuideGroup:first-of-type { margin-top:0; }
+    .pdfGroupHead { margin-bottom:18px; }
+    .pdfGroupTitle { margin:0; font-size:24px; line-height:1.2; font-weight:950; letter-spacing:-.04em; }
+    .pdfGroupSub { margin:5px 0 0; color:rgba(0,0,0,.52); font-size:13px; font-weight:700; line-height:1.5; }
+
+    .pdfTabBar { display:flex; gap:10px; width:100%; margin:18px 0 20px; }
+    .pdfTabBtn { flex:1 1 0; display:inline-flex; align-items:center; justify-content:center; min-width:0; min-height:44px; padding:10px 10px; border:1px solid #fff; border-radius:12px; background:#fff; color:#111; font-size:14px; font-weight:900; letter-spacing:-.02em; cursor:pointer; transition:background .15s ease, color .15s ease, transform .15s ease, border-color .15s ease; }
+    .pdfTabBtn:hover { background:#fff7f8; border-color:#fff7f8; transform:translateY(-1px); }
+    .pdfTabBtn.is-active { background:#fdecef; color:#111; border-color:#fdecef; box-shadow:none; }
+
+    .pdfTabPanel { display:none; }
+    .pdfTabPanel.is-active { display:block; }
+
+
+    .pdfXNotice { margin-top:8px; padding:16px 17px; border:1px solid rgba(222,150,164,.22); border-left:4px solid #e5a3b2; border-radius:0 14px 14px 0; background:#fff6f8; }
+    .pdfXNotice strong { display:block; margin-bottom:7px; font-size:14px; font-weight:950; }
+    .pdfXNotice p { margin:0; color:rgba(0,0,0,.62); font-size:12px; font-weight:700; line-height:1.65; }
+
+    .pdfXDeviceCard { padding:0; border:0; border-radius:0; background:transparent; box-shadow:none; }
+    .pdfXDeviceHead { display:flex; align-items:center; gap:12px; margin-bottom:14px; }
+    .pdfDeviceBadge { display:flex; align-items:center; justify-content:center; min-width:46px; height:46px; padding:0 12px; border-radius:13px; background:#fdecef; color:#6d3d46; border:1px solid rgba(222,150,164,.32); font-size:13px; font-weight:950; }
+    .pdfXDeviceTitle { margin:0; font-size:19px; font-weight:950; letter-spacing:-.035em; }
+    .pdfXDeviceSub { margin:4px 0 0; color:rgba(0,0,0,.48); font-size:12px; font-weight:700; }
+    .pdfXGuideImage { display:block; width:100%; max-width:none; height:auto; margin:0; border:0; border-radius:0; box-shadow:none; }
+
+
+    .pdfXIdCard { margin:20px 2px 24px; padding:0; }
+    .pdfXIdTitle { margin:0 0 10px; font-size:17px; font-weight:950; letter-spacing:-.03em; }
+    .pdfXIdSteps { margin:0; padding-left:20px; color:#222; }
+    .pdfXIdSteps li { margin:6px 0; font-size:13px; font-weight:760; line-height:1.65; }
+    .pdfXIdButton { display:inline-flex; align-items:center; justify-content:center; min-height:42px; margin-top:12px; padding:10px 16px; border-radius:12px; background:#f1b8c4; color:#4d2730; font-size:13px; font-weight:900; text-decoration:none; box-shadow:none; }
+    .pdfXIdButton:hover { filter:brightness(.96); }
+
+    .pdfCommunityNotice { margin:10px 0 18px; padding:0; border:0; border-radius:0; background:transparent; color:rgba(0,0,0,.62); font-size:12px; font-weight:800; line-height:1.7; }
+    .pdfPreparingText { padding:18px 2px 6px; color:rgba(0,0,0,.52); font-size:14px; font-weight:850; }
+
+    @media (max-width:720px) {
+      .pdfGuideWrap { padding-top:26px; padding-bottom:54px; }
+      .pdfGuideTitle { font-size:29px; }
+      .pdfGuideIntro { font-size:14px; }
+      .pdfQuickNav { gap:8px; margin-top:20px; margin-bottom:30px; }
+      .pdfQuickNav a { min-height:48px; font-size:13px; }
+      .pdfGuideHero { padding:20px 18px; border-radius:18px; }
+      .pdfMainTabs { gap:8px; margin:0 0 26px; }
+      .pdfMainTabBtn { min-height:42px; padding:10px 8px; font-size:13px; }
+      .pdfGuideGroup { margin-top:46px; }
+      .pdfGroupTitle { font-size:21px; }
+      .pdfGroupSub { font-size:12px; }
+      .pdfTabBar { gap:6px; }
+      .pdfTabBtn { flex:1 1 0; min-width:0; min-height:42px; padding:10px 5px; font-size:12px; line-height:1.2; }
+    }
+  </style>
+</head>
+<body>
+  <header class="header header--simple">
+    <div class="headerBar headerBar--center">
+      <a class="brand" href="/" aria-label="지드래곤 음원총공팀">
+        <img class="brandImg" src="/assets/header/logo.svg" alt="지드래곤 음원총공팀 로고">
+      </a>
+    </div>
+  </header>
+
+  <main class="container pdfGuideWrap">
+    <section class="pdfGuideHero">
+      <h1 class="pdfGuideTitle">PDF 수집 가이드</h1>
+      <p class="pdfGuideIntro">악성 게시물 자료 수집 방법을 안내합니다. 일반 커뮤니티와 X(구 트위터)는 수집 방식이 다르니 아래에서 해당 항목을 선택해 확인해주세요.</p>
+    </section>
+
+    <div class="pdfMainTabs" role="tablist" aria-label="PDF 수집 유형 선택">
+      <button class="pdfMainTabBtn is-active" type="button" role="tab" aria-selected="true" aria-controls="community" data-main-tab="community">일반 커뮤니티</button>
+      <button class="pdfMainTabBtn" type="button" role="tab" aria-selected="false" aria-controls="xguide" data-main-tab="xguide">X (구 트위터)</button>
+    </div>
+
+    <section id="community" class="pdfGuideGroup pdfMainPanel is-active" role="tabpanel">
+      <div class="pdfGroupHead">
+        <h2 class="pdfGroupTitle">일반 커뮤니티 PDF 수집</h2>
+        <p class="pdfGroupSub">카페 · 커뮤니티 · 게시판 등 일반 웹페이지 PDF 수집 가이드</p>
+      </div>
+
+      <div class="pdfCommunityNotice">유튜브 · 인스타그램 · 스레드는 <strong>웹으로 접속한 후 일반 커뮤니티와 같은 방식으로</strong> PDF를 수집해주세요.</div>
+
+      <div class="pdfTabBar" role="tablist" aria-label="일반 커뮤니티 기기 선택">
+        <button class="pdfTabBtn is-active" type="button" role="tab" aria-selected="true" aria-controls="community-ios" data-tab-target="community-ios">아이폰</button>
+        <button class="pdfTabBtn" type="button" role="tab" aria-selected="false" aria-controls="community-aos" data-tab-target="community-aos">안드로이드</button>
+        <button class="pdfTabBtn" type="button" role="tab" aria-selected="false" aria-controls="community-samsung" data-tab-target="community-samsung">모바일인터넷(삼성)</button>
+        <button class="pdfTabBtn" type="button" role="tab" aria-selected="false" aria-controls="community-pc" data-tab-target="community-pc">PC 크롬</button>
+      </div>
+
+      <div id="community-ios" class="pdfTabPanel is-active" role="tabpanel">
+        <div class="pdfPreparingText">가이드 준비 중</div>
+      </div>
+
+      <div id="community-aos" class="pdfTabPanel" role="tabpanel" hidden>
+        <div class="pdfPreparingText">가이드 준비 중</div>
+      </div>
+
+      <div id="community-samsung" class="pdfTabPanel" role="tabpanel" hidden>
+        <div class="pdfPreparingText">가이드 준비 중</div>
+      </div>
+
+      <div id="community-pc" class="pdfTabPanel" role="tabpanel" hidden>
+        <div class="pdfPreparingText">가이드 준비 중</div>
+      </div>
+    </section>
+
+    <section id="xguide" class="pdfGuideGroup pdfMainPanel" role="tabpanel" hidden>
+      <div class="pdfGroupHead">
+        <h2 class="pdfGroupTitle">X (구 트위터) PDF 수집</h2>
+        <p class="pdfGroupSub">X는 게시물 고유번호 확인이 필요해 일반 커뮤니티와 수집 방법이 다릅니다.</p>
+      </div>
+
+      <div class="pdfXNotice">
+        <strong>X는 반드시 별도 가이드를 확인해주세요</strong>
+        <p>일반적인 PDF 저장만으로는 필요한 정보가 누락될 수 있습니다. 사용 중인 기기에 맞는 버튼을 눌러 해당 가이드를 확인해주세요.</p>
+      </div>
+
+      <section class="pdfXIdCard" aria-labelledby="xIdGuideTitle">
+        <h3 id="xIdGuideTitle" class="pdfXIdTitle">📌 고유번호 조회 방법</h3>
+        <ol class="pdfXIdSteps">
+          <li>고유번호 조회 사이트에 접속</li>
+          <li>아이디 입력 후 조회 (예시: @gdragon_stream)</li>
+          <li>조회된 <strong>고유번호(사용자 ID)</strong>를 복사한 후 함께 첨부</li>
+        </ol>
+        <a class="pdfXIdButton" href="https://develop.tools/ko/x-idcheck/" target="_blank" rel="noreferrer">고유번호 조회 사이트 바로가기 →</a>
+      </section>
+
+      <div class="pdfTabBar" role="tablist" aria-label="X 기기 선택">
+        <button class="pdfTabBtn is-active" type="button" role="tab" aria-selected="true" aria-controls="x-ios" data-tab-target="x-ios">아이폰</button>
+        <button class="pdfTabBtn" type="button" role="tab" aria-selected="false" aria-controls="x-aos" data-tab-target="x-aos">안드로이드</button>
+        <button class="pdfTabBtn" type="button" role="tab" aria-selected="false" aria-controls="x-samsung" data-tab-target="x-samsung">모바일인터넷(삼성)</button>
+        <button class="pdfTabBtn" type="button" role="tab" aria-selected="false" aria-controls="x-pc" data-tab-target="x-pc">PC 크롬</button>
+      </div>
+
+      <div id="x-ios" class="pdfTabPanel is-active" role="tabpanel">
+        <section class="pdfXDeviceCard">
+          <div class="pdfXDeviceHead">
+            <div class="pdfDeviceBadge">iOS</div>
+            <div>
+              <h3 class="pdfXDeviceTitle">아이폰</h3>
+              <p class="pdfXDeviceSub">X 전용 PDF 수집 가이드</p>
+            </div>
+          </div>
+          <img class="pdfXGuideImage" src="/assets/guides/x-iphone.jpg" alt="X 아이폰 PDF 수집 가이드">
+        </section>
+      </div>
+
+      <div id="x-aos" class="pdfTabPanel" role="tabpanel" hidden>
+        <section class="pdfXDeviceCard">
+          <div class="pdfXDeviceHead">
+            <div class="pdfDeviceBadge">AOS</div>
+            <div>
+              <h3 class="pdfXDeviceTitle">안드로이드</h3>
+              <p class="pdfXDeviceSub">X 전용 PDF 수집 가이드</p>
+            </div>
+          </div>
+          <img class="pdfXGuideImage" src="/assets/guides/x-android.jpg" alt="X 안드로이드 PDF 수집 가이드">
+        </section>
+      </div>
+
+      <div id="x-samsung" class="pdfTabPanel" role="tabpanel" hidden>
+        <section class="pdfXDeviceCard">
+          <div class="pdfXDeviceHead">
+            <div class="pdfDeviceBadge">WEB</div>
+            <div>
+              <h3 class="pdfXDeviceTitle">모바일인터넷(삼성)</h3>
+              <p class="pdfXDeviceSub">X 전용 PDF 수집 가이드</p>
+            </div>
+          </div>
+          <img class="pdfXGuideImage" src="/assets/guides/x-samsung-internet.jpg" alt="X 모바일인터넷(삼성) PDF 수집 가이드">
+        </section>
+      </div>
+
+      <div id="x-pc" class="pdfTabPanel" role="tabpanel" hidden>
+        <section class="pdfXDeviceCard">
+          <div class="pdfXDeviceHead">
+            <div class="pdfDeviceBadge">PC</div>
+            <div>
+              <h3 class="pdfXDeviceTitle">PC 크롬</h3>
+              <p class="pdfXDeviceSub">X 전용 PDF 수집 가이드</p>
+            </div>
+          </div>
+          <img class="pdfXGuideImage" src="/assets/guides/x-pc-chrome.jpg" alt="X PC 크롬 PDF 수집 가이드">
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footerInner footerInner--logo">
+      <a href="/" class="footerLogoLink" aria-label="지드래곤 음원총공팀 홈으로 이동">
+        <img class="footerLogo" src="/assets/header/logo1.png" alt="지드래곤 음원총공팀 로고">
+      </a>
+    </div>
+  </footer>
+
+  <script>
+    // 1차 탭: 일반 커뮤니티 / X(구 트위터)
+    const mainTabButtons = Array.from(document.querySelectorAll('.pdfMainTabBtn'));
+    const mainPanels = Array.from(document.querySelectorAll('.pdfMainPanel'));
+
+    function activateMainTab(targetId) {
+      mainTabButtons.forEach(btn => {
+        const active = btn.dataset.mainTab === targetId;
+        btn.classList.toggle('is-active', active);
+        btn.setAttribute('aria-selected', active ? 'true' : 'false');
+      });
+
+      mainPanels.forEach(panel => {
+        const active = panel.id === targetId;
+        panel.hidden = !active;
+        panel.classList.toggle('is-active', active);
+      });
+    }
+
+    mainTabButtons.forEach(button => {
+      button.addEventListener('click', () => activateMainTab(button.dataset.mainTab));
+    });
+
+    // 2차 탭: 각 유형 안의 안드로이드 / iPhone / PC
+    document.querySelectorAll('.pdfTabBar').forEach(tabBar => {
+      const group = tabBar.closest('.pdfMainPanel');
+      const buttons = Array.from(tabBar.querySelectorAll('.pdfTabBtn'));
+      const panels = Array.from(group.querySelectorAll('.pdfTabPanel'));
+
+      buttons.forEach(button => {
+        button.addEventListener('click', () => {
+          const targetId = button.getAttribute('data-tab-target');
+
+          buttons.forEach(btn => {
+            const active = btn === button;
+            btn.classList.toggle('is-active', active);
+            btn.setAttribute('aria-selected', active ? 'true' : 'false');
+          });
+
+          panels.forEach(panel => {
+            const active = panel.id === targetId;
+            panel.hidden = !active;
+            panel.classList.toggle('is-active', active);
+          });
+        });
+      });
+    });
+
+    // 기본값: 일반 커뮤니티 + 안드로이드
+    activateMainTab('community');
+  </script>
+</body>
+</html>
