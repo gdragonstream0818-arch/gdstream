@@ -560,8 +560,26 @@
       );
     }
 
+    function getLocalAlbumImage(song){
+      const title=String(song.title||'').toLowerCase();
+      const artist=String(song.artistGroup||song.artist||'').toUpperCase();
+
+      // 직접 서버에 저장한 앨범 이미지 우선 사용
+      if(title.includes('biiig')){
+        return '/assets/chart/bigbang-biiig.jpg';
+      }
+
+      if(artist==='G-DRAGON'){
+        return '/assets/chart/gdragon-ubermensch.jpg';
+      }
+
+      return '';
+    }
+
     function renderAlbum(song){
-      if(!song.albumImage){
+      const imageUrl = song.albumImage || getLocalAlbumImage(song);
+
+      if(!imageUrl){
         return `<div class="musicAlbumWrap">
           <div class="musicAlbumFallback" aria-hidden="true">♪</div>
         </div>`;
@@ -571,7 +589,7 @@
         <div class="musicAlbumFallback" aria-hidden="true">♪</div>
         <img
           class="musicAlbumImage"
-          src="${escapeChartHtml(song.albumImage)}"
+          src="${escapeChartHtml(imageUrl)}"
           alt="${escapeChartHtml(song.title)} 앨범 커버"
           loading="lazy"
           referrerpolicy="no-referrer"
