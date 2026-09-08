@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-08 16:00:40 KST",
+  "updatedAt": "2026-09-08 16:30:29 KST",
   "melonDailyDate": "2026-09-08",
   "artists": [
     "G-DRAGON",
@@ -11,7 +11,7 @@
       "name": "멜론 TOP100",
       "type": "realtime",
       "status": "ok",
-      "updatedAt": "2026-09-08 16:00:40 KST",
+      "updatedAt": "2026-09-08 16:30:29 KST",
       "songs": [
         {
           "rank": 2,
@@ -41,9 +41,9 @@
           "artist": "BIGBANG (빅뱅)",
           "artistGroup": "BIGBANG",
           "change": {
-            "type": "down",
-            "value": 3,
-            "label": "▼ 3"
+            "type": "same",
+            "value": 0,
+            "label": "—"
           }
         }
       ]
@@ -53,7 +53,7 @@
       "name": "멜론 일간",
       "type": "daily",
       "status": "ok",
-      "updatedAt": "2026-09-08 16:00:40 KST",
+      "updatedAt": "2026-09-08 16:30:29 KST",
       "songs": [
         {
           "rank": 3,
@@ -95,7 +95,7 @@
       "name": "지니 TOP200",
       "type": "realtime",
       "status": "ok",
-      "updatedAt": "2026-09-08 16:00:40 KST",
+      "updatedAt": "2026-09-08 16:30:29 KST",
       "songs": [
         {
           "rank": 3,
@@ -114,9 +114,9 @@
           "artist": "G-DRAGON",
           "artistGroup": "G-DRAGON",
           "change": {
-            "type": "up",
-            "value": 2,
-            "label": "▲ 2"
+            "type": "same",
+            "value": 0,
+            "label": "—"
           }
         }
       ]
@@ -126,7 +126,7 @@
       "name": "벅스 실시간",
       "type": "realtime",
       "status": "ok",
-      "updatedAt": "2026-09-08 16:00:40 KST",
+      "updatedAt": "2026-09-08 16:30:29 KST",
       "songs": [
         {
           "rank": 5,
@@ -140,14 +140,14 @@
           }
         },
         {
-          "rank": 58,
+          "rank": 75,
           "title": "HOME SWEET HOME (feat. 태양, 대성)",
           "artist": "G-DRAGON",
           "artistGroup": "G-DRAGON",
           "change": {
-            "type": "same",
-            "value": 0,
-            "label": "—"
+            "type": "down",
+            "value": 17,
+            "label": "▼ 17"
           }
         }
       ]
