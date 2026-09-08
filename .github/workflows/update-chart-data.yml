@@ -40,6 +40,10 @@ jobs:
 
           git add chart-data.json
 
+          if [ -d "assets/albums" ]; then
+            git add assets/albums
+          fi
+
           if git diff --cached --quiet; then
             echo "차트 데이터 변경 사항이 없습니다."
           else
