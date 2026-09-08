@@ -1,10 +1,19 @@
 <!doctype html>
 <html lang="ko">
 <head>
+  <link rel="icon" href="/assets/meta/favicon.png" type="image/png" sizes="any">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://i.ibb.co/JgfVvDn/ogw.png">
+  <meta property="og:title" content="지드래곤 음원총공팀">
+  <meta property="og:description" content="FAM을 위한 음원서포트 정보">
+  <meta property="og:url" content="https://gdstream.site/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="지드래곤 음원총공팀">
+  <meta name="twitter:description" content="FAM을 위한 음원서포트 정보">
+  <meta name="twitter:image" content="https://i.ibb.co/JgfVvDn/ogw.png">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>PDF 수집 가이드 | 지드래곤 음원총공팀</title>
-  <link rel="icon" href="/assets/meta/favicon.png" type="image/png" sizes="any">
+  <title>지드래곤 음원총공팀</title>
   <link rel="stylesheet" href="/styles.css">
   <style>
     html { scroll-behavior:smooth; }
@@ -12,8 +21,8 @@
 
     .pdfGuideWrap { padding-top:34px; padding-bottom:72px; }
     .pdfGuideHero { margin-bottom:22px; padding:24px 22px; border:1px solid rgba(0,0,0,.06); border-radius:22px; background:linear-gradient(135deg,rgba(190,205,235,.34),rgba(245,195,190,.34)); box-shadow:0 10px 28px rgba(0,0,0,.08); }
-    .pdfGuideTitle { margin:0; font-size:34px; line-height:1.15; font-weight:950; letter-spacing:-.045em; }
-    .pdfGuideIntro { margin:12px 0 0; max-width:720px; color:rgba(0,0,0,.62); font-size:15px; font-weight:700; line-height:1.75; letter-spacing:-.02em; }
+    .pdfGuideTitle { margin:0; font-size:clamp(29px, 6vw, 40px); line-height:1.06; font-weight:950; letter-spacing:-.055em; }
+    .pdfGuideIntro { margin:11px 0 0; max-width:720px; color:rgba(0,0,0,.54); font-size:13px; font-weight:650; line-height:1.6; letter-spacing:-.02em; }
 
     .pdfQuickNav { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; max-width:520px; margin:24px 0 36px; }
     .pdfQuickNav a { display:flex; align-items:center; justify-content:center; min-height:52px; padding:12px 10px; border:1px solid rgba(0,0,0,.08); border-radius:14px; background:#fff; color:#111; font-size:14px; font-weight:900; text-decoration:none; box-shadow:0 7px 20px rgba(0,0,0,.035); }
@@ -65,8 +74,7 @@
 
     @media (max-width:720px) {
       .pdfGuideWrap { padding-top:26px; padding-bottom:54px; }
-      .pdfGuideTitle { font-size:29px; }
-      .pdfGuideIntro { font-size:14px; }
+      .pdfGuideIntro { font-size:12px; }
       .pdfQuickNav { gap:8px; margin-top:20px; margin-bottom:30px; }
       .pdfQuickNav a { min-height:48px; font-size:13px; }
       .pdfGuideHero { padding:20px 18px; border-radius:18px; }
@@ -92,7 +100,7 @@
   <main class="container pdfGuideWrap">
     <section class="pdfGuideHero">
       <h1 class="pdfGuideTitle">PDF 수집 가이드</h1>
-      <p class="pdfGuideIntro">악성 게시물 자료 수집 방법을 안내합니다. 일반 커뮤니티와 X(구 트위터)는 수집 방식이 다르니 아래에서 해당 항목을 선택해 확인해주세요.</p>
+      <p class="pdfGuideIntro">일반 커뮤니티와 X(구 트위터)는 수집 방식이 다르니 아래에서 해당 항목을 선택해 확인해주세요.<br>유튜브 · 인스타그램 · 스레드는 웹으로 접속한 후 일반 커뮤니티와 같은 방식으로 PDF를 수집해주세요.</p>
     </section>
 
     <div class="pdfMainTabs" role="tablist" aria-label="PDF 수집 유형 선택">
@@ -106,13 +114,10 @@
         <p class="pdfGroupSub">카페 · 커뮤니티 · 게시판 등 일반 웹페이지 PDF 수집 가이드</p>
       </div>
 
-      <div class="pdfCommunityNotice">유튜브 · 인스타그램 · 스레드는 <strong>웹으로 접속한 후 일반 커뮤니티와 같은 방식으로</strong> PDF를 수집해주세요.</div>
-
       <div class="pdfTabBar" role="tablist" aria-label="일반 커뮤니티 기기 선택">
         <button class="pdfTabBtn is-active" type="button" role="tab" aria-selected="true" aria-controls="community-ios" data-tab-target="community-ios">아이폰</button>
         <button class="pdfTabBtn" type="button" role="tab" aria-selected="false" aria-controls="community-aos" data-tab-target="community-aos">안드로이드</button>
-        <button class="pdfTabBtn" type="button" role="tab" aria-selected="false" aria-controls="community-samsung" data-tab-target="community-samsung">모바일인터넷(삼성)</button>
-        <button class="pdfTabBtn" type="button" role="tab" aria-selected="false" aria-controls="community-pc" data-tab-target="community-pc">PC 크롬</button>
+        <button class="pdfTabBtn" type="button" role="tab" aria-selected="false" aria-controls="community-pc" data-tab-target="community-pc">PC</button>
       </div>
 
       <div id="community-ios" class="pdfTabPanel is-active" role="tabpanel">
@@ -120,10 +125,6 @@
       </div>
 
       <div id="community-aos" class="pdfTabPanel" role="tabpanel" hidden>
-        <div class="pdfPreparingText">가이드 준비 중</div>
-      </div>
-
-      <div id="community-samsung" class="pdfTabPanel" role="tabpanel" hidden>
         <div class="pdfPreparingText">가이드 준비 중</div>
       </div>
 
