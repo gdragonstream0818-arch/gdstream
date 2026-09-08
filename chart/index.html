@@ -23,38 +23,41 @@
   <link rel="stylesheet" href="/styles.css">
 
   <style>
-    .subHeader { display:flex; align-items:center; gap:10px; padding:14px 0 4px; }
-    .backLink { display:inline-flex; align-items:center; gap:6px; color:rgba(0,0,0,.5); font-size:13px; font-weight:800; text-decoration:none; }
-    .backLink:hover { color:#111; }
-
-    .musicChartSection { margin-top:6px; }
-    .musicChartPanel { overflow:hidden; border:1px solid rgba(0,0,0,.08); border-radius:20px; background:#fff; box-shadow:0 14px 38px rgba(0,0,0,.05); }
-    .musicChartHead { position:relative; overflow:hidden; padding:22px 22px 19px; border-bottom:1px solid rgba(0,0,0,.08); background:
-      linear-gradient(90deg, rgba(0,0,0,.65) 0%, rgba(0,0,0,.42) 50%, rgba(0,0,0,.18) 100%),
-      url("/assets/header/gdbiiig.png") center 38% / cover no-repeat; color:#fff; }
-    .musicChartKicker { position:relative; z-index:1; display:flex; align-items:center; gap:7px; color:rgba(255,255,255,.7); font-size:11px; font-weight:900; letter-spacing:.1em; }
-    .musicChartKicker::before { content:""; width:7px; height:7px; border-radius:50%; background:#ff5c5c; box-shadow:0 0 0 4px rgba(255,92,92,.16); }
+    main.container { width:100%; max-width:none; padding:0; }
+.musicChartSection { margin:0; }
+    .musicChartPanel { width:100%; overflow:visible; border:0; border-radius:0; background:transparent; box-shadow:none; }
+    .musicChartHead {
+      position:relative;
+      overflow:hidden;
+      margin:0 16px 18px;
+      padding:22px 22px 20px;
+      border:1px solid rgba(0,0,0,.055);
+      border-radius:22px;
+      background:linear-gradient(
+        135deg,
+        rgba(190,205,235,.32),
+        rgba(245,195,190,.24)
+      );
+      color:#111;
+      box-shadow:0 10px 28px rgba(0,0,0,.055);
+    }
     .musicChartTitleRow { position:relative; z-index:1; display:flex; align-items:flex-end; justify-content:space-between; gap:15px; margin-top:11px; }
-    .musicChartTitle { margin:0; color:#fff; font-size:clamp(24px,5vw,31px); font-weight:900; letter-spacing:-.055em; line-height:1.1; }
-    .musicChartUpdated { flex:0 0 auto; color:rgba(255,255,255,.62); font-size:11px; font-weight:700; line-height:1.45; text-align:right; font-variant-numeric:tabular-nums; }
-    .musicChartSummary { position:relative; z-index:1; display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:19px; }
-    .musicChartStat { padding:11px 12px; border:1px solid rgba(255,255,255,.14); border-radius:12px; background:rgba(255,255,255,.09); backdrop-filter:blur(8px); }
-    .musicChartStatLabel { color:rgba(255,255,255,.62); font-size:10px; font-weight:850; letter-spacing:.03em; }
-    .musicChartStatValue { margin-top:5px; color:#fff; font-size:23px; font-weight:900; letter-spacing:-.055em; line-height:1; font-variant-numeric:tabular-nums; }
-    .musicChartBody { padding:16px; background:#f7f8fb; }
+    .musicChartTitle { margin:0; color:#111; font-size:clamp(24px,5vw,31px); font-weight:900; letter-spacing:-.055em; line-height:1.1; }
+    .musicChartUpdated { flex:0 0 auto; color:rgba(0,0,0,.42); font-size:11px; font-weight:700; line-height:1.45; text-align:right; font-variant-numeric:tabular-nums; }
+    .musicChartBody { padding:16px; background:#fff; }
     .musicChartControlRow { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:13px; }
     .musicChartSubTitle { color:#111; font-size:14px; font-weight:900; letter-spacing:-.03em; }
     .musicChartFilters { display:flex; gap:5px; padding:3px; border:1px solid rgba(0,0,0,.08); border-radius:10px; background:#fff; }
-    .musicChartFilter { padding:7px 9px; border:0; border-radius:7px; background:transparent; color:rgba(0,0,0,.45); cursor:pointer; font-family:inherit; font-size:11px; font-weight:850; letter-spacing:-.02em; transition:background .16s ease,color .16s ease; }
-    .musicChartFilter:hover { color:#111; }
-    .musicChartFilter.is-active { background:#111; color:#fff; }
+    .musicChartFilter { padding:7px 9px; border:0; border-radius:7px; background:#fff; color:#111; cursor:pointer; font-family:inherit; font-size:11px; font-weight:850; letter-spacing:-.02em; transition:background .16s ease,color .16s ease; }
+    .musicChartFilter:hover { background:#fff4f7; color:#111; }
+    .musicChartFilter.is-active { background:#ffd7e3; color:#111; }
     .musicChartList { display:grid; gap:10px; }
     .musicSongCard { overflow:hidden; border:1px solid rgba(0,0,0,.08); border-radius:15px; background:#fff; }
     .musicSongHead { display:flex; align-items:center; justify-content:space-between; gap:13px; padding:14px 15px 13px; border-bottom:1px solid rgba(0,0,0,.075); }
     .musicSongInfo { min-width:0; }
-    .musicSongArtist { margin-bottom:4px; color:#315fc7; font-size:10px; font-weight:900; letter-spacing:.065em; }
+    .musicSongArtist { margin-bottom:4px; color:#e86b91; font-size:10px; font-weight:900; letter-spacing:.065em; }
     .musicSongTitle { overflow:hidden; color:#111; font-size:18px; font-weight:900; letter-spacing:-.045em; line-height:1.2; text-overflow:ellipsis; white-space:nowrap; }
-    .musicSongCount { flex:0 0 auto; padding:7px 8px; border-radius:8px; background:#eef3ff; color:#315fc7; font-size:10px; font-weight:900; white-space:nowrap; }
+    .musicSongCount { flex:0 0 auto; padding:7px 8px; border-radius:8px; background:#ffd1de; color:#111; font-size:10px; font-weight:900; white-space:nowrap; }
     .musicRankGrid { display:grid; grid-template-columns:repeat(4,1fr); }
     .musicRankItem { min-width:0; padding:12px 10px 13px; border-right:1px solid rgba(0,0,0,.075); }
     .musicRankItem:last-child { border-right:0; }
@@ -71,12 +74,9 @@
     .musicChartError { color:#c34444; }
     .musicChartNotice { margin:12px 2px 1px; color:rgba(0,0,0,.43); font-size:10px; font-weight:650; line-height:1.65; letter-spacing:-.01em; }
     @media (max-width:520px) {
-      .musicChartHead { padding:20px 17px 17px; }
+      .musicChartHead { margin:0 12px 14px; padding:19px 17px 18px; border-radius:19px; }
       .musicChartTitleRow,.musicChartControlRow { align-items:flex-start; flex-direction:column; }
       .musicChartUpdated { text-align:left; }
-      .musicChartSummary { margin-top:15px; }
-      .musicChartStat { padding:10px 9px; }
-      .musicChartStatValue { font-size:20px; }
       .musicChartBody { padding:12px; }
       .musicRankGrid { grid-template-columns:repeat(2,1fr); }
       .musicRankItem { border-bottom:1px solid rgba(0,0,0,.075); }
@@ -95,11 +95,9 @@
   <header class="header header--simple"><div class="headerBar headerBar--center"><a class="brand" href="/" aria-label="지드래곤 음원총공팀"><img class="brandImg" src="/assets/header/logo.svg" alt="지드래곤 음원총공팀 로고"></a></div></header>
 
   <main class="container">
-    <div class="subHeader"><a class="backLink" href="/">← 메인으로</a></div>
-
-    <section class="section musicChartSection">
+<section class="section musicChartSection">
       <div class="musicChartPanel">
-        <div class="musicChartHead"><div class="musicChartKicker">LIVE CHART UPDATE</div><div class="musicChartTitleRow"><h2 class="musicChartTitle">G-DRAGON &amp; BIGBANG<br>음원 차트 현황</h2><div id="musicChartUpdated" class="musicChartUpdated">업데이트 준비 중</div></div><div class="musicChartSummary" aria-label="차트인 곡 수"><div class="musicChartStat"><div class="musicChartStatLabel">TOTAL</div><div id="musicChartTotal" class="musicChartStatValue">—</div></div><div class="musicChartStat"><div class="musicChartStatLabel">G-DRAGON</div><div id="musicChartGD" class="musicChartStatValue">—</div></div><div class="musicChartStat"><div class="musicChartStatLabel">BIGBANG</div><div id="musicChartBIGBANG" class="musicChartStatValue">—</div></div></div></div>
+        <div class="musicChartHead"><div class="musicChartTitleRow"><h2 class="musicChartTitle">G-DRAGON &amp; BIGBANG<br>음원 차트 현황</h2><div id="musicChartUpdated" class="musicChartUpdated">업데이트 준비 중</div></div></div></div>
         <div class="musicChartBody"><div class="musicChartControlRow"><div class="musicChartSubTitle">현재 차트인 음원</div><div class="musicChartFilters" aria-label="아티스트 필터"><button type="button" class="musicChartFilter is-active" data-chart-filter="ALL">전체</button><button type="button" class="musicChartFilter" data-chart-filter="G-DRAGON">G-DRAGON</button><button type="button" class="musicChartFilter" data-chart-filter="BIGBANG">BIGBANG</button></div></div><div id="musicChartList" class="musicChartList" aria-live="polite"><div class="musicChartEmpty">지드래곤 활동 재개 시 음원 차트 현황을 제공합니다.</div></div><p class="musicChartNotice">※ 멜론 TOP100 · 멜론 일간 · 지니 TOP200 · 벅스 실시간 기준<br>※ 차트 순위는 자동 갱신되며, 플랫폼 집계 시점에 따라 실제 순위와 차이가 있을 수 있습니다.</p></div>
       </div>
     </section>
@@ -118,7 +116,6 @@
     function makeMainChartSongKey(song){ return `${normalizeChartArtist(song.artistGroup||song.artist)}|||${normalizeChartTitle(song.title)}`; }
     function getMainChartChangeClass(change){ return change?.type==='up'?'musicRankChange--up':change?.type==='down'?'musicRankChange--down':change?.type==='new'?'musicRankChange--new':'musicRankChange--same'; }
     function aggregateMainChartSongs(data){ const grouped=new Map(); MUSIC_CHART_ORDER.forEach(chartId=>{ const chart=data.charts?.[chartId]; if(!chart||chart.status!=='ok') return; (chart.songs||[]).forEach(song=>{ const key=makeMainChartSongKey(song); if(!grouped.has(key)) grouped.set(key,{key,title:song.title,artist:song.artist,artistGroup:normalizeChartArtist(song.artistGroup||song.artist),ranks:{}}); const item=grouped.get(key); if(chartId==='melonTop100'||chartId==='melonDaily'){ item.title=song.title; item.artist=song.artist; } item.ranks[chartId]={rank:song.rank,change:song.change}; }); }); return [...grouped.values()].sort((a,b)=>Math.min(...Object.values(a.ranks).map(x=>x.rank))-Math.min(...Object.values(b.ranks).map(x=>x.rank))); }
-    function updateMainChartSummary(songs){ document.getElementById('musicChartTotal').textContent=songs.length; document.getElementById('musicChartGD').textContent=songs.filter(x=>x.artistGroup==='G-DRAGON').length; document.getElementById('musicChartBIGBANG').textContent=songs.filter(x=>x.artistGroup==='BIGBANG').length; }
     function renderMainChartSongs(){ const list=document.getElementById('musicChartList'); const songs=musicChartFilter==='ALL'?musicChartSongs:musicChartSongs.filter(x=>x.artistGroup===musicChartFilter); if(!songs.length){ list.innerHTML='<div class="musicChartEmpty">현재 조건에 해당하는 차트인 음원이 없습니다.</div>'; return; } list.innerHTML=songs.map(song=>{ const ranks=MUSIC_CHART_ORDER.map(id=>{ const info=song.ranks[id]; if(!info) return `<div class="musicRankItem"><div class="musicRankPlatform">${MUSIC_CHART_LABELS[id]}</div><div class="musicRankValueRow"><div class="musicRankValue">—</div></div><div class="musicRankChange musicRankChange--same">미진입</div></div>`; return `<div class="musicRankItem"><div class="musicRankPlatform">${MUSIC_CHART_LABELS[id]}</div><div class="musicRankValueRow"><div class="musicRankValue">${escapeChartHtml(info.rank)}</div><div class="musicRankUnit">위</div></div><div class="musicRankChange ${getMainChartChangeClass(info.change)}">${escapeChartHtml(info.change?.label||'—')}</div></div>`; }).join(''); return `<article class="musicSongCard"><div class="musicSongHead"><div class="musicSongInfo"><div class="musicSongArtist">${escapeChartHtml(song.artistGroup)}</div><div class="musicSongTitle" title="${escapeChartHtml(song.title)}">${escapeChartHtml(song.title)}</div></div><div class="musicSongCount">${Object.keys(song.ranks).length}개 차트인</div></div><div class="musicRankGrid">${ranks}</div></article>`; }).join(''); }
     function formatMainChartUpdatedAt(updatedAt){
       const raw=String(updatedAt||'').trim();
@@ -135,7 +132,6 @@
         const data=await response.json();
         musicChartSongs=aggregateMainChartSongs(data);
         document.getElementById('musicChartUpdated').textContent=formatMainChartUpdatedAt(data.updatedAt);
-        updateMainChartSummary(musicChartSongs);
         renderMainChartSongs();
       }catch(error){
         console.error(error);
