@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/assets/meta/favicon.png" type="image/png" sizes="any">
+  <title>음원 차트 전체보기 | 지드래곤 음원총공팀</title>
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    .subPage { padding-top:18px; padding-bottom:42px; }
+    .subTopBar { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:14px; }
+    .subBack { color:rgba(0,0,0,.55); font-size:13px; font-weight:800; text-decoration:none; }
+    .subBack:hover { color:#111; }
+    .subTitle { margin:0; color:#111; font-size:clamp(24px,5vw,34px); font-weight:950; letter-spacing:-.055em; }
+    .subDesc { margin:7px 0 0; color:rgba(0,0,0,.48); font-size:12px; font-weight:700; line-height:1.6; }
+    @media (max-width:520px) {
+      .subPage { padding-top:12px; }
+    }
+  
+    .musicChartPanel { overflow:hidden; border:1px solid rgba(0,0,0,.08); border-radius:20px; background:#fff; box-shadow:0 14px 38px rgba(0,0,0,.05); }
+    .musicChartHead { position:relative; overflow:hidden; padding:22px 22px 19px; border-bottom:1px solid rgba(0,0,0,.08); background:
+      linear-gradient(90deg, rgba(0,0,0,.65) 0%, rgba(0,0,0,.42) 50%, rgba(0,0,0,.18) 100%),
+      url("/assets/header/gdbiiig.png") center 38% / cover no-repeat; color:#fff; }
+    .musicChartKicker { display:flex; align-items:center; gap:7px; color:rgba(255,255,255,.7); font-size:11px; font-weight:900; letter-spacing:.1em; }
+    .musicChartTitleRow { display:flex; align-items:flex-end; justify-content:space-between; gap:15px; margin-top:11px; }
+    .musicChartTitle { margin:0; color:#fff; font-size:clamp(24px,5vw,31px); font-weight:900; letter-spacing:-.055em; line-height:1.1; }
+    .musicChartUpdated { color:rgba(255,255,255,.62); font-size:11px; font-weight:700; text-align:right; }
+    .musicChartSummary { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:19px; }
+    .musicChartStat { padding:11px 12px; border:1px solid rgba(255,255,255,.14); border-radius:12px; background:rgba(255,255,255,.09); backdrop-filter:blur(8px); }
+    .musicChartStatLabel { color:rgba(255,255,255,.62); font-size:10px; font-weight:850; }
+    .musicChartStatValue { margin-top:5px; color:#fff; font-size:23px; font-weight:900; }
+    .musicChartBody { padding:16px; background:#f7f8fb; }
+    .musicChartControlRow { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:13px; }
+    .musicChartSubTitle { color:#111; font-size:14px; font-weight:900; }
+    .musicChartFilters { display:flex; gap:5px; padding:3px; border:1px solid rgba(0,0,0,.08); border-radius:10px; background:#fff; }
+    .musicChartFilter { padding:7px 9px; border:0; border-radius:7px; background:transparent; color:rgba(0,0,0,.45); cursor:pointer; font-family:inherit; font-size:11px; font-weight:850; }
+    .musicChartFilter.is-active { background:#111; color:#fff; }
+    .musicChartList { display:grid; gap:10px; }
+    .musicSongCard { overflow:hidden; border:1px solid rgba(0,0,0,.08); border-radius:15px; background:#fff; }
+    .musicSongHead { display:flex; align-items:center; justify-content:space-between; gap:13px; padding:14px 15px 13px; border-bottom:1px solid rgba(0,0,0,.075); }
+    .musicSongArtist { margin-bottom:4px; color:#315fc7; font-size:10px; font-weight:900; letter-spacing:.065em; }
+    .musicSongTitle { overflow:hidden; color:#111; font-size:18px; font-weight:900; text-overflow:ellipsis; white-space:nowrap; }
+    .musicSongCount { padding:7px 8px; border-radius:8px; background:#eef3ff; color:#315fc7; font-size:10px; font-weight:900; white-space:nowrap; }
+    .musicRankGrid { display:grid; grid-template-columns:repeat(4,1fr); }
+    .musicRankItem { min-width:0; padding:12px 10px 13px; border-right:1px solid rgba(0,0,0,.075); }
+    .musicRankItem:last-child { border-right:0; }
+    .musicRankPlatform { overflow:hidden; color:rgba(0,0,0,.43); font-size:9px; font-weight:850; text-overflow:ellipsis; white-space:nowrap; }
+    .musicRankValueRow { display:flex; align-items:baseline; gap:3px; margin-top:6px; }
+    .musicRankValue { color:#111; font-size:21px; font-weight:900; }
+    .musicRankUnit { color:rgba(0,0,0,.45); font-size:10px; font-weight:800; }
+    .musicRankChange { display:inline-flex; margin-top:7px; padding:2px 5px; border-radius:5px; font-size:9px; font-weight:900; }
+    .musicRankChange--up { background:#fff0f0; color:#e34040; }
+    .musicRankChange--down { background:#edf4ff; color:#3574dc; }
+    .musicRankChange--same { background:#f0f1f3; color:#80848d; }
+    .musicRankChange--new { background:#eaf8f0; color:#138356; }
+    .musicChartEmpty,.musicChartError { padding:34px 16px; border:1px solid rgba(0,0,0,.08); border-radius:15px; background:#fff; color:rgba(0,0,0,.5); font-size:13px; font-weight:700; text-align:center; }
+    .musicChartNotice { margin:12px 2px 1px; color:rgba(0,0,0,.43); font-size:10px; font-weight:650; line-height:1.65; }
+    @media (max-width:520px) {
+      .musicChartTitleRow,.musicChartControlRow { align-items:flex-start; flex-direction:column; }
+      .musicChartUpdated { text-align:left; }
+      .musicRankGrid { grid-template-columns:repeat(2,1fr); }
+      .musicRankItem { border-bottom:1px solid rgba(0,0,0,.075); }
+      .musicRankItem:nth-child(2n) { border-right:0; }
+    }
+  </style>
+</head>
+<body>
+  <header class="header header--simple"><div class="headerBar headerBar--center"><a class="brand" href="/" aria-label="지드래곤 음원총공팀"><img class="brandImg" src="/assets/header/logo.svg" alt="지드래곤 음원총공팀 로고"></a></div></header>
+
+  <main class="container subPage">
+    <div class="subTopBar"><a class="subBack" href="/">← 메인으로</a></div>
+    <h1 class="subTitle">음원 차트 전체보기</h1>
+    <p class="subDesc">G-DRAGON &amp; BIGBANG의 현재 차트 진입 현황과 플랫폼별 순위를 자세히 확인할 수 있어요.</p>
+
+    <section class="musicChartPanel">
+      <div class="musicChartHead">
+        <div class="musicChartKicker">LIVE CHART UPDATE</div>
+        <div class="musicChartTitleRow">
+          <h2 class="musicChartTitle">G-DRAGON &amp; BIGBANG<br>음원 차트 현황</h2>
+          <div id="musicChartUpdated" class="musicChartUpdated">업데이트 준비 중</div>
+        </div>
+        <div class="musicChartSummary">
+          <div class="musicChartStat"><div class="musicChartStatLabel">TOTAL</div><div id="musicChartTotal" class="musicChartStatValue">—</div></div>
+          <div class="musicChartStat"><div class="musicChartStatLabel">G-DRAGON</div><div id="musicChartGD" class="musicChartStatValue">—</div></div>
+          <div class="musicChartStat"><div class="musicChartStatLabel">BIGBANG</div><div id="musicChartBIGBANG" class="musicChartStatValue">—</div></div>
+        </div>
+      </div>
+      <div class="musicChartBody">
+        <div class="musicChartControlRow">
+          <div class="musicChartSubTitle">현재 차트인 음원</div>
+          <div class="musicChartFilters">
+            <button type="button" class="musicChartFilter is-active" data-chart-filter="ALL">전체</button>
+            <button type="button" class="musicChartFilter" data-chart-filter="G-DRAGON">G-DRAGON</button>
+            <button type="button" class="musicChartFilter" data-chart-filter="BIGBANG">BIGBANG</button>
+          </div>
+        </div>
+        <div id="musicChartList" class="musicChartList"><div class="musicChartEmpty">불러오는 중</div></div>
+        <p class="musicChartNotice">※ 멜론 TOP100 · 멜론 일간 · 지니 TOP200 · 벅스 실시간 기준<br>※ 차트 순위는 자동 갱신되며, 플랫폼 집계 시점에 따라 실제 순위와 차이가 있을 수 있습니다.</p>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const MUSIC_CHART_ORDER=['melonTop100','melonDaily','genieTop200','bugsRealtime'];
+    const MUSIC_CHART_LABELS={melonTop100:'멜론 TOP100',melonDaily:'멜론 일간',genieTop200:'지니 TOP200',bugsRealtime:'벅스 실시간'};
+    let musicChartSongs=[]; let musicChartFilter='ALL';
+    function esc(v){return String(v??'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#39;');}
+    function normArtist(v){return String(v||'').toUpperCase().replace(/\([^)]*\)/g,'').trim();}
+    function normTitle(v){return String(v||'').toLowerCase().replace(/\(feat\.[^)]*\)/gi,'').replace(/\(feat[^)]*\)/gi,'').replace(/[^a-z0-9가-힣]/gi,'').trim();}
+    function key(song){return `${normArtist(song.artistGroup||song.artist)}|||${normTitle(song.title)}`;}
+    function changeClass(c){return c?.type==='up'?'musicRankChange--up':c?.type==='down'?'musicRankChange--down':c?.type==='new'?'musicRankChange--new':'musicRankChange--same';}
+    function aggregate(data){
+      const grouped=new Map();
+      MUSIC_CHART_ORDER.forEach(chartId=>{
+        const chart=data.charts?.[chartId];
+        if(!chart||chart.status!=='ok') return;
+        (chart.songs||[]).forEach(song=>{
+          const k=key(song);
+          if(!grouped.has(k)) grouped.set(k,{title:song.title,artist:song.artist,artistGroup:normArtist(song.artistGroup||song.artist),ranks:{}});
+          grouped.get(k).ranks[chartId]={rank:song.rank,change:song.change};
+        });
+      });
+      return [...grouped.values()].sort((a,b)=>Math.min(...Object.values(a.ranks).map(x=>x.rank))-Math.min(...Object.values(b.ranks).map(x=>x.rank)));
+    }
+    function formatTime(raw){
+      raw=String(raw||'').trim();
+      const m=raw.match(/^(\d{4})-(\d{2})-(\d{2})[ T](\d{2}):(\d{2})(?::\d{2})?\s*(KST)?$/i);
+      return m?`${m[1]}.${m[2]}.${m[3]} ${m[4]}:${m[5]} KST`:raw||'업데이트 시간 확인 필요';
+    }
+    function updateSummary(songs){
+      document.getElementById('musicChartTotal').textContent=songs.length;
+      document.getElementById('musicChartGD').textContent=songs.filter(x=>x.artistGroup==='G-DRAGON').length;
+      document.getElementById('musicChartBIGBANG').textContent=songs.filter(x=>x.artistGroup==='BIGBANG').length;
+    }
+    function render(){
+      const list=document.getElementById('musicChartList');
+      const songs=musicChartFilter==='ALL'?musicChartSongs:musicChartSongs.filter(x=>x.artistGroup===musicChartFilter);
+      if(!songs.length){list.innerHTML='<div class="musicChartEmpty">현재 조건에 해당하는 차트인 음원이 없습니다.</div>'; return;}
+      list.innerHTML=songs.map(song=>{
+        const ranks=MUSIC_CHART_ORDER.map(id=>{
+          const info=song.ranks[id];
+          if(!info) return `<div class="musicRankItem"><div class="musicRankPlatform">${MUSIC_CHART_LABELS[id]}</div><div class="musicRankValueRow"><div class="musicRankValue">—</div></div><div class="musicRankChange musicRankChange--same">미진입</div></div>`;
+          return `<div class="musicRankItem"><div class="musicRankPlatform">${MUSIC_CHART_LABELS[id]}</div><div class="musicRankValueRow"><div class="musicRankValue">${esc(info.rank)}</div><div class="musicRankUnit">위</div></div><div class="musicRankChange ${changeClass(info.change)}">${esc(info.change?.label||'—')}</div></div>`;
+        }).join('');
+        return `<article class="musicSongCard"><div class="musicSongHead"><div><div class="musicSongArtist">${esc(song.artistGroup)}</div><div class="musicSongTitle">${esc(song.title)}</div></div><div class="musicSongCount">${Object.keys(song.ranks).length}개 차트인</div></div><div class="musicRankGrid">${ranks}</div></article>`;
+      }).join('');
+    }
+    async function load(){
+      const list=document.getElementById('musicChartList');
+      try{
+        const r=await fetch(`/chart-data.json?v=${Date.now()}`,{cache:'no-store'});
+        if(!r.ok) throw new Error(`HTTP ${r.status}`);
+        const data=await r.json();
+        musicChartSongs=aggregate(data);
+        document.getElementById('musicChartUpdated').textContent=formatTime(data.updatedAt);
+        updateSummary(musicChartSongs); render();
+      }catch(e){
+        console.error(e);
+        document.getElementById('musicChartUpdated').textContent='차트 데이터 확인 필요';
+        list.innerHTML='<div class="musicChartError">현재 차트 업데이트를 준비 중입니다.<br>잠시 후 다시 확인해 주세요.</div>';
+      }
+    }
+    document.querySelectorAll('.musicChartFilter').forEach(btn=>btn.addEventListener('click',function(){
+      musicChartFilter=this.dataset.chartFilter;
+      document.querySelectorAll('.musicChartFilter').forEach(x=>x.classList.toggle('is-active',x===this));
+      render();
+    }));
+    load();
+    setInterval(load,60*1000);
+    document.addEventListener('visibilitychange',()=>{if(!document.hidden) load();});
+    window.addEventListener('focus',load);
+  </script>
+
+  <footer class="footer"><div class="container footerInner footerInner--logo"><a href="/" class="footerLogoLink" aria-label="지드래곤 음원총공팀 홈으로 이동"><img class="footerLogo" src="/assets/header/logo1.png" alt="지드래곤 음원총공팀 로고"></a></div></footer>
+  <script src="/data.js"></script>
+  <script src="/script.js"></script>
+</body>
+</html>
