@@ -1133,23 +1133,23 @@ main.container.radioPage {
    ========================= */
 
 main.container.radioPage .radioStation {
-  font-size: 15px !important;
+  font-size: 14px !important;
 }
 
 
 main.container.radioPage .radioProgram {
-  font-size: 24px !important;
-  line-height: 1.15 !important;
+  font-size: 21px !important;
+  line-height: 1.18 !important;
 }
 
 
 main.container.radioPage .radioTime {
-  font-size: 14px !important;
+  font-size: 12px !important;
 }
 
 
 main.container.radioPage .radioNumber {
-  font-size: 14px !important;
+  font-size: 12px !important;
 }
 
 
@@ -1164,22 +1164,22 @@ main.container.radioPage .radioLiveBadge {
 @media (max-width:720px){
 
   main.container.radioPage .radioStation {
-    font-size: 13px !important;
+    font-size: 12px !important;
   }
 
 
   main.container.radioPage .radioProgram {
-    font-size: 20px !important;
+    font-size: 17px !important;
   }
 
 
   main.container.radioPage .radioTime {
-    font-size: 12px !important;
+    font-size: 11px !important;
   }
 
 
   main.container.radioPage .radioNumber {
-    font-size: 12px !important;
+    font-size: 11px !important;
   }
 
 }
