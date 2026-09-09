@@ -1,0 +1,68 @@
+/* =========================
+   RADIO SIZE FINAL
+   ========================= */
+
+/* PC */
+.radioStation {
+  font-size: 13px !important;
+}
+
+.radioProgram {
+  font-size: 17px !important;
+  line-height: 1.2 !important;
+}
+
+.radioTime {
+  font-size: 10px !important;
+}
+
+.radioNumber {
+  font-size: 11px !important;
+}
+
+.radioAction {
+  font-size: 13px !important;
+}
+
+.radioScheduleTitle {
+  font-size: 16px !important;
+}
+
+.radioScheduleDesc {
+  font-size: 12px !important;
+}
+
+
+/* MOBILE */
+@media (max-width:720px){
+
+  .radioStation {
+    font-size: 11px !important;
+  }
+
+  .radioProgram {
+    font-size: 15px !important;
+    line-height: 1.2 !important;
+  }
+
+  .radioTime {
+    font-size: 10px !important;
+  }
+
+  .radioNumber {
+    font-size: 10px !important;
+  }
+
+  .radioAction {
+    font-size: 12px !important;
+  }
+
+  .radioScheduleTitle {
+    font-size: 15px !important;
+  }
+
+  .radioScheduleDesc {
+    font-size: 11px !important;
+  }
+
+}
