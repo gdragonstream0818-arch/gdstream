@@ -1,1240 +1,276 @@
 <!doctype html>
 <html lang="ko">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
+  <link rel="icon" href="/assets/meta/favicon.png" type="image/png" sizes="any">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://i.ibb.co/JgfVvDn/ogw.png">
-  <meta property="og:title" content="라디오 신청 | 지드래곤 음원총공팀">
-  <meta property="og:description" content="현재 방송 중인 라디오에 빅뱅의 BiiiG을 신청하세요.">
-  <meta property="og:url" content="https://www.gdstream.site/radio/">
-
+  <meta property="og:title" content="지드래곤 음원총공팀">
+  <meta property="og:description" content="FAM을 위한 음원서포트 정보">
+  <meta property="og:url" content="https://gdstream.site/">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="라디오 신청 | 지드래곤 음원총공팀">
-  <meta name="twitter:description" content="현재 방송 중인 라디오에 빅뱅의 BiiiG을 신청하세요.">
+  <meta name="twitter:title" content="지드래곤 음원총공팀">
+  <meta name="twitter:description" content="FAM을 위한 음원서포트 정보">
   <meta name="twitter:image" content="https://i.ibb.co/JgfVvDn/ogw.png">
-
-  <title>라디오 신청 | 지드래곤 음원총공팀</title>
-
-  <link rel="icon" href="/assets/meta/favicon.png" type="image/png" sizes="any">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>지드래곤 음원총공팀</title>
   <link rel="stylesheet" href="/styles.css">
-
   <style>
-    :root {
-      --radio-bg: #ffffff;
-      --radio-line: rgba(0, 0, 0, .075);
-      --radio-muted: rgba(0, 0, 0, .50);
-      --radio-shadow: 0 10px 28px rgba(0, 0, 0, .055);
-      --radio-shadow-hover: 0 16px 34px rgba(0, 0, 0, .085);
-      --radio-pink: #e88ca2;
+    html { scroll-behavior:smooth; }
+    body { color:#111; background:#fff; }
+
+    .pdfGuideWrap { padding-top:34px; padding-bottom:72px; }
+    .pdfGuideHero { margin-bottom:22px; padding:24px 22px; border:1px solid rgba(0,0,0,.06); border-radius:22px; background:linear-gradient(135deg,rgba(190,205,235,.34),rgba(245,195,190,.34)); box-shadow:0 10px 28px rgba(0,0,0,.08); }
+    .pdfGuideTitle { margin:0; font-size:clamp(29px, 6vw, 40px); line-height:1.06; font-weight:950; letter-spacing:-.055em; }
+    .pdfGuideIntro { margin:11px 0 0; max-width:720px; color:rgba(0,0,0,.54); font-size:13px; font-weight:650; line-height:1.6; letter-spacing:-.02em; }
+
+    .pdfQuickNav { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; max-width:520px; margin:24px 0 36px; }
+    .pdfQuickNav a { display:flex; align-items:center; justify-content:center; min-height:52px; padding:12px 10px; border:1px solid rgba(0,0,0,.08); border-radius:14px; background:#fff; color:#111; font-size:14px; font-weight:900; text-decoration:none; box-shadow:0 7px 20px rgba(0,0,0,.035); }
+    .pdfQuickNav a:hover { background:#f6f7f9; }
+
+    .pdfMainTabs { display:flex; gap:10px; width:100%; margin:0 0 34px; padding:0; border:0; background:transparent; }
+    .pdfMainTabBtn { flex:1 1 0; display:inline-flex; align-items:center; justify-content:center; min-width:0; min-height:44px; padding:10px 16px; border:1px solid #fff; border-radius:12px; background:#fff; color:#111; font-size:14px; font-weight:900; letter-spacing:-.02em; cursor:pointer; transition:background .15s ease,color .15s ease,transform .15s ease,border-color .15s ease; }
+    .pdfMainTabBtn:hover { transform:translateY(-1px); background:#fff7f8; border-color:#fff7f8; }
+    .pdfMainTabBtn.is-active { background:#fdecef; color:#111; border-color:#fdecef; box-shadow:none; }
+    .pdfMainPanel { display:none; }
+    .pdfMainPanel.is-active { display:block; }
+
+    .pdfGuideGroup { scroll-margin-top:24px; margin-top:56px; }
+    .pdfGuideGroup:first-of-type { margin-top:0; }
+    .pdfGroupHead { margin-bottom:18px; }
+    .pdfGroupTitle { margin:0; font-size:24px; line-height:1.2; font-weight:950; letter-spacing:-.04em; }
+    .pdfGroupSub { margin:5px 0 0; color:rgba(0,0,0,.52); font-size:13px; font-weight:700; line-height:1.5; }
+
+    .pdfTabBar { display:flex; gap:10px; width:100%; margin:18px 0 20px; }
+    .pdfTabBtn { flex:1 1 0; display:inline-flex; align-items:center; justify-content:center; min-width:0; min-height:44px; padding:10px 10px; border:1px solid #fff; border-radius:12px; background:#fff; color:#111; font-size:14px; font-weight:900; letter-spacing:-.02em; cursor:pointer; transition:background .15s ease, color .15s ease, transform .15s ease, border-color .15s ease; }
+    .pdfTabBtn:hover { background:#fff7f8; border-color:#fff7f8; transform:translateY(-1px); }
+    .pdfTabBtn.is-active { background:#fdecef; color:#111; border-color:#fdecef; box-shadow:none; }
+
+    .pdfTabPanel { display:none; }
+    .pdfTabPanel.is-active { display:block; }
+
+
+    .pdfXNotice { margin-top:8px; padding:16px 17px; border:1px solid rgba(222,150,164,.22); border-left:4px solid #e5a3b2; border-radius:0 14px 14px 0; background:#fff6f8; }
+    .pdfXNotice strong { display:block; margin-bottom:7px; font-size:14px; font-weight:950; }
+    .pdfXNotice p { margin:0; color:rgba(0,0,0,.62); font-size:12px; font-weight:700; line-height:1.65; }
+
+    .pdfXDeviceCard { padding:0; border:0; border-radius:0; background:transparent; box-shadow:none; }
+    .pdfXDeviceHead { display:flex; align-items:center; gap:12px; margin-bottom:14px; }
+    .pdfDeviceBadge { display:flex; align-items:center; justify-content:center; min-width:46px; height:46px; padding:0 12px; border-radius:13px; background:#fdecef; color:#6d3d46; border:1px solid rgba(222,150,164,.32); font-size:13px; font-weight:950; }
+    .pdfXDeviceTitle { margin:0; font-size:19px; font-weight:950; letter-spacing:-.035em; }
+    .pdfXDeviceSub { margin:4px 0 0; color:rgba(0,0,0,.48); font-size:12px; font-weight:700; }
+    .pdfXGuideImage { display:block; width:100%; max-width:none; height:auto; margin:0; border:0; border-radius:0; box-shadow:none; }
+
+
+    .pdfXIdCard { margin:20px 2px 24px; padding:0; }
+    .pdfXIdTitle { margin:0 0 10px; font-size:17px; font-weight:950; letter-spacing:-.03em; }
+    .pdfXIdSteps { margin:0; padding-left:20px; color:#222; }
+    .pdfXIdSteps li { margin:6px 0; font-size:13px; font-weight:760; line-height:1.65; }
+    .pdfXIdButton { display:inline-flex; align-items:center; justify-content:center; min-height:42px; margin-top:12px; padding:10px 16px; border-radius:12px; background:#f1b8c4; color:#4d2730; font-size:13px; font-weight:900; text-decoration:none; box-shadow:none; }
+    .pdfXIdButton:hover { filter:brightness(.96); }
+
+    .pdfCommunityNotice { margin:10px 0 18px; padding:0; border:0; border-radius:0; background:transparent; color:rgba(0,0,0,.62); font-size:12px; font-weight:800; line-height:1.7; }
+    .pdfPreparingText { padding:18px 2px 6px; color:rgba(0,0,0,.52); font-size:14px; font-weight:850; }
+
+    @media (max-width:720px) {
+      .pdfGuideWrap { padding-top:26px; padding-bottom:54px; }
+      .pdfGuideIntro { font-size:12px; }
+      .pdfQuickNav { gap:8px; margin-top:20px; margin-bottom:30px; }
+      .pdfQuickNav a { min-height:48px; font-size:13px; }
+      .pdfGuideHero { padding:20px 18px; border-radius:18px; }
+      .pdfMainTabs { gap:8px; margin:0 0 26px; }
+      .pdfMainTabBtn { min-height:42px; padding:10px 8px; font-size:13px; }
+      .pdfGuideGroup { margin-top:46px; }
+      .pdfGroupTitle { font-size:21px; }
+      .pdfGroupSub { font-size:12px; }
+      .pdfTabBar { gap:6px; }
+      .pdfTabBtn { flex:1 1 0; min-width:0; min-height:42px; padding:10px 5px; font-size:12px; line-height:1.2; }
     }
-
-    body {
-      background: #fff;
-    }
-
-    .radioPage {
-      min-height: calc(100vh - 100px);
-      padding: 28px 0 58px;
-    }
-
-
-    /* =========================
-       CLOCK
-       ========================= */
-
-    .radioClock {
-      margin-bottom: 24px;
-      color: rgba(0, 0, 0, .42);
-      font-size: 12px;
-      font-weight: 700;
-      text-align: right;
-      font-variant-numeric: tabular-nums;
-    }
-
-
-    /* =========================
-       INTRO
-       ========================= */
-
-    .radioIntro {
-      margin-bottom: 18px;
-      padding: 22px 22px 20px;
-
-      border: 1px solid rgba(0, 0, 0, .055);
-      border-radius: 22px;
-
-      background:
-        linear-gradient(
-          135deg,
-          rgba(190, 205, 235, .32),
-          rgba(245, 195, 190, .24)
-        );
-
-      box-shadow: var(--radio-shadow);
-    }
-
-    .radioTitle {
-      margin: 0;
-
-      color: #111;
-
-      font-size: clamp(29px, 6vw, 40px);
-      font-weight: 950;
-
-      letter-spacing: -.055em;
-      line-height: 1.06;
-    }
-
-    .radioDescription {
-      margin: 11px 0 0;
-
-      color: rgba(0, 0, 0, .54);
-
-      font-size: 13px;
-      font-weight: 650;
-
-      line-height: 1.6;
-    }
-
-    .radioDescription strong {
-      color: #111;
-      font-weight: 900;
-    }
-
-
-    /* =========================
-       RADIO GRID
-       ========================= */
-
-    .radioGrid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-    }
-
-
-    /* =========================
-       RADIO CARD
-       ========================= */
-
-    .radioCard {
-      position: relative;
-
-      display: flex;
-      flex-direction: column;
-
-      min-height: 168px;
-
-      padding: 15px 52px 15px 15px;
-
-      overflow: hidden;
-
-      border: 1px solid var(--radio-line);
-      border-radius: 19px;
-
-      background:
-        linear-gradient(
-          145deg,
-          rgba(255, 255, 255, .98),
-          rgba(245, 247, 251, .90)
-        );
-
-      color: #111;
-
-      box-shadow: var(--radio-shadow);
-
-      text-align: left;
-      font-family: inherit;
-
-      transition:
-        transform .16s ease,
-        box-shadow .16s ease,
-        border-color .16s ease;
-    }
-
-    button.radioCard {
-      width: 100%;
-      cursor: pointer;
-    }
-
-    .radioCard.is-active:hover {
-      transform: translateY(-2px);
-
-      border-color: rgba(0, 0, 0, .12);
-
-      box-shadow: var(--radio-shadow-hover);
-    }
-
-    .radioCard.is-disabled {
-      min-height: 112px;
-
-      background: #f7f7f8;
-
-      color: rgba(0, 0, 0, .34);
-
-      box-shadow: none;
-
-      cursor: not-allowed;
-    }
-
-
-    /* =========================
-       STATION
-       ========================= */
-
-    .radioStation {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-
-      gap: 10px;
-
-      font-size: 14px;
-      font-weight: 950;
-
-      letter-spacing: -.02em;
-    }
-
-
-    /* =========================
-       ON AIR
-       박스 / 테두리 / 점 제거
-       ========================= */
-
-    .radioLiveBadge {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-
-      padding: 0;
-
-      border: 0;
-      border-radius: 0;
-
-      background: transparent;
-
-      color: #e54848;
-
-      font-size: 9px;
-      font-weight: 900;
-
-      line-height: 1;
-      letter-spacing: .055em;
-    }
-
-    .radioLiveBadge::before {
-      content: "●";
-      color: #e54848;
-      font-size: 8px;
-      line-height: 1;
-    }
-
-
-    /* =========================
-       PROGRAM
-       ========================= */
-
-    .radioProgram {
-      margin: auto 0 5px;
-
-      font-size: 20px;
-      font-weight: 950;
-
-      letter-spacing: -.05em;
-      line-height: 1.2;
-
-      word-break: keep-all;
-    }
-
-    .radioCard.is-disabled .radioProgram {
-      display: none;
-    }
-
-
-    /* =========================
-       TIME + NUMBER
-       한 줄 표시
-       ========================= */
-
-    .radioInfoRow {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-
-      gap: 10px;
-      width: 100%;
-    }
-
-    .radioTime {
-      display: inline-flex;
-
-      color: rgba(0, 0, 0, .44);
-
-      font-size: 11px;
-      font-weight: 700;
-
-      font-variant-numeric: tabular-nums;
-      vertical-align: middle;
-    }
-
-    .radioNumber {
-      display: inline-flex;
-      align-items: center;
-
-      width: fit-content;
-
-      margin: 0;
-      padding: 3px 8px;
-
-      border: 0;
-      border-radius: 999px;
-
-      background: #fff7f8;
-
-      color: #111;
-
-      font-size: 12px;
-      font-weight: 900;
-
-      line-height: 1.3;
-      vertical-align: middle;
-      white-space: nowrap;
-    }
-
-    .radioCard.is-disabled .radioNumber {
-      display: none;
-    }
-
-
-    /* =========================
-       ARROW
-       ========================= */
-
-    .radioActionArrow {
-      position: absolute;
-
-      right: 18px;
-      top: 50%;
-
-      transform: translateY(-50%);
-
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-
-      color: rgba(0, 0, 0, .48);
-
-      font-size: 21px;
-      font-weight: 700;
-
-      line-height: 1;
-
-      pointer-events: none;
-    }
-
-
-    /* =========================
-       DISABLED
-       ========================= */
-
-    .radioAction {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-
-      gap: 10px;
-
-      margin-top: 9px;
-      padding-top: 9px;
-
-      border-top: 1px solid rgba(0, 0, 0, .065);
-
-      color: #111;
-
-      font-size: 11px;
-      font-weight: 900;
-    }
-
-    .radioCard.is-disabled .radioAction {
-      margin-top: auto;
-      padding-top: 0;
-
-      border-top: 0;
-
-      color: rgba(0, 0, 0, .32);
-    }
-
-    .radioCard.is-disabled .radioActionArrow {
-      display: none;
-    }
-
-
-    /* =========================
-       SCORE NOTICE
-       ========================= */
-
-    .radioScoreNotice {
-      margin: 18px 2px 0;
-
-      color: rgba(0, 0, 0, .55);
-
-      font-size: 12px;
-      font-weight: 700;
-
-      line-height: 1.6;
-    }
-
-
-    /* =========================
-       SCHEDULE
-       점수 안내문과 간격 확대
-       ========================= */
-
-    .radioSchedule {
-      margin-top: 38px;
-    }
-
-    .radioScheduleHead {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-
-      gap: 12px;
-
-      margin: 0 2px 10px;
-    }
-
-    .radioScheduleTitle {
-      color: #111;
-
-      font-size: 15px;
-      font-weight: 900;
-
-      letter-spacing: -.03em;
-    }
-
-    .radioScheduleDesc {
-      color: rgba(0, 0, 0, .38);
-
-      font-size: 10px;
-      font-weight: 700;
-    }
-
-    .radioScheduleImageWrap {
-      overflow: hidden;
-
-      border: 1px solid rgba(0, 0, 0, .07);
-      border-radius: 20px;
-
-      background: #fff;
-
-      box-shadow: var(--radio-shadow);
-    }
-
-    .radioScheduleImage {
-      display: block;
-
-      width: 100%;
-      height: auto;
-    }
-
-
-    /* =========================
-       BOTTOM NOTICE
-       ========================= */
-
-    .radioNotice {
-      margin: 15px 2px 0 !important;
-      margin-bottom: 0 !important;
-
-      padding-bottom: 0 !important;
-
-      color: rgba(0, 0, 0, .38);
-
-      font-size: 10px;
-      font-weight: 650;
-
-      line-height: 1.5;
-    }
-
-    .radioPage > .radioNotice {
-      margin-bottom: 0 !important;
-    }
-
-
-    /* =========================
-       MOBILE
-       ========================= */
-
-    @media (max-width: 720px) {
-
-      .radioPage {
-        padding-top: 20px;
-      }
-
-      .radioIntro {
-        padding: 19px 17px 18px;
-        border-radius: 19px;
-      }
-
-      .radioDescription {
-        font-size: 12px;
-      }
-
-      .radioGrid {
-        grid-template-columns: 1fr;
-        gap: 8px;
-      }
-
-      .radioCard {
-        min-height: 0;
-
-        padding: 13px 46px 13px 14px;
-
-        border-radius: 16px;
-      }
-
-      .radioCard.is-disabled {
-        min-height: 0;
-
-        padding: 12px 14px;
-      }
-
-      .radioStation {
-        font-size: 13px;
-      }
-
-      .radioLiveBadge {
-        padding: 0;
-
-        border: 0;
-
-        background: transparent;
-
-        font-size: 9px;
-      }
-
-      .radioProgram {
-        margin: 14px 0 3px;
-
-        font-size: 18px;
-
-        line-height: 1.18;
-      }
-
-      .radioTime {
-        display: inline-flex;
-
-        font-size: 11px;
-      }
-
-      .radioNumber {
-        display: inline-flex;
-        align-items: center;
-
-        margin: 0;
-        padding: 3px 7px;
-
-        border: 0;
-        border-radius: 999px;
-
-        background: #fff7f8;
-
-        color: #111;
-
-        font-size: 11px;
-
-        line-height: 1.25;
-        vertical-align: middle;
-      }
-
-      .radioAction {
-        margin-top: 9px;
-        padding-top: 8px;
-
-        font-size: 10px;
-      }
-
-      .radioActionArrow {
-        right: 16px;
-
-        font-size: 20px;
-      }
-
-      .radioCard.is-disabled .radioAction {
-        margin-top: 8px;
-      }
-
-      /* 모바일도 점수 안내문과 편성표 사이 여백 확보 */
-      .radioSchedule {
-        margin-top: 32px;
-      }
-
-      .radioScheduleHead {
-        display: block;
-      }
-
-      .radioScheduleDesc {
-        display: block;
-        margin-top: 2px;
-      }
-
-      .radioScheduleImageWrap {
-        border-radius: 16px;
-      }
-    }
-
-
-    /* =========================
-       FOOTER GAP
-       ========================= */
-
-    .radioPage {
-      padding-bottom: 0 !important;
-    }
-
-    .radioNotice {
-      margin-bottom: 0 !important;
-    }
-
   </style>
 </head>
-
-
 <body>
-
   <header class="header header--simple">
-
     <div class="headerBar headerBar--center">
-
-      <a
-        class="brand"
-        href="/"
-        aria-label="지드래곤 음원총공팀 홈으로 이동"
-      >
-
-        <img
-          class="brandImg"
-          src="/assets/header/logo.svg"
-          alt="지드래곤 음원총공팀 로고"
-        >
-
+      <a class="brand" href="/" aria-label="지드래곤 음원총공팀">
+        <img class="brandImg" src="/assets/header/logo.svg" alt="지드래곤 음원총공팀 로고">
       </a>
-
     </div>
-
   </header>
 
+  <main class="container pdfGuideWrap">
+    <section class="pdfGuideHero">
+      <h1 class="pdfGuideTitle">PDF 수집 가이드</h1>
+      <p class="pdfGuideIntro">일반 커뮤니티와 X(구 트위터)는 수집 방식이 다르니 아래에서 해당 항목을 선택해 확인해주세요.<br>유튜브 · 인스타그램 · 스레드는 웹으로 접속한 후 일반 커뮤니티와 같은 방식으로 PDF를 수집해주세요.</p>
+    </section>
 
-  <main class="container radioPage">
-
-    <div id="radioClock" class="radioClock">
-      한국 시간 확인 중
+    <div class="pdfMainTabs" role="tablist" aria-label="PDF 수집 유형 선택">
+      <button class="pdfMainTabBtn is-active" type="button" role="tab" aria-selected="true" aria-controls="community" data-main-tab="community">일반 커뮤니티</button>
+      <button class="pdfMainTabBtn" type="button" role="tab" aria-selected="false" aria-controls="xguide" data-main-tab="xguide">X (구 트위터)</button>
     </div>
 
-
-    <section class="radioIntro">
-
-      <h1 class="radioTitle">
-        라디오 신청
-      </h1>
-
-      <p class="radioDescription">
-        현재 방송 중인 라디오를 선택하면 문자 작성 화면으로 이동합니다.<br>
-        프로그램 성격과 어울리는 각자의 사연을 함께 작성해주세요!
-      </p>
-
-    </section>
-
-
-    <section
-      id="radioGrid"
-      class="radioGrid"
-      aria-label="라디오 방송사 선택"
-    ></section>
-
-
-    <p class="radioScoreNotice">
-
-      <strong>
-        라디오는 음악방송 방송점수에 큰 도움이 됩니다.
-      </strong>
-
-      <br>
-
-      <strong>
-        KBS 뮤직뱅크 20% · MBC 음악중심 5% · SBS 인기가요 10% 반영
-      </strong>
-
-    </p>
-
-
-    <section
-      class="radioSchedule"
-      aria-label="라디오 편성표"
-    >
-
-      <div class="radioScheduleHead">
-
-        <div class="radioScheduleTitle">
-          라디오 편성표
-        </div>
-
+    <section id="community" class="pdfGuideGroup pdfMainPanel is-active" role="tabpanel">
+      <div class="pdfGroupHead">
+        <h2 class="pdfGroupTitle">일반 커뮤니티 PDF 수집</h2>
+        <p class="pdfGroupSub">유튜브 · 인스타그램 · 스레드는 웹으로 접속한 후 같은 방식으로 진행</p>
       </div>
 
-
-      <div class="radioScheduleImageWrap">
-
-        <img
-          class="radioScheduleImage"
-          src="/assets/guides/radioschedule.png"
-          alt="KBS, MBC, SBS 라디오 편성표"
-          loading="lazy"
-        >
-
+      <div class="pdfTabBar" role="tablist" aria-label="일반 커뮤니티 기기 선택">
+        <button class="pdfTabBtn is-active" type="button" role="tab" aria-selected="true" aria-controls="community-ios" data-tab-target="community-ios">아이폰</button>
+        <button class="pdfTabBtn" type="button" role="tab" aria-selected="false" aria-controls="community-aos" data-tab-target="community-aos">안드로이드</button>
+        <button class="pdfTabBtn" type="button" role="tab" aria-selected="false" aria-controls="community-pc" data-tab-target="community-pc">PC</button>
       </div>
 
+      <div id="community-ios" class="pdfTabPanel is-active" role="tabpanel">
+        <div class="pdfPreparingText">가이드 준비 중</div>
+      </div>
+
+      <div id="community-aos" class="pdfTabPanel" role="tabpanel" hidden>
+        <div class="pdfPreparingText">가이드 준비 중</div>
+      </div>
+
+      <div id="community-pc" class="pdfTabPanel" role="tabpanel" hidden>
+        <div class="pdfPreparingText">가이드 준비 중</div>
+      </div>
     </section>
 
+    <section id="xguide" class="pdfGuideGroup pdfMainPanel" role="tabpanel" hidden>
+      <div class="pdfGroupHead">
+        <h2 class="pdfGroupTitle">X (구 트위터) PDF 수집</h2>
+      </div>
 
-    <p class="radioNotice">
+      <div class="pdfXNotice">
+        <p>일반적인 PDF 저장만으로는 필요한 정보가 누락될 수 있습니다. X 계정의 고유 식별 ID는 아이디 변경이나 계정 삭제 후에도 유지되므로, 악성 게시글 발견 시 PDF와 함께 고유 식별 ID도 수집해주세요.</p>
+      </div>
 
-      ※ 정규 편성표 기준으로 표시됩니다. 특집 방송·스포츠 중계·결방 등의 경우 실제 방송과 다를 수 있습니다.<br>
+      <section class="pdfXIdCard" aria-labelledby="xIdGuideTitle">
+        <h3 id="xIdGuideTitle" class="pdfXIdTitle">📌 고유번호 조회 방법</h3>
+        <ol class="pdfXIdSteps">
+          <li>고유번호 조회 사이트에 접속</li>
+          <li>아이디 입력 후 조회 (예시: @gdragon_stream)</li>
+          <li>조회된 <strong>고유번호(사용자 ID)</strong>를 복사한 후 함께 첨부</li>
+        </ol>
+        <a class="pdfXIdButton" href="https://develop.tools/ko/x-idcheck/" target="_blank" rel="noreferrer">고유번호 조회 사이트 바로가기 →</a>
+      </section>
 
-      ※ 문자 전송 시 방송사 정책 및 이용 중인 통신사 요금제가 적용될 수 있으며, 최종 전송은 문자 앱에서 직접 진행됩니다.
+      <div class="pdfTabBar" role="tablist" aria-label="X 기기 선택">
+        <button class="pdfTabBtn is-active" type="button" role="tab" aria-selected="true" aria-controls="x-ios" data-tab-target="x-ios">아이폰</button>
+        <button class="pdfTabBtn" type="button" role="tab" aria-selected="false" aria-controls="x-aos" data-tab-target="x-aos">안드로이드</button>
+        <button class="pdfTabBtn" type="button" role="tab" aria-selected="false" aria-controls="x-samsung" data-tab-target="x-samsung">모바일인터넷(삼성)</button>
+        <button class="pdfTabBtn" type="button" role="tab" aria-selected="false" aria-controls="x-pc" data-tab-target="x-pc">PC 크롬</button>
+      </div>
 
-    </p>
+      <div id="x-ios" class="pdfTabPanel is-active" role="tabpanel">
+        <section class="pdfXDeviceCard">
+          <div class="pdfXDeviceHead">
+            <div class="pdfDeviceBadge">iOS</div>
+            <div>
+              <h3 class="pdfXDeviceTitle">아이폰</h3>
+              <p class="pdfXDeviceSub">X 전용 PDF 수집 가이드</p>
+            </div>
+          </div>
+          <img class="pdfXGuideImage" src="/assets/guides/x-iphone.jpg" alt="X 아이폰 PDF 수집 가이드">
+        </section>
+      </div>
 
+      <div id="x-aos" class="pdfTabPanel" role="tabpanel" hidden>
+        <section class="pdfXDeviceCard">
+          <div class="pdfXDeviceHead">
+            <div class="pdfDeviceBadge">AOS</div>
+            <div>
+              <h3 class="pdfXDeviceTitle">안드로이드</h3>
+              <p class="pdfXDeviceSub">X 전용 PDF 수집 가이드</p>
+            </div>
+          </div>
+          <img class="pdfXGuideImage" src="/assets/guides/x-android.jpg" alt="X 안드로이드 PDF 수집 가이드">
+        </section>
+      </div>
+
+      <div id="x-samsung" class="pdfTabPanel" role="tabpanel" hidden>
+        <section class="pdfXDeviceCard">
+          <div class="pdfXDeviceHead">
+            <div class="pdfDeviceBadge">WEB</div>
+            <div>
+              <h3 class="pdfXDeviceTitle">모바일인터넷(삼성)</h3>
+              <p class="pdfXDeviceSub">X 전용 PDF 수집 가이드</p>
+            </div>
+          </div>
+          <img class="pdfXGuideImage" src="/assets/guides/x-samsung-internet.jpg" alt="X 모바일인터넷(삼성) PDF 수집 가이드">
+        </section>
+      </div>
+
+      <div id="x-pc" class="pdfTabPanel" role="tabpanel" hidden>
+        <section class="pdfXDeviceCard">
+          <div class="pdfXDeviceHead">
+            <div class="pdfDeviceBadge">PC</div>
+            <div>
+              <h3 class="pdfXDeviceTitle">PC 크롬</h3>
+              <p class="pdfXDeviceSub">X 전용 PDF 수집 가이드</p>
+            </div>
+          </div>
+          <img class="pdfXGuideImage" src="/assets/guides/x-pc-chrome.jpg" alt="X PC 크롬 PDF 수집 가이드">
+        </section>
+      </div>
+    </section>
   </main>
 
-
   <footer class="footer">
-
     <div class="container footerInner footerInner--logo">
-
-      <a
-        href="/"
-        class="footerLogoLink"
-        aria-label="지드래곤 음원총공팀 홈으로 이동"
-      >
-
-        <img
-          class="footerLogo"
-          src="/assets/header/logo1.png"
-          alt="지드래곤 음원총공팀 로고"
-        >
-
+      <a href="/" class="footerLogoLink" aria-label="지드래곤 음원총공팀 홈으로 이동">
+        <img class="footerLogo" src="/assets/header/logo1.png" alt="지드래곤 음원총공팀 로고">
       </a>
-
     </div>
-
   </footer>
 
-
   <script>
+    // 1차 탭: 일반 커뮤니티 / X(구 트위터)
+    const mainTabButtons = Array.from(document.querySelectorAll('.pdfMainTabBtn'));
+    const mainPanels = Array.from(document.querySelectorAll('.pdfMainPanel'));
 
-    const SMS_MESSAGE = "빅뱅의 BiiiG 신청합니다";
+    function activateMainTab(targetId) {
+      mainTabButtons.forEach(btn => {
+        const active = btn.dataset.mainTab === targetId;
+        btn.classList.toggle('is-active', active);
+        btn.setAttribute('aria-selected', active ? 'true' : 'false');
+      });
 
-
-    /*
-      days 값:
-      0 = 일요일
-      1 = 월요일
-      2 = 화요일
-      3 = 수요일
-      4 = 목요일
-      5 = 금요일
-      6 = 토요일
-    */
-
-
-    const radioStations = [
-
-      {
-        station: "KBS",
-        number: "#8910",
-
-        schedule: [
-
-          {
-            start: "07:00",
-            end: "09:00",
-            title: "조정식의 FM 대행진",
-            days: [0, 1, 2, 3, 4, 5, 6]
-          },
-
-          {
-            start: "09:00",
-            end: "11:00",
-            title: "이현우의 음악앨범",
-            days: [0, 1, 2, 3, 4, 5, 6]
-          },
-
-          {
-            start: "11:00",
-            end: "12:00",
-            title: "박명수의 라디오쇼",
-            days: [0, 1, 2, 3, 4, 5, 6]
-          },
-
-          {
-            start: "12:00",
-            end: "14:00",
-            title: "폴킴의 가요광장",
-            days: [0, 1, 2, 3, 4, 5, 6]
-          },
-
-          {
-            start: "14:00",
-            end: "16:00",
-            title: "가비의 슈퍼라디오",
-            days: [0, 1, 2, 3, 4, 5, 6]
-          },
-
-          {
-            start: "16:00",
-            end: "18:00",
-            title: "윤정수 남창희의 미스터 라디오",
-            days: [0, 1, 2, 3, 4, 5, 6]
-          },
-
-          {
-            start: "18:00",
-            end: "20:00",
-            title: "사랑하기 좋은 날 이금희입니다",
-            days: [0, 1, 2, 3, 4, 5, 6]
-          },
-
-          {
-            start: "20:00",
-            end: "22:00",
-            title: "오마이걸 효정의 볼륨을 높여요",
-            days: [0, 1, 2, 3, 4, 5, 6]
-          },
-
-          {
-            start: "22:00",
-            end: "24:00",
-            title: "한해의 키스 더 라디오",
-            days: [0, 1, 2, 3, 4, 5, 6]
-          }
-
-        ]
-      },
-
-
-      {
-        station: "MBC",
-        number: "#8000",
-
-        schedule: [
-
-          {
-            start: "06:00",
-            end: "07:00",
-            title: "세상을 여는 아침 이영은입니다",
-            days: [0, 1, 2, 3, 4, 5, 6]
-          },
-
-          {
-            start: "07:00",
-            end: "09:00",
-            title: "굿모닝 FM 테이입니다",
-            days: [0, 1, 2, 3, 4, 5, 6]
-          },
-
-          {
-            start: "09:00",
-            end: "11:00",
-            title: "오늘 아침 윤상입니다",
-            days: [0, 1, 2, 3, 4, 5, 6]
-          },
-
-          {
-            start: "12:00",
-            end: "14:00",
-            title: "정오의 희망곡 김신영입니다",
-            days: [0, 1, 2, 3, 4, 5, 6]
-          },
-
-          {
-            start: "14:00",
-            end: "16:00",
-            title: "두시의 데이트 안영미입니다",
-            days: [0, 1, 2, 3, 4, 5, 6]
-          },
-
-          {
-            start: "16:00",
-            end: "18:00",
-            title: "완벽한 하루 이상순입니다",
-            days: [0, 1, 2, 3, 4, 5, 6]
-          },
-
-          {
-            start: "20:00",
-            end: "22:00",
-            title: "김이나의 별이 빛나는 밤에",
-            days: [0, 1, 2, 3, 4, 5, 6]
-          },
-
-          {
-            start: "22:00",
-            end: "24:00",
-            title: "친한친구 방송반",
-            days: [1, 2, 3]
-          },
-
-          {
-            start: "22:00",
-            end: "24:00",
-            title: "아이돌 라디오",
-            days: [4, 5]
-          },
-
-          {
-            start: "22:00",
-            end: "24:00",
-            title: "스포왕 고영배",
-            days: [0, 6]
-          }
-
-        ]
-      },
-
-
-      {
-        station: "SBS",
-        number: "#1077",
-
-        schedule: [
-
-          {
-            start: "07:00",
-            end: "09:00",
-            title: "김영철의 파워FM",
-            days: [0, 1, 2, 3, 4, 5, 6]
-          },
-
-          {
-            start: "09:00",
-            end: "11:00",
-            title: "아름다운 이 아침, 봉태규입니다",
-            days: [0, 1, 2, 3, 4, 5, 6]
-          },
-
-          {
-            start: "12:00",
-            end: "14:00",
-            title: "12시엔 주현영",
-            days: [0, 1, 2, 3, 4, 5, 6]
-          },
-
-          {
-            start: "14:00",
-            end: "16:00",
-            title: "두시탈출 컬투쇼",
-            days: [0, 1, 2, 3, 4, 5, 6]
-          },
-
-          {
-            start: "16:00",
-            end: "18:00",
-            title: "황제성의 황제파워",
-            days: [0, 1, 2, 3, 4, 5, 6]
-          },
-
-          {
-            start: "18:00",
-            end: "20:00",
-            title: "박소현의 러브게임",
-            days: [0, 1, 2, 3, 4, 5, 6]
-          },
-
-          {
-            start: "20:00",
-            end: "22:00",
-            title: "웬디의 영스트리트",
-            days: [0, 1, 2, 3, 4, 5, 6]
-          },
-
-          {
-            start: "22:00",
-            end: "23:00",
-            title: "배성재의 밤",
-            days: [0, 1, 2, 3, 4, 5, 6]
-          },
-
-          {
-            start: "23:00",
-            end: "01:00",
-            title: "딘딘의 뮤직하이",
-            days: [0, 1, 2, 3, 4, 5, 6]
-          }
-
-        ]
-      }
-
-    ];
-
-
-    function getKoreanNow() {
-
-      const parts = new Intl.DateTimeFormat("en-US", {
-        timeZone: "Asia/Seoul",
-        weekday: "short",
-        hour: "2-digit",
-        minute: "2-digit",
-        hourCycle: "h23"
-      }).formatToParts(new Date());
-
-
-      const getPart = (type) =>
-        parts.find(part => part.type === type)?.value;
-
-
-      const weekdayMap = {
-        Sun: 0,
-        Mon: 1,
-        Tue: 2,
-        Wed: 3,
-        Thu: 4,
-        Fri: 5,
-        Sat: 6
-      };
-
-
-      return {
-        weekday: weekdayMap[getPart("weekday")],
-        hour: Number(getPart("hour")),
-        minute: Number(getPart("minute"))
-      };
-
+      mainPanels.forEach(panel => {
+        const active = panel.id === targetId;
+        panel.hidden = !active;
+        panel.classList.toggle('is-active', active);
+      });
     }
 
-
-    function toMinutes(time) {
-
-      const [hour, minute] =
-        time.split(":").map(Number);
-
-      return hour * 60 + minute;
-
-    }
-
-
-    function isOnAir(program, now) {
-
-      const currentTime =
-        now.hour * 60 + now.minute;
-
-      const startTime =
-        toMinutes(program.start);
-
-      const endTime =
-        toMinutes(program.end);
-
-
-      const isCorrectDay =
-        program.days.includes(now.weekday);
-
-
-      if (!isCorrectDay) {
-        return false;
-      }
-
-
-      if (endTime <= startTime) {
-
-        return (
-          currentTime >= startTime ||
-          currentTime < endTime
-        );
-
-      }
-
-
-      return (
-        currentTime >= startTime &&
-        currentTime < endTime
-      );
-
-    }
-
-
-    function getCurrentProgram(station, now) {
-
-      return (
-        station.schedule.find(
-          program => isOnAir(program, now)
-        ) || null
-      );
-
-    }
-
-
-    function formatKoreanClock() {
-
-      return new Intl.DateTimeFormat("ko-KR", {
-        timeZone: "Asia/Seoul",
-        weekday: "long",
-        hour: "numeric",
-        minute: "2-digit",
-        hour12: false
-      }).format(new Date());
-
-    }
-
-
-    function sendSms(number) {
-
-      const smsUrl =
-        `sms:${encodeURIComponent(number)}?body=${encodeURIComponent(SMS_MESSAGE)}`;
-
-      window.location.href = smsUrl;
-
-    }
-
-
-    function renderRadioPage() {
-
-      const now =
-        getKoreanNow();
-
-      const grid =
-        document.getElementById("radioGrid");
-
-      const clock =
-        document.getElementById("radioClock");
-
-
-      clock.textContent =
-        `한국 시간 · ${formatKoreanClock()}`;
-
-
-      grid.innerHTML =
-        radioStations.map(station => {
-
-          const currentProgram =
-            getCurrentProgram(station, now);
-
-
-          if (currentProgram) {
-
-            return `
-
-              <button
-
-                type="button"
-
-                class="radioCard is-active"
-
-                onclick="sendSms('${station.number}')"
-
-                aria-label="${station.station} ${currentProgram.title}에 문자 신청하기"
-
-              >
-
-
-                <div class="radioStation">
-
-                  <span>
-                    ${station.station}
-                  </span>
-
-                  <span class="radioLiveBadge">
-                    ON AIR
-                  </span>
-
-                </div>
-
-
-                <div class="radioProgram">
-                  ${currentProgram.title}
-                </div>
-
-
-                <div class="radioInfoRow">
-
-                  <span class="radioTime">
-                    ${currentProgram.start} ~ ${currentProgram.end}
-                  </span>
-
-                  <span class="radioNumber">
-                    ${station.number}
-                  </span>
-
-                </div>
-
-
-                <span
-                  class="radioActionArrow"
-                  aria-hidden="true"
-                >
-                  →
-                </span>
-
-
-              </button>
-
-            `;
-
-          }
-
-
-          return `
-
-            <button
-
-              type="button"
-
-              class="radioCard is-disabled"
-
-              disabled
-
-              aria-label="${station.station} 현재 진행 중인 프로그램 없음"
-
-            >
-
-
-              <div class="radioStation">
-
-                <span>
-                  ${station.station}
-                </span>
-
-              </div>
-
-
-              <div class="radioAction">
-
-                <span>
-                  현재 진행 중인 프로그램이 없습니다
-                </span>
-
-              </div>
-
-
-            </button>
-
-          `;
-
-        }).join("");
-
-    }
-
-
-    renderRadioPage();
-
-
-    setInterval(
-      renderRadioPage,
-      60 * 1000
-    );
-
+    mainTabButtons.forEach(button => {
+      button.addEventListener('click', () => activateMainTab(button.dataset.mainTab));
+    });
+
+    // 2차 탭: 각 유형 안의 안드로이드 / iPhone / PC
+    document.querySelectorAll('.pdfTabBar').forEach(tabBar => {
+      const group = tabBar.closest('.pdfMainPanel');
+      const buttons = Array.from(tabBar.querySelectorAll('.pdfTabBtn'));
+      const panels = Array.from(group.querySelectorAll('.pdfTabPanel'));
+
+      buttons.forEach(button => {
+        button.addEventListener('click', () => {
+          const targetId = button.getAttribute('data-tab-target');
+
+          buttons.forEach(btn => {
+            const active = btn === button;
+            btn.classList.toggle('is-active', active);
+            btn.setAttribute('aria-selected', active ? 'true' : 'false');
+          });
+
+          panels.forEach(panel => {
+            const active = panel.id === targetId;
+            panel.hidden = !active;
+            panel.classList.toggle('is-active', active);
+          });
+        });
+      });
+    });
+
+    // 기본값: 일반 커뮤니티 + 안드로이드
+    activateMainTab('community');
   </script>
-
 </body>
 </html>
