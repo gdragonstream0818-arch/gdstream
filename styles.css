@@ -1116,70 +1116,87 @@ main.container > .section > .sectionTitle {
 }
 
 /* =========================
-   RADIO SIZE FINAL
+   RADIO FINAL OVERRIDE
    ========================= */
 
-/* PC */
-.radioStation {
+main.container.radioPage {
+  width: 100% !important;
+  max-width: 980px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+}
+
+.radioNowLabel {
   font-size: 13px !important;
+}
+
+.radioNowText {
+  font-size: 14px !important;
+}
+
+.radioStation {
+  font-size: 18px !important;
 }
 
 .radioProgram {
-  font-size: 17px !important;
-  line-height: 1.2 !important;
+  font-size: 25px !important;
 }
 
 .radioTime {
-  font-size: 10px !important;
-}
-
-.radioNumber {
-  font-size: 11px !important;
-}
-
-.radioAction {
-  font-size: 13px !important;
-}
-
-.radioScheduleTitle {
   font-size: 16px !important;
 }
 
-.radioScheduleDesc {
+.radioNumber {
   font-size: 12px !important;
 }
 
+.radioAction {
+  font-size: 14px !important;
+}
 
-/* MOBILE */
-@media (max-width:720px){
+.radioScheduleTitle {
+  font-size: 17px !important;
+}
+
+.radioScheduleDesc {
+  font-size: 13px !important;
+}
+
+.radioNotice {
+  font-size: 12px !important;
+  line-height: 1.8 !important;
+}
+
+@media (max-width:720px) {
+  main.container.radioPage {
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+  }
 
   .radioStation {
-    font-size: 11px !important;
+    font-size: 16px !important;
   }
 
   .radioProgram {
-    font-size: 15px !important;
-    line-height: 1.2 !important;
+    font-size: 23px !important;
   }
 
   .radioTime {
-    font-size: 10px !important;
-  }
-
-  .radioNumber {
-    font-size: 10px !important;
+    font-size: 14px !important;
   }
 
   .radioAction {
-    font-size: 12px !important;
+    font-size: 13px !important;
   }
 
   .radioScheduleTitle {
-    font-size: 15px !important;
+    font-size: 16px !important;
   }
 
-  .radioScheduleDesc {
-    font-size: 11px !important;
+  .radioScheduleDesc,
+  .radioNotice {
+    font-size: 12px !important;
   }
-
 }
