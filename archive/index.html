@@ -1,441 +1,467 @@
-<!doctype html>
-<html lang="ko">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <link rel="icon" href="/assets/meta/favicon.png" type="image/png" sizes="any">
-
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="https://i.ibb.co/JgfVvDn/ogw.png">
-  <meta property="og:title" content="아카이빙 | 지드래곤 음원총공팀">
-  <meta property="og:description" content="G-DRAGON 관련 아카이빙 콘텐츠를 모아봅니다.">
-  <meta property="og:url" content="https://www.gdstream.site/archive/">
-
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="아카이빙 | 지드래곤 음원총공팀">
-  <meta name="twitter:description" content="G-DRAGON 관련 아카이빙 콘텐츠를 모아봅니다.">
-  <meta name="twitter:image" content="https://i.ibb.co/JgfVvDn/ogw.png">
-
-  <title>아카이빙 | 지드래곤 음원총공팀</title>
-
-  <link rel="stylesheet" href="/styles.css">
-
-  <style>
-
-    .archiveSection {
-      margin-top: 20px;
-      margin-bottom: 18px;
-    }
-
-    .archiveHead {
-      margin-bottom: 14px;
-    }
-
-    .archiveTitle {
-      margin: 0;
-      color: #111;
-      font-size: clamp(24px, 5vw, 30px);
-      font-weight: 900;
-      letter-spacing: -.055em;
-      line-height: 1.1;
-    }
-
-    .archiveGrid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px 12px;
-    }
+/* =========================
+   GD ARCHIVE DETAIL COMMON
+   ========================= */
 
-    .archiveCard {
-      min-width: 0;
-      color: #111;
-      text-decoration: none;
-    }
 
-    .archiveCover {
-      position: relative;
-      overflow: hidden;
-      aspect-ratio: 3 / 4;
-      border: 1px solid rgba(0,0,0,.07);
-      border-radius: 14px;
-      background: #f3f4f6;
-    }
+.archivePage {
+  width:100% !important;
+  margin:0 !important;
+  padding:34px 0 70px !important;
+  overflow-x:hidden !important;
+}
 
-    .archiveCover img {
-      display: block;
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      transition:transform .2s ease;
-    }
 
-    .archiveCard:hover .archiveCover img {
-      transform:scale(1.018);
-    }
+.archivePage * {
+  box-sizing:border-box !important;
+}
 
 
-    .archiveMeta {
-      padding:8px 2px 0;
-    }
 
+.archiveArticle {
+  width:100% !important;
+  max-width:780px !important;
+  margin:0 auto !important;
+}
 
-    /* 제목 크기 확대 */
-    .archiveName {
-      overflow:hidden;
-      color:#111;
-      font-size:16px;
-      font-weight:900;
-      letter-spacing:-.035em;
-      line-height:1.3;
-      text-overflow:ellipsis;
-      white-space:nowrap;
-    }
 
 
-    .archiveNo {
-      margin-top:3px;
-      color:rgba(0,0,0,.34);
-      font-size:10px;
-      font-weight:800;
-      line-height:1;
-    }
 
 
-    .footer {
-      margin-top:0!important;
-    }
+/* =========================
+   HEADER
+   ========================= */
 
-    .footerInner {
-      padding-top:18px!important;
-      padding-bottom:18px!important;
-    }
 
+.archiveHeader {
 
-    @media(max-width:700px){
+  width:100% !important;
 
-      .archiveGrid {
-        grid-template-columns:repeat(2,minmax(0,1fr));
-        gap:12px 10px;
-      }
+  margin:0 auto 34px !important;
 
-      .archiveMeta {
-        padding-top:7px;
-      }
+  padding:0 20px !important;
 
-      .archiveName {
-        font-size:15px;
-      }
+  background:none !important;
 
-    }
+  box-shadow:none !important;
 
+}
 
-    @media(max-width:370px){
 
-      .archiveGrid {
-        gap:10px 8px;
-      }
 
-      .archiveCover {
-        border-radius:12px;
-      }
+.archiveCategory {
 
-    }
+  margin:0 0 14px !important;
 
-  </style>
+  padding:0 !important;
 
-</head>
+  background:none !important;
 
+  color:rgba(0,0,0,.45) !important;
 
-<body>
+  font-size:11px !important;
 
+  font-weight:900 !important;
 
-<header class="header header--simple">
+  letter-spacing:.12em !important;
 
-  <div class="headerBar headerBar--center">
+  text-transform:uppercase !important;
 
-    <a 
-      class="brand"
-      href="/"
-      aria-label="지드래곤 음원총공팀"
-    >
+}
 
-      <img
-        class="brandImg"
-        src="/assets/header/logo.svg"
-        alt="지드래곤 음원총공팀 로고"
-      >
 
-    </a>
 
-  </div>
+.archiveTitle {
 
-</header>
+  margin:0 !important;
 
+  color:#111 !important;
 
+  font-size:
+  clamp(29px,6vw,40px) !important;
 
-<main class="container">
+  font-weight:950 !important;
 
+  line-height:1.12 !important;
 
-<section class="section archiveSection">
+  letter-spacing:-.055em !important;
 
+}
 
-<div class="archiveHead">
 
-<h1 class="archiveTitle">
-아카이빙
-</h1>
 
-</div>
+.archiveDate {
 
+  margin:14px 0 0 !important;
 
+  color:rgba(0,0,0,.4) !important;
 
-<div class="archiveGrid">
+  font-size:12px !important;
 
+  font-weight:700 !important;
 
-<a 
-class="archiveCard"
-href="/archive/archiving/jacob-co/"
->
+  letter-spacing:.04em !important;
 
-<div class="archiveCover">
+}
 
-<img
-src="/assets/archive/archive1.jpg"
-alt="JACOB&CO"
->
 
-</div>
 
 
-<div class="archiveMeta">
 
-<div class="archiveName">
-JACOB&amp;CO
-</div>
+/* =========================
+   IMAGE
+   ========================= */
 
-<div class="archiveNo">
-#01
-</div>
 
-</div>
+.archiveBody {
+  width:100% !important;
+}
 
-</a>
 
 
+.archiveFigure {
 
-<a 
-class="archiveCard"
-href="/archive/archiving/yellowcoin/"
->
+  width:100vw !important;
 
-<div class="archiveCover">
+  max-width:100vw !important;
 
-<img
-src="/assets/archive/archive2.jpg"
-alt="노란 동전 자선 행사"
->
+  margin:
+  0 0 38px
+  calc(50% - 50vw) !important;
 
-</div>
+}
 
 
-<div class="archiveMeta">
 
-<div class="archiveName">
-노란 동전 자선 행사
-</div>
+.archiveImage {
 
-<div class="archiveNo">
-#02
-</div>
+  display:block !important;
 
-</div>
+  width:100% !important;
 
-</a>
+  height:auto !important;
 
+}
 
 
-<a 
-class="archiveCard"
-href="/archive/archiving/fanplusone/"
->
 
-<div class="archiveCover">
 
-<img
-src="/assets/archive/archive3.jpg"
-alt="FANPLUSONE"
->
 
-</div>
+/* =========================
+   CONTENT
+   ========================= */
 
 
-<div class="archiveMeta">
+.archiveContent {
 
-<div class="archiveName">
-FANPLUSONE
-</div>
+  width:100% !important;
 
-<div class="archiveNo">
-#03
-</div>
+  max-width:760px !important;
 
-</div>
+  margin:0 auto !important;
 
-</a>
+  padding:0 20px !important;
 
-<!-- 04 -->
+  color:#111 !important;
 
-<a 
-class="archiveCard"
-href="/archive/archiving/exhibition/"
->
+  font-size:15px !important;
 
-<div class="archiveCover">
+  line-height:1.85 !important;
 
-<img
-src="/assets/archive/archive4.jpg"
-alt="EXHIBITION"
->
+  letter-spacing:-.035em !important;
 
-</div>
+  word-break:keep-all !important;
 
+}
 
-<div class="archiveMeta">
 
-<div class="archiveName">
-EXHIBITION
-</div>
 
+.archiveContent p {
 
-<div class="archiveNo">
-#04
-</div>
+  margin:0 0 22px !important;
 
+}
 
-</div>
 
-</a>
 
+.archiveLead {
 
+  margin-bottom:32px !important;
 
+  font-size:17px !important;
 
-<!-- 05 -->
+  font-weight:750 !important;
 
-<a 
-class="archiveCard"
-href="/archive/archiving/goodday/"
->
+  line-height:1.7 !important;
 
-<div class="archiveCover">
+  letter-spacing:-.045em !important;
 
-<img
-src="/assets/archive/archive5.jpg"
-alt="굿데이"
->
+}
 
-</div>
 
 
-<div class="archiveMeta">
 
-<div class="archiveName">
-굿데이
-</div>
 
+/* =========================
+   NOTICE BOX
+   ========================= */
 
-<div class="archiveNo">
-#05
-</div>
 
+.archiveNotice {
 
-</div>
+  margin:10px 0 32px !important;
 
-</a>
+  padding:16px 18px !important;
 
+  border-left:3px solid #e5a3b2 !important;
 
+  border-radius:0 14px 14px 0 !important;
 
+  background:#fff6f8 !important;
 
-<!-- 06 -->
+  color:rgba(0,0,0,.65) !important;
 
-<a 
-class="archiveCard"
-href="/archive/archiving/nike/"
->
+  font-size:13px !important;
 
-<div class="archiveCover">
+  font-weight:700 !important;
 
-<img
-src="/assets/archive/archive6.jpg"
-alt="NIKE"
->
+  line-height:1.7 !important;
 
-</div>
+  letter-spacing:-.03em !important;
 
+}
 
-<div class="archiveMeta">
 
-<div class="archiveName">
-NIKE
-</div>
 
 
-<div class="archiveNo">
-#06
-</div>
 
+/* =========================
+   SECTION
+   ========================= */
 
-</div>
 
-</a>
+.archiveSection {
 
+  margin-top:44px !important;
 
+}
 
-</div>
 
-</section>
 
+.archiveSection h2 {
 
-</main>
+  margin:0 0 16px !important;
 
+  color:#111 !important;
 
+  font-size:21px !important;
 
+  font-weight:950 !important;
 
+  line-height:1.35 !important;
 
-<footer class="footer">
+  letter-spacing:-.05em !important;
 
+}
 
-<div class="container footerInner footerInner--logo">
 
 
-<a
-href="/"
-class="footerLogoLink"
-aria-label="지드래곤 음원총공팀 홈으로 이동"
->
+.archiveSection ul {
 
+  margin:0 !important;
 
-<img
-class="footerLogo"
-src="/assets/header/logo1.png"
-alt="지드래곤 음원총공팀 로고"
->
+  padding-left:20px !important;
 
+}
 
-</a>
 
 
-</div>
+.archiveSection li {
 
+  margin:8px 0 !important;
 
-</footer>
+  font-size:15px !important;
 
+  line-height:1.8 !important;
 
+}
 
 
-<script src="/data.js"></script>
-<script src="/script.js"></script>
 
 
-</body>
-</html>
+
+/* =========================
+   CLOSING TEXT
+   ========================= */
+
+
+.archiveClosing {
+
+  margin-top:50px !important;
+
+  padding:30px 0 !important;
+
+  background:none !important;
+
+  text-align:center !important;
+
+}
+
+
+
+.archiveClosing p {
+
+  margin:0 !important;
+
+  color:#111 !important;
+
+  font-size:16px !important;
+
+  font-weight:800 !important;
+
+  line-height:1.8 !important;
+
+  letter-spacing:-.04em !important;
+
+}
+
+
+
+
+
+/* =========================
+   DESKTOP
+   ========================= */
+
+
+@media(min-width:900px){
+
+
+.archiveFigure {
+
+  width:780px !important;
+
+  max-width:780px !important;
+
+  margin-left:auto !important;
+
+  margin-right:auto !important;
+
+}
+
+
+
+.archiveImage {
+
+  width:780px !important;
+
+}
+
+
+}
+
+
+
+
+
+/* =========================
+   MOBILE
+   ========================= */
+
+
+@media(max-width:768px){
+
+
+.archivePage {
+
+  padding-top:28px !important;
+
+  padding-bottom:56px !important;
+
+}
+
+
+
+.archiveHeader {
+
+  padding:0 18px !important;
+
+  margin-bottom:28px !important;
+
+}
+
+
+
+.archiveTitle {
+
+  font-size:30px !important;
+
+}
+
+
+
+.archiveContent {
+
+  padding:0 18px !important;
+
+  font-size:15px !important;
+
+}
+
+
+
+.archiveLead {
+
+  font-size:17px !important;
+
+}
+
+
+
+.archiveSection {
+
+  margin-top:36px !important;
+
+}
+
+
+
+.archiveSection h2 {
+
+  font-size:20px !important;
+
+}
+
+
+
+.archiveNotice {
+
+  font-size:12px !important;
+
+}
+
+
+}
+
+
+
+
+
+@media(max-width:420px){
+
+
+.archiveTitle {
+
+  font-size:28px !important;
+
+}
+
+
+
+.archiveContent {
+
+  padding:0 16px !important;
+
+}
+
+
+}
