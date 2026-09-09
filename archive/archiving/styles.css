@@ -1,12 +1,13 @@
 /* =========================
-   GD ARCHIVE DETAIL COMMON
+   GD ARCHIVE DETAIL
+   CLEAN MAGAZINE STYLE
    ========================= */
 
 
 .archivePage {
   width:100% !important;
   margin:0 !important;
-  padding:34px 0 70px !important;
+  padding:36px 0 70px !important;
   overflow-x:hidden !important;
 }
 
@@ -17,12 +18,6 @@
 
 
 
-
-/* =========================
-   HEADER CARD
-   ========================= */
-
-
 .archiveArticle {
   width:100% !important;
   max-width:780px !important;
@@ -31,33 +26,32 @@
 
 
 
+
+
+/* =========================
+   HEADER
+   ========================= */
+
+
 .archiveHeader {
 
-  width:auto !important;
-  margin:0 20px 28px !important;
+  width:100% !important;
 
-  padding:24px 22px !important;
+  margin:0 auto 34px !important;
 
-  border-radius:22px !important;
+  padding:0 20px !important;
 
-  background:
-  linear-gradient(
-    135deg,
-    rgba(190,205,235,.34),
-    rgba(245,195,190,.34)
-  ) !important;
+  background:none !important;
 
-  box-shadow:
-  0 10px 28px rgba(0,0,0,.08) !important;
+  box-shadow:none !important;
 
 }
 
 
 
-
 .archiveCategory {
 
-  margin:0 0 12px !important;
+  margin:0 0 14px !important;
 
   padding:0 !important;
 
@@ -71,10 +65,7 @@
 
   letter-spacing:.12em !important;
 
-  text-transform:uppercase !important;
-
 }
-
 
 
 
@@ -87,9 +78,9 @@
   font-size:
   clamp(29px,6vw,40px) !important;
 
-  line-height:1.06 !important;
-
   font-weight:950 !important;
+
+  line-height:1.12 !important;
 
   letter-spacing:-.055em !important;
 
@@ -97,12 +88,11 @@
 
 
 
-
 .archiveDate {
 
-  margin:12px 0 0 !important;
+  margin:14px 0 0 !important;
 
-  color:rgba(0,0,0,.42) !important;
+  color:rgba(0,0,0,.4) !important;
 
   font-size:12px !important;
 
@@ -117,7 +107,7 @@
 
 
 /* =========================
-   MAIN IMAGE
+   IMAGE
    ========================= */
 
 
@@ -129,14 +119,12 @@
 
 .archiveFigure {
 
-  display:block !important;
-
   width:100vw !important;
 
   max-width:100vw !important;
 
   margin:
-  0 0 34px
+  0 0 42px
   calc(50% - 50vw) !important;
 
 }
@@ -178,7 +166,7 @@
 
   font-size:15px !important;
 
-  line-height:1.8 !important;
+  line-height:1.85 !important;
 
   letter-spacing:-.035em !important;
 
@@ -190,27 +178,23 @@
 
 .archiveContent p {
 
-  margin:
-  0 0 20px !important;
+  margin:0 0 22px !important;
 
 }
 
 
 
-
-
 .archiveLead {
 
-  margin:
-  0 0 34px !important;
+  margin-bottom:36px !important;
 
   font-size:17px !important;
 
-  line-height:1.65 !important;
+  font-weight:700 !important;
 
-  font-weight:750 !important;
+  line-height:1.7 !important;
 
-  letter-spacing:-.04em !important;
+  letter-spacing:-.045em !important;
 
 }
 
@@ -225,25 +209,23 @@
 
 .archiveSection {
 
-  margin-top:42px !important;
+  margin-top:44px !important;
 
 }
 
 
 
-
 .archiveSection h2 {
 
-  margin:
-  0 0 14px !important;
+  margin:0 0 16px !important;
 
   color:#111 !important;
 
   font-size:21px !important;
 
-  line-height:1.3 !important;
-
   font-weight:950 !important;
+
+  line-height:1.35 !important;
 
   letter-spacing:-.05em !important;
 
@@ -263,34 +245,32 @@
 
 .archiveSection li {
 
-  margin:7px 0 !important;
+  margin:8px 0 !important;
 
   font-size:15px !important;
 
-  line-height:1.75 !important;
+  line-height:1.8 !important;
 
 }
+
+
+
+
+
 /* =========================
-   CLOSING
+   CLOSING TEXT
    ========================= */
 
 
 .archiveClosing {
 
-  margin-top:48px !important;
+  margin-top:50px !important;
 
-  padding:22px 18px !important;
+  padding:30px 0 !important;
 
-  border-radius:20px !important;
+  background:none !important;
 
-  background:
-  linear-gradient(
-    135deg,
-    #fff7dc,
-    #f7efe5
-  ) !important;
-
-  color:#111 !important;
+  border-radius:0 !important;
 
   text-align:center !important;
 
@@ -302,11 +282,13 @@
 
   margin:0 !important;
 
+  color:#111 !important;
+
   font-size:16px !important;
 
-  font-weight:850 !important;
+  font-weight:800 !important;
 
-  line-height:1.7 !important;
+  line-height:1.8 !important;
 
   letter-spacing:-.04em !important;
 
@@ -321,29 +303,29 @@
    ========================= */
 
 
-@media (min-width:900px) {
+@media(min-width:900px){
 
 
-  .archiveFigure {
+.archiveFigure {
 
-    width:780px !important;
+  width:780px !important;
 
-    max-width:780px !important;
+  max-width:780px !important;
 
-    margin-left:auto !important;
+  margin-left:auto !important;
 
-    margin-right:auto !important;
+  margin-right:auto !important;
 
-  }
+}
 
 
-  .archiveImage {
 
-    width:780px !important;
+.archiveImage {
 
-    max-width:780px !important;
+  width:780px !important;
 
-  }
+}
+
 
 
 }
@@ -357,92 +339,69 @@
    ========================= */
 
 
-@media (max-width:768px) {
+@media(max-width:768px){
 
 
-  .archivePage {
+.archivePage {
 
-    padding-top:26px !important;
+  padding-top:28px !important;
 
-    padding-bottom:56px !important;
+  padding-bottom:56px !important;
 
-  }
-
-
-
-  .archiveHeader {
-
-    margin-left:18px !important;
-
-    margin-right:18px !important;
-
-    padding:20px 18px !important;
-
-    border-radius:18px !important;
-
-  }
+}
 
 
 
-  .archiveTitle {
+.archiveHeader {
 
-    font-size:30px !important;
+  padding:0 18px !important;
 
-  }
+  margin-bottom:28px !important;
 
-
-
-  .archiveContent {
-
-    padding:0 18px !important;
-
-    font-size:15px !important;
-
-    line-height:1.8 !important;
-
-  }
+}
 
 
 
-  .archiveLead {
+.archiveTitle {
 
-    font-size:17px !important;
+  font-size:30px !important;
 
-  }
-
-
-
-  .archiveSection {
-
-    margin-top:36px !important;
-
-  }
+}
 
 
 
-  .archiveSection h2 {
+.archiveContent {
 
-    font-size:20px !important;
+  padding:0 18px !important;
 
-  }
+  font-size:15px !important;
 
-
-
-  .archiveSection li {
-
-    font-size:15px !important;
-
-  }
+}
 
 
 
-  .archiveClosing {
+.archiveLead {
 
-    border-radius:18px !important;
+  font-size:17px !important;
 
-    padding:20px 16px !important;
+}
 
-  }
+
+
+.archiveSection {
+
+  margin-top:36px !important;
+
+}
+
+
+
+.archiveSection h2 {
+
+  font-size:20px !important;
+
+}
+
 
 
 }
@@ -451,21 +410,23 @@
 
 
 
-@media (max-width:420px) {
+@media(max-width:420px){
 
 
-  .archiveTitle {
+.archiveTitle {
 
-    font-size:28px !important;
+  font-size:28px !important;
 
-  }
+}
 
 
-  .archiveContent {
 
-    padding:0 16px !important;
+.archiveContent {
 
-  }
+  padding:0 16px !important;
+
+}
+
 
 
 }
