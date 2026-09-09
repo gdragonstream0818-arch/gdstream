@@ -1,0 +1,411 @@
+/* =========================
+   GD ARCHIVE DETAIL STYLE
+   ========================= */
+
+
+.archivePage {
+  width:100% !important;
+  margin:0 !important;
+  padding:36px 0 70px !important;
+  overflow-x:hidden !important;
+  box-sizing:border-box !important;
+}
+
+
+.archivePage * {
+  box-sizing:border-box !important;
+}
+
+
+
+.archiveArticle {
+  width:100% !important;
+  max-width:780px !important;
+  margin:0 auto !important;
+  background:#fff !important;
+}
+
+
+
+
+/* HEADER */
+
+.archiveHeader {
+  width:100% !important;
+  max-width:760px !important;
+  margin:0 auto 36px !important;
+  padding:0 20px !important;
+}
+
+
+
+.archiveCategory {
+
+  display:block !important;
+
+  margin:0 0 14px !important;
+
+  padding:0 !important;
+
+  background:none !important;
+
+  color:rgba(0,0,0,.45) !important;
+
+  font-size:11px !important;
+
+  font-weight:900 !important;
+
+  letter-spacing:.12em !important;
+
+  text-transform:uppercase !important;
+
+}
+
+
+
+.archiveTitle {
+
+  margin:0 !important;
+
+  color:#111 !important;
+
+  font-size:clamp(26px,5vw,34px) !important;
+
+  font-weight:900 !important;
+
+  line-height:1.25 !important;
+
+  letter-spacing:-.055em !important;
+
+}
+
+
+
+.archiveDate {
+
+  margin:12px 0 0 !important;
+
+  color:rgba(0,0,0,.35) !important;
+
+  font-size:12px !important;
+
+  font-weight:700 !important;
+
+  letter-spacing:.05em !important;
+
+}
+
+
+
+
+
+/* IMAGE */
+
+
+.archiveBody {
+
+  width:100% !important;
+
+}
+
+
+
+.archiveFigure {
+
+  width:100vw !important;
+
+  max-width:100vw !important;
+
+  margin:0 0 42px calc(50% - 50vw) !important;
+
+  padding:0 !important;
+
+}
+
+
+
+.archiveImage {
+
+  display:block !important;
+
+  width:100% !important;
+
+  height:auto !important;
+
+}
+
+
+
+
+
+/* CONTENT */
+
+
+.archiveContent {
+
+  width:100% !important;
+
+  max-width:760px !important;
+
+  margin:0 auto !important;
+
+  padding:0 20px !important;
+
+  color:#111 !important;
+
+  font-size:15px !important;
+
+  line-height:1.85 !important;
+
+  letter-spacing:-.035em !important;
+
+  word-break:keep-all !important;
+
+}
+
+
+
+.archiveContent p {
+
+  margin:0 0 22px !important;
+
+}
+
+
+
+
+/* FIRST TEXT */
+
+
+.archiveLead {
+
+  margin:0 0 36px !important;
+
+  font-size:17px !important;
+
+  font-weight:700 !important;
+
+  line-height:1.7 !important;
+
+  letter-spacing:-.045em !important;
+
+}
+
+
+
+
+
+/* SECTION */
+
+
+.archiveSection {
+
+  margin-top:44px !important;
+
+}
+
+
+
+.archiveSection h2 {
+
+  margin:0 0 16px !important;
+
+  color:#111 !important;
+
+  font-size:21px !important;
+
+  font-weight:900 !important;
+
+  line-height:1.35 !important;
+
+  letter-spacing:-.05em !important;
+
+}
+
+
+
+.archiveSection ul {
+
+  margin:0 !important;
+
+  padding-left:20px !important;
+
+}
+
+
+
+.archiveSection li {
+
+  margin:8px 0 !important;
+
+  font-size:15px !important;
+
+  line-height:1.8 !important;
+
+}
+
+
+
+
+
+/* CLOSING */
+
+
+.archiveClosing {
+
+  margin-top:48px !important;
+
+  padding:28px 20px !important;
+
+  border-radius:0 !important;
+
+  background:#111 !important;
+
+  color:#fff !important;
+
+  text-align:center !important;
+
+}
+
+
+
+.archiveClosing p {
+
+  margin:0 !important;
+
+  font-size:16px !important;
+
+  font-weight:700 !important;
+
+  line-height:1.8 !important;
+
+  letter-spacing:-.04em !important;
+
+}
+
+
+
+
+
+/* DESKTOP */
+
+
+@media(min-width:900px){
+
+
+.archiveFigure {
+
+  width:780px !important;
+
+  max-width:780px !important;
+
+  margin-left:auto !important;
+
+  margin-right:auto !important;
+
+}
+
+
+
+.archiveImage {
+
+  width:780px !important;
+
+}
+
+
+}
+
+
+
+
+/* MOBILE */
+
+
+@media(max-width:768px){
+
+
+.archivePage {
+
+  padding:28px 0 60px !important;
+
+}
+
+
+
+.archiveHeader {
+
+  padding:0 20px !important;
+
+  margin-bottom:28px !important;
+
+}
+
+
+
+.archiveTitle {
+
+  font-size:29px !important;
+
+}
+
+
+
+.archiveContent {
+
+  padding:0 20px !important;
+
+  font-size:15px !important;
+
+}
+
+
+
+.archiveLead {
+
+  font-size:17px !important;
+
+}
+
+
+
+.archiveSection h2 {
+
+  font-size:20px !important;
+
+}
+
+
+}
+
+
+
+
+@media(max-width:420px){
+
+
+.archiveHeader {
+
+  padding:0 18px !important;
+
+}
+
+
+
+.archiveTitle {
+
+  font-size:27px !important;
+
+}
+
+
+
+.archiveContent {
+
+  padding:0 18px !important;
+
+}
+
+
+
+}
