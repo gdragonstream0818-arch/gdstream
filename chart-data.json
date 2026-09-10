@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-11 00:30:37 KST",
+  "updatedAt": "2026-09-11 01:00:43 KST",
   "melonDailyDate": "2026-09-11",
   "artists": [
     "G-DRAGON",
@@ -11,7 +11,7 @@
       "name": "멜론 TOP100",
       "type": "realtime",
       "status": "ok",
-      "updatedAt": "2026-09-11 00:30:37 KST",
+      "updatedAt": "2026-09-11 01:00:43 KST",
       "songs": [
         {
           "rank": 3,
@@ -32,21 +32,9 @@
           "artistGroup": "G-DRAGON",
           "albumImage": "/assets/albums/affc37c45ed9c1040415.jpg",
           "change": {
-            "type": "up",
-            "value": 4,
-            "label": "▲ 4"
-          }
-        },
-        {
-          "rank": 77,
-          "title": "하루 하루",
-          "artist": "BIGBANG (빅뱅)",
-          "artistGroup": "BIGBANG",
-          "albumImage": "/assets/albums/a050645663c2f1c41f16.jpg",
-          "change": {
-            "type": "up",
-            "value": 22,
-            "label": "▲ 22"
+            "type": "same",
+            "value": 0,
+            "label": "—"
           }
         }
       ]
@@ -56,7 +44,7 @@
       "name": "멜론 일간",
       "type": "daily",
       "status": "ok",
-      "updatedAt": "2026-09-11 00:30:37 KST",
+      "updatedAt": "2026-09-11 01:00:43 KST",
       "songs": [
         {
           "rank": 3,
@@ -101,7 +89,7 @@
       "name": "지니 TOP200",
       "type": "realtime",
       "status": "ok",
-      "updatedAt": "2026-09-11 00:30:37 KST",
+      "updatedAt": "2026-09-11 01:00:43 KST",
       "songs": [
         {
           "rank": 21,
@@ -110,9 +98,9 @@
           "artistGroup": "BIGBANG",
           "albumImage": "/assets/albums/8cf68f6335e8bbfd0059.jpg",
           "change": {
-            "type": "down",
-            "value": 1,
-            "label": "▼ 1"
+            "type": "same",
+            "value": 0,
+            "label": "—"
           }
         }
       ]
@@ -122,30 +110,30 @@
       "name": "벅스 실시간",
       "type": "realtime",
       "status": "ok",
-      "updatedAt": "2026-09-11 00:30:37 KST",
+      "updatedAt": "2026-09-11 01:00:43 KST",
       "songs": [
         {
-          "rank": 12,
+          "rank": 10,
           "title": "BiiiG",
           "artist": "BIGBANG (빅뱅)",
           "artistGroup": "BIGBANG",
           "albumImage": "/assets/albums/8cf68f6335e8bbfd0059.jpg",
           "change": {
             "type": "up",
-            "value": 1,
-            "label": "▲ 1"
+            "value": 2,
+            "label": "▲ 2"
           }
         },
         {
-          "rank": 70,
+          "rank": 88,
           "title": "HOME SWEET HOME (feat. 태양, 대성)",
           "artist": "G-DRAGON",
           "artistGroup": "G-DRAGON",
           "albumImage": "/assets/albums/affc37c45ed9c1040415.jpg",
           "change": {
-            "type": "up",
-            "value": 16,
-            "label": "▲ 16"
+            "type": "down",
+            "value": 18,
+            "label": "▼ 18"
           }
         }
       ]
