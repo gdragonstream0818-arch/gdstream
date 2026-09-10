@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-10 08:30:31 KST",
+  "updatedAt": "2026-09-10 09:00:40 KST",
   "melonDailyDate": "2026-09-10",
   "artists": [
     "G-DRAGON",
@@ -11,7 +11,7 @@
       "name": "멜론 TOP100",
       "type": "realtime",
       "status": "ok",
-      "updatedAt": "2026-09-10 08:30:31 KST",
+      "updatedAt": "2026-09-10 09:00:40 KST",
       "songs": [
         {
           "rank": 2,
@@ -26,27 +26,15 @@
           }
         },
         {
-          "rank": 35,
+          "rank": 29,
           "title": "HOME SWEET HOME (feat. 태양, 대성)",
           "artist": "G-DRAGON",
           "artistGroup": "G-DRAGON",
           "albumImage": "/assets/albums/affc37c45ed9c1040415.jpg",
           "change": {
-            "type": "same",
-            "value": 0,
-            "label": "—"
-          }
-        },
-        {
-          "rank": 99,
-          "title": "하루 하루",
-          "artist": "BIGBANG (빅뱅)",
-          "artistGroup": "BIGBANG",
-          "albumImage": "/assets/albums/a050645663c2f1c41f16.jpg",
-          "change": {
-            "type": "same",
-            "value": 0,
-            "label": "—"
+            "type": "up",
+            "value": 6,
+            "label": "▲ 6"
           }
         }
       ]
@@ -56,7 +44,7 @@
       "name": "멜론 일간",
       "type": "daily",
       "status": "ok",
-      "updatedAt": "2026-09-10 08:30:31 KST",
+      "updatedAt": "2026-09-10 09:00:40 KST",
       "songs": [
         {
           "rank": 3,
@@ -101,18 +89,18 @@
       "name": "지니 TOP200",
       "type": "realtime",
       "status": "ok",
-      "updatedAt": "2026-09-10 08:30:31 KST",
+      "updatedAt": "2026-09-10 09:00:40 KST",
       "songs": [
         {
-          "rank": 3,
+          "rank": 2,
           "title": "BiiiG",
           "artist": "BIGBANG (빅뱅)",
           "artistGroup": "BIGBANG",
           "albumImage": "/assets/albums/8cf68f6335e8bbfd0059.jpg",
           "change": {
             "type": "up",
-            "value": 15,
-            "label": "▲ 15"
+            "value": 1,
+            "label": "▲ 1"
           }
         }
       ]
@@ -122,7 +110,7 @@
       "name": "벅스 실시간",
       "type": "realtime",
       "status": "ok",
-      "updatedAt": "2026-09-10 08:30:31 KST",
+      "updatedAt": "2026-09-10 09:00:40 KST",
       "songs": [
         {
           "rank": 7,
