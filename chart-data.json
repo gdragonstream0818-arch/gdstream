@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-10 23:00:43 KST",
+  "updatedAt": "2026-09-10 23:30:43 KST",
   "melonDailyDate": "2026-09-10",
   "artists": [
     "G-DRAGON",
@@ -11,7 +11,7 @@
       "name": "멜론 TOP100",
       "type": "realtime",
       "status": "ok",
-      "updatedAt": "2026-09-10 23:00:43 KST",
+      "updatedAt": "2026-09-10 23:30:43 KST",
       "songs": [
         {
           "rank": 3,
@@ -44,9 +44,9 @@
           "artistGroup": "BIGBANG",
           "albumImage": "/assets/albums/a050645663c2f1c41f16.jpg",
           "change": {
-            "type": "new",
-            "value": null,
-            "label": "NEW"
+            "type": "same",
+            "value": 0,
+            "label": "—"
           }
         }
       ]
@@ -56,7 +56,7 @@
       "name": "멜론 일간",
       "type": "daily",
       "status": "ok",
-      "updatedAt": "2026-09-10 23:00:43 KST",
+      "updatedAt": "2026-09-10 23:30:43 KST",
       "songs": [
         {
           "rank": 3,
@@ -101,7 +101,7 @@
       "name": "지니 TOP200",
       "type": "realtime",
       "status": "ok",
-      "updatedAt": "2026-09-10 23:00:43 KST",
+      "updatedAt": "2026-09-10 23:30:43 KST",
       "songs": [
         {
           "rank": 20,
@@ -122,30 +122,30 @@
       "name": "벅스 실시간",
       "type": "realtime",
       "status": "ok",
-      "updatedAt": "2026-09-10 23:00:43 KST",
+      "updatedAt": "2026-09-10 23:30:43 KST",
       "songs": [
         {
-          "rank": 11,
+          "rank": 13,
           "title": "BiiiG",
           "artist": "BIGBANG (빅뱅)",
           "artistGroup": "BIGBANG",
           "albumImage": "/assets/albums/8cf68f6335e8bbfd0059.jpg",
           "change": {
             "type": "down",
-            "value": 3,
-            "label": "▼ 3"
+            "value": 2,
+            "label": "▼ 2"
           }
         },
         {
-          "rank": 51,
+          "rank": 86,
           "title": "HOME SWEET HOME (feat. 태양, 대성)",
           "artist": "G-DRAGON",
           "artistGroup": "G-DRAGON",
           "albumImage": "/assets/albums/affc37c45ed9c1040415.jpg",
           "change": {
-            "type": "up",
-            "value": 10,
-            "label": "▲ 10"
+            "type": "down",
+            "value": 35,
+            "label": "▼ 35"
           }
         }
       ]
