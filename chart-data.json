@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-12 19:30:36 KST",
+  "updatedAt": "2026-09-12 20:00:45 KST",
   "melonDailyDate": "2026-09-12",
   "artists": [
     "G-DRAGON",
@@ -11,7 +11,7 @@
       "name": "멜론 TOP100",
       "type": "realtime",
       "status": "ok",
-      "updatedAt": "2026-09-12 19:30:36 KST",
+      "updatedAt": "2026-09-12 20:00:45 KST",
       "songs": [
         {
           "rank": 4,
@@ -26,7 +26,7 @@
           }
         },
         {
-          "rank": 26,
+          "rank": 24,
           "title": "HOME SWEET HOME (feat. 태양, 대성)",
           "artist": "G-DRAGON",
           "artistGroup": "G-DRAGON",
@@ -44,7 +44,7 @@
       "name": "멜론 일간",
       "type": "daily",
       "status": "ok",
-      "updatedAt": "2026-09-12 19:30:36 KST",
+      "updatedAt": "2026-09-12 20:00:45 KST",
       "songs": [
         {
           "rank": 5,
@@ -77,30 +77,18 @@
       "name": "지니 TOP200",
       "type": "realtime",
       "status": "ok",
-      "updatedAt": "2026-09-12 19:30:36 KST",
+      "updatedAt": "2026-09-12 20:00:45 KST",
       "songs": [
         {
-          "rank": 4,
+          "rank": 5,
           "title": "BiiiG",
           "artist": "BIGBANG (빅뱅)",
           "artistGroup": "BIGBANG",
           "albumImage": "/assets/albums/8cf68f6335e8bbfd0059.jpg",
           "change": {
-            "type": "same",
-            "value": 0,
-            "label": "—"
-          }
-        },
-        {
-          "rank": 44,
-          "title": "HOME SWEET HOME (Feat. 태양 & 대성)",
-          "artist": "G-DRAGON",
-          "artistGroup": "G-DRAGON",
-          "albumImage": "/assets/albums/6c672d6d71c182aa8253.jpg",
-          "change": {
-            "type": "up",
-            "value": 5,
-            "label": "▲ 5"
+            "type": "down",
+            "value": 1,
+            "label": "▼ 1"
           }
         }
       ]
@@ -110,7 +98,7 @@
       "name": "벅스 실시간",
       "type": "realtime",
       "status": "ok",
-      "updatedAt": "2026-09-12 19:30:36 KST",
+      "updatedAt": "2026-09-12 20:00:45 KST",
       "songs": [
         {
           "rank": 11,
