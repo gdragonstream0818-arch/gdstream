@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-09-12 23:30:32 KST",
-  "melonDailyDate": "2026-09-12",
+  "updatedAt": "2026-09-13 00:00:42 KST",
+  "melonDailyDate": "2026-09-13",
   "artists": [
     "G-DRAGON",
     "BIGBANG"
@@ -11,10 +11,10 @@
       "name": "멜론 TOP100",
       "type": "realtime",
       "status": "ok",
-      "updatedAt": "2026-09-12 23:30:32 KST",
+      "updatedAt": "2026-09-13 00:00:42 KST",
       "songs": [
         {
-          "rank": 3,
+          "rank": 2,
           "title": "BiiiG",
           "artist": "BIGBANG (빅뱅)",
           "artistGroup": "BIGBANG",
@@ -32,9 +32,21 @@
           "artistGroup": "G-DRAGON",
           "albumImage": "/assets/albums/affc37c45ed9c1040415.jpg",
           "change": {
-            "type": "down",
-            "value": 9,
-            "label": "▼ 9"
+            "type": "same",
+            "value": 0,
+            "label": "—"
+          }
+        },
+        {
+          "rank": 95,
+          "title": "하루 하루",
+          "artist": "BIGBANG (빅뱅)",
+          "artistGroup": "BIGBANG",
+          "albumImage": "/assets/albums/a050645663c2f1c41f16.jpg",
+          "change": {
+            "type": "new",
+            "value": null,
+            "label": "NEW"
           }
         }
       ]
@@ -44,7 +56,7 @@
       "name": "멜론 일간",
       "type": "daily",
       "status": "ok",
-      "updatedAt": "2026-09-12 23:30:32 KST",
+      "updatedAt": "2026-09-13 00:00:42 KST",
       "songs": [
         {
           "rank": 5,
@@ -77,18 +89,18 @@
       "name": "지니 TOP200",
       "type": "realtime",
       "status": "ok",
-      "updatedAt": "2026-09-12 23:30:32 KST",
+      "updatedAt": "2026-09-13 00:00:42 KST",
       "songs": [
         {
-          "rank": 10,
+          "rank": 19,
           "title": "BiiiG",
           "artist": "BIGBANG (빅뱅)",
           "artistGroup": "BIGBANG",
           "albumImage": "/assets/albums/8cf68f6335e8bbfd0059.jpg",
           "change": {
             "type": "down",
-            "value": 5,
-            "label": "▼ 5"
+            "value": 9,
+            "label": "▼ 9"
           }
         }
       ]
@@ -98,7 +110,7 @@
       "name": "벅스 실시간",
       "type": "realtime",
       "status": "ok",
-      "updatedAt": "2026-09-12 23:30:32 KST",
+      "updatedAt": "2026-09-13 00:00:42 KST",
       "songs": [
         {
           "rank": 15,
