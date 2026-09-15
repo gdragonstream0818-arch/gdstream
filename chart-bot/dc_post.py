@@ -1,6 +1,6 @@
+import json
 import time
 import os
-import requests
 
 from datetime import datetime
 from zoneinfo import ZoneInfo
@@ -20,10 +20,6 @@ GALLERY_URL = (
 )
 
 
-# 음총 사이트 chart-data.json
-CHART_URL = "https://gdstream.site/chart-data.json"
-
-
 # 차트 표시 순서
 CHART_ORDER = [
     "melonTop100",
@@ -36,29 +32,18 @@ CHART_ORDER = [
 
 def load_chart_data():
 
-    print("===== 음총 차트 데이터 가져오기 =====")
+    print("===== 음총 차트 데이터 읽기 =====")
 
 
     try:
 
-        response = requests.get(
-            CHART_URL,
-            params={
-                "v": int(time.time())
-            },
-            headers={
-                "Cache-Control": "no-cache",
-                "Pragma": "no-cache",
-                "User-Agent": "Mozilla/5.0"
-            },
-            timeout=20
-        )
+        with open(
+            "chart-data.json",
+            "r",
+            encoding="utf-8"
+        ) as f:
 
-
-        response.raise_for_status()
-
-
-        data = response.json()
+            data = json.load(f)
 
 
         print(
@@ -73,11 +58,12 @@ def load_chart_data():
     except Exception as e:
 
         print(
-            "차트 데이터 가져오기 실패:",
+            "차트 데이터 읽기 실패:",
             e
         )
 
         raise
+
 
 
 
@@ -90,6 +76,7 @@ def make_title():
     return (
         f"[음원차트] {now.strftime('%m/%d %H:%M')} 업데이트"
     )
+
 
 
 
@@ -115,6 +102,7 @@ def make_content(data):
 
     for chart_id in CHART_ORDER:
 
+
         chart = charts.get(
             chart_id
         )
@@ -122,6 +110,7 @@ def make_content(data):
 
         if not chart:
             continue
+
 
 
         text += (
@@ -147,11 +136,20 @@ def make_content(data):
 
         for song in songs:
 
+            change = song.get(
+                "change",
+                {}
+            ).get(
+                "label",
+                ""
+            )
+
+
             text += (
                 f"{song.get('rank','')}위 "
                 f"{song.get('artist','')} - "
                 f"{song.get('title','')} "
-                f"{song.get('change',{}).get('label','')}\n"
+                f"{change}\n"
             )
 
 
@@ -168,6 +166,8 @@ def make_content(data):
 
 
 
+
+
 def create_browser():
 
     options = Options()
@@ -177,17 +177,21 @@ def create_browser():
         "--headless=new"
     )
 
+
     options.add_argument(
         "--no-sandbox"
     )
+
 
     options.add_argument(
         "--disable-dev-shm-usage"
     )
 
+
     options.add_argument(
         "--window-size=1920,1080"
     )
+
 
     options.add_argument(
         "--disable-blink-features=AutomationControlled"
@@ -216,6 +220,8 @@ def create_browser():
 
 
     return driver
+
+
 
 
 
@@ -288,6 +294,8 @@ def login(driver):
 
 
 
+
+
 def move_write_page(driver):
 
     print("===== 글쓰기 이동 =====")
@@ -308,6 +316,7 @@ def move_write_page(driver):
 
 
     for link in links:
+
 
         text = link.text.strip()
 
@@ -344,6 +353,8 @@ def move_write_page(driver):
     raise Exception(
         "글쓰기 버튼 못찾음"
     )
+
+
 
 
 
@@ -413,6 +424,8 @@ def write_post(driver, title, content):
 
 
 
+
+
 def submit_post(driver):
 
     print("===== 등록 버튼 검색 =====")
@@ -425,6 +438,7 @@ def submit_post(driver):
 
 
     for btn in buttons:
+
 
         if btn.text.strip() == "등록":
 
@@ -459,6 +473,8 @@ def submit_post(driver):
 
 
 
+
+
 def save_debug(driver):
 
     with open(
@@ -478,6 +494,8 @@ def save_debug(driver):
 
 
 
+
+
 def main():
 
     data = load_chart_data()
@@ -491,8 +509,12 @@ def main():
     )
 
 
-    print("\n===== 작성 내용 =====")
+    print(
+        "\n===== 작성 내용 ====="
+    )
+
     print(content)
+
 
 
     driver = create_browser()
@@ -518,6 +540,8 @@ def main():
     finally:
 
         driver.quit()
+
+
 
 
 
