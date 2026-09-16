@@ -1,6 +1,5 @@
 name: Update chart data
 
-
 on:
   schedule:
     # 매시간 실행
@@ -77,22 +76,30 @@ jobs:
 
 
 
-      # 디시 자동 업로드
-      - name: Post DCInside
-        env:
-          DC_ID: ${{ secrets.DC_ID }}
-          DC_PASSWORD: ${{ secrets.DC_PASSWORD }}
+      # ==================================================
+      # DCInside 자동 업로드 (임시 비활성화)
+      # 나중에 사용 시 아래 주석(#) 제거
+      # ==================================================
 
-        run: |
-          python chart-bot/dc_post.py
+      # - name: Post DCInside
+      #   env:
+      #     DC_ID: ${{ secrets.DC_ID }}
+      #     DC_PASSWORD: ${{ secrets.DC_PASSWORD }}
+
+      #   run: |
+      #     python chart-bot/dc_post.py
 
 
 
-      # 실패 시 디버그 파일 확인용
-      - name: Upload debug html
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: dc-debug
-          path: |
-            final_debug.html
+      # ==================================================
+      # DC 봇 디버그 파일 업로드 (임시 비활성화)
+      # 나중에 사용 시 아래 주석(#) 제거
+      # ==================================================
+
+      # - name: Upload debug html
+      #   if: always()
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: dc-debug
+      #     path: |
+      #       final_debug.html
