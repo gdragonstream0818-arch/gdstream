@@ -392,7 +392,7 @@ main.container > .section > .sectionTitle {
   margin-bottom: 0;
 }
 
-/* 바로가기 카드 간격 통일 */
+/* 바로가기 카드 간격 통일 (다른 페이지에서 ctaGuide를 세로로 나열할 때 사용) */
 .section > .ctaGuide + .ctaGuide {
   margin-top: 12px;
 }
@@ -1083,8 +1083,6 @@ main.container > .section > .sectionTitle {
   }
 }
 
-
-
 /* =========================
    MUSIC CHART HERO IMAGE
    ========================= */
@@ -1116,7 +1114,7 @@ main.container > .section > .sectionTitle {
 }
 
 /* =========================
-   RADIO FINAL OVERRIDE
+   RADIO PAGE OVERRIDE
    ========================= */
 
 main.container.radioPage {
@@ -1128,58 +1126,43 @@ main.container.radioPage {
   padding-right: 20px !important;
 }
 
-/* =========================
-   RADIO TEXT FINAL SIZE
-   ========================= */
-
 main.container.radioPage .radioStation {
   font-size: 14px !important;
 }
-
 
 main.container.radioPage .radioProgram {
   font-size: 21px !important;
   line-height: 1.18 !important;
 }
 
-
 main.container.radioPage .radioTime {
   font-size: 12px !important;
 }
 
-
 main.container.radioPage .radioNumber {
   font-size: 12px !important;
 }
-
 
 /* ON AIR 유지 */
 main.container.radioPage .radioLiveBadge {
   font-size: 9px !important;
 }
 
-
-
 /* MOBILE */
-@media (max-width:720px){
-
+@media (max-width: 720px) {
   main.container.radioPage .radioStation {
     font-size: 12px !important;
   }
-
 
   main.container.radioPage .radioProgram {
     font-size: 17px !important;
   }
 
-
   main.container.radioPage .radioTime {
     font-size: 11px !important;
   }
 
-
   main.container.radioPage .radioNumber {
     font-size: 11px !important;
   }
-
 }
