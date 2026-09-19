@@ -16,12 +16,14 @@
   <link rel="stylesheet" href="/styles.css">
 
   <style>
+    /* ===== 모바일 히어로 이미지 컬러 전환 ===== */
     .heroImg { filter: none; }
     @media (max-width: 768px) {
       .heroImg { filter: grayscale(40%); transition: filter .8s ease; }
       .heroImg.is-color { filter: grayscale(0%); }
     }
 
+    /* ===== 원클릭 / 안내 모달 (공통 구조) ===== */
     .ocModal, .collectModal { display:none; position:fixed; inset:0; }
     .ocModal { z-index:9999; }
     .collectModal { z-index:10000; }
@@ -31,7 +33,6 @@
     .ocHero, .collectHero { position:relative; height:210px; overflow:hidden; background:#111; }
     .ocHeroImg, .collectHeroImg { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transform:scale(1.02); }
     .ocHeroImg { filter:saturate(1.02); }
-    .ocHeroShade { display:none !important; }
     .ocModalClose, .collectModalClose { position:absolute; top:12px; right:14px; z-index:2; display:flex; align-items:center; justify-content:center; width:40px; height:40px; border:1px solid rgba(255,255,255,.35); border-radius:999px; background:rgba(0,0,0,.35); color:#fff; cursor:pointer; font-size:18px; backdrop-filter:blur(6px); }
     .ocModalClose:hover, .collectModalClose:hover { background:rgba(0,0,0,.5); }
     .ocHeroText, .collectHeroText { position:absolute; right:18px; bottom:16px; left:18px; color:#fff; }
@@ -47,10 +48,10 @@
     .ocHeroImg.is-hidden { display:none; }
     .collectNotice { margin-top:4px; padding:0; border:0; background:none; font-size:13px; font-weight:700; line-height:1.35; }
 
-    /* 메인 섹션 간 간격 확대 */
+    /* ===== 메인 섹션 간 간격 확대 ===== */
     .container > .section + .section { margin-top:48px; }
 
-    /* 바로가기: 4개 버튼을 compact 2x2로 배치 */
+    /* ===== 바로가기: 4개 버튼 2x2 배치 ===== */
     .quickLinkGrid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; margin-top:10px; }
     .quickLinkGrid .ctaGuide { min-width:0; margin:0; padding:15px 16px; border-radius:14px; }
     .quickLinkGrid .ctaGuideText { min-width:0; }
@@ -58,12 +59,12 @@
     .quickLinkGrid .ctaGuideDesc { margin-top:4px; font-size:12px; line-height:1.45; font-weight:700; }
     .quickLinkGrid .ctaGuideArrow { margin-left:10px; font-size:17px; }
 
-    /* 섹션 타이틀 + 전체보기 버튼 공통 */
+    /* ===== 섹션 타이틀 + 전체보기 버튼 공통 ===== */
     .sectionTitleRow { display:flex; align-items:center; justify-content:space-between; gap:12px; }
     .viewAllBtn { flex:0 0 auto; color:#111; font-size:13px; font-weight:900; letter-spacing:-.02em; text-decoration:none; white-space:nowrap; }
     .viewAllBtn:hover { text-decoration:underline; }
 
-    /* 음원 차트 현황 - 메인 초간소화 */
+    /* ===== 음원 차트 현황 - 메인 초간소화 ===== */
     .musicChartSection { margin-top:6px; }
     .musicChartUpdatedLine { margin-top:4px; color:rgba(0,0,0,.42); font-size:10px; font-weight:700; font-variant-numeric:tabular-nums; }
     .musicChartCompact { overflow:hidden; margin-top:11px; border:1px solid rgba(0,0,0,.08); border-radius:15px; background:#fff; }
@@ -86,10 +87,10 @@
     .chartSummaryEmpty { padding:10px; color:rgba(0,0,0,.38); font-size:10px; font-weight:700; }
     .musicChartNotice { margin:7px 2px 0; color:rgba(0,0,0,.38); font-size:9px; font-weight:650; line-height:1.5; letter-spacing:-.01em; }
 
-    /* 아카이빙 프리뷰 */
+    /* ===== 아카이빙 프리뷰 ===== */
     .archiveSection .sectionTitleRow { margin-bottom:2px; }
 
-    /* 계정 모아보기 - 메인 안에서만 compact */
+    /* ===== 계정 모아보기 - 메인 안에서만 compact ===== */
     .socialCompactList { display:flex; flex-direction:column; gap:8px; }
     .socialCompactRow { display:flex; align-items:center; gap:10px; min-height:52px; padding:9px 11px 9px 13px; border:1px solid rgba(0,0,0,.08); border-radius:14px; background:#fff; }
     .socialCompactInfo { flex:1 1 auto; min-width:0; }
@@ -239,7 +240,7 @@
     </section>
   </main>
 
-  <div id="ocModal" class="ocModal" aria-hidden="true"><div id="ocOverlay" class="ocModalOverlay"></div><div class="ocModalPanel" role="dialog" aria-modal="true" aria-labelledby="ocModalTitle"><div class="ocHero"><img id="ocHeroImg" class="ocHeroImg" src="/assets/header/default.jpg" alt=""><div class="ocHeroShade"></div><button id="ocClose" type="button" class="ocModalClose" aria-label="닫기">✕</button><div class="ocHeroText"><h3 id="ocModalTitle" class="ocModalTitle">원클릭 링크</h3><div id="ocActionNotice" class="ocActionNotice">중복곡 허용 후 이용해주세요!</div></div></div><div class="ocModalBody"><div class="ocDeviceBar"><div id="ocDeviceLabel" class="ocDeviceLabel">PC</div><div id="ocDeviceHint" class="ocDeviceHint"></div></div><div id="ocModalGrid" class="ocModalGrid"></div></div></div></div>
+  <div id="ocModal" class="ocModal" aria-hidden="true"><div id="ocOverlay" class="ocModalOverlay"></div><div class="ocModalPanel" role="dialog" aria-modal="true" aria-labelledby="ocModalTitle"><div class="ocHero"><img id="ocHeroImg" class="ocHeroImg" src="/assets/header/default.jpg" alt=""><button id="ocClose" type="button" class="ocModalClose" aria-label="닫기">✕</button><div class="ocHeroText"><h3 id="ocModalTitle" class="ocModalTitle">원클릭 링크</h3><div id="ocActionNotice" class="ocActionNotice">중복곡 허용 후 이용해주세요!</div></div></div><div class="ocModalBody"><div class="ocDeviceBar"><div id="ocDeviceLabel" class="ocDeviceLabel">PC</div><div id="ocDeviceHint" class="ocDeviceHint"></div></div><div id="ocModalGrid" class="ocModalGrid"></div></div></div></div>
 
   <div id="collectModal" class="collectModal" aria-hidden="true"><div id="collectOverlay" class="collectModalOverlay"></div><div class="collectModalPanel" role="dialog" aria-modal="true" aria-labelledby="collectModalTitle"><div class="collectHero"><img class="collectHeroImg" src="/assets/header/default4.jpg" alt="아이디 수집 안내 이미지"><button id="collectClose" type="button" class="collectModalClose" aria-label="닫기">✕</button><div class="collectHeroText"><h3 id="collectModalTitle" class="collectModalTitle">지니 아이디 기부</h3><div class="collectNotice">가이드를 먼저 확인한 뒤 아이디를 제출해주세요!</div></div></div><div class="collectModalBody"><div class="collectModalGrid"><a class="collectModalBtn" href="/guide/etc/collectid/">가이드</a><a class="collectModalBtn" href="https://naver.me/FNti54TO" target="_blank" rel="noreferrer">아이디 제출하기</a></div></div></div></div>
 
@@ -250,71 +251,137 @@
   <script src="/data.js"></script>
   <script src="/script.js"></script>
   <script>
-    const openCollectModal = document.getElementById('openCollectModal');
-    const collectModal = document.getElementById('collectModal');
-    const collectOverlay = document.getElementById('collectOverlay');
-    const collectClose = document.getElementById('collectClose');
-    function openCollect(){ collectModal.classList.add('is-open'); collectModal.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; }
-    function closeCollect(){ collectModal.classList.remove('is-open'); collectModal.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
-    if(openCollectModal) openCollectModal.addEventListener('click',e=>{ e.preventDefault(); openCollect(); });
-    if(collectOverlay) collectOverlay.addEventListener('click',closeCollect);
-    if(collectClose) collectClose.addEventListener('click',closeCollect);
+    /* ===== 간단 모달 공통 유틸 =====
+       기존에 collect/sue 모달마다 거의 똑같은 open/close 코드가 반복돼 있던 걸
+       하나의 함수로 통합. 트리거/오버레이/닫기 버튼 id만 넘기면 동작은 동일. */
+    function setupSimpleModal({ triggerId, modalId, overlayId, closeId }) {
+      const modal = document.getElementById(modalId);
+      if (!modal) return null;
 
-    const openSueModal = document.getElementById('openSueModal');
-    const sueModal = document.getElementById('sueModal');
-    const sueOverlay = document.getElementById('sueOverlay');
-    const sueClose = document.getElementById('sueClose');
-    function openSue(){ sueModal.classList.add('is-open'); sueModal.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; }
-    function closeSue(){ sueModal.classList.remove('is-open'); sueModal.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
-    if(openSueModal) openSueModal.addEventListener('click',e=>{ e.preventDefault(); openSue(); });
-    if(sueOverlay) sueOverlay.addEventListener('click',closeSue);
-    if(sueClose) sueClose.addEventListener('click',closeSue);
+      const trigger = triggerId ? document.getElementById(triggerId) : null;
+      const overlay = overlayId ? document.getElementById(overlayId) : null;
+      const closeBtn = closeId ? document.getElementById(closeId) : null;
 
-    document.addEventListener('keydown',e=>{
-      if(e.key!=='Escape') return;
-      if(collectModal.classList.contains('is-open')) closeCollect();
-      if(sueModal.classList.contains('is-open')) closeSue();
+      function open() {
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      }
+      function close() {
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+
+      if (trigger) trigger.addEventListener('click', (e) => { e.preventDefault(); open(); });
+      if (overlay) overlay.addEventListener('click', close);
+      if (closeBtn) closeBtn.addEventListener('click', close);
+
+      return { modal, open, close };
+    }
+
+    const simpleModals = [
+      setupSimpleModal({
+        triggerId: 'openCollectModal',
+        modalId: 'collectModal',
+        overlayId: 'collectOverlay',
+        closeId: 'collectClose',
+      }),
+      setupSimpleModal({
+        triggerId: 'openSueModal',
+        modalId: 'sueModal',
+        overlayId: 'sueOverlay',
+        closeId: 'sueClose',
+      }),
+    ].filter(Boolean);
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key !== 'Escape') return;
+      simpleModals.forEach(({ modal, close }) => {
+        if (modal.classList.contains('is-open')) close();
+      });
     });
 
-    function updateHeroColorEffect(){ const heroImg=document.querySelector('.heroImg'); const isMobile=window.matchMedia('(max-width: 768px)').matches; if(!heroImg) return; heroImg.classList.toggle('is-color',isMobile && window.scrollY>30); }
-    window.addEventListener('scroll',updateHeroColorEffect); window.addEventListener('resize',updateHeroColorEffect); window.addEventListener('load',updateHeroColorEffect);
+    /* ===== 히어로 이미지 모바일 컬러 전환 ===== */
+    function updateHeroColorEffect() {
+      const heroImg = document.querySelector('.heroImg');
+      const isMobile = window.matchMedia('(max-width: 768px)').matches;
+      if (!heroImg) return;
+      heroImg.classList.toggle('is-color', isMobile && window.scrollY > 30);
+    }
+    window.addEventListener('scroll', updateHeroColorEffect);
+    window.addEventListener('resize', updateHeroColorEffect);
+    window.addEventListener('load', updateHeroColorEffect);
 
     /* ===== 음원 차트 현황 - 메인 요약 (chart-data.json 그대로 재사용) ===== */
-    const MUSIC_CHART_ORDER=['melonTop100','melonDaily','genieTop200','bugsRealtime'];
-    function escapeChartHtml(value){ return String(value??'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#39;'); }
-    function getMainChartChangeClass(change){ return change?.type==='up'?'up':change?.type==='down'?'down':change?.type==='new'?'new':'same'; }
-    function formatMainChartUpdatedAt(updatedAt){
-      const raw=String(updatedAt||'').trim();
-      if(!raw) return '업데이트 시간 확인 필요';
-      const match=raw.match(/^(\d{4})-(\d{2})-(\d{2})[ T](\d{2}):(\d{2})(?::\d{2})?\s*(KST)?$/i);
-      if(match){ const [,year,month,day,hour,minute]=match; return `${year}.${month}.${day} ${hour}:${minute} KST`; }
+    const MUSIC_CHART_ORDER = ['melonTop100', 'melonDaily', 'genieTop200', 'bugsRealtime'];
+
+    function escapeChartHtml(value) {
+      return String(value ?? '')
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#39;');
+    }
+
+    function getMainChartChangeClass(change) {
+      return change?.type === 'up' ? 'up'
+        : change?.type === 'down' ? 'down'
+        : change?.type === 'new' ? 'new'
+        : 'same';
+    }
+
+    function formatMainChartUpdatedAt(updatedAt) {
+      const raw = String(updatedAt || '').trim();
+      if (!raw) return '업데이트 시간 확인 필요';
+      const match = raw.match(/^(\d{4})-(\d{2})-(\d{2})[ T](\d{2}):(\d{2})(?::\d{2})?\s*(KST)?$/i);
+      if (match) {
+        const [, year, month, day, hour, minute] = match;
+        return `${year}.${month}.${day} ${hour}:${minute} KST`;
+      }
       return raw;
     }
-    function renderChartSummaryCard(chartId, chart){
-      const container=document.querySelector(`[data-chart-id="${chartId}"] .chartSummaryList`);
-      if(!container) return;
-      if(!chart || chart.status!=='ok' || !(chart.songs||[]).length){
-        container.innerHTML='<div class="chartSummaryEmpty">현재 차트인 곡 없음</div>';
+
+    function renderChartSummaryCard(chartId, chart) {
+      const container = document.querySelector(`[data-chart-id="${chartId}"] .chartSummaryList`);
+      if (!container) return;
+
+      if (!chart || chart.status !== 'ok' || !(chart.songs || []).length) {
+        container.innerHTML = '<div class="chartSummaryEmpty">현재 차트인 곡 없음</div>';
         return;
       }
-      container.innerHTML=chart.songs.map(song=>`<div class="chartSummaryRow"><span class="chartSummarySong" title="${escapeChartHtml(song.title)}">${escapeChartHtml(song.title)}</span><span class="chartSummaryRank"><span class="chartSummaryRankNum">${escapeChartHtml(song.rank)}</span><span class="chartSummaryRankUnit">위</span></span><span class="chartSummaryChange ${getMainChartChangeClass(song.change)}">${escapeChartHtml(song.change?.label||'-')}</span></div>`).join('');
+
+      container.innerHTML = chart.songs.map((song) => `
+        <div class="chartSummaryRow">
+          <span class="chartSummarySong" title="${escapeChartHtml(song.title)}">${escapeChartHtml(song.title)}</span>
+          <span class="chartSummaryRank">
+            <span class="chartSummaryRankNum">${escapeChartHtml(song.rank)}</span>
+            <span class="chartSummaryRankUnit">위</span>
+          </span>
+          <span class="chartSummaryChange ${getMainChartChangeClass(song.change)}">${escapeChartHtml(song.change?.label || '-')}</span>
+        </div>
+      `).join('');
     }
-    async function loadMainChartSummary(){
-      try{
-        const response=await fetch(`/chart-data.json?v=${Date.now()}`,{cache:'no-store'});
-        if(!response.ok) throw new Error(`HTTP ${response.status}`);
-        const data=await response.json();
-        document.getElementById('musicChartUpdated').textContent=formatMainChartUpdatedAt(data.updatedAt);
-        MUSIC_CHART_ORDER.forEach(chartId=>renderChartSummaryCard(chartId, data.charts?.[chartId]));
-      }catch(error){
+
+    async function loadMainChartSummary() {
+      try {
+        const response = await fetch(`/chart-data.json?v=${Date.now()}`, { cache: 'no-store' });
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const data = await response.json();
+
+        document.getElementById('musicChartUpdated').textContent = formatMainChartUpdatedAt(data.updatedAt);
+        MUSIC_CHART_ORDER.forEach((chartId) => renderChartSummaryCard(chartId, data.charts?.[chartId]));
+      } catch (error) {
         console.error(error);
-        document.getElementById('musicChartUpdated').textContent='차트 데이터 확인 필요';
-        MUSIC_CHART_ORDER.forEach(chartId=>{
-          const container=document.querySelector(`[data-chart-id="${chartId}"] .chartSummaryList`);
-          if(container) container.innerHTML='<div class="chartSummaryEmpty">불러오기 실패</div>';
+        document.getElementById('musicChartUpdated').textContent = '차트 데이터 확인 필요';
+        MUSIC_CHART_ORDER.forEach((chartId) => {
+          const container = document.querySelector(`[data-chart-id="${chartId}"] .chartSummaryList`);
+          if (container) container.innerHTML = '<div class="chartSummaryEmpty">불러오기 실패</div>';
         });
       }
     }
+
     loadMainChartSummary();
     const MUSIC_CHART_REFRESH_MS = 60 * 1000;
     setInterval(loadMainChartSummary, MUSIC_CHART_REFRESH_MS);
