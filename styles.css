@@ -1115,16 +1115,10 @@ main.container > .section > .sectionTitle {
 
 /* =========================
    RADIO PAGE OVERRIDE
+   폭/좌우 여백은 공통 .container 규칙(--pageMax, --sidePadding)을
+   그대로 따르도록 강제 지정을 제거함. 폰트 크기만 라디오 페이지
+   고유 값으로 유지.
    ========================= */
-
-main.container.radioPage {
-  width: 100% !important;
-  max-width: 980px !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
-  padding-left: 20px !important;
-  padding-right: 20px !important;
-}
 
 main.container.radioPage .radioStation {
   font-size: 14px !important;
