@@ -627,25 +627,14 @@ main.container > .section > .sectionTitle {
   border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: var(--radius-xl);
   background: var(--card-fill, #fff);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.07);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
 
   transition: transform 0.10s ease, box-shadow 0.15s ease;
 }
 
 .gCard:hover {
   transform: translateY(-2px);
-  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.10);
-}
-
-.gCard::before {
-  content: "";
-  position: absolute;
-  inset: -1px;
-  pointer-events: none;
-  opacity: 0.85;
-  background:
-    radial-gradient(900px 240px at 12% 0%, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0) 58%),
-    radial-gradient(800px 260px at 100% 35%, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0) 55%);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
 }
 
 .gThumb {
@@ -657,10 +646,10 @@ main.container > .section > .sectionTitle {
   height: 92px;
 
   overflow: hidden;
-  border: 1px solid rgba(0, 0, 0, 0.10);
+  border: none;
   border-radius: var(--radius-lg);
-  background: rgba(255, 255, 255, 0.55);
-  box-shadow: var(--shadow-sm);
+  background: transparent;
+  box-shadow: none;
 }
 
 .gThumbImg {
@@ -734,34 +723,34 @@ main.container > .section > .sectionTitle {
   color: rgba(17, 17, 17, 0.60);
 }
 
-/* Platform card colors */
+/* Platform card colors - 옅은 단색 톤으로 단순화 */
 .gCard--melon {
-  --card-fill: linear-gradient(135deg, rgba(34, 197, 94, 0.22) 0%, rgba(34, 197, 94, 0.08) 38%, rgba(255, 255, 255, 0.96) 82%, #fff 100%);
+  --card-fill: rgba(34, 197, 94, 0.06);
 }
 
 .gCard--genie {
-  --card-fill: linear-gradient(135deg, rgba(59, 130, 246, 0.22) 0%, rgba(59, 130, 246, 0.08) 38%, rgba(255, 255, 255, 0.96) 82%, #fff 100%);
+  --card-fill: rgba(59, 130, 246, 0.06);
 }
 
 .gCard--bugs {
-  --card-fill: linear-gradient(135deg, rgba(249, 115, 22, 0.22) 0%, rgba(249, 115, 22, 0.08) 38%, rgba(255, 255, 255, 0.96) 82%, #fff 100%);
+  --card-fill: rgba(249, 115, 22, 0.06);
 }
 
 .gCard--flo {
-  --card-fill: linear-gradient(135deg, rgba(99, 102, 241, 0.24) 0%, rgba(99, 102, 241, 0.09) 38%, rgba(255, 255, 255, 0.96) 82%, #fff 100%);
+  --card-fill: rgba(99, 102, 241, 0.06);
 }
 
 .gCard--vibe,
 .gCard--soundassist {
-  --card-fill: linear-gradient(135deg, rgba(168, 85, 247, 0.24) 0%, rgba(168, 85, 247, 0.09) 38%, rgba(255, 255, 255, 0.96) 82%, #fff 100%);
+  --card-fill: rgba(168, 85, 247, 0.06);
 }
 
 .gCard--spotify {
-  --card-fill: linear-gradient(135deg, rgba(34, 197, 94, 0.18) 0%, rgba(34, 197, 94, 0.07) 38%, rgba(255, 255, 255, 0.96) 82%, #fff 100%);
+  --card-fill: rgba(34, 197, 94, 0.05);
 }
 
 .gCard--applemusic {
-  --card-fill: linear-gradient(135deg, rgba(239, 68, 68, 0.22) 0%, rgba(239, 68, 68, 0.08) 38%, rgba(255, 255, 255, 0.96) 82%, #fff 100%);
+  --card-fill: rgba(239, 68, 68, 0.06);
 }
 
 /* =========================
