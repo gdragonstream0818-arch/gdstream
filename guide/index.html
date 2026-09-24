@@ -114,9 +114,18 @@
                 class="gLineTab"
                 role="tab"
                 aria-selected="false"
-                aria-controls="sec-etc"
-                data-key="etc">
-          기타
+                aria-controls="sec-settings"
+                data-key="settings">
+          설정 가이드
+        </button>
+
+        <button type="button"
+                class="gLineTab"
+                role="tab"
+                aria-selected="false"
+                aria-controls="sec-fanactivity"
+                data-key="fanactivity">
+          팬활동 가이드
         </button>
 
         <button type="button"
@@ -136,7 +145,8 @@
         <select id="guideCategory" class="guideSelect">
           <option value="streaming" selected>스트리밍 가이드</option>
           <option value="download">다운로드 가이드</option>
-          <option value="etc">기타</option>
+          <option value="settings">설정 가이드</option>
+          <option value="fanactivity">팬활동 가이드</option>
           <option value="list">스트리밍리스트</option>
         </select>
       </div>
@@ -299,8 +309,43 @@
         </div>
       </div>
 
-      <!-- (3) 기타 -->
-      <div class="guideSection" id="sec-etc" role="tabpanel" aria-label="기타" hidden>
+      <!-- (3) 설정 가이드 -->
+      <div class="guideSection" id="sec-settings" role="tabpanel" aria-label="설정 가이드" hidden>
+        <div class="guideGrid guideGrid--list">
+
+          <a class="gCard gCard--soundassist" href="/guide/etc/soundassistant/">
+            <div class="gThumb" aria-hidden="true">
+              <img class="gThumbImg" src="/assets/icons/platform/soundassistant.png" alt="">
+            </div>
+            <div class="gCardText">
+              <div class="gCardTop">
+                <div class="gBrand">SoundAssistant</div>
+                <div class="gTitle">사운드 어시스턴트</div>
+              </div>
+              <div class="gSub">소리설정가이드</div>
+            </div>
+            <span class="gArrow" aria-hidden="true">→</span>
+          </a>
+
+          <a class="gCard gCard--genie" href="/guide/etc/chrome">
+            <div class="gThumb" aria-hidden="true">
+              <img class="gThumbImg" src="/assets/icons/platform/chrome.svg" alt="">
+            </div>
+            <div class="gCardText">
+              <div class="gCardTop">
+                <div class="gBrand">Streaming via Chrome Remote Desktop</div>
+                <div class="gTitle">크롬 원격 스밍</div>
+              </div>
+              <div class="gSub">원격설정·접속 가이드</div>
+            </div>
+            <span class="gArrow" aria-hidden="true">→</span>
+          </a>
+
+        </div>
+      </div>
+
+      <!-- (4) 팬활동 가이드 -->
+      <div class="guideSection" id="sec-fanactivity" role="tabpanel" aria-label="팬활동 가이드" hidden>
         <div class="guideGrid guideGrid--list">
 
           <a class="gCard gCard--spotify" href="/guide/etc/spotify-playlist/">
@@ -313,20 +358,6 @@
                 <div class="gTitle">스포티파이 플레이리스트</div>
               </div>
               <div class="gSub">제작·공유가이드</div>
-            </div>
-            <span class="gArrow" aria-hidden="true">→</span>
-          </a>
-
-          <a class="gCard gCard--soundassist" href="/guide/etc/soundassistant/">
-            <div class="gThumb" aria-hidden="true">
-              <img class="gThumbImg" src="/assets/icons/platform/soundassistant.png" alt="">
-            </div>
-            <div class="gCardText">
-              <div class="gCardTop">
-                <div class="gBrand">SoundAssistant</div>
-                <div class="gTitle">사운드 어시스턴트</div>
-              </div>
-              <div class="gSub">소리설정가이드</div>
             </div>
             <span class="gArrow" aria-hidden="true">→</span>
           </a>
@@ -359,24 +390,12 @@
             <span class="gArrow" aria-hidden="true">→</span>
           </a>
 
-          <a class="gCard gCard--genie" href="/guide/etc/chrome">
-            <div class="gThumb" aria-hidden="true">
-              <img class="gThumbImg" src="/assets/icons/platform/chrome.svg" alt="">
-            </div>
-            <div class="gCardText">
-              <div class="gCardTop">
-                <div class="gBrand">Streaming via Chrome Remote Desktop</div>
-                <div class="gTitle">크롬 원격 스밍</div>
-              </div>
-              <div class="gSub">원격설정·접속 가이드</div>
-            </div>
-            <span class="gArrow" aria-hidden="true">→</span>
-          </a>
+          <!-- 워터마크 / 스밍짤 가이드는 이 팬활동 가이드 섹션에 추가하면 됩니다. -->
 
         </div>
       </div>
 
-      <!-- (4) 스트리밍리스트 -->
+      <!-- (5) 스트리밍리스트 -->
       <div class="guideSection" id="sec-list" role="tabpanel" aria-label="스트리밍 리스트" hidden>
         <div class="listBox">
           <img class="listImg" src="/assets/guides/streaminglist260819.jpg" alt="스트리밍 리스트 이미지">
@@ -404,7 +423,8 @@
       const sections = {
         streaming: document.getElementById("sec-streaming"),
         download: document.getElementById("sec-download"),
-        etc: document.getElementById("sec-etc"),
+        settings: document.getElementById("sec-settings"),
+        fanactivity: document.getElementById("sec-fanactivity"),
         list: document.getElementById("sec-list"),
       };
 
