@@ -753,23 +753,31 @@ main.container > .section > .sectionTitle {
   --card-fill: rgba(239, 68, 68, 0.06);
 }
 
+.gCard--jjal {
+  --card-fill: rgba(168, 85, 247, 0.06);
+}
+
 /* =========================
    GUIDE LIST IMAGE
    ========================= */
 
 .listBox {
   overflow: hidden;
+  /* .guidePanel의 padding(14px)만큼 음수 마진을 줘서 이미지가
+     패널 테두리 안쪽 여백/배경 없이 꽉 채워지도록 함 */
+  margin: -14px;
   padding: 0;
   border: 0;
-  border-radius: 18px;
+  border-radius: var(--radius-lg);
   background: transparent;
   box-shadow: none;
 }
 
 .listImg {
   width: 100%;
+  display: block;
   border: 0;
-  border-radius: 18px;
+  border-radius: var(--radius-lg);
   box-shadow: none;
 }
 
