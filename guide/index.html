@@ -32,7 +32,7 @@
       white-space: nowrap;
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
-      padding: 0 16px;
+      padding: 0 4px; /* 기존 0 16px → 탭이 좌측에 더 붙도록 축소 */
       border-bottom: 1px solid #e5e7eb;
       scroll-behavior: smooth;
     }
@@ -44,7 +44,7 @@
     .guideTabsLine::before,
     .guideTabsLine::after {
       content: "";
-      flex: 0 0 4px;
+      flex: 0 0 0px; /* 기존 4px → 스페이서 제거 */
     }
 
     .gLineTab {
@@ -52,9 +52,11 @@
       flex: 0 0 auto;
       border: 0;
       background: transparent;
-      padding: 14px 18px 16px;
+      padding: 14px 16px 16px; /* 좌우 여백 살짝 축소해 탭 간격도 더 조밀하게 */
       white-space: nowrap;
       cursor: pointer;
+      font-weight: 500;
+      letter-spacing: -0.01em;
       transition: color 0.25s ease;
     }
 
@@ -70,6 +72,21 @@
       transition: transform 0.3s ease, width 0.3s ease;
       will-change: transform, width;
       pointer-events: none;
+    }
+
+    /* 카드 화살표에 미세한 호버 인터랙션 추가 - 정적인 느낌 완화 */
+    .gCard {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .gCard:hover {
+      transform: translateY(-2px);
+    }
+    .gArrow {
+      display: inline-block;
+      transition: transform 0.2s ease;
+    }
+    .gCard:hover .gArrow {
+      transform: translateX(3px);
     }
 
     #sec-fanactivity .gCard--spotify {
@@ -344,10 +361,10 @@
             </div>
             <div class="gCardText">
               <div class="gCardTop">
-                <div class="gBrand">Streaming via Chrome Remote Desktop</div>
+                <div class="gBrand">Chrome Remote Desktop</div>
                 <div class="gTitle">크롬 원격 스밍</div>
               </div>
-              <div class="gSub">원격설정·접속 가이드</div>
+              <div class="gSub">원격설정·접속가이드</div>
             </div>
             <span class="gArrow" aria-hidden="true">→</span>
           </a>
@@ -406,7 +423,7 @@
             </div>
             <div class="gCardText">
               <div class="gCardTop">
-                <div class="gBrand">Streaming Verification Image Maker</div>
+                <div class="gBrand">Verification Image</div>
                 <div class="gTitle">스밍짤메이커</div>
               </div>
               <div class="gSub">워터마크 제작가이드</div>
