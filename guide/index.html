@@ -71,6 +71,12 @@
       will-change: transform, width;
       pointer-events: none;
     }
+
+    /* Spotify 카드가 멜론 카드와 너무 비슷해 보여서 조금 더 진한 톤으로 조정 */
+    .gCard.gCard--spotify {
+      background: linear-gradient(135deg, #d8eee1 0%, #edf7f0 100%) !important;
+      border-color: #b9d8c2 !important;
+    }
   </style>
 </head>
 
@@ -139,17 +145,6 @@
 
         <span class="gLineIndicator" aria-hidden="true"></span>
       </nav>
-
-      <div class="guideFilter srOnly">
-        <label for="guideCategory">가이드 카테고리</label>
-        <select id="guideCategory" class="guideSelect">
-          <option value="streaming" selected>스트리밍 가이드</option>
-          <option value="download">다운로드 가이드</option>
-          <option value="settings">설정 가이드</option>
-          <option value="fanactivity">팬활동 가이드</option>
-          <option value="list">스트리밍리스트</option>
-        </select>
-      </div>
     </section>
 
     <!-- PANEL -->
@@ -390,7 +385,47 @@
             <span class="gArrow" aria-hidden="true">→</span>
           </a>
 
-          <!-- 워터마크 / 스밍짤 가이드는 이 팬활동 가이드 섹션에 추가하면 됩니다. -->
+          <a class="gCard gCard--vibe" href="/guide/etc/streamingjjal-maker">
+            <div class="gThumb" aria-hidden="true">
+              <img class="gThumbImg" src="/assets/header/logo1.png" alt="">
+            </div>
+            <div class="gCardText">
+              <div class="gCardTop">
+                <div class="gBrand">Streaming Jjal Maker</div>
+                <div class="gTitle">스밍짤메이커</div>
+              </div>
+              <div class="gSub">스밍짤 제작 가이드</div>
+            </div>
+            <span class="gArrow" aria-hidden="true">→</span>
+          </a>
+
+          <a class="gCard gCard--bugs" href="/guide/etc/streaming-auth">
+            <div class="gThumb" aria-hidden="true">
+              <img class="gThumbImg" src="/assets/header/logo1.png" alt="">
+            </div>
+            <div class="gCardText">
+              <div class="gCardTop">
+                <div class="gBrand">Streaming Verification</div>
+                <div class="gTitle">스밍인증</div>
+              </div>
+              <div class="gSub">인증 방법 가이드</div>
+            </div>
+            <span class="gArrow" aria-hidden="true">→</span>
+          </a>
+
+          <a class="gCard gCard--flo" href="/guide/etc/watermark">
+            <div class="gThumb" aria-hidden="true">
+              <img class="gThumbImg" src="/assets/header/logo1.png" alt="">
+            </div>
+            <div class="gCardText">
+              <div class="gCardTop">
+                <div class="gBrand">Watermark Guide</div>
+                <div class="gTitle">워터마크 가이드</div>
+              </div>
+              <div class="gSub">워터마크 사용 가이드</div>
+            </div>
+            <span class="gArrow" aria-hidden="true">→</span>
+          </a>
 
         </div>
       </div>
@@ -415,7 +450,6 @@
 
   <script>
     (function () {
-      const sel = document.getElementById("guideCategory");
       const nav = document.querySelector(".guideTabsLine");
       const tabs = Array.from(document.querySelectorAll(".gLineTab"));
       const indicator = document.querySelector(".gLineIndicator");
@@ -472,10 +506,6 @@
           if (active) activeBtn = btn;
         });
 
-        if (sel && sel.value !== key) {
-          sel.value = key;
-        }
-
         if (activeBtn) {
           moveIndicatorTo(activeBtn);
           if (shouldScroll) scrollTabIntoView(activeBtn);
@@ -487,12 +517,6 @@
           show(btn.dataset.key, true);
         });
       });
-
-      if (sel) {
-        sel.addEventListener("change", () => {
-          show(sel.value, true);
-        });
-      }
 
       let rafId = null;
       nav.addEventListener("scroll", () => {
@@ -517,8 +541,7 @@
         moveIndicatorTo(active);
       });
 
-      const initial = (sel && sel.value) ? sel.value : "streaming";
-      show(initial, false);
+      show("streaming", false);
     })();
   </script>
 </body>
