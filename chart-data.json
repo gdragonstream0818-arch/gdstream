@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-29 07:00:44 KST",
+  "updatedAt": "2026-09-29 08:01:00 KST",
   "melonDailyDate": "2026-09-29",
   "artists": [
     "G-DRAGON",
@@ -11,7 +11,7 @@
       "name": "멜론 TOP100",
       "type": "realtime",
       "status": "ok",
-      "updatedAt": "2026-09-29 07:00:44 KST",
+      "updatedAt": "2026-09-29 08:01:00 KST",
       "songs": [
         {
           "rank": 9,
@@ -44,7 +44,7 @@
       "name": "멜론 일간",
       "type": "daily",
       "status": "ok",
-      "updatedAt": "2026-09-29 07:00:44 KST",
+      "updatedAt": "2026-09-29 08:01:00 KST",
       "songs": [
         {
           "rank": 10,
@@ -77,18 +77,18 @@
       "name": "지니 TOP200",
       "type": "realtime",
       "status": "ok",
-      "updatedAt": "2026-09-29 07:00:44 KST",
+      "updatedAt": "2026-09-29 08:01:00 KST",
       "songs": [
         {
-          "rank": 28,
+          "rank": 12,
           "title": "BiiiG",
           "artist": "BIGBANG (빅뱅)",
           "artistGroup": "BIGBANG",
           "albumImage": "/assets/albums/8cf68f6335e8bbfd0059.jpg",
           "change": {
             "type": "up",
-            "value": 15,
-            "label": "▲ 15"
+            "value": 16,
+            "label": "▲ 16"
           }
         }
       ]
@@ -98,10 +98,10 @@
       "name": "벅스 실시간",
       "type": "realtime",
       "status": "ok",
-      "updatedAt": "2026-09-29 07:00:44 KST",
+      "updatedAt": "2026-09-29 08:01:00 KST",
       "songs": [
         {
-          "rank": 26,
+          "rank": 24,
           "title": "BiiiG",
           "artist": "BIGBANG (빅뱅)",
           "artistGroup": "BIGBANG",
@@ -113,15 +113,15 @@
           }
         },
         {
-          "rank": 92,
+          "rank": 79,
           "title": "HOME SWEET HOME (feat. 태양, 대성)",
           "artist": "G-DRAGON",
           "artistGroup": "G-DRAGON",
           "albumImage": "/assets/albums/affc37c45ed9c1040415.jpg",
           "change": {
-            "type": "down",
-            "value": 3,
-            "label": "▼ 3"
+            "type": "up",
+            "value": 13,
+            "label": "▲ 13"
           }
         }
       ]
