@@ -58,7 +58,7 @@
 .oneclickPanel { width:100% !important; max-width:none !important; margin:0 !important; padding:0 !important; border:0 !important; border-radius:0 !important; background:none !important; box-shadow:none !important; -webkit-backdrop-filter:none; backdrop-filter:none; }
 .oneclickPanel .oneclickHead { margin:0; padding:0; }
 .oneclickPanel .oneclickSub { padding:0; }
-.oneclickPanel .oneclickTitle { margin:0 0 10px; padding:0; }
+.oneclickPanel .oneclickTitle { margin:0; padding:0; }
 .oneclickPanel .oneclickSub { margin:0; color:rgba(29,26,47,.58); font-size:13px; font-weight:700; line-height:1.45; }
 
 .oneclickPanel .oneclickGrid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; width:100%; margin:10px 0 0; padding:0; }
