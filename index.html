@@ -21,7 +21,8 @@
       --gd-pink:#ff5fa2; --gd-pink-soft:#ffe3ef;
       --gd-sky:#3d9bff;  --gd-sky-soft:#dcedff;
       --gd-lilac-soft:#ece5ff; --gd-red-soft:#ffe4e4;
-      --gd-pink-line:#ff7eb6;
+      --gd-btn-line:#8db8f2;
+      --gd-btn-bg:#edf4ff;
       --gd-ink:#1d1a2f;  --gd-line:rgba(29,26,47,.08);
     }
 
@@ -65,6 +66,9 @@
     /* ===== 메인 섹션 간 간격 확대 ===== */
     .container > .section + .section { margin-top:48px; }
 
+    /* ===== 히어로 이미지와 원클릭 사이 간격 ===== */
+    .hero + .container { margin-top:22px; }
+
     /* ===== 원클릭 스트리밍: 3x2 플랫폼 타일 ===== */
     .oneclickPanel { width:100% !important; max-width:none !important; margin:0 !important; padding:0 !important; border:0 !important; border-radius:0 !important; background:none !important; box-shadow:none !important; -webkit-backdrop-filter:none; backdrop-filter:none; }
     .oneclickPanel .oneclickHead { margin:0; padding:0; }
@@ -73,17 +77,17 @@
     .oneclickPanel .oneclickSub { margin:0; color:rgba(29,26,47,.58); font-size:13px; font-weight:700; line-height:1.45; }
 
     .oneclickPanel .oneclickGrid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; width:100%; margin:10px 0 0; padding:0; }
-    .oneclickPanel .ocBtn { --brand:var(--gd-pink); display:flex; flex-direction:column; align-items:center; gap:9px; min-width:0; width:100%; margin:0; padding:16px 6px 13px; border:1.5px solid var(--gd-pink-line); border-radius:18px; background:#fff; color:var(--gd-ink); box-shadow:0 6px 16px rgba(29,26,47,.06); text-decoration:none; transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease; }
+    .oneclickPanel .ocBtn { --brand:var(--gd-pink); display:flex; flex-direction:column; align-items:center; gap:9px; min-width:0; width:100%; margin:0; padding:16px 6px 13px; border:1.5px solid var(--gd-btn-line); border-radius:18px; background:var(--gd-btn-bg); color:var(--gd-ink); box-shadow:0 6px 16px rgba(29,26,47,.06); text-decoration:none; transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease; }
     .oneclickPanel .ocBtn[data-platform="melon"]   { --brand:#00cd3c; }
     .oneclickPanel .ocBtn[data-platform="genie"]   { --brand:#2d7bff; }
     .oneclickPanel .ocBtn[data-platform="bugs"]    { --brand:#ff5a2c; }
     .oneclickPanel .ocBtn[data-platform="flo"]     { --brand:#4b3bff; }
     .oneclickPanel .ocBtn[data-platform="vibe"]    { --brand:#ff2f7e; }
     .oneclickPanel .ocBtn[data-platform="spotify"] { --brand:#1db954; }
-    .oneclickPanel .ocBtn:hover { background:#fff !important; transform:none !important; border-color:var(--gd-pink-line); box-shadow:0 6px 16px rgba(29,26,47,.06); }
+    .oneclickPanel .ocBtn:hover { background:var(--gd-btn-bg) !important; transform:none !important; border-color:var(--gd-btn-line); box-shadow:0 6px 16px rgba(29,26,47,.06); }
     .oneclickPanel .ocBtn:active { transform:scale(.97); }
     .oneclickPanel .ocBtn:focus-visible { outline:3px solid var(--gd-pink); outline-offset:2px; }
-    .oneclickPanel .ocIcon { display:flex; align-items:center; justify-content:center; flex:0 0 auto; width:48px; height:48px; margin:0; overflow:hidden; border-radius:14px; background:#f4f5f8; }
+    .oneclickPanel .ocIcon { display:flex; align-items:center; justify-content:center; flex:0 0 auto; width:48px; height:48px; margin:0; overflow:hidden; border-radius:14px; background:#fff; }
     .oneclickPanel .ocIcon img { width:100%; height:100%; object-fit:contain; }
     .oneclickPanel .ocText { min-width:0; margin:0; text-align:center; }
     .oneclickPanel .ocName { color:var(--gd-ink); font-size:13px; font-weight:900; letter-spacing:-.03em; white-space:nowrap; }
@@ -91,14 +95,14 @@
 
     /* ===== 바로가기: 2x2 카드 + 아이콘 칩 ===== */
     .quickLinkGrid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; margin-top:10px; }
-    .quickLinkGrid .ctaGuide { --tint:var(--gd-pink-soft); display:flex; align-items:center; gap:12px; min-width:0; margin:0; padding:14px; border:1.5px solid var(--gd-pink-line) !important; border-radius:18px; background:#fff !important; color:var(--gd-ink) !important; box-shadow:0 6px 16px rgba(29,26,47,.06); text-decoration:none; transition:transform .15s ease, box-shadow .15s ease; }
+    .quickLinkGrid .ctaGuide { --tint:var(--gd-pink-soft); display:flex; align-items:center; gap:12px; min-width:0; margin:0; padding:14px; border:1.5px solid var(--gd-btn-line) !important; border-radius:18px; background:var(--gd-btn-bg) !important; color:var(--gd-ink) !important; box-shadow:0 6px 16px rgba(29,26,47,.06); text-decoration:none; transition:transform .15s ease, box-shadow .15s ease; }
     .quickLinkGrid .ctaGuide:hover { transform:translateY(-2px); box-shadow:0 12px 24px rgba(29,26,47,.1); }
     .quickLinkGrid .ctaGuide:focus-visible { outline:3px solid var(--gd-pink); outline-offset:2px; }
     .quickLinkGrid .ctaGuide--guide { --tint:var(--gd-pink-soft); }
     .quickLinkGrid .ctaGuide--id    { --tint:var(--gd-sky-soft); }
     .quickLinkGrid .ctaGuide--radio { --tint:var(--gd-lilac-soft); }
     .quickLinkGrid .ctaGuide--sue   { --tint:var(--gd-red-soft); }
-    .quickLinkGrid .ctaIcon { flex:0 0 auto; display:flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:13px; background:var(--tint); font-size:20px; line-height:1; }
+    .quickLinkGrid .ctaIcon { flex:0 0 auto; display:flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:13px; background:#fff; font-size:20px; line-height:1; }
     .quickLinkGrid .ctaGuideText { flex:1 1 auto; min-width:0; }
     .quickLinkGrid .ctaGuideTitle { color:var(--gd-ink); font-size:15px; font-weight:900; letter-spacing:-.025em; }
     .quickLinkGrid .ctaGuideDesc { margin-top:3px; color:rgba(29,26,47,.56); font-size:11.5px; font-weight:700; line-height:1.4; }
