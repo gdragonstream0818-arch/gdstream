@@ -22,11 +22,8 @@
       --gd-sky:#3d9bff;  --gd-sky-soft:#dcedff;
       --gd-lilac-soft:#ece5ff; --gd-red-soft:#ffe4e4;
       --gd-ink:#1d1a2f;  --gd-line:rgba(29,26,47,.08);
-      --gd-bg:#ffeef5;
     }
 
-    /* ===== 사이트 배경: 연한 핑크 ===== */
-    html, body { background:var(--gd-bg) !important; background-image:none !important; }
 
     /* ===== 섹션 제목 크기 통일 (원클릭 / 바로가기 / 음원 차트 현황 외) ===== */
     .sectionTitle, .oneclickPanel .oneclickTitle { color:var(--gd-ink); font-size:19px; font-weight:900; letter-spacing:-.03em; line-height:1.2; }
@@ -69,10 +66,11 @@
 
     /* ===== 원클릭 스트리밍: 3x2 플랫폼 타일 ===== */
     .oneclickPanel { padding:0 !important; border:0 !important; border-radius:0 !important; background:none !important; box-shadow:none !important; -webkit-backdrop-filter:none; backdrop-filter:none; }
-    .oneclickPanel .oneclickTitle { margin:0 0 4px; }
+    .oneclickPanel .oneclickHead { margin:0; padding:0; }
+    .oneclickPanel .oneclickTitle { margin:0 0 4px; padding:0; }
     .oneclickPanel .oneclickSub { margin:0; color:rgba(29,26,47,.58); font-size:13px; font-weight:700; line-height:1.45; }
 
-    .oneclickPanel .oneclickGrid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; margin-top:16px; }
+    .oneclickPanel .oneclickGrid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; margin-top:10px; }
     .oneclickPanel .ocBtn { --brand:var(--gd-pink); display:flex; flex-direction:column; align-items:center; gap:9px; min-width:0; padding:16px 6px 13px; border:1px solid var(--gd-line); border-radius:18px; background:#fff; color:var(--gd-ink); box-shadow:0 6px 16px rgba(29,26,47,.06); text-decoration:none; transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease; }
     .oneclickPanel .ocBtn[data-platform="melon"]   { --brand:#00cd3c; }
     .oneclickPanel .ocBtn[data-platform="genie"]   { --brand:#2d7bff; }
