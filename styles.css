@@ -1174,7 +1174,17 @@ main.container.radioPage .radioLiveBadge {
 
 
 /* ===== 원클릭 제목을 다른 섹션 제목(.sectionTitle, 18px)과 동일하게 ===== */
-.page-home .oneclickPanel .oneclickTitle { color:var(--text); font-size:var(--fs-lg); font-weight:900; letter-spacing:-.03em; line-height:1.25; }
+.page-home .oneclickPanel .oneclickTitle,
+.page-home main.container > .section > .sectionTitle,
+.page-home .sectionTitleRow .sectionTitle {
+  margin: 12px 0;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 18px;
+  font-weight: 900;
+  line-height: 1.25;
+  letter-spacing: -0.03em;
+}
 
 /* ===== 모바일 히어로 이미지 컬러 전환 ===== */
 .page-home .heroImg { filter: none; }
