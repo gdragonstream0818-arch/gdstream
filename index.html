@@ -22,7 +22,15 @@
       --gd-sky:#3d9bff;  --gd-sky-soft:#dcedff;
       --gd-lilac-soft:#ece5ff; --gd-red-soft:#ffe4e4;
       --gd-ink:#1d1a2f;  --gd-line:rgba(29,26,47,.08);
+      --gd-bg:#ffeef5;
     }
+
+    /* ===== 사이트 배경: 연한 핑크 ===== */
+    html, body { background:var(--gd-bg) !important; background-image:none !important; }
+
+    /* ===== 섹션 제목 크기 통일 (원클릭 / 바로가기 / 음원 차트 현황 외) ===== */
+    .sectionTitle, .oneclickPanel .oneclickTitle { color:var(--gd-ink); font-size:19px; font-weight:900; letter-spacing:-.03em; line-height:1.2; }
+    @media (max-width:520px) { .sectionTitle, .oneclickPanel .oneclickTitle { font-size:18px; } }
 
     /* ===== 모바일 히어로 이미지 컬러 전환 ===== */
     .heroImg { filter: none; }
@@ -60,9 +68,8 @@
     .container > .section + .section { margin-top:48px; }
 
     /* ===== 원클릭 스트리밍: 3x2 플랫폼 타일 ===== */
-    .oneclickPanel { padding:18px 16px 16px !important; border:1px solid rgba(255,255,255,.85) !important; border-radius:24px !important; background:rgba(255,255,255,.62) !important; box-shadow:0 14px 40px rgba(255,95,162,.14), 0 2px 8px rgba(29,26,47,.05) !important; -webkit-backdrop-filter:blur(14px); backdrop-filter:blur(14px); }
-    .oneclickPanel .oneclickKicker { display:inline-block; padding:4px 11px; border-radius:999px; background:linear-gradient(90deg,var(--gd-pink),var(--gd-sky)); color:#fff; font-size:11px; font-weight:900; letter-spacing:.02em; }
-    .oneclickPanel .oneclickTitle { margin:10px 0 4px; color:var(--gd-ink); font-size:22px; font-weight:900; letter-spacing:-.03em; line-height:1.15; }
+    .oneclickPanel { padding:0 !important; border:0 !important; border-radius:0 !important; background:none !important; box-shadow:none !important; -webkit-backdrop-filter:none; backdrop-filter:none; }
+    .oneclickPanel .oneclickTitle { margin:0 0 4px; }
     .oneclickPanel .oneclickSub { margin:0; color:rgba(29,26,47,.58); font-size:13px; font-weight:700; line-height:1.45; }
 
     .oneclickPanel .oneclickGrid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; margin-top:16px; }
@@ -148,7 +155,6 @@
       .container > .section + .section { margin-top:40px; }
       .ocModalGrid,.collectModalGrid { grid-template-columns:1fr; }
 
-      .oneclickPanel { padding:16px 12px 12px !important; border-radius:22px !important; }
       .oneclickPanel .oneclickGrid { gap:8px; }
       .oneclickPanel .ocBtn { padding:14px 4px 11px; border-radius:16px; }
       .oneclickPanel .ocIcon { width:44px; height:44px; border-radius:13px; }
@@ -192,7 +198,7 @@
   <section class="hero"><div class="heroInner"><a class="heroLink" href="https://youtu.be/o9DhvbqYzns?si=7uozTe90cIU0ZY27" target="_blank" rel="noreferrer"><picture><source media="(max-width: 768px)" srcset="/assets/header/header-m.jpg"><img class="heroImg" src="/assets/header/header-pc.jpg" alt="G-DRAGON - TOO BAD (MV)"></picture></a></div></section>
 
   <main class="container">
-    <section class="section"><div class="oneclickPanel"><div class="oneclickHead"><div class="oneclickKicker">only for FAM</div><h2 class="oneclickTitle">원클릭 스트리밍</h2><p class="oneclickSub">플랫폼을 선택하면 바로 스트리밍을 시작할 수 있어요.</p></div><div class="oneclickGrid">
+    <section class="section"><div class="oneclickPanel"><div class="oneclickHead"><h2 class="oneclickTitle">원클릭 스트리밍</h2><p class="oneclickSub">플랫폼을 선택하면 바로 스트리밍을 시작할 수 있어요.</p></div><div class="oneclickGrid">
       <a class="ocBtn" href="#" data-platform="melon" aria-label="멜론 원클릭"><div class="ocIcon"><img src="/assets/icons/platform/melon.svg" alt="멜론"></div><div class="ocText"><div class="ocName">멜론</div></div><div class="ocArrow">→</div></a>
       <a class="ocBtn" href="#" data-platform="genie" aria-label="지니 원클릭"><div class="ocIcon"><img src="/assets/icons/platform/genie.png" alt="지니"></div><div class="ocText"><div class="ocName">지니</div></div><div class="ocArrow">→</div></a>
       <a class="ocBtn" href="#" data-platform="bugs" aria-label="벅스 원클릭"><div class="ocIcon"><img src="/assets/icons/platform/bugs.jpg" alt="벅스"></div><div class="ocText"><div class="ocName">벅스</div></div><div class="ocArrow">→</div></a>
