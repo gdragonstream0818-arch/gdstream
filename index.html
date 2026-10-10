@@ -21,6 +21,7 @@
       --gd-pink:#ff5fa2; --gd-pink-soft:#ffe3ef;
       --gd-sky:#3d9bff;  --gd-sky-soft:#dcedff;
       --gd-lilac-soft:#ece5ff; --gd-red-soft:#ffe4e4;
+      --gd-pink-line:#ff7eb6;
       --gd-ink:#1d1a2f;  --gd-line:rgba(29,26,47,.08);
     }
 
@@ -65,20 +66,21 @@
     .container > .section + .section { margin-top:48px; }
 
     /* ===== 원클릭 스트리밍: 3x2 플랫폼 타일 ===== */
-    .oneclickPanel { padding:0 !important; border:0 !important; border-radius:0 !important; background:none !important; box-shadow:none !important; -webkit-backdrop-filter:none; backdrop-filter:none; }
+    .oneclickPanel { width:100% !important; max-width:none !important; margin:0 !important; padding:0 !important; border:0 !important; border-radius:0 !important; background:none !important; box-shadow:none !important; -webkit-backdrop-filter:none; backdrop-filter:none; }
     .oneclickPanel .oneclickHead { margin:0; padding:0; }
+    .oneclickPanel .oneclickSub { padding:0; }
     .oneclickPanel .oneclickTitle { margin:0 0 4px; padding:0; }
     .oneclickPanel .oneclickSub { margin:0; color:rgba(29,26,47,.58); font-size:13px; font-weight:700; line-height:1.45; }
 
-    .oneclickPanel .oneclickGrid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; margin-top:10px; }
-    .oneclickPanel .ocBtn { --brand:var(--gd-pink); display:flex; flex-direction:column; align-items:center; gap:9px; min-width:0; padding:16px 6px 13px; border:1px solid var(--gd-line); border-radius:18px; background:#fff; color:var(--gd-ink); box-shadow:0 6px 16px rgba(29,26,47,.06); text-decoration:none; transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease; }
+    .oneclickPanel .oneclickGrid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; width:100%; margin:10px 0 0; padding:0; }
+    .oneclickPanel .ocBtn { --brand:var(--gd-pink); display:flex; flex-direction:column; align-items:center; gap:9px; min-width:0; width:100%; margin:0; padding:16px 6px 13px; border:1.5px solid var(--gd-pink-line); border-radius:18px; background:#fff; color:var(--gd-ink); box-shadow:0 6px 16px rgba(29,26,47,.06); text-decoration:none; transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease; }
     .oneclickPanel .ocBtn[data-platform="melon"]   { --brand:#00cd3c; }
     .oneclickPanel .ocBtn[data-platform="genie"]   { --brand:#2d7bff; }
     .oneclickPanel .ocBtn[data-platform="bugs"]    { --brand:#ff5a2c; }
     .oneclickPanel .ocBtn[data-platform="flo"]     { --brand:#4b3bff; }
     .oneclickPanel .ocBtn[data-platform="vibe"]    { --brand:#ff2f7e; }
     .oneclickPanel .ocBtn[data-platform="spotify"] { --brand:#1db954; }
-    .oneclickPanel .ocBtn:hover { transform:translateY(-3px); border-color:var(--brand); box-shadow:0 12px 24px color-mix(in srgb, var(--brand) 24%, transparent); }
+    .oneclickPanel .ocBtn:hover { background:#fff !important; transform:none !important; border-color:var(--gd-pink-line); box-shadow:0 6px 16px rgba(29,26,47,.06); }
     .oneclickPanel .ocBtn:active { transform:scale(.97); }
     .oneclickPanel .ocBtn:focus-visible { outline:3px solid var(--gd-pink); outline-offset:2px; }
     .oneclickPanel .ocIcon { display:flex; align-items:center; justify-content:center; flex:0 0 auto; width:48px; height:48px; margin:0; overflow:hidden; border-radius:14px; background:#f4f5f8; }
@@ -89,7 +91,7 @@
 
     /* ===== 바로가기: 2x2 카드 + 아이콘 칩 ===== */
     .quickLinkGrid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; margin-top:10px; }
-    .quickLinkGrid .ctaGuide { --tint:var(--gd-pink-soft); display:flex; align-items:center; gap:12px; min-width:0; margin:0; padding:14px; border:1px solid var(--gd-line) !important; border-radius:18px; background:#fff !important; color:var(--gd-ink) !important; box-shadow:0 6px 16px rgba(29,26,47,.06); text-decoration:none; transition:transform .15s ease, box-shadow .15s ease; }
+    .quickLinkGrid .ctaGuide { --tint:var(--gd-pink-soft); display:flex; align-items:center; gap:12px; min-width:0; margin:0; padding:14px; border:1.5px solid var(--gd-pink-line) !important; border-radius:18px; background:#fff !important; color:var(--gd-ink) !important; box-shadow:0 6px 16px rgba(29,26,47,.06); text-decoration:none; transition:transform .15s ease, box-shadow .15s ease; }
     .quickLinkGrid .ctaGuide:hover { transform:translateY(-2px); box-shadow:0 12px 24px rgba(29,26,47,.1); }
     .quickLinkGrid .ctaGuide:focus-visible { outline:3px solid var(--gd-pink); outline-offset:2px; }
     .quickLinkGrid .ctaGuide--guide { --tint:var(--gd-pink-soft); }
