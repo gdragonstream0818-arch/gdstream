@@ -103,7 +103,7 @@ def make_content(data):
 
 
 # ==================================================
-# 브라우저
+# 브라우저 / 공통 도구
 # ==================================================
 
 def create_browser():
@@ -232,7 +232,7 @@ def move_write_page(driver):
 
 
 # ==================================================
-# 글 작성 / 등록
+# 글 작성
 # ==================================================
 
 def write_post(driver, title, content):
@@ -292,6 +292,68 @@ def write_post(driver, title, content):
     time.sleep(3)
 
 
+# ==================================================
+# 진단 / 디버그
+# ==================================================
+
+def diagnose(driver):
+
+    print("===== 진단 =====")
+
+    page = driver.page_source
+
+    print("로그아웃 링크 존재:", "로그아웃" in page)
+
+    print(
+        "캡차 흔적:",
+        any(
+            k in page
+            for k in [
+                "recaptcha",
+                "g-recaptcha",
+                "자동입력",
+                "방지코드",
+                "kcaptcha",
+            ]
+        ),
+    )
+
+    # 폼에 실제로 전송될 textarea 값 확인
+    for ta in driver.find_elements(By.TAG_NAME, "textarea"):
+
+        value = ta.get_attribute("value") or ""
+
+        print(
+            "textarea:",
+            "name=", ta.get_attribute("name"),
+            "| id=", ta.get_attribute("id"),
+            "| 값 길이:", len(value),
+        )
+
+    # 에디터에 들어간 글자 수
+    try:
+        editor = driver.find_element(
+            By.CSS_SELECTOR, ".note-editable[contenteditable='true']"
+        )
+        print("에디터 글자 수:", len(editor.text))
+    except Exception as e:
+        print("에디터 확인 실패:", e)
+
+    # 화면에 보이는 입력칸 (코드 입력칸이 있는지 확인용)
+    for inp in driver.find_elements(By.TAG_NAME, "input"):
+
+        if inp.is_displayed():
+            print(
+                "입력칸:",
+                "name=", inp.get_attribute("name"),
+                "| type=", inp.get_attribute("type"),
+            )
+
+    # 프레임 (캡차 iframe 등)
+    for fr in driver.find_elements(By.TAG_NAME, "iframe"):
+        print("iframe:", fr.get_attribute("src"))
+
+
 def save_debug(driver):
 
     with open("final_debug.html", "w", encoding="utf-8") as f:
@@ -300,38 +362,73 @@ def save_debug(driver):
     print("final_debug.html 저장")
 
 
+# ==================================================
+# 등록
+# ==================================================
+
 def submit_post(driver):
 
     print("===== 등록 버튼 검색 =====")
 
-    target = None
+    # '등록' 버튼 후보를 전부 출력
+    candidates = []
 
     for btn in driver.find_elements(By.TAG_NAME, "button"):
-        if btn.text.strip() == "등록":
-            target = btn
-            break
 
-    if target is None:
+        if btn.text.strip() == "등록":
+
+            print(
+                "후보:",
+                "class=", btn.get_attribute("class"),
+                "| 보임:", btn.is_displayed(),
+                "| 활성:", btn.is_enabled(),
+            )
+
+            candidates.append(btn)
+
+    if not candidates:
         raise Exception("등록 버튼 못찾음")
 
-    print("등록 버튼 발견")
+    # 화면에 보이는 버튼을 우선 선택
+    target = next(
+        (b for b in candidates if b.is_displayed()),
+        candidates[0],
+    )
 
-    driver.execute_script("arguments[0].click();", target)
+    driver.execute_script(
+        "arguments[0].scrollIntoView({block:'center'});",
+        target,
+    )
 
-    # alert이 뜨면 내용 출력
+    time.sleep(1)
+
+    # JS click이 아니라 실제 클릭을 먼저 시도
+    try:
+        target.click()
+        print("일반 클릭 실행")
+
+    except Exception as e:
+        print("일반 클릭 실패, JS 클릭으로 대체:", e)
+        driver.execute_script("arguments[0].click();", target)
+
+    # alert 확인
     alert_text = read_alert(driver, timeout=5)
 
     if alert_text:
         print("⚠️ alert 발생:", alert_text)
 
-    time.sleep(3)
-
+    # URL이 글 보기로 바뀔 때까지 최대 15초 대기
     try:
-        current = driver.current_url
+        WebDriverWait(driver, 15).until(
+            lambda d: "/board/view" in d.current_url
+        )
     except UnexpectedAlertPresentException:
         alert_text = read_alert(driver, timeout=2)
         print("⚠️ alert 발생:", alert_text)
-        current = driver.current_url
+    except Exception:
+        pass
+
+    current = driver.current_url
 
     print("등록 후 URL:", current)
 
@@ -372,6 +469,8 @@ def main():
         move_write_page(driver)
 
         write_post(driver, title, content)
+
+        diagnose(driver)
 
         save_debug(driver)
 
