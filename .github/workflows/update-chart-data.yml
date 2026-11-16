@@ -1,53 +1,62 @@
 name: Update chart data
 
+
 on:
   schedule:
-    # 매시간 실행 (UTC 기준 매시 정각)
+    # 매시간 실행
     - cron: "0 * * * *"
 
   workflow_dispatch:
 
+
 permissions:
   contents: write
+
 
 concurrency:
   group: update-chart-data
   cancel-in-progress: false
 
+
 jobs:
+
   update-charts:
+
     runs-on: ubuntu-latest
+
     timeout-minutes: 10
 
+
     steps:
-      # ==================================================
-      # 기본 설정
-      # ==================================================
+
 
       - name: 저장소 코드 가져오기
         uses: actions/checkout@v4
+
+
 
       - name: Python 설정
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+          cache: "pip"
+
+
 
       - name: Python 패키지 설치
         run: |
           python -m pip install --upgrade pip
-          python -m pip install requests beautifulsoup4 selenium tzdata
+          pip install requests beautifulsoup4 selenium
 
-      # ==================================================
+
+
       # 음원 차트 데이터 갱신
-      # ==================================================
-
       - name: 음원 차트 데이터 갱신
         run: python scripts/update_charts.py
 
-      # ==================================================
-      # 변경된 차트 데이터 저장
-      # ==================================================
 
+
+      # 변경된 차트 데이터 저장
       - name: 변경된 차트 데이터 저장
         run: |
           git config user.name "gdstream chart bot"
@@ -66,40 +75,24 @@ jobs:
             git push
           fi
 
-      # ==================================================
-      # DCInside 자동 업로드
-      # ==================================================
 
+
+      # 디시 자동 업로드
       - name: Post DCInside
         env:
           DC_ID: ${{ secrets.DC_ID }}
           DC_PASSWORD: ${{ secrets.DC_PASSWORD }}
-          PYTHONUNBUFFERED: "1"
-        run: python -u chart-bot/dc_post.py
 
-      # ==================================================
-      # 성공 / 실패에 관계없이 진단 파일 업로드
-      # ==================================================
+        run: |
+          python chart-bot/dc_post.py
 
-      - name: DC 봇 디버그 파일 업로드
+
+
+      # 실패 시 디버그 파일 확인용
+      - name: Upload debug html
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: dc-debug-${{ github.run_number }}-${{ github.run_attempt }}
+          name: dc-debug
           path: |
-            **/error_state.png
-            **/error_state.html
-            **/after_login.png
-            **/after_login.html
-            **/write_page_failed.png
-            **/write_page_failed.html
-            **/final_debug.png
-            **/final_debug.html
-            **/submit_button_not_ready.png
-            **/submit_button_not_ready.html
-            **/submit_click_failed.png
-            **/submit_click_failed.html
-            **/after_submit.png
-            **/after_submit.html
-          if-no-files-found: warn
-          retention-days: 1
+            final_debug.html
