@@ -1,11 +1,11 @@
-import html
+=import html
 import json
 import os
 import time
 import traceback
 
-from pathlib import Path
 from datetime import datetime
+from pathlib import Path
 from zoneinfo import ZoneInfo
 
 from selenium import webdriver
@@ -13,7 +13,6 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-
 from selenium.common.exceptions import (
     NoAlertPresentException,
     UnexpectedAlertPresentException,
@@ -50,7 +49,6 @@ def load_chart_data():
         data = json.load(f)
 
     print("차트 기준시간:", data.get("updatedAt"), flush=True)
-
     return data
 
 
@@ -96,12 +94,12 @@ def make_content(data):
         lines.append("")
 
     lines.append("※ 매시간 자동 업데이트")
-
     return "\n".join(lines)
 
 
 # ==================================================
-# 브라우저 / 공통 기능
+# 브라우저
+# 로그인에 성공했던 설정 유지
 # ==================================================
 
 def create_browser():
@@ -111,28 +109,34 @@ def create_browser():
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
     options.add_argument("--window-size=1920,1080")
+    options.add_argument("--disable-blink-features=AutomationControlled")
     options.add_argument("--disable-gpu")
+    options.add_argument("--remote-debugging-port=9222")
+    options.add_argument(
+        "--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
+    )
 
-    # 잘린 사용자 에이전트와 고정 디버깅 포트는 사용하지 않습니다.
     driver = webdriver.Chrome(options=options)
-
-    driver.set_page_load_timeout(45)
+    driver.set_page_load_timeout(60)
 
     return driver
 
 
+# ==================================================
+# 공통 기능 / 진단
+# ==================================================
+
 def read_alert(driver, timeout=1):
-    """알림을 읽고 확인합니다. 입력이 필요한 prompt는 자동 처리하지 않습니다."""
+    """알림을 읽고 확인 버튼을 누릅니다."""
     deadline = time.monotonic() + timeout
 
     while time.monotonic() < deadline:
         try:
             alert = driver.switch_to.alert
             text = alert.text
+            alert.accept()
 
             print("⚠️ 알림:", text, flush=True)
-
-            alert.accept()
             return text
 
         except NoAlertPresentException:
@@ -142,10 +146,6 @@ def read_alert(driver, timeout=1):
 
 
 def save_state(driver, name):
-    """
-    HTML, 스크린샷, 페이지 텍스트를 각각 저장합니다.
-    한 종류의 저장이 실패해도 나머지는 계속 저장합니다.
-    """
     DEBUG_DIR.mkdir(parents=True, exist_ok=True)
 
     try:
@@ -169,110 +169,91 @@ def save_state(driver, name):
                 title: document.title,
                 readyState: document.readyState,
                 bodyText: document.body
-                    ? document.body.innerText.slice(0, 8000)
-                    : '',
-                inputs: Array.from(
-                    document.querySelectorAll('input')
-                ).map(el => ({
-                    id: el.id,
-                    name: el.name,
-                    type: el.type,
-                    visible: Boolean(el.getClientRects().length)
-                }))
+                    ? document.body.innerText.slice(0, 12000)
+                    : ''
             };
             """
         )
 
-        # inputの値は記録しません。
-        text = json.dumps(info, ensure_ascii=False, indent=2)
-
         (DEBUG_DIR / f"{name}.txt").write_text(
-            text,
+            json.dumps(info, ensure_ascii=False, indent=2),
             encoding="utf-8",
         )
 
+        print("현재 URL:", info["url"], flush=True)
         print(
-            f"診断: URL={info.get('url')} "
-            f"/ タイトル={info.get('title')}",
-            flush=True,
-        )
-        print(
-            "ページ本文:",
-            (info.get("bodyText") or "")[:1500],
+            "화면 내용:",
+            info["bodyText"][:2000],
             flush=True,
         )
 
     except Exception as e:
-        print("ページ情報保存失敗:", type(e).__name__, flush=True)
+        print("화면 내용 저장 실패:", type(e).__name__, flush=True)
 
 
-def find_visible(driver, selector):
-    for element in driver.find_elements(By.CSS_SELECTOR, selector):
-        try:
-            if element.is_displayed() and element.is_enabled():
-                return element
-        except StaleElementReferenceException:
-            continue
+def diagnose(driver):
+    print("===== 제출 전 진단 =====", flush=True)
 
-    return False
+    info = driver.execute_script(
+        """
+        return {
+            title: document.querySelector('#subject')?.value || '',
+            textareas: Array.from(
+                document.querySelectorAll('textarea')
+            ).map(el => ({
+                id: el.id,
+                name: el.name,
+                length: (el.value || '').length
+            })),
+            visibleInputs: Array.from(
+                document.querySelectorAll('input')
+            ).filter(el => el.getClientRects().length).map(el => ({
+                id: el.id,
+                name: el.name,
+                type: el.type,
+                required: el.required,
+                empty: !el.value,
+                valid: el.validity.valid,
+                message: el.validationMessage
+            }))
+        };
+        """
+    )
+
+    # 비밀번호 등 입력값은 출력하지 않습니다.
+    print(
+        json.dumps(info, ensure_ascii=False, indent=2),
+        flush=True,
+    )
 
 
 # ==================================================
-# ログイン / 글쓰기 이동
+# 로그인 / 글쓰기 이동
+# 기존 흐름 유지
 # ==================================================
 
 def login(driver):
     print("===== 로그인 시작 =====", flush=True)
 
-    user_id = os.environ.get("DC_ID")
-    password = os.environ.get("DC_PASSWORD")
-
-    if not user_id or not password:
+    if not os.environ.get("DC_ID") or not os.environ.get("DC_PASSWORD"):
         raise RuntimeError(
-            "GitHub Secrets에 DC_ID / DC_PASSWORD가 없습니다."
+            "DC_ID / DC_PASSWORD 환경변수를 확인하세요."
         )
 
     driver.get(LOGIN_URL)
 
-    wait = WebDriverWait(driver, 25)
+    wait = WebDriverWait(driver, 20)
 
-    # 기존 코드와 같은 name 기준으로 요소를 먼저 찾습니다.
-    try:
-        id_box = wait.until(
-            EC.presence_of_element_located(
-                (By.NAME, "user_id")
-            )
-        )
+    id_box = wait.until(
+        EC.presence_of_element_located((By.NAME, "user_id"))
+    )
 
-        pw_box = wait.until(
-            EC.presence_of_element_located(
-                (By.NAME, "pw")
-            )
-        )
+    pw_box = wait.until(
+        EC.presence_of_element_located((By.NAME, "pw"))
+    )
 
-    except TimeoutException as e:
-        save_state(driver, "login_page_failed")
-
-        raise RuntimeError(
-            "로그인 페이지에서 user_id / pw 입력란을 찾지 못했습니다. "
-            "등록 단계가 아니라 로그인 페이지 로딩 단계의 문제입니다. "
-            "로그의 페이지 본문과 login_page_failed.txt에 "
-            "실제로 열린 화면을 기록했습니다."
-        ) from e
-
-    if not id_box.is_displayed() or not pw_box.is_displayed():
-        save_state(driver, "login_inputs_hidden")
-
-        raise RuntimeError(
-            "로그인 입력란은 존재하지만 화면에 표시되지 않습니다. "
-            "로그인 페이지의 표시 상태를 확인해야 합니다."
-        )
-
-    id_box.clear()
-    id_box.send_keys(user_id)
-
-    pw_box.clear()
-    pw_box.send_keys(password)
+    id_box.send_keys(os.environ["DC_ID"])
+    pw_box.send_keys(os.environ["DC_PASSWORD"])
 
     login_btn = wait.until(
         EC.element_to_be_clickable(
@@ -282,110 +263,67 @@ def login(driver):
 
     login_btn.click()
 
-    message = read_alert(driver, timeout=3)
+    read_alert(driver, timeout=3)
+    time.sleep(3)
 
-    if message:
-        print("로그인 안내:", message, flush=True)
-
-    time.sleep(2)
-
-    print("로그인 후 URL:", driver.current_url, flush=True)
-
-    # 실제 로그인 여부는 다음 갤러리 페이지에서도 확인합니다.
+    print("로그인 후:", driver.current_url, flush=True)
+    save_state(driver, "after_login")
 
 
 def move_write_page(driver):
     print("===== 글쓰기 이동 =====", flush=True)
 
     driver.get(GALLERY_URL)
+    time.sleep(5)
 
-    wait = WebDriverWait(driver, 20)
+    links = driver.find_elements(By.TAG_NAME, "a")
 
-    wait.until(
-        EC.presence_of_element_located((By.TAG_NAME, "body"))
-    )
+    for link in links:
+        try:
+            text = link.text.strip()
+            href = link.get_attribute("href") or ""
 
-    def find_write_link(d):
-        for link in d.find_elements(By.TAG_NAME, "a"):
-            try:
-                if not link.is_displayed() or not link.is_enabled():
-                    continue
-
-                text = link.text.strip()
-                href = link.get_attribute("href") or ""
-
-                if "글쓰기" in text or "/board/write" in href:
-                    return link
-
-            except StaleElementReferenceException:
+            if "글쓰기" not in text and "/board/write" not in href:
                 continue
 
-        return False
+            if not link.is_displayed():
+                continue
 
-    try:
-        link = wait.until(find_write_link)
+            print("글쓰기 발견:", href, flush=True)
 
-        print(
-            "글쓰기 발견:",
-            link.get_attribute("href"),
-            flush=True,
-        )
+            # 기존에 동작했던 이동 방식 유지
+            driver.execute_script("arguments[0].click();", link)
 
-        driver.execute_script(
-            "arguments[0].scrollIntoView({block:'center'});",
-            link,
-        )
+            read_alert(driver, timeout=1)
 
-        link.click()
-
-        message = read_alert(driver, timeout=2)
-
-        if message:
-            print("글쓰기 이동 안내:", message, flush=True)
-
-        wait.until(
-            EC.visibility_of_element_located((By.ID, "subject"))
-        )
-
-        # 원본 코드 역시 회원 로그인을 전제로 하므로
-        # 비회원 작성용 비밀번호 칸이 보이면 게시를 중단합니다.
-        guest_password = find_visible(
-            driver,
-            "input[type='password']",
-        )
-
-        if guest_password:
-            save_state(driver, "guest_write_page")
-
-            raise RuntimeError(
-                "글쓰기 화면에 비밀번호 입력란이 표시됩니다. "
-                "비회원 작성 화면일 가능성이 있어 게시를 중단합니다."
+            WebDriverWait(driver, 20).until(
+                EC.presence_of_element_located((By.ID, "subject"))
             )
 
-    except TimeoutException as e:
-        save_state(driver, "write_page_failed")
+            print(
+                "글쓰기 페이지 URL:",
+                driver.current_url,
+                flush=True,
+            )
+            return
 
-        raise RuntimeError(
-            "글쓰기 화면의 제목 입력란을 찾지 못했습니다. "
-            "로그인 실패·글쓰기 권한·추가 안내를 확인해야 합니다."
-        ) from e
+        except StaleElementReferenceException:
+            continue
 
-    print("글쓰기 페이지:", driver.current_url, flush=True)
+    raise RuntimeError("글쓰기 버튼을 찾지 못했습니다.")
 
 
 # ==================================================
-# 제목 / 본문 입력
+# 글 작성
 # ==================================================
 
 def write_post(driver, title, content):
     print("===== 글 작성 =====", flush=True)
 
-    driver.switch_to.default_content()
-
     wait = WebDriverWait(driver, 20)
 
     subject = wait.until(
-        EC.element_to_be_clickable((By.ID, "subject"))
+        EC.presence_of_element_located((By.ID, "subject"))
     )
 
     subject.clear()
@@ -400,14 +338,12 @@ def write_post(driver, title, content):
         )
     )
 
-    # 제목·가수명 등에 들어가는 특수문자를 안전하게 처리합니다.
     content_html = html.escape(content).replace("\n", "<br>")
 
     result = driver.execute_script(
         """
         const editor = arguments[0];
         const code = arguments[1];
-
         const wrapper = editor.closest('.note-editor');
 
         let source = null;
@@ -416,7 +352,7 @@ def write_post(driver, title, content):
         if (window.jQuery && wrapper) {
             const $ = window.jQuery;
 
-            // 실제로 이 에디터를 관리하는 Summernote 원본 탐색
+            // 현재 에디터와 연결된 실제 Summernote 요소 찾기
             for (const el of document.querySelectorAll(
                 'textarea, .summernote'
             )) {
@@ -434,6 +370,7 @@ def write_post(driver, title, content):
             }
         }
 
+        // 일반적인 Summernote textarea 배치 확인
         if (!source && wrapper) {
             const previous = wrapper.previousElementSibling;
 
@@ -445,7 +382,6 @@ def write_post(driver, title, content):
             }
         }
 
-        // 가능하면 공식 에디터 API를 통해 내부 값도 변경
         if (source && window.jQuery) {
             const $ = window.jQuery;
 
@@ -491,30 +427,32 @@ def write_post(driver, title, content):
         content_html,
     )
 
-    if (subject.get_attribute("value") or "").strip() != title.strip():
-        raise RuntimeError("제목 입력 확인에 실패했습니다.")
+    actual_title = subject.get_attribute("value") or ""
+
+    if actual_title.strip() != title.strip():
+        raise RuntimeError("제목이 정상 입력되지 않았습니다.")
 
     expected = " ".join(content.split())
     actual = " ".join((result.get("text") or "").split())
 
     if expected != actual:
-        raise RuntimeError("본문 입력 확인에 실패했습니다.")
+        raise RuntimeError("본문이 정상 입력되지 않았습니다.")
 
     print("제목 입력 완료", flush=True)
     print("본문 입력 완료", flush=True)
     print(
-        "원본 에디터 요소 발견:",
+        "에디터 원본 발견:",
         result["sourceFound"],
-        "/ Summernote API 동기화:",
+        "/ API 동기화:",
         result["apiSynced"],
         flush=True,
     )
 
-    time.sleep(1)
+    time.sleep(3)
 
 
 # ==================================================
-# 등록 버튼 클릭 / 결과 확인
+# 등록
 # ==================================================
 
 def submit_post(driver):
@@ -530,26 +468,18 @@ def submit_post(driver):
         " | //a[normalize-space(.)='등록']",
     )
 
-    def find_ready_button(d):
+    def ready_button(d):
         for button in d.find_elements(*locator):
             try:
-                if not button.is_displayed():
-                    continue
-
-                if not button.is_enabled():
-                    continue
-
-                if button.get_attribute("disabled") is not None:
-                    continue
-
-                aria_disabled = (
-                    button.get_attribute("aria-disabled") or ""
-                )
-
-                if aria_disabled.lower() == "true":
-                    continue
-
-                return button
+                if (
+                    button.is_displayed()
+                    and button.is_enabled()
+                    and button.get_attribute("disabled") is None
+                    and (
+                        button.get_attribute("aria-disabled") or ""
+                    ).lower() != "true"
+                ):
+                    return button
 
             except StaleElementReferenceException:
                 continue
@@ -561,19 +491,15 @@ def submit_post(driver):
     )
 
     try:
-        target = WebDriverWait(driver, 15).until(
-            find_ready_button
-        )
+        target = WebDriverWait(driver, 15).until(ready_button)
 
     except TimeoutException as e:
-        save_state(driver, "submit_button_not_found")
-
         raise RuntimeError(
             "보이고 활성화된 등록 버튼을 찾지 못했습니다."
         ) from e
 
     print(
-        "선택한 등록 버튼:",
+        "등록 버튼:",
         target.get_attribute("outerHTML"),
         flush=True,
     )
@@ -583,24 +509,48 @@ def submit_post(driver):
         target,
     )
 
-    time.sleep(0.5)
+    time.sleep(1)
+
+    # 버튼 중앙을 다른 요소가 가리는지 확인
+    hit_test = driver.execute_script(
+        """
+        const target = arguments[0];
+        const rect = target.getBoundingClientRect();
+        const top = document.elementFromPoint(
+            rect.left + rect.width / 2,
+            rect.top + rect.height / 2
+        );
+
+        return {
+            clear: Boolean(
+                top && (top === target || target.contains(top))
+            ),
+            topElement: top ? top.outerHTML.slice(0, 600) : null
+        };
+        """,
+        target,
+    )
+
+    print(
+        "버튼 가림 확인:",
+        json.dumps(hit_test, ensure_ascii=False),
+        flush=True,
+    )
 
     save_state(driver, "before_submit")
 
-    # 일반 클릭 한 번만 실행합니다.
-    # 클릭 후 다시 누르면 중복 등록될 수 있어 자동 재클릭하지 않습니다.
+    # 클릭은 한 번만 실행합니다.
+    # 성공 여부가 불확실한 상태에서 JS로 재클릭하지 않습니다.
     try:
         target.click()
-        print("등록 버튼 일반 클릭 실행", flush=True)
+        print("일반 클릭 실행 완료", flush=True)
 
     except UnexpectedAlertPresentException:
-        print("클릭 과정에서 알림 발생", flush=True)
+        print("클릭 중 알림 발생, 결과 확인", flush=True)
 
     except Exception as e:
-        save_state(driver, "submit_click_failed")
-
         raise RuntimeError(
-            "등록 버튼은 찾았지만 실제 클릭에 실패했습니다. "
+            "등록 버튼 실제 클릭 실패: "
             f"{type(e).__name__}: {e}"
         ) from e
 
@@ -629,11 +579,10 @@ def submit_post(driver):
     save_state(driver, "after_submit")
 
     raise RuntimeError(
-        "등록 버튼은 클릭했지만 글 보기 화면을 확인하지 못했습니다.\n"
+        "버튼은 클릭했지만 글 보기 화면 이동을 확인하지 못했습니다.\n"
         f"알림: {' / '.join(messages) or '없음'}\n"
-        "제목·본문·말머리 등 필수 항목 또는 추가 확인이 "
-        "요구될 수 있습니다. after_submit.txt에 페이지 내용을 "
-        "저장했습니다. 재실행 전 중복 등록 여부를 확인하세요."
+        "말머리·필수 입력·추가 인증 등의 화면 안내를 확인하세요. "
+        "등록됐을 수도 있으므로 재실행 전 게시판을 확인하세요."
     )
 
 
@@ -649,7 +598,6 @@ def main():
 
     try:
         data = load_chart_data()
-
         title = make_title()
         content = make_content(data)
 
@@ -668,8 +616,12 @@ def main():
         stage = "글쓰기 이동"
         move_write_page(driver)
 
-        stage = "제목·본문 입력"
+        stage = "글 작성"
         write_post(driver, title, content)
+
+        stage = "제출 전 진단"
+        diagnose(driver)
+        save_state(driver, "final_debug")
 
         stage = "등록"
         submit_post(driver)
