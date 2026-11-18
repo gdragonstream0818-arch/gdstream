@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-11-18 23:00:45 KST",
-  "melonDailyDate": "2026-11-18",
+  "updatedAt": "2026-11-19 00:00:56 KST",
+  "melonDailyDate": "2026-11-19",
   "artists": [
     "G-DRAGON",
     "BIGBANG"
@@ -10,7 +10,7 @@
       "id": "melonTop100",
       "name": "멜론 TOP100",
       "type": "realtime",
-      "status": "ok",
+      "status": "error",
       "updatedAt": "2026-11-18 23:00:45 KST",
       "songs": [
         {
@@ -37,13 +37,14 @@
             "label": "▼ 1"
           }
         }
-      ]
+      ],
+      "error": "HTTPSConnectionPool(host='www.melon.com', port=443): Max retries exceeded with url: /chart/index.htm (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.melon.com', port=443) at 0x78f62217f800>, 'Connection to www.melon.com timed out. (connect timeout=20)'))"
     },
     "melonDaily": {
       "id": "melonDaily",
       "name": "멜론 일간",
       "type": "daily",
-      "status": "ok",
+      "status": "error",
       "updatedAt": "2026-11-18 23:00:45 KST",
       "songs": [
         {
@@ -70,14 +71,15 @@
             "label": "—"
           }
         }
-      ]
+      ],
+      "error": "HTTPSConnectionPool(host='www.melon.com', port=443): Max retries exceeded with url: /chart/day/index.htm (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.melon.com', port=443) at 0x78f6221a8200>, 'Connection to www.melon.com timed out. (connect timeout=20)'))"
     },
     "genieTop200": {
       "id": "genieTop200",
       "name": "지니 TOP200",
       "type": "realtime",
       "status": "ok",
-      "updatedAt": "2026-11-18 23:00:45 KST",
+      "updatedAt": "2026-11-19 00:00:56 KST",
       "songs": []
     },
     "bugsRealtime": {
@@ -85,18 +87,30 @@
       "name": "벅스 실시간",
       "type": "realtime",
       "status": "ok",
-      "updatedAt": "2026-11-18 23:00:45 KST",
+      "updatedAt": "2026-11-19 00:00:56 KST",
       "songs": [
         {
-          "rank": 89,
+          "rank": 79,
+          "title": "HOME SWEET HOME (feat. 태양, 대성)",
+          "artist": "G-DRAGON",
+          "artistGroup": "G-DRAGON",
+          "albumImage": "/assets/albums/affc37c45ed9c1040415.jpg",
+          "change": {
+            "type": "up",
+            "value": 22,
+            "label": "▲ 22"
+          }
+        },
+        {
+          "rank": 90,
           "title": "BiiiG",
           "artist": "BIGBANG (빅뱅)",
           "artistGroup": "BIGBANG",
           "albumImage": "/assets/albums/8cf68f6335e8bbfd0059.jpg",
           "change": {
             "type": "down",
-            "value": 32,
-            "label": "▼ 32"
+            "value": 1,
+            "label": "▼ 1"
           }
         }
       ]
