@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-21 04:00:44 KST",
+  "updatedAt": "2026-11-21 05:00:55 KST",
   "melonDailyDate": "2026-11-21",
   "artists": [
     "G-DRAGON",
@@ -10,7 +10,7 @@
       "id": "melonTop100",
       "name": "멜론 TOP100",
       "type": "realtime",
-      "status": "ok",
+      "status": "error",
       "updatedAt": "2026-11-21 04:00:44 KST",
       "songs": [
         {
@@ -49,13 +49,14 @@
             "label": "—"
           }
         }
-      ]
+      ],
+      "error": "HTTPSConnectionPool(host='www.melon.com', port=443): Max retries exceeded with url: /chart/index.htm (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.melon.com', port=443) at 0x7ba53d64b980>, 'Connection to www.melon.com timed out. (connect timeout=20)'))"
     },
     "melonDaily": {
       "id": "melonDaily",
       "name": "멜론 일간",
       "type": "daily",
-      "status": "ok",
+      "status": "error",
       "updatedAt": "2026-11-21 04:00:44 KST",
       "songs": [
         {
@@ -82,14 +83,15 @@
             "label": "▲ 3"
           }
         }
-      ]
+      ],
+      "error": "HTTPSConnectionPool(host='www.melon.com', port=443): Max retries exceeded with url: /chart/day/index.htm (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.melon.com', port=443) at 0x7ba53d67c380>, 'Connection to www.melon.com timed out. (connect timeout=20)'))"
     },
     "genieTop200": {
       "id": "genieTop200",
       "name": "지니 TOP200",
       "type": "realtime",
       "status": "ok",
-      "updatedAt": "2026-11-21 04:00:44 KST",
+      "updatedAt": "2026-11-21 05:00:55 KST",
       "songs": [
         {
           "rank": 32,
@@ -110,7 +112,7 @@
       "name": "벅스 실시간",
       "type": "realtime",
       "status": "ok",
-      "updatedAt": "2026-11-21 04:00:44 KST",
+      "updatedAt": "2026-11-21 05:00:55 KST",
       "songs": [
         {
           "rank": 4,
