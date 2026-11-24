@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-11-24 23:00:47 KST",
-  "melonDailyDate": "2026-11-24",
+  "updatedAt": "2026-11-25 00:00:49 KST",
+  "melonDailyDate": "2026-11-25",
   "artists": [
     "G-DRAGON",
     "BIGBANG"
@@ -11,22 +11,22 @@
       "name": "멜론 TOP100",
       "type": "realtime",
       "status": "ok",
-      "updatedAt": "2026-11-24 23:00:47 KST",
+      "updatedAt": "2026-11-25 00:00:49 KST",
       "songs": [
         {
-          "rank": 10,
+          "rank": 11,
           "title": "기립 (GiiiRIP)",
           "artist": "BIGBANG (빅뱅)",
           "artistGroup": "BIGBANG",
           "albumImage": "/assets/albums/40552b07f4c5cf563481.jpg",
           "change": {
             "type": "down",
-            "value": 2,
-            "label": "▼ 2"
+            "value": 1,
+            "label": "▼ 1"
           }
         },
         {
-          "rank": 25,
+          "rank": 26,
           "title": "BiiiG",
           "artist": "BIGBANG (빅뱅)",
           "artistGroup": "BIGBANG",
@@ -38,15 +38,15 @@
           }
         },
         {
-          "rank": 31,
+          "rank": 29,
           "title": "HOME SWEET HOME (feat. 태양, 대성)",
           "artist": "G-DRAGON",
           "artistGroup": "G-DRAGON",
           "albumImage": "/assets/albums/affc37c45ed9c1040415.jpg",
           "change": {
             "type": "up",
-            "value": 1,
-            "label": "▲ 1"
+            "value": 2,
+            "label": "▲ 2"
           }
         }
       ]
@@ -56,7 +56,7 @@
       "name": "멜론 일간",
       "type": "daily",
       "status": "ok",
-      "updatedAt": "2026-11-24 23:00:47 KST",
+      "updatedAt": "2026-11-25 00:00:49 KST",
       "songs": [
         {
           "rank": 13,
@@ -101,10 +101,10 @@
       "name": "지니 TOP200",
       "type": "realtime",
       "status": "ok",
-      "updatedAt": "2026-11-24 23:00:47 KST",
+      "updatedAt": "2026-11-25 00:00:49 KST",
       "songs": [
         {
-          "rank": 24,
+          "rank": 35,
           "title": "기립 (GiiiRIP)",
           "artist": "BIGBANG (빅뱅)",
           "artistGroup": "BIGBANG",
@@ -122,7 +122,7 @@
       "name": "벅스 실시간",
       "type": "realtime",
       "status": "ok",
-      "updatedAt": "2026-11-24 23:00:47 KST",
+      "updatedAt": "2026-11-25 00:00:49 KST",
       "songs": [
         {
           "rank": 1,
