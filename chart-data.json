@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-28 07:00:43 KST",
+  "updatedAt": "2026-11-28 08:00:44 KST",
   "melonDailyDate": "2026-11-28",
   "artists": [
     "G-DRAGON",
@@ -11,10 +11,10 @@
       "name": "멜론 TOP100",
       "type": "realtime",
       "status": "ok",
-      "updatedAt": "2026-11-28 07:00:43 KST",
+      "updatedAt": "2026-11-28 08:00:44 KST",
       "songs": [
         {
-          "rank": 13,
+          "rank": 11,
           "title": "기립 (GiiiRIP)",
           "artist": "BIGBANG (빅뱅)",
           "artistGroup": "BIGBANG",
@@ -26,7 +26,7 @@
           }
         },
         {
-          "rank": 34,
+          "rank": 30,
           "title": "BiiiG",
           "artist": "BIGBANG (빅뱅)",
           "artistGroup": "BIGBANG",
@@ -38,7 +38,7 @@
           }
         },
         {
-          "rank": 40,
+          "rank": 32,
           "title": "HOME SWEET HOME (feat. 태양, 대성)",
           "artist": "G-DRAGON",
           "artistGroup": "G-DRAGON",
@@ -56,7 +56,7 @@
       "name": "멜론 일간",
       "type": "daily",
       "status": "ok",
-      "updatedAt": "2026-11-28 07:00:43 KST",
+      "updatedAt": "2026-11-28 08:00:44 KST",
       "songs": [
         {
           "rank": 13,
@@ -101,18 +101,18 @@
       "name": "지니 TOP200",
       "type": "realtime",
       "status": "ok",
-      "updatedAt": "2026-11-28 07:00:43 KST",
+      "updatedAt": "2026-11-28 08:00:44 KST",
       "songs": [
         {
-          "rank": 38,
+          "rank": 40,
           "title": "기립 (GiiiRIP)",
           "artist": "BIGBANG (빅뱅)",
           "artistGroup": "BIGBANG",
           "albumImage": "/assets/albums/40552b07f4c5cf563481.jpg",
           "change": {
             "type": "down",
-            "value": 4,
-            "label": "▼ 4"
+            "value": 2,
+            "label": "▼ 2"
           }
         }
       ]
@@ -122,7 +122,7 @@
       "name": "벅스 실시간",
       "type": "realtime",
       "status": "ok",
-      "updatedAt": "2026-11-28 07:00:43 KST",
+      "updatedAt": "2026-11-28 08:00:44 KST",
       "songs": [
         {
           "rank": 9,
