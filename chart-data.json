@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-27 10:00:49 KST",
+  "updatedAt": "2026-11-27 11:00:47 KST",
   "melonDailyDate": "2026-11-27",
   "artists": [
     "G-DRAGON",
@@ -10,11 +10,11 @@
       "id": "melonTop100",
       "name": "멜론 TOP100",
       "type": "realtime",
-      "status": "error",
-      "updatedAt": "2026-11-27 09:00:43 KST",
+      "status": "ok",
+      "updatedAt": "2026-11-27 11:00:47 KST",
       "songs": [
         {
-          "rank": 10,
+          "rank": 11,
           "title": "기립 (GiiiRIP)",
           "artist": "BIGBANG (빅뱅)",
           "artistGroup": "BIGBANG",
@@ -32,32 +32,31 @@
           "artistGroup": "BIGBANG",
           "albumImage": "/assets/albums/8cf68f6335e8bbfd0059.jpg",
           "change": {
-            "type": "up",
+            "type": "down",
             "value": 1,
-            "label": "▲ 1"
+            "label": "▼ 1"
           }
         },
         {
-          "rank": 38,
+          "rank": 36,
           "title": "HOME SWEET HOME (feat. 태양, 대성)",
           "artist": "G-DRAGON",
           "artistGroup": "G-DRAGON",
           "albumImage": "/assets/albums/affc37c45ed9c1040415.jpg",
           "change": {
-            "type": "down",
-            "value": 2,
-            "label": "▼ 2"
+            "type": "up",
+            "value": 1,
+            "label": "▲ 1"
           }
         }
-      ],
-      "error": "HTTPSConnectionPool(host='www.melon.com', port=443): Max retries exceeded with url: /chart/index.htm (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.melon.com', port=443) at 0x7fc36cc96ba0>, 'Connection to www.melon.com timed out. (connect timeout=20)'))"
+      ]
     },
     "melonDaily": {
       "id": "melonDaily",
       "name": "멜론 일간",
       "type": "daily",
-      "status": "error",
-      "updatedAt": "2026-11-27 09:00:43 KST",
+      "status": "ok",
+      "updatedAt": "2026-11-27 11:00:47 KST",
       "songs": [
         {
           "rank": 13,
@@ -95,26 +94,25 @@
             "label": "—"
           }
         }
-      ],
-      "error": "HTTPSConnectionPool(host='www.melon.com', port=443): Max retries exceeded with url: /chart/day/index.htm (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.melon.com', port=443) at 0x7fc36cc97560>, 'Connection to www.melon.com timed out. (connect timeout=20)'))"
+      ]
     },
     "genieTop200": {
       "id": "genieTop200",
       "name": "지니 TOP200",
       "type": "realtime",
       "status": "ok",
-      "updatedAt": "2026-11-27 10:00:49 KST",
+      "updatedAt": "2026-11-27 11:00:47 KST",
       "songs": [
         {
-          "rank": 14,
+          "rank": 16,
           "title": "기립 (GiiiRIP)",
           "artist": "BIGBANG (빅뱅)",
           "artistGroup": "BIGBANG",
           "albumImage": "/assets/albums/40552b07f4c5cf563481.jpg",
           "change": {
             "type": "down",
-            "value": 1,
-            "label": "▼ 1"
+            "value": 2,
+            "label": "▼ 2"
           }
         }
       ]
@@ -124,42 +122,42 @@
       "name": "벅스 실시간",
       "type": "realtime",
       "status": "ok",
-      "updatedAt": "2026-11-27 10:00:49 KST",
+      "updatedAt": "2026-11-27 11:00:47 KST",
       "songs": [
         {
-          "rank": 6,
+          "rank": 7,
           "title": "기립 (GiiiRIP)",
           "artist": "BIGBANG (빅뱅)",
           "artistGroup": "BIGBANG",
           "albumImage": "/assets/albums/40552b07f4c5cf563481.jpg",
           "change": {
-            "type": "up",
+            "type": "down",
             "value": 1,
-            "label": "▲ 1"
+            "label": "▼ 1"
           }
         },
         {
-          "rank": 64,
+          "rank": 71,
           "title": "BiiiG",
           "artist": "BIGBANG (빅뱅)",
           "artistGroup": "BIGBANG",
           "albumImage": "/assets/albums/8cf68f6335e8bbfd0059.jpg",
           "change": {
-            "type": "up",
-            "value": 8,
-            "label": "▲ 8"
+            "type": "down",
+            "value": 7,
+            "label": "▼ 7"
           }
         },
         {
-          "rank": 86,
+          "rank": 76,
           "title": "HOME SWEET HOME (feat. 태양, 대성)",
           "artist": "G-DRAGON",
           "artistGroup": "G-DRAGON",
           "albumImage": "/assets/albums/affc37c45ed9c1040415.jpg",
           "change": {
             "type": "up",
-            "value": 6,
-            "label": "▲ 6"
+            "value": 10,
+            "label": "▲ 10"
           }
         }
       ]
